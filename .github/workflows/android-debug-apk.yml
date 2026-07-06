@@ -12,7 +12,7 @@ on:
 jobs:
   android-debug-apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 70
 
     steps:
       - name: Checkout
@@ -52,6 +52,7 @@ jobs:
 
       - name: Generate Android debug keystore
         run: |
+          rm -f mobile/android/app/debug.keystore
           keytool -genkeypair -v \
             -storetype JKS \
             -keystore mobile/android/app/debug.keystore \
@@ -67,6 +68,7 @@ jobs:
       - name: Build debug APK
         working-directory: mobile/android
         env:
+          NODE_ENV: development
           EXPO_PUBLIC_AUTH_API_BASE_URL: http://192.168.0.101:4001
           EXPO_PUBLIC_API_BASE_URL: http://192.168.0.101:4001
           GRADLE_OPTS: -Dorg.gradle.workers.max=2 -Dorg.gradle.parallel=false -Dkotlin.compiler.execution.strategy=in-process
