@@ -177,6 +177,30 @@ function mapApiProfileToUnified(profile: UserProfileApiSnapshot, currentAccount?
   };
 }
 
+function withLocalProfileTimeout<T>(label: string, task: Promise<T>, timeoutMs = 2500): Promise<T | null> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+
+  const timeout = new Promise<null>((resolve) => {
+    timer = setTimeout(() => {
+      console.warn("[unified-account-profile] local profile task timed out", label);
+      resolve(null);
+    }, timeoutMs);
+  });
+
+  return Promise.race([task, timeout])
+    .catch((error) => {
+      console.warn(
+        "[unified-account-profile] local profile task failed",
+        label,
+        error instanceof Error ? error.message : error,
+      );
+      return null;
+    })
+    .finally(() => {
+      if (timer) clearTimeout(timer);
+    });
+}
+
 function toKernelAccount(profile: UnifiedAccountProfile, apiProfile?: UserProfileApiSnapshot, currentAccount?: any) {
   const fullName =
     normalizeProfileName(profile.fullName) ||
@@ -324,14 +348,22 @@ export async function saveUnifiedAccountProfile(input: SaveUnifiedAccountProfile
 
   const unified = mapApiProfileToUnified(apiProfile, current);
 
-  await profileKernelFacade.updateProfile(toKernelAccount(unified, apiProfile, current) as any);
-  await profileKernelFacade.updatePublicProfile({
-    publicName: apiProfile.displayName,
-    publicUsername: apiProfile.username,
-    publicBio: apiProfile.bio || "",
-    publicSubtitle: unified.sabiDisplayId,
-  });
-  await profileKernelFacade.clearDraft();
+  await withLocalProfileTimeout(
+    "updateProfile",
+    profileKernelFacade.updateProfile(toKernelAccount(unified, apiProfile, current) as any),
+  );
+
+  await withLocalProfileTimeout(
+    "updatePublicProfile",
+    profileKernelFacade.updatePublicProfile({
+      publicName: apiProfile.displayName,
+      publicUsername: apiProfile.username,
+      publicBio: apiProfile.bio || "",
+      publicSubtitle: unified.sabiDisplayId,
+    }),
+  );
+
+  await withLocalProfileTimeout("clearDraft", profileKernelFacade.clearDraft());
 
   return unified;
 }
