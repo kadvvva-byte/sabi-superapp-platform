@@ -1,4 +1,5 @@
 import { getSabiApiBaseUrlCandidates, resolveSabiApiBaseUrl } from "./apiBaseUrl";
+import { requestFirebasePhoneCode, verifyFirebasePhoneCode } from "../firebase/firebasePhoneAuth";
 
 const DEFAULT_AUTH_API_BASE_URL = resolveSabiApiBaseUrl(undefined, { port: "4001" });
 
@@ -20,6 +21,15 @@ const VERIFY_ENDPOINT_CANDIDATES = [
   "/api/auth/otp/verify",
   "/api/v2/auth/otp/verify",
   "/verify",
+] as const;
+
+const FIREBASE_VERIFY_ENDPOINT_CANDIDATES = [
+  "/auth/firebase/verify",
+  "/api/auth/firebase/verify",
+  "/api/v2/auth/firebase/verify",
+  "/auth/phone/firebase/verify",
+  "/api/auth/phone/firebase/verify",
+  "/api/v2/auth/phone/firebase/verify",
 ] as const;
 
 const LOGOUT_ENDPOINT_CANDIDATES = [
@@ -49,6 +59,8 @@ export type RequestOtpResponse = {
   phone: string;
   expiresAt?: string;
   otpCode?: string;
+  provider?: "firebase_phone" | "server_otp";
+  firebaseVerificationId?: string;
 };
 
 type VerifyOtpRequest = {
@@ -273,6 +285,73 @@ async function sendAuthorizedRequest(params: {
   });
 }
 
+async function exchangeFirebaseIdTokenForSabiSession(
+  idToken: string,
+  apiBaseUrl?: string | null,
+): Promise<VerifyOtpSession> {
+  const normalizedToken = idToken.trim();
+
+  if (!normalizedToken) {
+    throw new Error("Firebase ID token is required.");
+  }
+
+  const errors: string[] = [];
+  const baseUrls = getAuthApiBaseUrlCandidates(apiBaseUrl);
+
+  for (const baseUrl of baseUrls) {
+    for (const endpoint of FIREBASE_VERIFY_ENDPOINT_CANDIDATES) {
+      try {
+        const response = await postJsonRequest(endpoint, { idToken: normalizedToken }, baseUrl);
+
+        if (response.status === 404) {
+          errors.push(`${baseUrl}${endpoint}: endpoint not found`);
+          continue;
+        }
+
+        const json = await parseJsonSafe(response);
+
+        if (!response.ok) {
+          const payload = readPayload(json);
+          const message =
+            asString(payload.message) ||
+            asString(payload.error) ||
+            `Firebase verify failed with status ${response.status}.`;
+
+          errors.push(`${baseUrl}${endpoint}: ${message}`);
+          continue;
+        }
+
+        const payload = readPayload(json);
+        const accessToken = extractAccessToken(payload);
+        const refreshToken = extractRefreshToken(payload);
+        const currentUserId = extractUserId(payload);
+
+        if (!accessToken || !currentUserId) {
+          errors.push(`${baseUrl}${endpoint}: response does not contain accessToken/userId.`);
+          continue;
+        }
+
+        return {
+          apiBaseUrl: baseUrl,
+          accessToken,
+          refreshToken: refreshToken || null,
+          currentUserId,
+          profileCompleted: extractProfileCompleted(payload),
+          profile: extractProfile(payload),
+        };
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : "Unknown Firebase verify exchange error.";
+        errors.push(`${baseUrl}${endpoint}: ${message}`);
+      }
+    }
+  }
+
+  throw new Error(
+    `Firebase token exchange failed. Tried ${baseUrls.join(", ")}. ${errors.join(" | ")}`,
+  );
+}
+
 async function callAuthorizedEndpoint(
   method: "POST" | "DELETE",
   endpoints: readonly string[],
@@ -332,6 +411,22 @@ export async function requestOtpCode(
 
   if (!phone) {
     throw new Error("Phone number is required.");
+  }
+
+  try {
+    const firebaseResult = await requestFirebasePhoneCode(phone);
+
+    return {
+      apiBaseUrl: getAuthApiBaseUrlCandidates(request.apiBaseUrl)[0] ?? getAuthApiBaseUrl(),
+      phone: firebaseResult.phone,
+      provider: firebaseResult.provider,
+      firebaseVerificationId: firebaseResult.firebaseVerificationId,
+    };
+  } catch (firebaseError) {
+    console.warn(
+      "[auth-api] Firebase phone request unavailable, falling back to server OTP",
+      firebaseError instanceof Error ? firebaseError.message : firebaseError,
+    );
   }
 
   const errors: string[] = [];
@@ -395,6 +490,16 @@ export async function verifyOtpCode(
 
   if (!code) {
     throw new Error("Verification code is required.");
+  }
+
+  try {
+    const firebaseVerified = await verifyFirebasePhoneCode(phone, code);
+    return await exchangeFirebaseIdTokenForSabiSession(firebaseVerified.idToken, request.apiBaseUrl);
+  } catch (firebaseError) {
+    console.warn(
+      "[auth-api] Firebase phone verify unavailable, falling back to server OTP",
+      firebaseError instanceof Error ? firebaseError.message : firebaseError,
+    );
   }
 
   const errors: string[] = [];
