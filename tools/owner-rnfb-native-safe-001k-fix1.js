@@ -1,4 +1,8 @@
-export type FirebasePhoneRequestResult = {
+﻿const fs = require("fs");
+
+const target = "mobile/src/shared/firebase/firebasePhoneAuth.ts";
+
+const content = `export type FirebasePhoneRequestResult = {
   phone: string;
   firebaseVerificationId?: string;
   provider: "firebase_phone";
@@ -147,3 +151,11 @@ export async function verifyFirebasePhoneCode(
     idToken,
   };
 }
+`;
+
+fs.writeFileSync(target, content, "utf8");
+
+fs.writeFileSync("tools/owner-rnfb-native-safe-001k-fix1.js", fs.readFileSync(__filename, "utf8"), "utf8");
+
+console.log("OWNER-RNFB-NATIVE-SAFE-001K-FIX1 APPLIED");
+console.log("FIXED", target);
