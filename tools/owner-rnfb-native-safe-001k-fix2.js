@@ -1,4 +1,8 @@
-import { NativeModules } from "react-native";
+﻿const fs = require("fs");
+
+const target = "mobile/src/shared/firebase/firebasePhoneAuth.ts";
+
+const content = `import { NativeModules } from "react-native";
 
 export type FirebasePhoneRequestResult = {
   phone: string;
@@ -158,3 +162,10 @@ export async function verifyFirebasePhoneCode(
     idToken,
   };
 }
+`;
+
+fs.writeFileSync(target, content, "utf8");
+fs.writeFileSync("tools/owner-rnfb-native-safe-001k-fix2.js", fs.readFileSync(__filename, "utf8"), "utf8");
+
+console.log("OWNER-RNFB-NATIVE-SAFE-001K-FIX2 APPLIED");
+console.log("FIXED", target);
