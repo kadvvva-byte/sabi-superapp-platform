@@ -302,6 +302,7 @@ export async function saveUnifiedAccountProfile(input: SaveUnifiedAccountProfile
   const lastName = normalizeProfileName(asSafeString(input.lastName || current.lastName));
   const username = normalizeUnifiedUsername(asSafeString(input.username || current.username));
   const phone = asSafeString(input.phone || current.phone).trim();
+  const displayName = [firstName, lastName].filter(Boolean).join(" ").trim() || username || phone;
 
   const apiProfile = await saveUserProfileToApi(
     {
@@ -310,9 +311,13 @@ export async function saveUnifiedAccountProfile(input: SaveUnifiedAccountProfile
       firstName,
       lastName,
       username,
+      displayName,
+      fullName: displayName,
       avatarUri: current.avatarUri,
+      avatarUrl: current.avatarUri,
       bio: current.bio,
       isPublicProfile: true,
+      profileCompleted: Boolean(firstName && lastName && username),
     },
     getAuthenticatedProfileApiSession(),
   );

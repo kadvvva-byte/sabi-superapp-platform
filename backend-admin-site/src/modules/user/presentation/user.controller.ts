@@ -8,6 +8,7 @@ import { GetUserUseCase } from "../application/get-user.usecase";
 import { UpdateUserProfileUseCase } from "../application/update-user-profile.usecase";
 import { UserService } from "../application/user.service";
 import { PublicProfileSurfaceService } from "../application/public-profile-surface.service";
+import { getAuthenticatedUserId } from "../../../middleware/authenticated-user.middleware";
 
 type UserControllerDeps = {
   createUser: CreateUserUseCase;
@@ -103,6 +104,17 @@ export class UserController {
   ): Promise<void> => {
     try {
       const { userId } = req.params;
+      const authenticatedUserId = getAuthenticatedUserId(req);
+
+      if (!authenticatedUserId || authenticatedUserId !== userId) {
+        res.status(403).json({
+          success: false,
+          error: "profile_forbidden",
+          code: "authenticated_user_mismatch",
+        });
+        return;
+      }
+
       const input = updateUserProfileSchema.parse(req.body);
       const result = await this.deps.updateUserProfile.execute(userId, input);
 
@@ -190,7 +202,9 @@ export class UserController {
   ): Promise<void> => {
     try {
       const userId = String(req.params.userId || req.body?.userId || "").trim();
-      const currentUserId = String(req.headers["x-user-id"] || req.body?.currentUserId || "").trim();
+      const currentUserId =
+        getAuthenticatedUserId(req) ||
+        String(req.headers["x-user-id"] || req.body?.currentUserId || "").trim();
 
       if (!userId) {
         res.status(400).json({

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UserController } from "./user.controller";
+import { requireAuthenticatedUser } from "../../../middleware/authenticated-user.middleware";
 
 export function createUserRouter(controller: UserController): Router {
   const router = Router();
@@ -9,10 +10,12 @@ export function createUserRouter(controller: UserController): Router {
   router.post("/public-profile/:identifier/like", controller.likePublicProfile);
   router.get("/public-profile/:identifier", controller.getPublicProfile);
   router.get("/:userId/public-profile", controller.getPublicProfile);
-  router.put("/:userId/public-profile", controller.savePublicProfile);
-  router.patch("/:userId/public-profile", controller.savePublicProfile);
+  router.put("/:userId/public-profile", requireAuthenticatedUser, controller.savePublicProfile);
+  router.patch("/:userId/public-profile", requireAuthenticatedUser, controller.savePublicProfile);
+  router.put("/:userId/profile", requireAuthenticatedUser, controller.updateProfile);
+  router.patch("/:userId/profile", requireAuthenticatedUser, controller.updateProfile);
   router.get("/:userId", controller.getById);
-  router.patch("/:userId", controller.updateProfile);
+  router.patch("/:userId", requireAuthenticatedUser, controller.updateProfile);
 
   return router;
 }
