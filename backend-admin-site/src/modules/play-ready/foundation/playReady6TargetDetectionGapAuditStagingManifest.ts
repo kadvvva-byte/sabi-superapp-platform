@@ -1,0 +1,31 @@
+import { getPlayReady6Readiness } from "./play-ready-6-target-detection-gap-audit";
+
+export const PLAY_READY_6_TARGET_DETECTION_GAP_AUDIT_STAGING_MANIFEST = {
+  version: "PLAY-READY-6",
+  stage: "controlled_app_backend_compliance_gate_target_detection_and_gap_audit_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/play-ready/foundation/play-ready-6-target-detection-gap-audit/**",
+  uploadedArchivesUsedForPlanningContext: ["src.zip", "app.zip", "src (2).zip"],
+  gatesCovered: [
+    "privacy_policy_link_gate",
+    "account_deletion_gate",
+    "ai_report_flag_gate",
+    "ugc_report_block_gate",
+    "permission_rationale_gate",
+    "provider_not_configured_gate",
+    "billing_vs_wallet_separation_gate",
+    "financial_features_gate",
+    "target_sdk_aab_release_gate",
+    "reviewer_evidence_gate",
+  ],
+  targetFilesModifiedNow: false,
+  backendRestartNow: false,
+  runtimeDbWriteNow: false,
+  providerCallsNow: false,
+  walletMutationNow: false,
+  paymentAuthorizationNow: false,
+  moneyMovementNow: false,
+  noFakeSuccess: true,
+  nextStage: "PLAY-READY-7",
+  readiness: getPlayReady6Readiness(),
+} as const;

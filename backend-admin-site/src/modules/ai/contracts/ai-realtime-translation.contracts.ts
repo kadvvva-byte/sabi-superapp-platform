@@ -1,0 +1,19 @@
+import type {
+  AiRealtimeTranslationManifest,
+  AiRealtimeTranslationSegmentInput,
+  AiRealtimeTranslationSegmentResult,
+  AiRealtimeTranslationSession,
+  AiRealtimeTranslationSessionCreateInput,
+  AiRealtimeTranslationSessionStatus,
+  AiRealtimeTranslationSessionUpdateInput,
+  AiRealtimeTranslationUserSummary,
+} from "../../../core/kernel/ai/ai-realtime-translation.types"
+
+export type AiRealtimeTranslationManifestContract = AiRealtimeTranslationManifest
+export type AiRealtimeTranslationSessionContract = AiRealtimeTranslationSession
+export type AiRealtimeTranslationSessionCreateRequestContract = AiRealtimeTranslationSessionCreateInput
+export type AiRealtimeTranslationSessionUpdateRequestContract = AiRealtimeTranslationSessionUpdateInput
+export type AiRealtimeTranslationSessionStatusContract = AiRealtimeTranslationSessionStatus
+export type AiRealtimeTranslationSegmentRequestContract = AiRealtimeTranslationSegmentInput
+export type AiRealtimeTranslationSegmentResponseContract = AiRealtimeTranslationSegmentResult
+export type AiRealtimeTranslationWorkspaceSummaryContract = AiRealtimeTranslationUserSummary

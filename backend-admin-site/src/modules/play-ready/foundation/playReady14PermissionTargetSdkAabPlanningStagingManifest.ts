@@ -1,0 +1,32 @@
+import { getPlayReady14Readiness } from "./play-ready-14-permission-target-sdk-aab-planning";
+
+export const PLAY_READY_14_PERMISSION_TARGET_SDK_AAB_PLANNING_STAGING_MANIFEST = {
+  version: "PLAY-READY-14",
+  stage: "controlled_permission_rationale_and_target_sdk_aab_local_root_audit_planning_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/play-ready/foundation/play-ready-14-permission-target-sdk-aab-planning/**",
+  reviewCovers: [
+    "Android permissions",
+    "permission rationale copy",
+    "targetSdk/API check planning",
+    "AAB build readiness",
+    "app signing/versioning",
+    "reviewer credentials/access checklist",
+    "no unused sensitive permissions",
+  ],
+  targetFilesModifiedNow: false,
+  localRootInspectionExecutedNow: false,
+  buildExecutedNow: false,
+  aabGeneratedNow: false,
+  playUploadNow: false,
+  backendRestartNow: false,
+  runtimeDbWriteNow: false,
+  providerCallsNow: false,
+  secretValueExposureNow: false,
+  walletMutationNow: false,
+  paymentAuthorizationNow: false,
+  moneyMovementNow: false,
+  noFakeSuccess: true,
+  nextStage: "PLAY-READY-15",
+  readiness: getPlayReady14Readiness(),
+} as const;

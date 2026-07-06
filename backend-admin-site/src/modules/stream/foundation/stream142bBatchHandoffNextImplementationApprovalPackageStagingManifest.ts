@@ -1,0 +1,36 @@
+import { getStreamFoundationBatchHandoffNextImplementationApprovalPackageReadiness } from "./batch-handoff-next-implementation-approval-package";
+
+export const STREAM_142B_BATCH_HANDOFF_NEXT_IMPLEMENTATION_APPROVAL_PACKAGE_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-142B",
+  stage: "source_only_batch_handoff_and_next_controlled_implementation_approval_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/batch-handoff-next-implementation-approval-package/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-142A",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimePostAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy142B: false,
+    serverTsChangeBy142B: false,
+    streamIndexChangeBy142B: false,
+    liveWriteHandlerChangeBy142B: false,
+    schemaMigrationBy142B: false,
+    backendRestartBy142B: false,
+    runtimeHttpBy142B: false,
+    runtimePostBy142B: false,
+    databaseReadBy142B: false,
+    databaseWriteBy142B: false,
+    providerCallBy142B: false,
+    providerSecretReadBy142B: false,
+    walletMutationBy142B: false,
+    paymentAuthorizationBy142B: false,
+    monthlyPayoutBy142B: false,
+    moneyMovementBy142B: false,
+    fakeSuccessBy142B: false,
+  },
+  readiness: getStreamFoundationBatchHandoffNextImplementationApprovalPackageReadiness(),
+} as const;

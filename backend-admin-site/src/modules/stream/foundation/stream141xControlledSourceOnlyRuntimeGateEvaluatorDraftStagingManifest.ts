@@ -1,0 +1,35 @@
+import { getStreamFoundationRuntimeGateEvaluatorReadiness } from "./live-write-runtime-gate-evaluator";
+
+export const STREAM_141X_CONTROLLED_SOURCE_ONLY_RUNTIME_GATE_EVALUATOR_DRAFT_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-141X",
+  stage: "controlled_source_only_runtime_gate_evaluator_draft_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/live-write-runtime-gate-evaluator/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-141W",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimeMountAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy141X: false,
+    serverTsChangeBy141X: false,
+    streamIndexChangeBy141X: false,
+    schemaMigrationBy141X: false,
+    backendRestartBy141X: false,
+    runtimeHttpBy141X: false,
+    runtimePostBy141X: false,
+    databaseReadBy141X: false,
+    databaseWriteBy141X: false,
+    providerCallBy141X: false,
+    providerSecretReadBy141X: false,
+    walletMutationBy141X: false,
+    paymentAuthorizationBy141X: false,
+    monthlyPayoutBy141X: false,
+    moneyMovementBy141X: false,
+    fakeSuccessBy141X: false,
+  },
+  readiness: getStreamFoundationRuntimeGateEvaluatorReadiness(),
+} as const;

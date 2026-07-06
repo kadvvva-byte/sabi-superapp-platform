@@ -1,0 +1,3 @@
+export type Taxi040UBlocked = 'blocked' | 'locked';
+export interface Taxi040UReadiness { stage: string; ready: boolean; providerBindingHandshake: 'controlled-handshake-no-money'; apiKeyValueAccepted: false; envRead: false; secretRead: 'controlled-no-print'; providerCall: 'handshake-no-money-controlled'; dbWrite: false; walletMutation: false; moneyMovement: false; paymentExecution: false; payoutExecution: false; productionLaunch: false; taxiCommissionBps: 0; visaCashbackBps: 200; }
+export interface Taxi040USummary extends Taxi040UReadiness { nextStep: string; exactOwnerApprovalRequiredBeforeProviderBinding: true; exactOwnerApprovalRequiredBeforeRawApiKeyIntake: true; }

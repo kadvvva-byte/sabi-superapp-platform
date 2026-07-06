@@ -1,0 +1,46 @@
+export type Sms241WReadiness = Readonly<{
+  sms241WAdminUiMaskedReadinessBuildSmokeExactOwnerFinalRunBoundaryStaticCheckReady: 100;
+  sms241VAdminUiMaskedReadinessBuildSmokeExactOwnerFinalRunBoundaryReady: 100;
+  finalRunBoundaryStaticCheckOnly: true;
+  finalRunBoundaryStaticCheckReady: true;
+  ownerExactFinalRunBoundaryStaticCheckReady: true;
+  buildSmokeFinalRunBoundaryStaticCheckReady: true;
+  buildExecutionStillNotExecuted: true;
+  buildExecutionGateOpenNow: false;
+  finalApprovalAcceptedNow: false;
+  finalRunAcceptedNow: false;
+  acceptedNow: false;
+  executableNow: false;
+  noExecutionNow: true;
+}>;
+
+export type Sms241WSafety = Readonly<{
+  noLiveSms: true;
+  noFirebaseApiCall: true;
+  noSmsProviderCall: true;
+  noSmsSent: true;
+  noEnvOrSecrets: true;
+  noEnvRead: true;
+  noEnvWrite: true;
+  noSecretManagerRead: true;
+  noSecretManagerWrite: true;
+  noSecretManagerAccessGrant: true;
+  noSecretValueInSource: true;
+  noPlainSecretInChat: true;
+  noPlainSecretInAdminUi: true;
+  noSecretRevealToAdmin: true;
+  noSecretRevealToDeveloper: true;
+  noSecretRevealToOwnerSabiAi: true;
+  noBreakGlassAccess: true;
+  noDbSessionTokenWrites: true;
+  noAdminUiRuntimeMount: true;
+  noBackendRouteRuntimeMount: true;
+  noRealAdminUiChange: true;
+  noAdminStatusMutation: true;
+  noAdminBuildExecution: true;
+  noOwnerBuildSmokeApprovalAccepted: true;
+  noExactOwnerCommandAccepted: true;
+  noGoogleCloudDeploy: true;
+  noWalletPaymentPayoutCrypto: true;
+  ownerFinalApprovalRequiredBeforeLiveAction: true;
+}>;

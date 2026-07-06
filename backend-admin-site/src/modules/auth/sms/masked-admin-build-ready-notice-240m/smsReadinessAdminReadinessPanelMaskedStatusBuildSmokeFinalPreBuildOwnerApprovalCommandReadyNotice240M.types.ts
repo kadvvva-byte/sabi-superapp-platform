@@ -1,0 +1,77 @@
+export type SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MVersion =
+  'SMS-READINESS-ADMIN-READINESS-PANEL-MASKED-STATUS-BUILD-SMOKE-FINAL-PRE-BUILD-OWNER-APPROVAL-COMMAND-READY-NOTICE-240M';
+
+export type SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MNextStep =
+  '240N_admin_readiness_panel_masked_status_build_smoke_final_pre_build_owner_approval_command_ready_notice_static_check_still_no_live_sms';
+
+export interface SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MReadiness {
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240M: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalSummaryAcceptanceBoundaryStaticCheck240L: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalSummaryAcceptanceBoundary240K: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalSummaryStaticCheck240J: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalSummary240I: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeExactOwnerCommandAcceptanceReportStaticCheck240H: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeExactOwnerCommandAcceptanceReport240G: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeExactOwnerCommandAcceptanceStaticCheck240F: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeExactOwnerApprovalCommandAcceptanceGate240E: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeExactOwnerApprovalCommandShapeValidation240D: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeExactOwnerApprovalCommandCandidate240C: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusOwnerBuildSmokeApprovalGate240B: 100;
+  smsReadinessAdminReadinessPanelMaskedStatusBuildSmokeStaticCheck240A: 100;
+  finalPreBuildOwnerApprovalCommandReadyNoticeReady: 100;
+  exactOwnerBuildSmokeCommandProvidedNow: 0;
+  exactOwnerBuildSmokeCommandAcceptedNow: 0;
+  ownerBuildSmokeApprovalProvidedNow: 0;
+  ownerBuildSmokeApprovalAcceptedNow: 0;
+  adminBuildExecutedNow: 0;
+  adminBuildExecutionEnabledNow: 0;
+  realAdminUiChangedNow: 0;
+  adminRuntimeMountedNow: 0;
+  adminStatusMutationEnabledNow: 0;
+  adminSecretRevealEnabledNow: 0;
+  secretManagerAccessEnabledNow: 0;
+  realFirebaseProviderConnected: 0;
+  realSmsProviderConnected: 0;
+  realSmsSent: 0;
+  realGoogleCloudDeploy: 0;
+  productionPublicLaunch: 0;
+}
+
+export interface SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MSafety {
+  liveSmsSentByChecker: false;
+  firebaseApiCallByChecker: false;
+  smsProviderCallByChecker: false;
+  envOrSecretsReadByChecker: false;
+  envOrSecretsWriteByChecker: false;
+  secretManagerReadByChecker: false;
+  secretManagerWriteByChecker: false;
+  secretManagerAccessGrantByChecker: false;
+  dbSessionTokenWriteByChecker: false;
+  adminRuntimeMountedByChecker: false;
+  backendRouteMountedByChecker: false;
+  realAdminUiChangedByChecker: false;
+  adminBuildExecutedByChecker: false;
+  ownerBuildSmokeApprovalAcceptedByChecker: false;
+  exactOwnerCommandAcceptedByChecker: false;
+  adminStatusMutatedByChecker: false;
+  googleCloudDeployByChecker: false;
+  walletPaymentPayoutCryptoTouched: false;
+  plainSecretDisplayedByChecker: false;
+  plainSecretAcceptedByChecker: false;
+  secretAccessGrantedByChecker: false;
+  breakGlassAccessEnabledByChecker: false;
+  productionLaunchClaimed: false;
+  externalMessengerAliasIntroduced: false;
+  donationOrInvestmentAskIntroduced: false;
+}
+
+export interface SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240M {
+  version: SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MVersion;
+  status: 'ready_notice_only';
+  marker: 'SABI_SMS_READINESS_240M_FINAL_PRE_BUILD_OWNER_APPROVAL_COMMAND_READY_NOTICE_STILL_NO_LIVE_SMS';
+  readiness: SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MReadiness;
+  safety: SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MSafety;
+  locks: ReadonlyArray<string>;
+  requiredOwnerCommandBoundary: ReadonlyArray<string>;
+  nextStep: SmsReadinessAdminReadinessPanelMaskedStatusBuildSmokeFinalPreBuildOwnerApprovalCommandReadyNotice240MNextStep;
+}

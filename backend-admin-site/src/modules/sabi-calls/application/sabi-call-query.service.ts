@@ -1,0 +1,3 @@
+import type { ListSabiCallsQuery, SabiCallPublicSession, SabiCallSession } from "../contracts";
+import type { SabiCallRepository } from "../infrastructure/persistence";
+export class SabiCallQueryService { constructor(private readonly repository: SabiCallRepository) {} toPublic(session: SabiCallSession, viewerUserId?: string): SabiCallPublicSession { return { ...session, direction: viewerUserId && viewerUserId !== session.initiatedByUserId ? "incoming" : "outgoing" }; } async list(query: ListSabiCallsQuery = {}): Promise<SabiCallPublicSession[]> { const calls = await this.repository.findMany(query); return calls.map(c => this.toPublic(c.toDto(), query.userId)); } }

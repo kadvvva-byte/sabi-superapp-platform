@@ -1,0 +1,90 @@
+export type Sms241HReadiness = Readonly<{
+  sms241HAdminUiMaskedReadinessBuildSmokeExactOwnerRunCommandAcceptanceGateReady: 100;
+  sms241GAdminUiMaskedReadinessBuildSmokeExactOwnerRunCommandStaticCheckReady: 100;
+  sms241FAdminUiMaskedReadinessBuildSmokeExactOwnerRunCommandReady: 100;
+  exactOwnerBuildSmokeCommandProvidedNow: 0;
+  exactOwnerBuildSmokeCommandAcceptedNow: 0;
+  ownerBuildSmokeApprovalProvidedNow: 0;
+  ownerBuildSmokeApprovalAcceptedNow: 0;
+  adminBuildExecutedNow: 0;
+  adminBuildExecutionEnabledNow: 0;
+  realAdminUiChangedNow: 0;
+  realSmsSent: 0;
+  productionPublicLaunch: 0;
+}>;
+
+export type Sms241HSafety = Readonly<{
+  noLiveSms: true;
+  noFirebaseApiCall: true;
+  noSmsProviderCall: true;
+  noSmsSent: true;
+  noEnvOrSecrets: true;
+  noEnvRead: true;
+  noEnvWrite: true;
+  noSecretManagerRead: true;
+  noSecretManagerWrite: true;
+  noSecretManagerAccessGrant: true;
+  noSecretValueInSource: true;
+  noPlainSecretInChat: true;
+  noPlainSecretInAdminUi: true;
+  noSecretRevealToAdmin: true;
+  noSecretRevealToDeveloper: true;
+  noSecretRevealToOwnerSabiAi: true;
+  noBreakGlassAccess: true;
+  noDbSessionTokenWrites: true;
+  noAdminUiRuntimeMount: true;
+  noBackendRouteRuntimeMount: true;
+  noRealAdminUiChange: true;
+  noAdminStatusMutation: true;
+  noAdminBuildExecution: true;
+  noOwnerBuildSmokeApprovalAccepted: true;
+  noExactOwnerCommandAccepted: true;
+  noGoogleCloudDeploy: true;
+  noWalletPaymentPayoutCrypto: true;
+  ownerFinalApprovalRequiredBeforeLiveAction: true;
+}>;
+
+export type Sms241HCommandGate = Readonly<{
+  acceptedNow: false;
+  executableNow: false;
+  noExecutionNow: true;
+  exactOwnerCommandProvidedNow: false;
+  exactOwnerCommandAcceptedNow: false;
+  ownerBuildSmokeApprovalProvidedNow: false;
+  ownerBuildSmokeApprovalAcceptedNow: false;
+  canAcceptOwnerCommandNow: false;
+  canRunAdminBuildNow: false;
+  canApproveAdminBuildExecutionNow: false;
+  canDisplayPlainSecretNow: false;
+  canDisplayProviderResponseNow: false;
+  canDisplayLiveTokenNow: false;
+  canCopyPlainSecretNow: false;
+  canExportSecretNow: false;
+  canMutateRuntimeNow: false;
+  canSendLiveSmsNow: false;
+}>;
+
+export type Sms241HReport = Readonly<{
+  version: typeof SMS_241H_VERSION;
+  marker: typeof SABI_SMS_READINESS_241H_MARKER;
+  windowsExpandArchiveSafePath: true;
+  shortPathReady: true;
+  adminUiMaskedReadinessBuildSmokeExactOwnerRunCommandAcceptanceGateOnly: true;
+  exactOwnerRunCommandAcceptanceGateOnly: true;
+  exactOwnerRunCommandAcceptanceGateReady: true;
+  ownerExactRunCommandAcceptanceGateReady: true;
+  acceptanceGateReady: true;
+  ownerFinalApprovalRequired: true;
+  ownerSabiAiReportOnly: true;
+  maskedAdminStatusOnly: true;
+  commandReference: string;
+  ownerApprovalPhraseReferenceOnly: string;
+  readiness: Sms241HReadiness;
+  gate: Sms241HCommandGate;
+  safety: Sms241HSafety;
+  publicWording: readonly string[];
+  nextStep: string;
+}>;
+
+export declare const SMS_241H_VERSION: 'SMS-READINESS-241H-SHORT-PATH-ADMIN-UI-MASKED-READINESS-BUILD-SMOKE-EXACT-OWNER-RUN-COMMAND-ACCEPTANCE-GATE';
+export declare const SABI_SMS_READINESS_241H_MARKER: 'SABI_SMS_READINESS_241H_SHORT_PATH_ADMIN_UI_MASKED_READINESS_BUILD_SMOKE_EXACT_OWNER_RUN_COMMAND_ACCEPTANCE_GATE_STILL_NO_LIVE_SMS';

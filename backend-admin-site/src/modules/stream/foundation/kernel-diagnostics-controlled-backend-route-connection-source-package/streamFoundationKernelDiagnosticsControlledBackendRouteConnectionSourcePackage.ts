@@ -1,0 +1,270 @@
+import { getStreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePatchReviewSnapshot } from "../kernel-diagnostics-controlled-backend-route-connection-source-patch-review";
+import {
+  STREAM_FOUNDATION_139W_KERNEL_DIAGNOSTICS_CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_VERSION,
+  type StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageCheck,
+  type StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageDecision,
+  type StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageFileSpec,
+  type StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageSafety,
+  type StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageSnapshot,
+  type StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageStatus,
+} from "./streamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageContracts";
+
+const CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY: StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageSafety = {
+  patchScope: "src/modules/stream/foundation/** only",
+  backendRouteConnectionSourcePackageBuiltNow: true,
+  previousSourcePatchReviewPassed: true,
+  sourcePackageOnlyNow: true,
+  sourcePackageWriteAllowedNow: false,
+  sourceFilesWrittenNow: false,
+  sourceTextReturnedNow: false,
+  readyForProductionBackend: false,
+  routeMountAllowedNow: false,
+  routeMountPerformedNow: false,
+  protectedRouteRegisteredNow: false,
+  expressRouterCreatedNow: false,
+  expressRouterImportedNow: false,
+  expressRouterBoundNow: false,
+  streamIndexPatchIncluded: false,
+  streamModuleIndexTouchedNow: false,
+  appServerPatchIncluded: false,
+  appServerTouchedNow: false,
+  runtimeHttpRequestPerformedNow: false,
+  databaseReadAllowedNow: false,
+  databaseWriteAllowedNow: false,
+  providerCallAllowedNow: false,
+  walletMutationAllowedNow: false,
+  paymentAuthorizationAllowedNow: false,
+  monthlyPayoutAllowedNow: false,
+  moneyMovementAllowedNow: false,
+  rawSecretsReturned: false,
+  mobileProviderKeysAllowed: false,
+  fakeSuccessAllowed: false,
+};
+
+const FILE_SPECS: readonly StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageFileSpec[] = [
+  {
+    packageId: "139w_foundation_runtime_diagnostics_handler_factory",
+    targetLayer: "foundation_runtime_route",
+    plannedPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/streamFoundationKernelDiagnosticsAdminRuntimeRouteHandlerFactory.ts",
+    includedInThisPatch: true,
+    writtenNow: false,
+    returnedSourceTextNow: false,
+    allowedBeforeOwnerApproval: true,
+    requiredBeforeProductionBackend: true,
+    safeCode: "foundation_runtime_handler_factory_already_source_only",
+  },
+  {
+    packageId: "139w_foundation_runtime_diagnostics_response_mapper",
+    targetLayer: "foundation_runtime_route",
+    plannedPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/streamFoundationKernelDiagnosticsAdminRuntimeRouteResponseMapper.ts",
+    includedInThisPatch: true,
+    writtenNow: false,
+    returnedSourceTextNow: false,
+    allowedBeforeOwnerApproval: true,
+    requiredBeforeProductionBackend: true,
+    safeCode: "foundation_runtime_response_mapper_already_source_only",
+  },
+  {
+    packageId: "139w_stream_module_index_connection_later",
+    targetLayer: "stream_module_index_later",
+    plannedPath: "src/modules/stream/index.ts",
+    includedInThisPatch: false,
+    writtenNow: false,
+    returnedSourceTextNow: false,
+    allowedBeforeOwnerApproval: false,
+    requiredBeforeProductionBackend: true,
+    safeCode: "stream_index_connection_deferred",
+  },
+  {
+    packageId: "139w_backend_entry_mount_later",
+    targetLayer: "backend_entry_mount_later",
+    plannedPath: "backend app/server route registration file determined on production tree",
+    includedInThisPatch: false,
+    writtenNow: false,
+    returnedSourceTextNow: false,
+    allowedBeforeOwnerApproval: false,
+    requiredBeforeProductionBackend: true,
+    safeCode: "backend_entry_mount_deferred",
+  },
+  {
+    packageId: "139w_server_smoke_later",
+    targetLayer: "server_smoke_later",
+    plannedPath: "server-side protected Admin diagnostics route smoke command determined after mount",
+    includedInThisPatch: false,
+    writtenNow: false,
+    returnedSourceTextNow: false,
+    allowedBeforeOwnerApproval: false,
+    requiredBeforeProductionBackend: true,
+    safeCode: "server_smoke_deferred",
+  },
+] as const;
+
+function buildChecks(): readonly StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageCheck[] {
+  const previous = getStreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePatchReviewSnapshot();
+  return [
+    {
+      area: "previous_source_patch_review",
+      checkId: "139w_previous_source_patch_review_ready",
+      passed: previous.status === "controlled_backend_route_connection_source_patch_review_ready_unmounted" && previous.readyForControlledBackendRouteConnectionSourcePackage === true,
+      blocking: previous.status !== "controlled_backend_route_connection_source_patch_review_ready_unmounted" || previous.readyForControlledBackendRouteConnectionSourcePackage !== true,
+      expected: "139V source patch review ready for source package",
+      observed: `${previous.status}:${String(previous.readyForControlledBackendRouteConnectionSourcePackage)}`,
+      remediation: "Complete 139V source patch review first.",
+      safeCode: "previous_source_patch_review_ready",
+      safeMessageKey: "stream.foundation.139w.previousSourcePatchReviewReady",
+    },
+    {
+      area: "foundation_runtime_route_source",
+      checkId: "139w_foundation_runtime_route_source_packaged",
+      passed: FILE_SPECS.filter((spec) => spec.targetLayer === "foundation_runtime_route" && spec.includedInThisPatch).length === 2,
+      blocking: FILE_SPECS.filter((spec) => spec.targetLayer === "foundation_runtime_route" && spec.includedInThisPatch).length !== 2,
+      expected: "foundation runtime diagnostics route source represented in package metadata",
+      observed: String(FILE_SPECS.filter((spec) => spec.targetLayer === "foundation_runtime_route" && spec.includedInThisPatch).length),
+      remediation: "Package foundation runtime diagnostics handler and response mapper metadata.",
+      safeCode: "foundation_runtime_route_source_packaged",
+      safeMessageKey: "stream.foundation.139w.foundationRuntimeRouteSourcePackaged",
+    },
+    {
+      area: "stream_index_connection_deferred",
+      checkId: "139w_stream_index_not_included",
+      passed: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.streamIndexPatchIncluded === false && FILE_SPECS.every((spec) => spec.plannedPath !== "src/modules/stream/index.ts" || spec.includedInThisPatch === false),
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.streamIndexPatchIncluded || FILE_SPECS.some((spec) => spec.plannedPath === "src/modules/stream/index.ts" && spec.includedInThisPatch),
+      expected: "src/modules/stream/index.ts not included in this package",
+      observed: String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.streamIndexPatchIncluded),
+      remediation: "Keep stream index connection for explicit controlled backend connection execution.",
+      safeCode: "stream_index_not_included",
+      safeMessageKey: "stream.foundation.139w.streamIndexNotIncluded",
+    },
+    {
+      area: "backend_entry_mount_deferred",
+      checkId: "139w_backend_entry_mount_not_included",
+      passed: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.appServerPatchIncluded === false && CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.routeMountPerformedNow === false,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.appServerPatchIncluded || CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.routeMountPerformedNow,
+      expected: "no backend app/server mount in this stage",
+      observed: `${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.appServerPatchIncluded)}:${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.routeMountPerformedNow)}`,
+      remediation: "Mount backend route only in explicit controlled backend connection execution stage.",
+      safeCode: "backend_entry_mount_not_included",
+      safeMessageKey: "stream.foundation.139w.backendEntryMountNotIncluded",
+    },
+    {
+      area: "runtime_http_deferred",
+      checkId: "139w_runtime_http_deferred",
+      passed: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.runtimeHttpRequestPerformedNow === false,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.runtimeHttpRequestPerformedNow,
+      expected: "no runtime HTTP request now",
+      observed: String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.runtimeHttpRequestPerformedNow),
+      remediation: "Run HTTP smoke only after route mount.",
+      safeCode: "runtime_http_deferred",
+      safeMessageKey: "stream.foundation.139w.runtimeHttpDeferred",
+    },
+    {
+      area: "persistence_provider_wallet_deferred",
+      checkId: "139w_persistence_provider_wallet_deferred",
+      passed: !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.databaseWriteAllowedNow && !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.providerCallAllowedNow && !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.walletMutationAllowedNow,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.databaseWriteAllowedNow || CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.providerCallAllowedNow || CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.walletMutationAllowedNow,
+      expected: "no DB/provider/Wallet side effects",
+      observed: `${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.databaseWriteAllowedNow)}:${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.providerCallAllowedNow)}:${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.walletMutationAllowedNow)}`,
+      remediation: "Keep adapters disabled until dedicated production binding stages.",
+      safeCode: "persistence_provider_wallet_deferred",
+      safeMessageKey: "stream.foundation.139w.persistenceProviderWalletDeferred",
+    },
+    {
+      area: "payment_payout_deferred",
+      checkId: "139w_payment_payout_deferred",
+      passed: !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.paymentAuthorizationAllowedNow && !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.monthlyPayoutAllowedNow && !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.moneyMovementAllowedNow,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.paymentAuthorizationAllowedNow || CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.monthlyPayoutAllowedNow || CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.moneyMovementAllowedNow,
+      expected: "no payment authorization, monthly payout, or money movement",
+      observed: `${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.paymentAuthorizationAllowedNow)}:${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.monthlyPayoutAllowedNow)}:${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.moneyMovementAllowedNow)}`,
+      remediation: "Use payment and Wallet gates only after real provider integration.",
+      safeCode: "payment_payout_deferred",
+      safeMessageKey: "stream.foundation.139w.paymentPayoutDeferred",
+    },
+    {
+      area: "secret_redaction",
+      checkId: "139w_secret_redaction",
+      passed: !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.rawSecretsReturned && !CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.mobileProviderKeysAllowed,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.rawSecretsReturned || CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.mobileProviderKeysAllowed,
+      expected: "no raw secrets and no mobile provider keys",
+      observed: `${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.rawSecretsReturned)}:${String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.mobileProviderKeysAllowed)}`,
+      remediation: "Keep provider keys server-side and redacted.",
+      safeCode: "secret_redaction",
+      safeMessageKey: "stream.foundation.139w.secretRedaction",
+    },
+    {
+      area: "fake_success_block",
+      checkId: "139w_fake_success_blocked",
+      passed: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.fakeSuccessAllowed === false,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.fakeSuccessAllowed,
+      expected: "fake success blocked",
+      observed: String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.fakeSuccessAllowed),
+      remediation: "Return provider_not_configured/safe-disabled until real providers are configured.",
+      safeCode: "fake_success_blocked",
+      safeMessageKey: "stream.foundation.139w.fakeSuccessBlocked",
+    },
+    {
+      area: "production_backend_transition",
+      checkId: "139w_not_production_backend_ready_yet",
+      passed: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.readyForProductionBackend === false,
+      blocking: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.readyForProductionBackend !== false,
+      expected: "source package only, not production backend ready yet",
+      observed: String(CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY.readyForProductionBackend),
+      remediation: "Continue with source package write review, owner approval, stream index connection, backend mount, server build, and runtime smoke.",
+      safeCode: "not_production_backend_ready_yet",
+      safeMessageKey: "stream.foundation.139w.notProductionBackendReadyYet",
+    },
+  ] as const;
+}
+
+function buildDecision(checks: readonly StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageCheck[]): StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageDecision {
+  const previous = getStreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePatchReviewSnapshot();
+  const blockingChecks = checks.filter((check) => check.blocking);
+  if (previous.status !== "controlled_backend_route_connection_source_patch_review_ready_unmounted" || previous.readyForControlledBackendRouteConnectionSourcePackage !== true) {
+    return { decisionCode: "controlled_backend_route_connection_source_package_blocked_by_source_patch_review", sourcePackagePassedNow: false, readyForControlledBackendRouteConnectionSourcePackageWriteReview: false, readyForProductionBackend: false, routeMountAllowedNow: false, routeMountPerformedNow: false, runtimeActivationAllowedNow: false, safeCode: "blocked_by_source_patch_review", safeMessageKey: "stream.foundation.139w.blockedBySourcePatchReview" };
+  }
+  if (blockingChecks.length > 0) {
+    return { decisionCode: "controlled_backend_route_connection_source_package_blocked_by_safety_gate", sourcePackagePassedNow: false, readyForControlledBackendRouteConnectionSourcePackageWriteReview: false, readyForProductionBackend: false, routeMountAllowedNow: false, routeMountPerformedNow: false, runtimeActivationAllowedNow: false, safeCode: "blocked_by_safety_gate", safeMessageKey: "stream.foundation.139w.blockedBySafetyGate" };
+  }
+  return { decisionCode: "controlled_backend_route_connection_source_package_ready_for_write_review", sourcePackagePassedNow: true, readyForControlledBackendRouteConnectionSourcePackageWriteReview: true, readyForProductionBackend: false, routeMountAllowedNow: false, routeMountPerformedNow: false, runtimeActivationAllowedNow: false, safeCode: "ready_for_write_review", safeMessageKey: "stream.foundation.139w.readyForWriteReview" };
+}
+
+export function getStreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageSnapshot(): StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageSnapshot {
+  const previous = getStreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePatchReviewSnapshot();
+  const checks = buildChecks();
+  const decision = buildDecision(checks);
+  const status: StreamFoundationKernelDiagnosticsControlledBackendRouteConnectionSourcePackageStatus = decision.sourcePackagePassedNow
+    ? "controlled_backend_route_connection_source_package_ready_unmounted"
+    : "controlled_backend_route_connection_source_package_blocked";
+  return {
+    version: STREAM_FOUNDATION_139W_KERNEL_DIAGNOSTICS_CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_VERSION,
+    status,
+    patchScope: "src/modules/stream/foundation/** only",
+    previousSourcePatchReviewStatus: previous.status,
+    sourcePackagePassedNow: decision.sourcePackagePassedNow,
+    fileSpecs: FILE_SPECS,
+    fileSpecCount: FILE_SPECS.length,
+    includedFilesInThisPatch: FILE_SPECS.filter((spec) => spec.includedInThisPatch).length,
+    writtenFilesNow: 0,
+    sourceTextReturnedNow: 0,
+    totalChecks: checks.length,
+    passedChecks: checks.filter((check) => check.passed).length,
+    blockingChecks: checks.filter((check) => check.blocking).length,
+    readyForControlledBackendRouteConnectionSourcePackageWriteReview: decision.readyForControlledBackendRouteConnectionSourcePackageWriteReview,
+    readyForProductionBackend: false,
+    routeMountAllowedNow: false,
+    routeMountPerformedNow: false,
+    protectedRouteRegisteredNow: false,
+    runtimeHttpRequestsPerformed: 0,
+    databaseExecutionPerformed: 0,
+    providerCallsPerformed: 0,
+    walletMutationPerformed: 0,
+    paymentAuthorizationPerformed: 0,
+    monthlyPayoutPerformed: 0,
+    moneyMovementPerformed: 0,
+    rawSecretsReturned: 0,
+    mobileProviderKeysAllowed: false,
+    fakeSuccessAllowed: false,
+    checks,
+    decision,
+    safety: CONTROLLED_BACKEND_ROUTE_CONNECTION_SOURCE_PACKAGE_SAFETY,
+  };
+}

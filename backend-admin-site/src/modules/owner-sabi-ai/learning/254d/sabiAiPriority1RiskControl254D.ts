@@ -1,0 +1,101 @@
+import type {
+  SabiAiLearningSafetyLocks254D,
+  SabiAiPriority1ControlDoctrine254D,
+  SabiAiPriority1RiskSignalGroup254D,
+} from './sabiAiPriority1RiskControl254D.types';
+
+export const sabiAiPriority1ControlDoctrine254D: SabiAiPriority1ControlDoctrine254D = {
+  priority1CoreProjectPart: true,
+  notSecondaryFeature: true,
+  accountRiskControlAboveNormalConvenience: true,
+  crimeAmlFraudCorruptionControlAcrossAllPrograms: true,
+  helpNormalUsersMustContinue: true,
+  ownerFinalAuthority: true,
+  legalPrivacyComplianceRequired: true,
+} as const;
+
+export const sabiAiPriority1RiskSignals254D: readonly SabiAiPriority1RiskSignalGroup254D[] = [
+  {
+    id: 'aml_money_laundering',
+    priority: 'P1',
+    examples: ['unusual money movement patterns', 'merchant finance inconsistency', 'payout request inconsistency'],
+    response: 'wallet_finance_plus_crime_compliance_plus_owner_finance_gate',
+  },
+  {
+    id: 'fraud_scams',
+    priority: 'P1',
+    examples: ['repeated scam reports', 'account takeover indicators', 'fake merchant behavior'],
+    response: 'crime_compliance_plus_relevant_domain_brain',
+  },
+  {
+    id: 'corruption_bribery',
+    priority: 'P1',
+    examples: ['tender manipulation signals', 'project evidence inconsistency', 'suspicious approval pattern'],
+    response: 'legal_plus_crime_compliance_plus_owner_private_report',
+  },
+  {
+    id: 'taxi_safety_fraud',
+    priority: 'P1',
+    examples: ['fake ride pattern', 'agent top-up abuse signal', 'driver document inconsistency'],
+    response: 'taxi_plus_crime_compliance',
+  },
+  {
+    id: 'messenger_crime_abuse',
+    priority: 'P1',
+    examples: ['extortion signal', 'coercion signal', 'illegal content risk', 'minor safety risk'],
+    response: 'messenger_plus_crime_compliance_plus_legal_gate',
+  },
+  {
+    id: 'profile_identity_kyc_risk',
+    priority: 'P1',
+    examples: ['duplicate identity risk', 'synthetic identity signal', 'KYC mismatch'],
+    response: 'profile_account_plus_legal',
+  },
+  {
+    id: 'stream_public_safety_risk',
+    priority: 'P1',
+    examples: ['prohibited content signal', 'public fraud promotion', 'minor safety concern'],
+    response: 'stream_plus_crime_compliance',
+  },
+  {
+    id: 'public_ecology_tender_corruption',
+    priority: 'P1',
+    examples: ['fake project evidence', 'vote manipulation signal', 'tender manipulation signal'],
+    response: 'public_ecology_transparency_plus_legal_plus_crime_compliance',
+  },
+] as const;
+
+export const sabiAiLearningSafetyLocks254D: SabiAiLearningSafetyLocks254D = {
+  localCodeArtifactOnly: true,
+  priority1RiskControlMappedNow: true,
+  allAccountRiskMapMappedNow: true,
+  p1SignalTaxonomyMappedNow: true,
+  p1EscalationMappedNow: true,
+  privacyLegalBoundaryMappedNow: true,
+  noModelProviderTrainingNow: true,
+  noAiProviderCallNow: true,
+  noNetworkCallNow: true,
+  noDbReadNow: true,
+  noDbWriteNow: true,
+  noRuntimeMountNow: true,
+  noDeploymentNow: true,
+  noPaymentNow: true,
+  noPayoutNow: true,
+  noProviderActivationNow: true,
+  noSecretReadWriteNow: true,
+  noRealUserMonitoringNow: true,
+  noDistributedQueueNow: true,
+  noDistributedMemoryNow: true,
+  noMillionUserRuntimeNow: true,
+  noAccountBlockNow: true,
+  noPaymentRestrictionNow: true,
+  noLawEnforcementSendNow: true,
+  ownerApprovalRequiredForProviderTraining: true,
+  ownerApprovalRequiredForDbPersistence: true,
+  ownerApprovalRequiredForRuntimeMonitoring: true,
+  ownerApprovalRequiredForDistributedQueue: true,
+  ownerApprovalRequiredForMillionUserRuntime: true,
+  ownerApprovalRequiredForAccountRestriction: true,
+  ownerApprovalRequiredForPaymentRestriction: true,
+  ownerApprovalRequiredForLegalEscalation: true,
+} as const;

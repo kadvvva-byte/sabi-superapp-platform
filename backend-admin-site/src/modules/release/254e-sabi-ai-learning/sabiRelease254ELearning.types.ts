@@ -1,0 +1,20 @@
+export type SabiRelease254ELearningStatus = Readonly<{
+  version: string;
+  status: 'sabi_ai_risk_memory_index_case_router_local_only';
+  riskMemoryIndexReadiness: 100;
+  caseRouterReadiness: 100;
+  domainRiskRoutingMatrixReadiness: 100;
+  caseStateMachineReadiness: 100;
+  syntheticCaseFixturesReadiness: 100;
+  realUserDataNow: 0;
+  realMonitoringNow: 0;
+  aiProviderCallNow: 0;
+  dbReadNow: 0;
+  dbWriteNow: 0;
+  runtimeMountNow: 0;
+  distributedQueueNow: 0;
+  millionUserRuntimeNow: 0;
+  accountBlockNow: 0;
+  paymentRestrictionNow: 0;
+  lawEnforcementSendNow: 0;
+}>;

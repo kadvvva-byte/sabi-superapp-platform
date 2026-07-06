@@ -1,0 +1,91 @@
+import type { TaxiRuntimeHardeningSmokeEndpoint002Q, TaxiRuntimeHardeningSmokeSafety002Q } from './types';
+
+export const TAXI_RUNTIME_HARDENING_SMOKE_VERSION_002Q = 'TAXI-BACKEND-FOUNDATION-002Q-PROTECTED-RUNTIME-HARDENING-SMOKE' as const;
+
+export const TAXI_RUNTIME_HARDENING_REQUIRED_HEADERS_002Q = [
+  'cache-control',
+  'pragma',
+  'x-content-type-options',
+  'x-sabi-taxi-runtime-stage',
+  'x-sabi-taxi-safe-disabled',
+  'x-sabi-taxi-fake-success-blocked',
+  'x-sabi-taxi-provider-dispatch',
+  'x-sabi-taxi-wallet-mutation',
+  'x-sabi-taxi-db-runtime',
+  'vary',
+] as const;
+
+export const TAXI_RUNTIME_HARDENING_SMOKE_ENDPOINTS_002Q = [
+  {
+    key: 'public_readiness',
+    method: 'GET',
+    path: '/api/taxi/002n/readiness',
+    expectedStatus: 200,
+    expectedSafeDisabledHeader: true,
+    expectedFakeSuccessBlockedHeader: true,
+    expectedProviderDispatchHeader: false,
+    expectedWalletMutationHeader: false,
+    expectedDbRuntimeHeader: false,
+  },
+  {
+    key: 'public_route_catalog',
+    method: 'GET',
+    path: '/api/taxi/002n/routes',
+    expectedStatus: 200,
+    expectedSafeDisabledHeader: true,
+    expectedFakeSuccessBlockedHeader: true,
+    expectedProviderDispatchHeader: false,
+    expectedWalletMutationHeader: false,
+    expectedDbRuntimeHeader: false,
+  },
+  {
+    key: 'admin_diagnostics_unauth',
+    method: 'GET',
+    path: '/api/admin/taxi/002n/diagnostics',
+    expectedStatus: 403,
+    expectedSafeDisabledHeader: true,
+    expectedFakeSuccessBlockedHeader: true,
+    expectedProviderDispatchHeader: false,
+    expectedWalletMutationHeader: false,
+    expectedDbRuntimeHeader: false,
+  },
+  {
+    key: 'safe_disabled_rider_quote_create',
+    method: 'POST',
+    path: '/internal/taxi/rider/quote/create/guarded',
+    expectedStatus: 409,
+    expectedSafeDisabledHeader: true,
+    expectedFakeSuccessBlockedHeader: true,
+    expectedProviderDispatchHeader: false,
+    expectedWalletMutationHeader: false,
+    expectedDbRuntimeHeader: false,
+  },
+  {
+    key: 'admin_safe_disabled_or_protected',
+    method: 'POST',
+    path: '/internal/taxi/admin/driver/application/review/guarded',
+    expectedStatus: 403,
+    expectedSafeDisabledHeader: true,
+    expectedFakeSuccessBlockedHeader: true,
+    expectedProviderDispatchHeader: false,
+    expectedWalletMutationHeader: false,
+    expectedDbRuntimeHeader: false,
+  },
+] as const satisfies readonly TaxiRuntimeHardeningSmokeEndpoint002Q[];
+
+export const TAXI_RUNTIME_HARDENING_SMOKE_SAFETY_002Q: TaxiRuntimeHardeningSmokeSafety002Q = {
+  sourcePatch: false,
+  backendRuntimeMustBeRestartedAfter002P: true,
+  routeRuntimeSmoke: true,
+  appRuntimeMounted: true,
+  dbReadByTaxiSmoke: false,
+  dbWrite: false,
+  prismaValidate: false,
+  prismaGenerate: false,
+  prismaMigration: false,
+  walletMutation: false,
+  payment: false,
+  payout: false,
+  providerDispatch: false,
+  fakeSuccessBlocked: true,
+};

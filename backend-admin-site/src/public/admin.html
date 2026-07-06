@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>Sabi Admin Gate</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#f8f3e7;background:radial-gradient(circle at 15% 15%,rgba(222,184,101,.24),transparent 30%),radial-gradient(circle at 85% 5%,rgba(67,116,255,.18),transparent 35%),linear-gradient(135deg,#030814,#07172f 60%,#02040a)}
+.wrap{min-height:100vh;display:grid;place-items:center;padding:28px}
+.card{width:min(1080px,100%);border:1px solid rgba(222,184,101,.35);border-radius:32px;background:linear-gradient(180deg,rgba(8,22,45,.92),rgba(2,6,16,.96));box-shadow:0 30px 100px rgba(0,0,0,.55);overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid rgba(222,184,101,.25)}
+.brand{font-weight:900;letter-spacing:.08em}
+.back{color:#f3d99d;text-decoration:none;border:1px solid rgba(222,184,101,.35);border-radius:999px;padding:10px 14px}
+.grid{display:grid;grid-template-columns:1fr 1.08fr}
+.hero{padding:46px 40px;border-right:1px solid rgba(222,184,101,.25)}
+h1{font-size:clamp(36px,5vw,64px);line-height:.98;margin:0 0 18px;letter-spacing:-.05em}
+.lead{color:rgba(248,243,231,.74);line-height:1.65}
+.form{padding:40px}
+.table{border:1px solid rgba(222,184,101,.32);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.035)}
+.row{display:grid;grid-template-columns:190px 1fr;border-bottom:1px solid rgba(222,184,101,.18);min-height:70px}
+.row:last-child{border-bottom:0}
+label{display:flex;align-items:center;padding:16px 18px;color:#f3d99d;font-weight:800;border-right:1px solid rgba(222,184,101,.18);background:rgba(222,184,101,.06)}
+input,select{width:100%;border:0;outline:0;background:rgba(0,0,0,.18);color:#f8f3e7;padding:18px;font:inherit}
+select option{color:#061225}
+button{margin-top:16px;width:100%;min-height:58px;border:0;border-radius:20px;background:linear-gradient(135deg,#f6dda2,#d9b46a);color:#071225;font-weight:900;font-size:16px;cursor:pointer}
+.note{margin-top:14px;color:#ffcf8a;border:1px solid rgba(255,207,138,.24);border-radius:16px;padding:13px;background:rgba(255,207,138,.07);font-size:13px;line-height:1.5}
+#result{min-height:22px;margin-top:12px;color:rgba(248,243,231,.72)}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.hero{border-right:0;border-bottom:1px solid rgba(222,184,101,.25)}.row{grid-template-columns:1fr}label{border-right:0;border-bottom:1px solid rgba(222,184,101,.18)}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="card">
+<div class="top"><div class="brand">SABI AI · ADMIN GATE</div><a class="back" href="index.html">Вернуться на сайт</a></div>
+<div class="grid">
+<section class="hero">
+<h1>Защищённый экран доступа</h1>
+<p class="lead">Единая точка входа для Owner/Admin панели, клиентов, мерчантов и бизнес-аккаунтов.</p>
+<p class="lead">Эта статическая страница не хранит и не отправляет секреты. Реальная проверка должна выполняться защищённым backend.</p>
+</section>
+<section class="form">
+<form id="sabiAdminGateForm" autocomplete="off" novalidate>
+<div class="table">
+<div class="row"><label for="email">Электронная почта</label><input id="email" type="email" name="email" placeholder="name@sabiai.app" required autocomplete="off"></div>
+<div class="row"><label for="password">Пароль</label><input id="password" type="password" name="password" placeholder="••••••••" required autocomplete="off"></div>
+<div class="row"><label for="secret">Секретный ключ доступа</label><input id="secret" type="password" name="accessSecretKey" placeholder="SABI-ACCESS-KEY" required autocomplete="off" data-secret-field="true"></div>
+<div class="row"><label for="type">Тип аккаунта</label><select id="type" name="accountType"><option value="owner-admin">Owner / Admin panel</option><option value="client">Client account</option><option value="merchant">Merchant account</option><option value="business">Business account</option></select></div>
+</div>
+<button type="submit">Продолжить</button>
+<div class="note">Не вставляйте provider/API ключи в публичный чат, сайт, mobile app, логи или client bundle.</div>
+<div id="result" aria-live="polite"></div>
+</form>
+</section>
+</div>
+</section>
+</main>
+<script>
+(function(){
+var form=document.getElementById("sabiAdminGateForm");
+var result=document.getElementById("result");
+var routes={"owner-admin":"/admin/","client":"/admin/client/","merchant":"/admin/merchant/","business":"/admin/business/"};
+form.addEventListener("submit",function(e){
+e.preventDefault();
+var email=document.getElementById("email").value.trim();
+var password=document.getElementById("password").value;
+var secret=document.getElementById("secret").value;
+var type=document.getElementById("type").value;
+if(!email||!password||!secret){result.textContent="Заполните все поля.";return;}
+result.textContent="Открывается защищённый маршрут...";
+setTimeout(function(){window.location.href=routes[type]||"/admin/";},300);
+});
+})();
+</script>
+</body>
+</html>

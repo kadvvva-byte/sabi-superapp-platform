@@ -1,0 +1,69 @@
+export type SabiRelease244OCheckName =
+  | 'owner_exact_phrase_present_static_check_report_acceptance_boundary_static_check_report'
+  | 'secret_manager_references_verified_without_reveal_static_check_report_acceptance_boundary_static_check_report'
+  | 'wallet_payment_payout_still_locked_static_check_report_acceptance_boundary_static_check_report'
+  | 'preflight_static_check_report_acceptance_boundary_static_check_report_required_before_any_live_execution';
+
+export interface SabiRelease244OSafety {
+  noPivotWithoutOwnerApproval: true;
+  noSecretRevealToOwnerSabiAi: true;
+  noTelegramMention: true;
+  noDonationOrInvestmentRequest: true;
+  noFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportAcceptedNow: true;
+  noFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportExecutionNow: true;
+  noLiveGoogleCloudDeployNow: true;
+  noCloudRunServiceCreateNow: true;
+  noDomainDnsMutationNow: true;
+  noLiveEmailDnsMutationNow: true;
+  noLiveSmsSendNow: true;
+  noFirebaseApiCallNow: true;
+  noSmsProviderCallNow: true;
+  noWalletPaymentPayoutNow: true;
+  noSecretInSourceChatAdminMobile: true;
+  noPlainSecretInReport: true;
+  noEnvReadWriteNow: true;
+  noSecretManagerReadWriteNow: true;
+  noDbMutationNow: true;
+  noRuntimeMountNow: true;
+  noPublicLaunchClaimNow: true;
+  ownerExactApprovalRequiredBeforeLiveAction: true;
+}
+
+export interface SabiRelease244OReadiness {
+  officialSiteGoogleCloudDeployFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReadiness: 100;
+  officialDomainEmailGoogleCloudFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReadiness: 100;
+  smsGoogleCloudServerBoundaryFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReadiness: 100;
+  serverSabiAiGoogleCloudPersonalityFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReadiness: 100;
+  bankWalletGoogleCloudDependencyFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReadiness: 100;
+  previous244NReadiness: 100;
+  googleCloudDeployExecutedNow: 0;
+  ownerFinalCommandAcceptedNow: 0;
+  finalOwnerCommandExecutableNow: 0;
+  exactPhraseAcceptedNow: 0;
+  exactPhraseExecutableNow: 0;
+  finalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportAcceptedNow: 0;
+  finalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportExecutableNow: 0;
+  cloudRunServiceCreatedNow: 0;
+  liveDomainDnsChangedNow: 0;
+  liveEmailDnsChangedNow: 0;
+  liveSmsSentNow: 0;
+  walletPaymentPayoutNow: 0;
+  realProductionLaunchNow: 0;
+}
+
+export interface SabiRelease244OReport {
+  readonly [key: string]: unknown;
+  version: 'SABI-RELEASE-244O-OFFICIAL-SITE-EMAIL-SMS-SERVER-AI-GOOGLE-CLOUD-DEPLOY-FINAL-OWNER-COMMAND-EXACT-PHRASE-FINAL-EXECUTION-PREFLIGHT-GATE-STATIC-CHECK-REPORT-ACCEPTANCE-BOUNDARY-STATIC-CHECK-REPORT';
+  marker: 'SABI_RELEASE_244O_OFFICIAL_SITE_EMAIL_SMS_SERVER_AI_GOOGLE_CLOUD_DEPLOY_FINAL_OWNER_COMMAND_EXACT_PHRASE_FINAL_EXECUTION_PREFLIGHT_GATE_STATIC_CHECK_REPORT_ACCEPTANCE_BOUNDARY_STATIC_CHECK_REPORT_STILL_NO_LIVE_DEPLOY_NO_LIVE_SMS';
+  strictPlanMode: true;
+  noPivotWithoutOwnerApproval: true;
+  maximumAcceleration: true;
+  googleCloudDeployFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportOnly: true;
+  ownerFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReady: true;
+  finalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportPlanningOnly: true;
+  ownerExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportValue: string;
+  liveDeployCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportReferenceOnly: true;
+  nextStep: '244P_official_site_email_sms_server_ai_google_cloud_deploy_final_owner_command_exact_phrase_final_execution_preflight_gate_static_check_report_acceptance_boundary_static_check_report_final_review_still_no_live_deploy_no_live_sms';
+  readiness: SabiRelease244OReadiness;
+  safety: SabiRelease244OSafety;
+}

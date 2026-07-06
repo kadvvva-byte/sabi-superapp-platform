@@ -1,0 +1,58 @@
+import type { StreamFoundationServerInstallPlanStep } from "./streamFoundationServerInstallReadinessTypes";
+
+export const STREAM_FOUNDATION_137A_SERVER_INSTALL_PLAN: readonly StreamFoundationServerInstallPlanStep[] = [
+  {
+    order: 1,
+    stage: "pre_install",
+    title: "Create a server-side backup before copying Stream foundation files",
+    action: "Prepare backup and verify current backend typecheck before any Stream source is copied.",
+    allowedNowInStaging: true,
+    allowedOnServerWithoutOwnerApproval: false,
+    blocksMoneyMovement: true,
+  },
+  {
+    order: 2,
+    stage: "source_copy",
+    title: "Copy Stream foundation source files only",
+    action: "Copy src/modules/stream/foundation and src/modules/stream/index.ts into the backend project without touching Messenger, Wallet, payment runtime, or server entry files.",
+    allowedNowInStaging: true,
+    allowedOnServerWithoutOwnerApproval: false,
+    blocksMoneyMovement: true,
+  },
+  {
+    order: 3,
+    stage: "typecheck",
+    title: "Run backend typecheck before route mount",
+    action: "Run the backend TypeScript check and stop immediately if any Stream or unrelated module error appears.",
+    allowedNowInStaging: true,
+    allowedOnServerWithoutOwnerApproval: false,
+    blocksMoneyMovement: true,
+  },
+  {
+    order: 4,
+    stage: "route_mount_later",
+    title: "Keep Stream routes unmounted until the separate mount stage",
+    action: "Do not edit app.ts, server.ts, or route registry in this install-readiness stage.",
+    allowedNowInStaging: false,
+    allowedOnServerWithoutOwnerApproval: false,
+    blocksMoneyMovement: true,
+  },
+  {
+    order: 5,
+    stage: "post_install_smoke",
+    title: "Smoke only safe snapshots after source install",
+    action: "Verify exported Stream foundation snapshots and blocked states without provider calls, database mutation, realtime broadcast, or money movement.",
+    allowedNowInStaging: true,
+    allowedOnServerWithoutOwnerApproval: false,
+    blocksMoneyMovement: true,
+  },
+  {
+    order: 6,
+    stage: "rollback",
+    title: "Rollback by removing Stream foundation source files if any check fails",
+    action: "Restore the backup or remove only the newly copied Stream foundation files; do not touch Messenger or Wallet recovery paths.",
+    allowedNowInStaging: true,
+    allowedOnServerWithoutOwnerApproval: false,
+    blocksMoneyMovement: true,
+  },
+] as const;

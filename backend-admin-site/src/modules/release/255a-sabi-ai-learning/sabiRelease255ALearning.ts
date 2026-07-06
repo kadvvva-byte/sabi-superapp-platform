@@ -1,0 +1,53 @@
+export const sabiRelease255ALearningStatus = {
+  version: 'SABI-AI-LEARNING-255A-OWNER-CONTROLLED-LOCAL-DRY-RUN-EXECUTION-PREPARATION-ONLY-NO-PROVIDER-CALLS',
+  status: 'owner_preparation_approval_recorded_no_execution_no_provider_calls',
+  ownerPreparationApprovalRecordReadiness: 100,
+  preparationScopeLocksReadiness: 100,
+  localDryRunPreparationPlanReadiness: 100,
+  noProviderSecretDbRuntimeBoundaryReadiness: 100,
+  evidenceChainFrom254ZReadiness: 100,
+  nextStepContractReadiness: 100,
+  ownerPreparationApprovalRecordedNow: 1,
+  ownerControlledPreparationAllowedNow: 1,
+
+  ownerExecutionApprovalGrantedNow: 0,
+  ownerRuntimeDryRunExecutionApprovedNow: 0,
+  ownerRuntimeMountApprovedNow: 0,
+
+  dryRunExecutionPreparedNow: 0,
+  dryRunExecutionStartedNow: 0,
+  dryRunExecutionCompletedNow: 0,
+  runtimeDryRunExecutedNow: 0,
+
+  runtimeMountedNow: 0,
+  runtimeMountAttemptedNow: 0,
+  noRuntimeMountNow: 1,
+  googleRuntimeMountedNow: 0,
+
+  rawSecretReadNow: 0,
+  googleApiCallNow: 0,
+  googleProviderCallNow: 0,
+  googleVerifiedDataCallNow: 0,
+  bigQueryQueryNow: 0,
+  internetLookupNow: 0,
+  googleLookupNow: 0,
+
+  liveHumanRecordsUsedNow: 0,
+  liveCompanyRecordsUsedNow: 0,
+  personalIdentifiersUsedNow: 0,
+
+  trainingIngestionFrom255APreparationApprovalNow: 0,
+  rawInternetTrainingNow: 0,
+  garbageIngestedNow: 0,
+  fakeMaterialIngestedNow: 0,
+  networkCallNow: 0,
+  dbReadNow: 0,
+  dbWriteNow: 0,
+  runtimeMountNow: 0,
+
+  paymentActionNow: 0,
+  payoutActionNow: 0,
+  accountActionNow: 0,
+  lawEnforcementSendNow: 0,
+  productionLaunchNow: 0,
+} as const;

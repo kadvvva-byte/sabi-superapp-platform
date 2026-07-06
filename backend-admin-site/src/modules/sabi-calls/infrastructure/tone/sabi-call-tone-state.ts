@@ -1,0 +1,3 @@
+import type { SabiCallSession, SabiCallToneState, SabiCallToneType, SabiUserId } from "../../contracts";
+export function createSabiCallToneState(type: SabiCallToneType = "none", forUserId: SabiUserId | null = null): SabiCallToneState { const now = type === "none" ? null : new Date().toISOString(); return { type, forUserId, startedAt: now, stoppedAt: null, reason: null }; }
+export function resolveSabiCallToneForUser(session: SabiCallSession, userId: SabiUserId): SabiCallToneType { if (session.status === "ringing") return session.initiatedByUserId === userId ? "outgoing_ringback" : "incoming_ringtone"; if (session.status === "failed") return "failed"; if (session.status === "ended") return "ended"; return "none"; }

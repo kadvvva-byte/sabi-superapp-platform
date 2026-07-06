@@ -1,0 +1,85 @@
+export type Sms240YFix1Readiness = Readonly<{
+  sms240YFix1ShortPathStaticCheckReady: 100;
+  sms240YAcceptanceGateStaticCheckReady: 100;
+  sms240XAcceptanceGateReady: 100;
+  exactOwnerBuildSmokeCommandProvidedNow: 0;
+  exactOwnerBuildSmokeCommandAcceptedNow: 0;
+  ownerBuildSmokeApprovalProvidedNow: 0;
+  ownerBuildSmokeApprovalAcceptedNow: 0;
+  adminBuildExecutedNow: 0;
+  adminBuildExecutionEnabledNow: 0;
+  realAdminUiChangedNow: 0;
+  realSmsSent: 0;
+  productionPublicLaunch: 0;
+}>;
+
+export type Sms240YFix1Safety = Readonly<{
+  noLiveSms: true;
+  noFirebaseApiCall: true;
+  noSmsProviderCall: true;
+  noSmsSent: true;
+  noEnvOrSecrets: true;
+  noEnvRead: true;
+  noEnvWrite: true;
+  noSecretManagerRead: true;
+  noSecretManagerWrite: true;
+  noSecretManagerAccessGrant: true;
+  noSecretValueInSource: true;
+  noPlainSecretInChat: true;
+  noPlainSecretInAdminUi: true;
+  noSecretRevealToAdmin: true;
+  noSecretRevealToDeveloper: true;
+  noSecretRevealToOwnerSabiAi: true;
+  noBreakGlassAccess: true;
+  noDbSessionTokenWrites: true;
+  noAdminUiRuntimeMount: true;
+  noBackendRouteRuntimeMount: true;
+  noRealAdminUiChange: true;
+  noAdminStatusMutation: true;
+  noAdminBuildExecution: true;
+  noOwnerBuildSmokeApprovalAccepted: true;
+  noExactOwnerCommandAccepted: true;
+  noGoogleCloudDeploy: true;
+  noWalletPaymentPayoutCrypto: true;
+  ownerFinalApprovalRequiredBeforeLiveAction: true;
+}>;
+
+export type Sms240YFix1Command = Readonly<{
+  label: 'Owner exact command acceptance gate static check short-path FIX1 only';
+  plannedOwnerCommand: 'I approve SMS-240Y-FIX1 owner exact command acceptance gate static check short-path planning only';
+  plannedBuildCommand: 'cd C:\\Users\\User\\Desktop\\superapp\\admin-ui && npm run build';
+  acceptedNow: false;
+  executableNow: false;
+  noExecutionNow: true;
+}>;
+
+export type Sms240YFix1Status = Readonly<{
+  version: 'SMS-READINESS-240Y-FIX1-SHORT-PATH-ACCEPTANCE-GATE-STATIC-CHECK';
+  marker: 'SABI_SMS_READINESS_240Y_FIX1_SHORT_PATH_ACCEPTANCE_GATE_STATIC_CHECK_STILL_NO_LIVE_SMS';
+  shortPathFixReady: true;
+  windowsExpandArchiveSafePath: true;
+  ownerExactCommandFinalOwnerApprovalCommandAcceptanceGateStaticCheckOnly: true;
+  maskedAdminStatusOnly: true;
+  ownerFinalApprovalRequired: true;
+  ownerSabiAiReportOnly: true;
+  exactOwnerCommandProvidedNow: false;
+  exactOwnerCommandAcceptedNow: false;
+  ownerBuildSmokeApprovalProvidedNow: false;
+  ownerBuildSmokeApprovalAcceptedNow: false;
+  canAcceptOwnerCommandNow: false;
+  canRunAdminBuildNow: false;
+  canApproveAdminBuildExecutionNow: false;
+  canDisplayPlainSecretNow: false;
+  canDisplayProviderResponseNow: false;
+  canDisplayLiveTokenNow: false;
+  canCopyPlainSecretNow: false;
+  canExportSecretNow: false;
+  canMutateRuntimeNow: false;
+  canSendLiveSmsNow: false;
+  readiness: Sms240YFix1Readiness;
+  safety: Sms240YFix1Safety;
+  command: Sms240YFix1Command;
+  publicCommunication: 'Sabi Messenger only';
+  fundingBoundary: 'Sabi does not ask for donations or investments; Sabi allocated company funds only';
+  nextStep: '240Z_admin_readiness_panel_masked_status_build_smoke_final_pre_execution_summary_still_no_live_sms';
+}>;

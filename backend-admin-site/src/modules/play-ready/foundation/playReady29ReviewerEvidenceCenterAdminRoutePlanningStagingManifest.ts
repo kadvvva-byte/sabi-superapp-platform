@@ -1,0 +1,36 @@
+export const PLAY_READY_29_REVIEWER_EVIDENCE_CENTER_ADMIN_ROUTE_PLANNING_STAGING_MANIFEST = {
+  version: "PLAY-READY-29",
+  stage: "reviewer_evidence_center_admin_route_planning_source_only",
+  createdFrom: [
+    "PLAY-READY-26 reviewer evidence registry contract",
+    "PLAY-READY-27 reviewer evidence center service planning",
+    "PLAY-READY-28 reviewer evidence center Admin API contract planning",
+  ],
+  changedFiles: [
+    "src/modules/play-ready/foundation/play-ready-29-reviewer-evidence-center-admin-route-planning/index.ts",
+    "src/modules/play-ready/foundation/play-ready-29-reviewer-evidence-center-admin-route-planning/playReady29ReviewerEvidenceCenterAdminRoutePlanning.ts",
+    "src/modules/play-ready/foundation/playReady29ReviewerEvidenceCenterAdminRoutePlanningStagingManifest.ts",
+  ],
+  safety: {
+    sourceOnly: true,
+    runtimeRouteMounted: false,
+    backendRestartAllowed: false,
+    adminUiBuildAllowed: false,
+    dbWriteAllowed: false,
+    providerCallAllowed: false,
+    walletMutationAllowed: false,
+    moneyMovementAllowed: false,
+    fakeSuccessAllowed: false,
+    playUploadAllowed: false,
+    apkBuildAllowed: false,
+    aabBuildAllowed: false,
+  },
+  plannedRouteBehavior: {
+    method: "GET",
+    requiresAdminAuth: true,
+    readOnly: true,
+    routeCount: 10,
+    mountedNow: false,
+  },
+  nextRecommendedStage: "PLAY-READY-30 source-only reviewer evidence center Admin route source draft, no mount yet",
+} as const;

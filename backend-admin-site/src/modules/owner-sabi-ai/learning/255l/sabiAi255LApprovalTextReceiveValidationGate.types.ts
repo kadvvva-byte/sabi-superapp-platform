@@ -1,0 +1,2 @@
+export type SabiAi255LApprovalTextReceiveValidationGate = typeof import('./sabiAi255LApprovalTextReceiveValidationGate').sabiAi255LApprovalTextReceiveValidationGate;
+export type SabiAi255LApprovalTextReceiveValidationSafety = typeof import('./sabiAi255LApprovalTextReceiveValidationGate').sabiAi255LApprovalTextReceiveValidationSafety;

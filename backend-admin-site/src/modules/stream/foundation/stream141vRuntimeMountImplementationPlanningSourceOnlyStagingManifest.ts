@@ -1,0 +1,35 @@
+import { getStreamFoundationRuntimeMountImplementationPlanningSourceOnlySnapshot } from "./runtime-mount-implementation-planning-source-only";
+
+export const STREAM_141V_RUNTIME_MOUNT_IMPLEMENTATION_PLANNING_SOURCE_ONLY_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-141V",
+  stage: "runtime_mount_implementation_planning_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-141U",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimeMountAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy141V: false,
+    serverTsChangeBy141V: false,
+    streamIndexChangeBy141V: false,
+    schemaMigrationBy141V: false,
+    backendRestartBy141V: false,
+    runtimeHttpBy141V: false,
+    runtimePostBy141V: false,
+    databaseReadBy141V: false,
+    databaseWriteBy141V: false,
+    providerCallBy141V: false,
+    providerSecretReadBy141V: false,
+    walletMutationBy141V: false,
+    paymentAuthorizationBy141V: false,
+    monthlyPayoutBy141V: false,
+    moneyMovementBy141V: false,
+    fakeSuccessBy141V: false,
+  },
+  snapshot: getStreamFoundationRuntimeMountImplementationPlanningSourceOnlySnapshot(),
+} as const;

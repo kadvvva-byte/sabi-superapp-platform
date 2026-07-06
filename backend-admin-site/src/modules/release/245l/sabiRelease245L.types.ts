@@ -1,0 +1,103 @@
+export type SabiRelease245LStatus = 'passed';
+
+export interface SabiRelease245LReadiness {
+  release245LReadiness: number;
+  previous245KReadiness: number;
+  release245DFix1TypeClean: number;
+  googleCloudDeployExecutedNow: number;
+  ownerFinalCommandAcceptedNow: number;
+  finalOwnerCommandExecutableNow: number;
+  exactPhraseAcceptedNow: number;
+  exactPhraseExecutableNow: number;
+  cloudRunServiceCreatedNow: number;
+  liveDomainDnsChangedNow: number;
+  liveEmailDnsChangedNow: number;
+  liveSmsSentNow: number;
+  walletPaymentPayoutNow: number;
+  realProductionLaunchNow: number;
+}
+
+export interface SabiRelease245LSafety {
+  noLiveGoogleCloudDeployNow: boolean;
+  noCloudRunServiceCreateNow: boolean;
+  noDomainDnsMutationNow: boolean;
+  noLiveEmailDnsMutationNow: boolean;
+  noLiveSmsSendNow: boolean;
+  noFirebaseApiCallNow: boolean;
+  noSmsProviderCallNow: boolean;
+  noWalletPaymentPayoutNow: boolean;
+  noSecretInSourceChatAdminMobile: boolean;
+  noPlainSecretInReport: boolean;
+  noEnvReadWriteNow: boolean;
+  noSecretManagerReadWriteNow: boolean;
+  noDbMutationNow: boolean;
+  noRuntimeMountNow: boolean;
+  noPublicLaunchClaimNow: boolean;
+  ownerExactApprovalRequiredBeforeLiveAction: boolean;
+  noPivotWithoutOwnerApproval: boolean;
+  noSecretRevealToOwnerSabiAi: boolean;
+  noTelegramMention: boolean;
+  noDonationOrInvestmentRequest: boolean;
+  noFinalOwnerCommandExactPhraseFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckAcceptedNow: boolean;
+  noFinalOwnerCommandExactPhraseFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckExecutionNow: boolean;
+}
+
+export interface SabiRelease245LReport {
+  version: string;
+  marker: string;
+  status: SabiRelease245LStatus;
+  approvalFlagRequired: string;
+  scope: string;
+  createdAt: string;
+  strictPlanMode: boolean;
+  noPivotWithoutOwnerApproval: boolean;
+  maximumAcceleration: boolean;
+  officialWebsiteMustWorkOnServer: boolean;
+  officialDomainEmailMustWork: boolean;
+  smsIsMandatoryForProgram: boolean;
+  smsWithoutItProgramDoesNotWork: boolean;
+  allCriticalLogicMustBeServerSide: boolean;
+  cloudRunCustomDomainMappingRequired: boolean;
+  officialSiteHttpsRequired: boolean;
+  officialSiteHealthCheckRequired: boolean;
+  emailDnsAuthenticationRequired: boolean;
+  mx: boolean;
+  spf: boolean;
+  dkim: boolean;
+  dmarc: boolean;
+  firebasePhoneAuthOrApprovedSmsProviderRequired: boolean;
+  phoneNumberSignInMustBeEnabledBeforeLiveUse: boolean;
+  liveSmsStillLockedUntilExactOwnerApproval: boolean;
+  smsServerBoundaryRequired: boolean;
+  serverSabiAiPersonalityTrainingMustFollowPlan: boolean;
+  ownerSabiAiReportOnly: boolean;
+  ownerFinalDecisionRequired: boolean;
+  noSecretRevealToOwnerSabiAi: boolean;
+  bankAccountOpeningUrgent: boolean;
+  walletIntegrationBlockedUntilOfficialSiteEmailAndSmsReady: boolean;
+  walletProviderIntegrationRequiresOwnerExactApproval: boolean;
+  publicCommunicationChannel: 'Sabi Messenger';
+  noTelegramMention: boolean;
+  noDonationOrInvestmentRequest: boolean;
+  sabiAllocatedCompanyFundsOnly: boolean;
+  targetOfficialSiteServerReadyDate: string;
+  targetBankWalletDependencyDate: string;
+  ownerExactPhraseFinalOwnerCommandExactPhraseFinalExecutionPreflightGateStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckValue: string;
+  liveDeployCommandReferenceOnly: string;
+  referenceCommand: string;
+  preflightChecksRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticChecksRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckReportRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryRequiredBeforeAnyLiveExecution: boolean;
+  preflightStaticCheckReportAcceptanceBoundaryStaticCheckReportFinalReviewStaticCheckReportAcceptanceBoundaryStaticCheckRequiredBeforeAnyLiveExecution: boolean;
+  reviewMatrix: string[];
+  readiness: SabiRelease245LReadiness;
+  safety: SabiRelease245LSafety;
+  nextStep: string;
+}

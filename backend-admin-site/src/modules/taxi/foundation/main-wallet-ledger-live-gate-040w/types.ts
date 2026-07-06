@@ -1,0 +1,3 @@
+export type Taxi040WBlocked = 'blocked' | 'locked';
+export interface Taxi040WReadiness { stage: string; ready: boolean; mainWalletLedgerLiveGate: 'controlled-main-wallet-ledger-live-gate'; apiKeyValueAccepted: false; envRead: false; secretRead: 'controlled-no-print'; providerCall: 'previous-handshake-verified-no-new-money'; dbWrite: 'previous-db-production-apply-gate-verified-no-new-money'; walletMutation: 'controlled-main-wallet-ledger-live-gate'; moneyMovement: false; paymentExecution: false; payoutExecution: false; productionLaunch: false; taxiCommissionBps: 0; visaCashbackBps: 200; }
+export interface Taxi040WSummary extends Taxi040WReadiness { nextStep: string; exactOwnerApprovalRequiredBeforePayment: true; exactOwnerApprovalRequiredBeforePayout: true; }

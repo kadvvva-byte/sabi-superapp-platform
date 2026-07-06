@@ -1,0 +1,20 @@
+import {
+  STREAM_FOUNDATION_140I_KERNEL_DIAGNOSTICS_CONTROLLED_NON_FOUNDATION_SOURCE_WRITE_POST_WRITE_VERIFICATION_VERSION,
+  StreamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerificationReadiness,
+} from "./streamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerificationContracts";
+import { getStreamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerificationSnapshot } from "./streamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerification";
+
+export function getStreamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerificationReadiness(): StreamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerificationReadiness {
+  const snapshot = getStreamFoundationKernelDiagnosticsControlledNonFoundationSourceWritePostWriteVerificationSnapshot();
+  return {
+    version: STREAM_FOUNDATION_140I_KERNEL_DIAGNOSTICS_CONTROLLED_NON_FOUNDATION_SOURCE_WRITE_POST_WRITE_VERIFICATION_VERSION,
+    ready: true,
+    status: snapshot.status,
+    blockingChecks: snapshot.blockingChecks,
+    readyForPostWriteSourceVerification: snapshot.readyForPostWriteSourceVerification,
+    readyForRuntimeSmoke: snapshot.readyForRuntimeSmoke,
+    backendRestartAllowedNow: snapshot.backendRestartAllowedNow,
+    runtimeHttpSmokeAllowedNow: snapshot.runtimeHttpSmokeAllowedNow,
+    safeCode: "140i_post_write_verification_readiness_passed_no_runtime",
+  };
+}

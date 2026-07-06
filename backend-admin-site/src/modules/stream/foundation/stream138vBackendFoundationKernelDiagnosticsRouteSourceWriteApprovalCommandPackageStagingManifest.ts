@@ -1,0 +1,38 @@
+import { getStreamFoundationKernelDiagnosticsRouteSourceWriteApprovalCommandPackageReadiness } from "./kernel-diagnostics-route-source-write-approval-command-package";
+import { getStreamFoundationKernelDiagnosticsRouteSourceWriteApprovalCommandPackageSmokeReport } from "./kernel-diagnostics-route-source-write-approval-command-package";
+import { STREAM_FOUNDATION_138V_KERNEL_DIAGNOSTICS_ROUTE_SOURCE_WRITE_APPROVAL_COMMAND_PACKAGE_VERSION } from "./kernel-diagnostics-route-source-write-approval-command-package";
+
+export const stream138vBackendFoundationKernelDiagnosticsRouteSourceWriteApprovalCommandPackageStagingManifest = {
+  version: STREAM_FOUNDATION_138V_KERNEL_DIAGNOSTICS_ROUTE_SOURCE_WRITE_APPROVAL_COMMAND_PACKAGE_VERSION,
+  stage: "kernel_diagnostics_route_source_write_approval_command_package",
+  patchScope: "src/modules/stream/foundation/** only",
+  streamIndexPatchIncluded: false,
+  appServerPatchIncluded: false,
+  streamModulePatchIncluded: false,
+  writeApprovalCommandPackageOnly: true,
+  writeApprovalCommandBuiltNow: true,
+  ownerWriteApprovalCapturedNow: false,
+  ownerWriteApprovalPersistedNow: false,
+  commandExecutionApprovedNow: false,
+  commandExecutionPerformedNow: false,
+  routeSourceWriteCommandExecutedNow: false,
+  executableCommandTextReturnedNow: false,
+  routeSourceFilesWrittenNow: false,
+  implementationSourceFilesGeneratedNow: false,
+  implementationSourceTextReturnedNow: false,
+  routeMountApprovedNow: false,
+  routeMountPerformed: false,
+  runtimeHttpRequestPerformed: false,
+  databaseWritePerformed: false,
+  providerCallPerformed: false,
+  walletMutationPerformed: false,
+  paymentAuthorizationPerformed: false,
+  monthlyPayoutPerformed: false,
+  moneyMovementPerformed: false,
+  rawSecretsReturned: false,
+  mobileProviderKeysAllowed: false,
+  fakeSuccessAllowed: false,
+  readiness: getStreamFoundationKernelDiagnosticsRouteSourceWriteApprovalCommandPackageReadiness(),
+  smoke: getStreamFoundationKernelDiagnosticsRouteSourceWriteApprovalCommandPackageSmokeReport(),
+  nextStage: "BACKEND-STREAM-FOUNDATION-138W kernel diagnostics route source write execution checklist",
+} as const;

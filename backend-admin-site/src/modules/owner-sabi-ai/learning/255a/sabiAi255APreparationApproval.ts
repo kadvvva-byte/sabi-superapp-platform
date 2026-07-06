@@ -1,0 +1,33 @@
+export const sabiAi255APreparationApproval = {
+  version: 'SABI-AI-LEARNING-255A-OWNER-CONTROLLED-LOCAL-DRY-RUN-EXECUTION-PREPARATION-ONLY-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'preparation_only_no_execution_no_provider_calls',
+  ownerPreparationApprovalRecordedNow: true,
+  ownerControlledPreparationAllowedNow: true,
+  ownerExecutionApprovalGrantedNow: false,
+  ownerRuntimeDryRunExecutionApprovedNow: false,
+  ownerRuntimeMountApprovedNow: false,
+  dryRunExecutionPreparedNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAi255APreparationSafety = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  internetLookupNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noPaymentActionNow: true,
+  noPayoutActionNow: true,
+  noAccountActionNow: true,
+  noLegalActionNow: true,
+  noProductionLaunchNow: true,
+} as const;

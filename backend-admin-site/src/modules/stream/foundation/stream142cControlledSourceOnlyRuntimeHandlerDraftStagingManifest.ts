@@ -1,0 +1,38 @@
+import { getStreamFoundationLiveWriteRuntimeHandlerDraftReadiness } from "./live-write-runtime-handler";
+
+export const STREAM_142C_CONTROLLED_SOURCE_ONLY_RUNTIME_HANDLER_DRAFT_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-142C",
+  stage: "controlled_source_only_runtime_handler_draft_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/live-write-runtime-handler/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-142B",
+  ownerApprovalAccepted: true,
+  ownerApprovalText: "I approve BACKEND-STREAM-FOUNDATION-142C controlled source-only runtime handler draft package only, create source-only handler draft under src/modules/stream/foundation/live-write-runtime-handler, keep live routes blocked now, do not write src/app.ts, do not write src/server.ts, do not write src/modules/stream/index.ts, no backend restart, no runtime POST, no DB write, no provider call, no Wallet mutation, no payment authorization, no monthly payout, no money movement, no fake success.",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimeMountedNow: false,
+    routeBindingChangedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy142C: false,
+    serverTsChangeBy142C: false,
+    streamIndexChangeBy142C: false,
+    schemaMigrationBy142C: false,
+    backendRestartBy142C: false,
+    runtimeHttpBy142C: false,
+    runtimePostBy142C: false,
+    databaseReadBy142C: false,
+    databaseWriteBy142C: false,
+    providerCallBy142C: false,
+    providerSecretReadBy142C: false,
+    walletMutationBy142C: false,
+    paymentAuthorizationBy142C: false,
+    monthlyPayoutBy142C: false,
+    moneyMovementBy142C: false,
+    fakeSuccessBy142C: false,
+  },
+  readiness: getStreamFoundationLiveWriteRuntimeHandlerDraftReadiness(),
+} as const;

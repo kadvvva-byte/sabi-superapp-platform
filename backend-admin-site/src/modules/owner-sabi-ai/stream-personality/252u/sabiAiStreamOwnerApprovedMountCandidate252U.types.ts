@@ -1,0 +1,54 @@
+export type SabiAiStreamOwnerApprovedMountCandidate252U = Readonly<{
+  routeId: 'owner_sabi_ai_stream_training_readiness_safe_read_252u';
+  futureApiReadPath: '/api/owner-sabi-ai/stream-training/readiness';
+  futureAdminPath: '/admin/owner-sabi-ai/stream-training';
+  method: 'GET_only';
+  visibility: 'owner_private_only';
+  ownerAuthRequired: true;
+  ownerPrivateScopeRequired: true;
+  publicAccessAllowed: false;
+  dbReadAllowed: false;
+  dbMutationAllowed: false;
+  providerCallAllowed: false;
+  networkDependencyAllowed: false;
+  generationAllowed: false;
+  postAllowed: false;
+  liveBroadcastAllowed: false;
+  paymentAllowed: false;
+  candidatePreparedNow: true;
+  actualRouteMountedNow: false;
+  actualApiHandlerMountedNow: false;
+  actualServerStartedNow: false;
+  actualHttpRequestNow: false;
+}>;
+
+export type SabiAiStreamSafeReadResponseCandidate252U = Readonly<{
+  ok: true;
+  module: 'owner_sabi_ai_stream_training';
+  mode: 'owner_approved_mount_candidate_local_only';
+  ownerPrivateOnly: true;
+  approvalCapturedNow: true;
+  routeMountCandidateReadiness: 100;
+  streamCreativeFoundationReadiness: 100;
+  safeReadFoundationReadiness: 100;
+  finalGateReadiness: 100;
+  liveBroadcastReadinessNow: 0;
+  runtimeGenerationReadinessNow: 0;
+  runtimePostReadinessNow: 0;
+  routeMountedNow: 0;
+  handlerMountedNow: 0;
+  serverStartedNow: 0;
+  realHttpRequestNow: 0;
+  dbReadNow: 0;
+  dbMutationNow: 0;
+  providerCallNow: 0;
+  networkCallNow: 0;
+  schedulerNow: 0;
+  notificationSendNow: 0;
+  paymentNow: 0;
+  blockers: readonly string[];
+  locks: readonly string[];
+  nextSafeStage: string;
+}>;
+
+export type SabiAiStreamSafetyLocks252U = Readonly<Record<string, boolean>>;

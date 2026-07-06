@@ -1,0 +1,30 @@
+export const sabiAiOwnerDecisionRecordCandidate254S = {
+  version: 'SABI-AI-LEARNING-254S-OWNER-DECISION-RECORD-CANDIDATE-FOR-LOCAL-DRY-RUN-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'candidate_only_no_decision_recorded_no_execution',
+  ownerDecisionRecordCandidatePreparedNow: true,
+  decisionRecordWrittenNow: false,
+  decisionSelectedNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  ownerRuntimeDryRunExecutionApprovedNow: false,
+  ownerRuntimeMountApprovedNow: false,
+  gateOpenNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiOwnerDecisionRecordSafety254S = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;

@@ -1,0 +1,30 @@
+import { getPlayReady11Readiness } from "./play-ready-11-provider-not-configured-evidence-review";
+
+export const PLAY_READY_11_PROVIDER_NOT_CONFIGURED_EVIDENCE_REVIEW_STAGING_MANIFEST = {
+  version: "PLAY-READY-11",
+  stage: "controlled_provider_not_configured_reviewer_evidence_target_patch_review_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/play-ready/foundation/play-ready-11-provider-not-configured-evidence-review/**",
+  providerAreasCovered: [
+    "AI",
+    "Stream",
+    "Wallet",
+    "Airwallex",
+    "Alipay",
+    "NFT/tokenized assets",
+    "virtual card issuing",
+    "Google Play Billing",
+  ],
+  targetFilesModifiedNow: false,
+  backendRestartNow: false,
+  runtimeDbWriteNow: false,
+  providerCallsNow: false,
+  secretValueExposureNow: false,
+  walletMutationNow: false,
+  paymentAuthorizationNow: false,
+  moneyMovementNow: false,
+  noFakeSuccess: true,
+  noFakeProviderSuccess: true,
+  nextStage: "PLAY-READY-12",
+  readiness: getPlayReady11Readiness(),
+} as const;

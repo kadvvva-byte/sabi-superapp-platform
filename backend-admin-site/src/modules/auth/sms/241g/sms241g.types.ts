@@ -1,0 +1,92 @@
+export type Sms241GSafetyLocks = Readonly<{
+  noLiveSms: true;
+  noFirebaseApiCall: true;
+  noSmsProviderCall: true;
+  noSmsSent: true;
+  noEnvOrSecrets: true;
+  noEnvRead: true;
+  noEnvWrite: true;
+  noSecretManagerRead: true;
+  noSecretManagerWrite: true;
+  noSecretManagerAccessGrant: true;
+  noSecretValueInSource: true;
+  noPlainSecretInChat: true;
+  noPlainSecretInAdminUi: true;
+  noSecretRevealToAdmin: true;
+  noSecretRevealToDeveloper: true;
+  noSecretRevealToOwnerSabiAi: true;
+  noBreakGlassAccess: true;
+  noDbSessionTokenWrites: true;
+  noAdminUiRuntimeMount: true;
+  noBackendRouteRuntimeMount: true;
+  noRealAdminUiChange: true;
+  noAdminStatusMutation: true;
+  noAdminBuildExecution: true;
+  noOwnerBuildSmokeApprovalAccepted: true;
+  noExactOwnerCommandAccepted: true;
+  noGoogleCloudDeploy: true;
+  noWalletPaymentPayoutCrypto: true;
+  ownerFinalApprovalRequiredBeforeLiveAction: true;
+}>;
+
+export type Sms241GReadiness = Readonly<{
+  sms241GAdminUiMaskedReadinessBuildSmokeExactOwnerRunCommandStaticCheckReady: 100;
+  sms241FAdminUiMaskedReadinessBuildSmokeExactOwnerRunCommandReady: 100;
+  sms241EFinalBuildSmokeApprovalRunBoundaryReady: 100;
+  sms241DFinalRunCommandAcceptanceGateStaticCheckReady: 100;
+  sms241CFinalRunCommandAcceptanceGateReady: 100;
+  exactOwnerBuildSmokeCommandProvidedNow: 0;
+  exactOwnerBuildSmokeCommandAcceptedNow: 0;
+  ownerBuildSmokeApprovalProvidedNow: 0;
+  ownerBuildSmokeApprovalAcceptedNow: 0;
+  adminBuildExecutedNow: 0;
+  adminBuildExecutionEnabledNow: 0;
+  realAdminUiChangedNow: 0;
+  realSmsSent: 0;
+  productionPublicLaunch: 0;
+}>;
+
+export type Sms241GCommandReference = Readonly<{
+  label: 'Owner exact run command static check reference only';
+  command: 'cd C:\\Users\\User\\Desktop\\superapp\\admin-ui && npm run build';
+  acceptedNow: false;
+  executableNow: false;
+  noExecutionNow: true;
+}>;
+
+export type Sms241GStaticCheck = Readonly<{
+  version: 'SMS-READINESS-241G-SHORT-PATH-ADMIN-UI-MASKED-READINESS-BUILD-SMOKE-EXACT-OWNER-RUN-COMMAND-STATIC-CHECK';
+  marker: 'SABI_SMS_READINESS_241G_SHORT_PATH_ADMIN_UI_MASKED_READINESS_BUILD_SMOKE_EXACT_OWNER_RUN_COMMAND_STATIC_CHECK_STILL_NO_LIVE_SMS';
+  windowsExpandArchiveSafePath: true;
+  shortPathReady: true;
+  adminUiMaskedReadinessBuildSmokeExactOwnerRunCommandStaticCheckOnly: true;
+  exactOwnerRunCommandStaticCheckOnly: true;
+  exactOwnerRunCommandStaticCheckReady: true;
+  ownerExactRunCommandStaticCheckReady: true;
+  ownerSabiAiReportOnly: true;
+  maskedAdminStatusOnly: true;
+  ownerFinalApprovalRequired: true;
+  exactOwnerCommandProvidedNow: false;
+  exactOwnerCommandAcceptedNow: false;
+  ownerBuildSmokeApprovalProvidedNow: false;
+  ownerBuildSmokeApprovalAcceptedNow: false;
+  canAcceptOwnerCommandNow: false;
+  canRunAdminBuildNow: false;
+  canApproveAdminBuildExecutionNow: false;
+  canDisplayPlainSecretNow: false;
+  canDisplayProviderResponseNow: false;
+  canDisplayLiveTokenNow: false;
+  canCopyPlainSecretNow: false;
+  canExportSecretNow: false;
+  canMutateRuntimeNow: false;
+  canSendLiveSmsNow: false;
+  commandReference: Sms241GCommandReference;
+  readiness: Sms241GReadiness;
+  safety: Sms241GSafetyLocks;
+  publicCommunication: Readonly<{
+    messenger: 'Sabi Messenger only';
+    funding: 'Sabi does not ask for donations or investments';
+    companyFunds: 'Sabi allocated company funds';
+  }>;
+  nextStep: '241H_admin_ui_masked_readiness_build_smoke_exact_owner_run_command_acceptance_gate_still_no_live_sms';
+}>;

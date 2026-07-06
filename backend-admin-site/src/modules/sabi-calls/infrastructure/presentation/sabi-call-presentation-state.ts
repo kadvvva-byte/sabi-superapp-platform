@@ -1,0 +1,3 @@
+import type { SabiCallPresentationState, SabiUserId } from "../../contracts";
+export function createIdleSabiCallPresentationState(): SabiCallPresentationState { return { status: "idle", source: "unknown", presenterUserId: null, startedAt: null, pausedAt: null, stoppedAt: null, failureReason: null }; }
+export function createActiveSabiCallPresentationState(userId: SabiUserId, source: SabiCallPresentationState["source"] = "screen"): SabiCallPresentationState { return { status: "active", source, presenterUserId: userId, startedAt: new Date().toISOString(), pausedAt: null, stoppedAt: null, failureReason: null }; }

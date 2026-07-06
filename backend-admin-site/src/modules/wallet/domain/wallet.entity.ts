@@ -1,0 +1,1 @@
+export { WalletEntity, Wallet } from "./entities/wallet.entity"

@@ -1,0 +1,31 @@
+export const sabiAiFixedConfirmationTextCandidate254X = {
+  version: 'SABI-AI-LEARNING-254X-OWNER-CONFIRMATION-INTAKE-CANDIDATE-FIXED-TEXT-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'candidate_text_only_no_input_no_validation_no_execution',
+  fixedConfirmationTextCandidatePreparedNow: true,
+  fixedConfirmationText: 'confirm_local_dry_run_without_provider_calls',
+  confirmationTextReceivedNow: false,
+  confirmationTextSelectedNow: false,
+  confirmationTextValidatedNow: false,
+  confirmationTextAppliedNow: false,
+  confirmationTextWrittenNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiFixedConfirmationTextSafety254X = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;

@@ -1,0 +1,37 @@
+import { getStreamFoundationRuntimeHandlerDraftHandoffBindingApprovalPackageReadiness } from "./runtime-handler-draft-handoff-binding-approval-package";
+
+export const STREAM_142E_RUNTIME_HANDLER_DRAFT_HANDOFF_BINDING_APPROVAL_PACKAGE_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-142E",
+  stage: "runtime_handler_draft_handoff_and_controlled_binding_approval_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/runtime-handler-draft-handoff-binding-approval-package/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-142D-FIX1",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    routeBindingAllowedNow: false,
+    runtimePostAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy142E: false,
+    serverTsChangeBy142E: false,
+    streamIndexChangeBy142E: false,
+    liveWriteHandlerChangeBy142E: false,
+    schemaMigrationBy142E: false,
+    backendRestartBy142E: false,
+    runtimeHttpBy142E: false,
+    runtimePostBy142E: false,
+    databaseReadBy142E: false,
+    databaseWriteBy142E: false,
+    providerCallBy142E: false,
+    providerSecretReadBy142E: false,
+    walletMutationBy142E: false,
+    paymentAuthorizationBy142E: false,
+    monthlyPayoutBy142E: false,
+    moneyMovementBy142E: false,
+    fakeSuccessBy142E: false,
+  },
+  readiness: getStreamFoundationRuntimeHandlerDraftHandoffBindingApprovalPackageReadiness(),
+} as const;

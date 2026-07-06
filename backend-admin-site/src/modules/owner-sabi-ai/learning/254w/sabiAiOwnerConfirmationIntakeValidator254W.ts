@@ -1,0 +1,32 @@
+export const sabiAiOwnerConfirmationIntakeValidator254W = {
+  version: 'SABI-AI-LEARNING-254W-OWNER-CONFIRMATION-INTAKE-SAFE-VALIDATOR-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'validator_only_no_input_no_validation_no_execution',
+  ownerConfirmationIntakeValidatorPreparedNow: true,
+  confirmationInputReceivedNow: false,
+  confirmationInputStoredNow: false,
+  confirmationValidatedNow: false,
+  validationRunNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  confirmationEffectAppliedNow: false,
+  candidateValueSelectedNow: false,
+  decisionRecordWrittenNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiOwnerConfirmationIntakeSafety254W = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;

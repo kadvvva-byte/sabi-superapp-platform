@@ -1,0 +1,13 @@
+export enum PaymentStatus {
+
+  CREATED = "CREATED",
+
+  AUTHORIZED = "AUTHORIZED",
+
+  CAPTURED = "CAPTURED",
+
+  REFUNDED = "REFUNDED",
+
+  FAILED = "FAILED"
+
+}

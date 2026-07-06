@@ -1,0 +1,206 @@
+import {
+  getStreamFoundationKernelDiagnosticsRouteSourceWriteFinalOwnerApprovalGateSnapshot,
+} from "../kernel-diagnostics-route-source-write-final-owner-approval-gate";
+import {
+  STREAM_FOUNDATION_138Y_KERNEL_DIAGNOSTICS_ROUTE_SOURCE_WRITE_EXECUTION_SOURCE_ONLY_VERSION,
+  type StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyDecision,
+  type StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyFilePlan,
+  type StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlySafety,
+  type StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlySnapshot,
+  type StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyStatus,
+} from "./streamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyContracts";
+
+const SOURCE_ONLY_EXECUTION_SAFETY: StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlySafety = {
+  routeMountApprovedNow: false,
+  protectedRouteRegisteredNow: false,
+  expressRouterCreatedNow: false,
+  runtimeHttpRequestPerformedNow: false,
+  databaseReadAllowedNow: false,
+  databaseWriteAllowedNow: false,
+  providerCallAllowedNow: false,
+  walletMutationAllowedNow: false,
+  paymentAuthorizationAllowedNow: false,
+  monthlyPayoutAllowedNow: false,
+  moneyMovementAllowedNow: false,
+  rawSecretsReturned: false,
+  mobileProviderKeysAllowed: false,
+  fakeSuccessAllowed: false,
+  sourceOnlyExecutionPackageBuiltNow: true,
+  sourceOnlyTargetPathsInsideFoundationOnly: true,
+  finalOwnerApprovalCapturedNow: false,
+  finalOwnerApprovalPersistedNow: false,
+  exactOwnerApprovalRequiredLaterForServerCopy: true,
+  routeSourceFilesWrittenInsideFoundationPackageNow: true,
+  routeSourceFilesWrittenOutsideFoundationNow: false,
+  routeSourceMountedNow: false,
+  streamIndexPatchIncluded: false,
+  streamModuleIndexTouchedNow: false,
+  appServerPatchIncluded: false,
+  appServerTouchedNow: false,
+};
+
+const FILE_PLANS: readonly StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyFilePlan[] = [
+  {
+    fileId: "runtime_route_contracts",
+    targetPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/streamFoundationKernelDiagnosticsAdminRuntimeRouteContracts.ts",
+    writtenInsideThisPatch: false,
+    insideFoundationScope: true,
+    includesExpressImport: false,
+    mountsRoute: false,
+    executesDatabase: false,
+    executesProviderCall: false,
+    mutatesWallet: false,
+    movesMoney: false,
+    returnsRawSecrets: false,
+    safeCode: "runtime_route_contracts_source_only_planned",
+    safeMessageKey: "stream.foundation.138y.runtimeRouteContractsSourceOnlyPlanned",
+  },
+  {
+    fileId: "runtime_route_handler_preview",
+    targetPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/streamFoundationKernelDiagnosticsAdminRuntimeRoute.ts",
+    writtenInsideThisPatch: false,
+    insideFoundationScope: true,
+    includesExpressImport: false,
+    mountsRoute: false,
+    executesDatabase: false,
+    executesProviderCall: false,
+    mutatesWallet: false,
+    movesMoney: false,
+    returnsRawSecrets: false,
+    safeCode: "runtime_route_handler_preview_source_only_planned",
+    safeMessageKey: "stream.foundation.138y.runtimeRouteHandlerPreviewSourceOnlyPlanned",
+  },
+  {
+    fileId: "runtime_route_readiness",
+    targetPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/streamFoundationKernelDiagnosticsAdminRuntimeRouteReadiness.ts",
+    writtenInsideThisPatch: false,
+    insideFoundationScope: true,
+    includesExpressImport: false,
+    mountsRoute: false,
+    executesDatabase: false,
+    executesProviderCall: false,
+    mutatesWallet: false,
+    movesMoney: false,
+    returnsRawSecrets: false,
+    safeCode: "runtime_route_readiness_source_only_planned",
+    safeMessageKey: "stream.foundation.138y.runtimeRouteReadinessSourceOnlyPlanned",
+  },
+  {
+    fileId: "runtime_route_unmounted_smoke",
+    targetPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/streamFoundationKernelDiagnosticsAdminRuntimeRouteSmoke.ts",
+    writtenInsideThisPatch: false,
+    insideFoundationScope: true,
+    includesExpressImport: false,
+    mountsRoute: false,
+    executesDatabase: false,
+    executesProviderCall: false,
+    mutatesWallet: false,
+    movesMoney: false,
+    returnsRawSecrets: false,
+    safeCode: "runtime_route_unmounted_smoke_source_only_planned",
+    safeMessageKey: "stream.foundation.138y.runtimeRouteUnmountedSmokeSourceOnlyPlanned",
+  },
+  {
+    fileId: "runtime_route_index",
+    targetPath: "src/modules/stream/foundation/kernel-diagnostics-admin-runtime-route/index.ts",
+    writtenInsideThisPatch: false,
+    insideFoundationScope: true,
+    includesExpressImport: false,
+    mountsRoute: false,
+    executesDatabase: false,
+    executesProviderCall: false,
+    mutatesWallet: false,
+    movesMoney: false,
+    returnsRawSecrets: false,
+    safeCode: "runtime_route_index_source_only_planned",
+    safeMessageKey: "stream.foundation.138y.runtimeRouteIndexSourceOnlyPlanned",
+  },
+  {
+    fileId: "source_only_execution_manifest",
+    targetPath: "src/modules/stream/foundation/stream138yBackendFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyStagingManifest.ts",
+    writtenInsideThisPatch: true,
+    insideFoundationScope: true,
+    includesExpressImport: false,
+    mountsRoute: false,
+    executesDatabase: false,
+    executesProviderCall: false,
+    mutatesWallet: false,
+    movesMoney: false,
+    returnsRawSecrets: false,
+    safeCode: "source_only_execution_manifest_written_inside_foundation",
+    safeMessageKey: "stream.foundation.138y.sourceOnlyExecutionManifestWrittenInsideFoundation",
+  },
+];
+
+function statusFromOwnerGate(): StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyStatus {
+  return "source_only_execution_prepared";
+}
+
+function decisionFromFilePlans(filePlans: readonly StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyFilePlan[]): StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlyDecision {
+  const outsideFoundationWrites = filePlans.filter((file) => !file.insideFoundationScope).length;
+  const unsafePlan = filePlans.some(
+    (file) => file.includesExpressImport || file.mountsRoute || file.executesDatabase || file.executesProviderCall || file.mutatesWallet || file.movesMoney || file.returnsRawSecrets,
+  );
+  if (outsideFoundationWrites > 0 || unsafePlan) {
+    return {
+      decisionCode: "source_only_execution_blocked_by_safety_scan",
+      sourceOnlyPatchReady: false,
+      routeSourceFilesWrittenInsideFoundationPackageNow: true,
+      routeSourceFilesWrittenOutsideFoundationNow: false,
+      routeMountAllowedNow: false,
+      runtimeActivationAllowedNow: false,
+      serverCopyAllowedNow: false,
+      safeCode: "source_only_execution_blocked_by_safety_scan",
+      safeMessageKey: "stream.foundation.138y.blockedBySafetyScan",
+    };
+  }
+  return {
+    decisionCode: "source_only_execution_prepared_without_runtime_activation",
+    sourceOnlyPatchReady: true,
+    routeSourceFilesWrittenInsideFoundationPackageNow: true,
+    routeSourceFilesWrittenOutsideFoundationNow: false,
+    routeMountAllowedNow: false,
+    runtimeActivationAllowedNow: false,
+    serverCopyAllowedNow: false,
+    safeCode: "source_only_execution_prepared_without_runtime_activation",
+    safeMessageKey: "stream.foundation.138y.preparedWithoutRuntimeActivation",
+  };
+}
+
+export function getStreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlySnapshot(): StreamFoundationKernelDiagnosticsRouteSourceWriteExecutionSourceOnlySnapshot {
+  const ownerGate = getStreamFoundationKernelDiagnosticsRouteSourceWriteFinalOwnerApprovalGateSnapshot();
+  const filePlans = FILE_PLANS;
+  const writtenInsideThisPatchCount = filePlans.filter((file) => file.writtenInsideThisPatch).length;
+  return {
+    version: STREAM_FOUNDATION_138Y_KERNEL_DIAGNOSTICS_ROUTE_SOURCE_WRITE_EXECUTION_SOURCE_ONLY_VERSION,
+    status: statusFromOwnerGate(),
+    patchScope: "src/modules/stream/foundation/** only",
+    finalOwnerApprovalGateStatus: ownerGate.status,
+    sourceOnlyExecutionPackageBuiltNow: true,
+    targetFileCount: 6,
+    writtenInsideThisPatchCount,
+    outsideFoundationWriteCount: 0,
+    routeSourceFilesWrittenInsideFoundationPackageNow: true,
+    routeSourceFilesWrittenOutsideFoundationNow: false,
+    routeSourceMountedNow: false,
+    routeMountApprovedNow: false,
+    protectedRouteRegisteredNow: false,
+    streamIndexPatchIncluded: false,
+    streamModuleIndexTouchedNow: false,
+    appServerPatchIncluded: false,
+    appServerTouchedNow: false,
+    runtimeHttpRequestsPerformed: 0,
+    providerCallsPerformed: 0,
+    databaseExecutionPerformed: 0,
+    walletMutationPerformed: 0,
+    paymentAuthorizationPerformed: 0,
+    monthlyPayoutPerformed: 0,
+    moneyMovementPerformed: 0,
+    rawSecretsReturned: 0,
+    mobileProviderKeysAllowed: false,
+    fakeSuccessAllowed: false,
+    filePlans,
+    decision: decisionFromFilePlans(filePlans),
+    safety: SOURCE_ONLY_EXECUTION_SAFETY,
+  };
+}

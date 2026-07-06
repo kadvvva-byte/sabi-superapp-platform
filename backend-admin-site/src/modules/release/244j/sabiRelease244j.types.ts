@@ -1,0 +1,122 @@
+export type SabiRelease244JEmailDnsAuthentication = Readonly<{
+  mx: true;
+  spf: true;
+  dkim: true;
+  dmarc: true;
+}>;
+
+export type SabiRelease244JSafety = Readonly<{
+  noLiveGoogleCloudDeployNow: true;
+  noCloudRunServiceCreateNow: true;
+  noDomainDnsMutationNow: true;
+  noLiveEmailDnsMutationNow: true;
+  noLiveSmsSendNow: true;
+  noFirebaseApiCallNow: true;
+  noSmsProviderCallNow: true;
+  noWalletPaymentPayoutNow: true;
+  noSecretInSourceChatAdminMobile: true;
+  noPlainSecretInReport: true;
+  noEnvReadWriteNow: true;
+  noSecretManagerReadWriteNow: true;
+  noDbMutationNow: true;
+  noRuntimeMountNow: true;
+  noPublicLaunchClaimNow: true;
+  ownerExactApprovalRequiredBeforeLiveAction: true;
+  noOwnerFinalCommandAcceptedNow: true;
+  noFinalOwnerCommandExecutionNow: true;
+  noExactPhraseAcceptedNow: true;
+  noExactPhraseExecutionNow: true;
+  noFinalExecutionPreflightGateAcceptedNow: true;
+  noFinalExecutionPreflightGateExecutionNow: true;
+}>;
+
+export type SabiRelease244JReadiness = Readonly<{
+  officialSiteGoogleCloudDeployFinalOwnerCommandExactPhraseFinalExecutionPreflightGateReadiness: 100;
+  officialDomainEmailGoogleCloudFinalOwnerCommandExactPhraseFinalExecutionPreflightGateReadiness: 100;
+  smsGoogleCloudServerBoundaryFinalOwnerCommandExactPhraseFinalExecutionPreflightGateReadiness: 100;
+  serverSabiAiGoogleCloudPersonalityFinalOwnerCommandExactPhraseFinalExecutionPreflightGateReadiness: 100;
+  bankWalletGoogleCloudDependencyFinalOwnerCommandExactPhraseFinalExecutionPreflightGateReadiness: 100;
+  previous244IFix1Readiness: 100;
+  previous244IRerunReadiness: 100;
+  googleCloudDeployExecutedNow: 0;
+  ownerFinalCommandAcceptedNow: 0;
+  finalOwnerCommandExecutableNow: 0;
+  exactPhraseAcceptedNow: 0;
+  exactPhraseExecutableNow: 0;
+  finalExecutionPreflightGateAcceptedNow: 0;
+  finalExecutionPreflightGateExecutableNow: 0;
+  cloudRunServiceCreatedNow: 0;
+  liveDomainDnsChangedNow: 0;
+  liveEmailDnsChangedNow: 0;
+  liveSmsSentNow: 0;
+  walletPaymentPayoutNow: 0;
+  realProductionLaunchNow: 0;
+}>;
+
+export type SabiRelease244J = Readonly<{
+  version: 'SABI-RELEASE-244J-OFFICIAL-SITE-EMAIL-SMS-SERVER-AI-GOOGLE-CLOUD-DEPLOY-FINAL-OWNER-COMMAND-EXACT-PHRASE-FINAL-EXECUTION-PREFLIGHT-GATE';
+  marker: 'SABI_RELEASE_244J_OFFICIAL_SITE_EMAIL_SMS_SERVER_AI_GOOGLE_CLOUD_DEPLOY_FINAL_OWNER_COMMAND_EXACT_PHRASE_FINAL_EXECUTION_PREFLIGHT_GATE_STILL_NO_LIVE_DEPLOY_NO_LIVE_SMS';
+  strictPlanMode: true;
+  noPivotWithoutOwnerApproval: true;
+  maximumAcceleration: true;
+  googleCloudDeployFinalOwnerCommandExactPhraseFinalExecutionPreflightGateOnly: true;
+  ownerFinalCommandExactPhraseFinalExecutionPreflightGateReady: true;
+  finalExecutionPreflightGatePlanningOnly: true;
+  officialWebsiteMustWorkOnServer: true;
+  officialDomainEmailMustWork: true;
+  smsIsMandatoryForProgram: true;
+  smsWithoutItProgramDoesNotWork: true;
+  allCriticalLogicMustBeServerSide: true;
+  cloudRunCustomDomainMappingFinalOwnerCommandExactPhraseFinalExecutionPreflightGateRequired: true;
+  officialSiteHttpsFinalOwnerCommandExactPhraseFinalExecutionPreflightGateRequired: true;
+  officialSiteHealthCheckFinalOwnerCommandExactPhraseFinalExecutionPreflightGateRequired: true;
+  emailDnsAuthenticationFinalOwnerCommandExactPhraseFinalExecutionPreflightGateRequired: true;
+  emailDnsAuthentication: SabiRelease244JEmailDnsAuthentication;
+  firebasePhoneAuthOrApprovedSmsProviderRequired: true;
+  phoneNumberSignInMustBeEnabledBeforeLiveUse: true;
+  liveSmsStillLockedUntilExactOwnerApproval: true;
+  smsServerBoundaryRequired: true;
+  serverSabiAiPersonalityTrainingMustFollowPlan: true;
+  ownerSabiAiReportOnly: true;
+  ownerFinalDecisionRequired: true;
+  noSecretRevealToOwnerSabiAi: true;
+  bankAccountOpeningUrgent: true;
+  walletIntegrationBlockedUntilOfficialSiteEmailAndSmsReady: true;
+  walletProviderIntegrationRequiresOwnerExactApproval: true;
+  publicCommunicationChannel: 'Sabi Messenger';
+  noTelegramMention: true;
+  noDonationOrInvestmentRequest: true;
+  sabiAllocatedCompanyFundsOnly: true;
+  targetSubmissionDate: '2026-07-01';
+  targetPublicLaunchDate: '2026-07-15';
+  ownerFinalCommandExactPhraseFinalExecutionPreflightGateReferenceOnly: true;
+  ownerExactPhraseFinalExecutionPreflightGateValue: 'I approve RELEASE-244J official site email SMS server AI Google Cloud deploy final Owner command exact phrase final execution preflight gate planning only';
+  liveDeployCommandExactPhraseFinalExecutionPreflightGateReferenceOnly: true;
+  liveDeployCommandExactPhraseFinalExecutionPreflightGateReferenceOnlyValue: 'gcloud run deploy sabi-official-site --region <REGION> --source <SERVER_BUILD_CONTEXT>';
+  preflightChecksRequiredBeforeAnyLiveExecution: readonly [
+    'owner_exact_phrase_present',
+    'owner_exact_live_approval_present',
+    'server_build_context_verified',
+    'google_cloud_project_verified',
+    'cloud_run_region_verified',
+    'domain_dns_plan_verified',
+    'email_dns_authentication_verified',
+    'sms_provider_or_firebase_phone_auth_verified',
+    'secret_manager_references_verified_without_reveal',
+    'wallet_payment_payout_still_locked'
+  ];
+  acceptedNow: false;
+  executableNow: false;
+  noExecutionNow: true;
+  finalExecutionPreflightGateDoesNotExecuteDeployNow: true;
+  finalExecutionPreflightGateDoesNotAcceptFinalCommandNow: true;
+  finalExecutionPreflightGateDoesNotAcceptExactPhraseNow: true;
+  finalExecutionPreflightGateRequiresSeparateOwnerExactApprovalBeforeLiveDeploy: true;
+  finalExecutionPreflightGateRequiresSeparateStaticCheckBeforeAnyRun: true;
+  finalReviewStaticCheckReportRequiresSeparateOwnerExactApprovalBeforeLiveDeploy: true;
+  finalAcceptanceGateStillPlanningOnly: true;
+  finalOwnerCommandWillRequireSeparateAcceptanceGateBeforeLiveDeploy: true;
+  nextStep: '244K_official_site_email_sms_server_ai_google_cloud_deploy_final_owner_command_exact_phrase_final_execution_preflight_gate_static_check_still_no_live_deploy_no_live_sms';
+  readiness: SabiRelease244JReadiness;
+  safety: SabiRelease244JSafety;
+}>;

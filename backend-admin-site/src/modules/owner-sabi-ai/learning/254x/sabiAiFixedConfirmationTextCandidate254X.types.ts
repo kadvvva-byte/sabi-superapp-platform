@@ -1,0 +1,2 @@
+export type SabiAiFixedConfirmationTextCandidate254X = typeof import('./sabiAiFixedConfirmationTextCandidate254X').sabiAiFixedConfirmationTextCandidate254X;
+export type SabiAiFixedConfirmationTextSafety254X = typeof import('./sabiAiFixedConfirmationTextCandidate254X').sabiAiFixedConfirmationTextSafety254X;

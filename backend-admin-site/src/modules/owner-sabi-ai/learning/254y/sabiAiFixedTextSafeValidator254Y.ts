@@ -1,0 +1,31 @@
+export const sabiAiFixedTextSafeValidator254Y = {
+  version: 'SABI-AI-LEARNING-254Y-OWNER-CONFIRMATION-FIXED-TEXT-SAFE-VALIDATOR-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'validator_only_no_validation_run_no_confirmation_no_execution',
+  fixedTextSafeValidatorPreparedNow: true,
+  fixedTextLoadedAsCandidateNow: true,
+  fixedTextValidationRunNow: false,
+  fixedTextValidatedNow: false,
+  fixedTextAcceptedNow: false,
+  fixedTextAppliedNow: false,
+  fixedTextWrittenNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiFixedTextSafeValidatorSafety254Y = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;

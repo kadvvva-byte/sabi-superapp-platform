@@ -1,0 +1,121 @@
+export const SABI_CORE_MONETIZATION_102D_CREATOR_EARNINGS_LEDGER_PAYOUT_LOCK_DESIGN = {
+  version: "SABI-CORE-MONETIZATION-102D",
+  mode: "creator_earnings_ledger_payout_lock_design_source_only",
+  generatedFor: "Sabi Core Monetization provider-key readiness continuation",
+  readOnlyDesign: true,
+  runtimeEnabled: false,
+  providerActivationAllowedNow: false,
+  providerCallAllowedNow: false,
+  databaseWriteAllowedNow: false,
+  walletMutationAllowedNow: false,
+  moneyMovementAllowedNow: false,
+  creatorPayoutExecutionAllowedNow: false,
+  stakeGamblingRuntimeAllowedNow: false,
+  googleBillingRuntimeAllowedNow: false,
+  airwallexRuntimeAllowedNow: false,
+  adminUiChangeAllowedNow: false,
+  mobileUiChangeAllowedNow: false,
+  creatorEarningsLedger: {
+    currentState: "source_only_design_ready_no_persistence_no_money_movement",
+    purpose: [
+      "track future creator-support digital purchase entitlement evidence",
+      "separate pending creator earnings from payable creator earnings",
+      "support refund chargeback revocation clawback and compliance hold states later",
+      "prevent Wallet balance or payout execution before explicit ledger/provider/compliance approval",
+    ],
+    plannedBuckets: [
+      "creator_earning_pending",
+      "creator_earning_compliance_hold",
+      "creator_earning_refund_reserved",
+      "creator_earning_payable_after_review",
+      "creator_earning_reversed_or_revoked",
+    ],
+    plannedSources: [
+      "Google Billing verified digital creator support after future runtime approval",
+      "digital gift creator share after future entitlement ledger approval",
+      "creator subscription revenue share after future provider and ledger approval",
+      "stream boost or badge creator revenue share after future provider and ledger approval",
+    ],
+    blockedSources: [
+      "Wallet balance bypass for Android digital goods",
+      "Airwallex Android digital goods purchase",
+      "stake gambling payout runtime",
+      "manual fake earnings injection",
+      "provider unverified purchase token",
+    ],
+  },
+  payoutLock: {
+    currentState: "locked_no_payout_execution",
+    requiredBeforeAnyPayout: [
+      "creator identity verification and payout eligibility",
+      "KYB/KYC where required",
+      "AML/risk/compliance review",
+      "tax document and reporting readiness where required",
+      "payout provider readiness with server-side secret references only",
+      "owner/admin approval workflow",
+      "ledger schema and idempotency approval",
+      "refund chargeback revocation reserve rules",
+      "minimum payout threshold and country/currency allow-list",
+    ],
+    payoutExecutionDisabledBecause: [
+      "no DB ledger persistence approval now",
+      "no payout provider activation now",
+      "no money movement approval now",
+      "no creator payout execution approval now",
+    ],
+  },
+  providerBoundary: {
+    googleBilling: {
+      allowedRoleLater: "Android digital purchase verification source after separate provider runtime approval",
+      runtimeEnabledNow: false,
+      rawPurchaseTokenStorageAllowed: false,
+      rawPurchaseTokenLogAllowed: false,
+      redactedEvidenceAllowedLater: true,
+    },
+    airwallex: {
+      allowedRoleLater: "physical merchant and business settlement rails only after separate provider/runtime approval",
+      runtimeEnabledNow: false,
+      androidDigitalGoodsAllowed: false,
+      creatorDigitalPurchaseAllowed: false,
+      rawSecretOutputAllowed: false,
+    },
+    payoutProvider: {
+      allowedRoleLater: "creator payout execution only after compliance ledger provider and owner approval",
+      runtimeEnabledNow: false,
+      providerCallAllowedNow: false,
+      rawSecretOutputAllowed: false,
+    },
+  },
+  auditAndEvidence: {
+    rawSecretsReturned: false,
+    rawPurchaseTokensReturned: false,
+    rawCardDataReturned: false,
+    rawPromptDataReturned: false,
+    rawUserPrivateDataReturned: false,
+    allowedEvidenceLater: [
+      "redacted purchase verification evidence",
+      "ledger idempotency hash",
+      "creator payout review status without raw bank details",
+      "compliance hold reason codes without sensitive raw documents",
+      "refund chargeback revocation event hash",
+    ],
+  },
+  stillDisabled: {
+    providerActivation: true,
+    providerCalls: true,
+    dbWrites: true,
+    walletMutation: true,
+    moneyMovement: true,
+    creatorPayoutExecution: true,
+    stakeRuntime: true,
+    gamblingRuntime: true,
+    googleBillingRuntime: true,
+    airwallexRuntime: true,
+  },
+} as const;
+
+export type SabiCoreMonetization102DCreatorEarningsLedgerPayoutLockDesign = typeof SABI_CORE_MONETIZATION_102D_CREATOR_EARNINGS_LEDGER_PAYOUT_LOCK_DESIGN;
+
+export function getSabiCoreMonetization102DCreatorEarningsLedgerPayoutLockDesign(): SabiCoreMonetization102DCreatorEarningsLedgerPayoutLockDesign {
+  return SABI_CORE_MONETIZATION_102D_CREATOR_EARNINGS_LEDGER_PAYOUT_LOCK_DESIGN;
+}

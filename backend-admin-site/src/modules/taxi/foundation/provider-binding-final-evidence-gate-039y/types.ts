@@ -1,0 +1,3 @@
+export type Taxi039YBlocked = 'blocked' | 'locked';
+export interface Taxi039YReadiness { stage: string; ready: boolean; providerBindingFinalEvidenceGate: 'locked'; apiKeyValueAccepted: false; envRead: false; secretRead: false; providerCall: false; dbWrite: false; walletMutation: false; moneyMovement: false; paymentExecution: false; payoutExecution: false; productionLaunch: false; taxiCommissionBps: 0; visaCashbackBps: 200; }
+export interface Taxi039YSummary extends Taxi039YReadiness { nextStep: string; exactOwnerApprovalRequiredBeforeProviderBinding: true; exactOwnerApprovalRequiredBeforeRawApiKeyIntake: true; }

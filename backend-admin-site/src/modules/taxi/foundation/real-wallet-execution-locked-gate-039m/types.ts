@@ -1,0 +1,62 @@
+export type TaxiRealWalletExecutionLockedGateSafety039M = Readonly<{
+  standaloneTaxiWalletCreated: false;
+  envFileReadOrDumped: false;
+  secretValuesReadOrPrinted: false;
+  dbWritePerformed: false;
+  prismaMigratePerformed: false;
+  prismaDbPushPerformed: false;
+  walletMutationPerformed: false;
+  moneyMovementPerformed: false;
+  paymentExecutionPerformed: false;
+  payoutExecutionPerformed: false;
+  providerCallPerformed: false;
+  fakeSuccessIntroduced: false;
+  productionLaunchClaimed: false;
+  ownerSabiAiAutonomousExecutionPerformed: false;
+}>;
+
+export type TaxiRealWalletExecutionLockedGate039M = Readonly<{
+  version: string;
+  status: string;
+  mode: 'real_wallet_execution_locked_gate_no_money_movement';
+  taxiMustNotHaveStandaloneWallet: true;
+  taxiUsesMainGlobalWallet: true;
+  rideFareDirectNoCommission: true;
+  commissionBps: 0;
+  visaCardCashbackPercent: 2;
+  visaCardCashbackBps: 200;
+  cashbackPostedThroughMainWalletLedger: true;
+  ownerSabiAiReportReady: true;
+  dailyPrivateFinanceRiskReportRequired: true;
+  urgentRiskReportRequired: true;
+  reportOnlyNoAutonomousExecution: true;
+  realWalletExecutionLocked: true;
+  exactOwnerApprovalRequiredBeforeMoneyMovement: true;
+  finalExecutionLockedUntilOwnerApproval: true;
+  blockedExecutionTargets: readonly string[];
+  globalWalletCorePorts: readonly string[];
+  linkedTaxiFinanceModels: readonly string[];
+  forbiddenStandaloneTaxiWalletModels: readonly string[];
+  safety: TaxiRealWalletExecutionLockedGateSafety039M;
+  nextStep: string;
+}>;
+
+export type TaxiRealWalletExecutionLockedGateReadiness039M = Readonly<{
+  version: string;
+  status: string;
+  taxi039MRealWalletExecutionLockedGateNoMoneyMovement: 100;
+  taxi039LRealWalletExecutionPreflightExactOwnerApprovalNoMoneyYet: 100;
+  taxiUsesMainGlobalWallet: true;
+  standaloneTaxiWalletAllowed: false;
+  rideFareCommissionBps: 0;
+  visaCashbackBps: 200;
+  realWalletExecutionLocked: true;
+  exactOwnerApprovalRequiredBeforeMoneyMovement: true;
+  taxiRealWalletFinanceClosurePath: 98;
+  taxiBackendFoundationSafeRead: 99;
+  taxiAdminUiFunctional: 99;
+  taxiMobileUnifiedOrganismUi: 100;
+  taxiOwnerSabiAiControl: 100;
+  taxiRealWalletPaymentPayoutProviderDbExecution: '0_locked_until_real_money_movement_exact_owner_approval_and_verified_provider_wallet_runtime';
+  taxiFullProductionReadiness: 99;
+}>;

@@ -1,0 +1,2 @@
+export type SabiAiOwnerConfirmationIntakeValidator254W = typeof import('./sabiAiOwnerConfirmationIntakeValidator254W').sabiAiOwnerConfirmationIntakeValidator254W;
+export type SabiAiOwnerConfirmationIntakeSafety254W = typeof import('./sabiAiOwnerConfirmationIntakeValidator254W').sabiAiOwnerConfirmationIntakeSafety254W;

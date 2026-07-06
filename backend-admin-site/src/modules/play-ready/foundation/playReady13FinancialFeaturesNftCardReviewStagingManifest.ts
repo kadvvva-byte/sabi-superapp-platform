@@ -1,0 +1,32 @@
+import { getPlayReady13Readiness } from "./play-ready-13-financial-features-nft-card-review";
+
+export const PLAY_READY_13_FINANCIAL_FEATURES_NFT_CARD_REVIEW_STAGING_MANIFEST = {
+  version: "PLAY-READY-13",
+  stage: "controlled_financial_features_nft_tokenized_assets_virtual_card_disclosure_target_patch_review_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/play-ready/foundation/play-ready-13-financial-features-nft-card-review/**",
+  reviewCovers: [
+    "Play Console Financial features declaration evidence",
+    "tokenized digital asset disclosure",
+    "no NFT gambling/staking/chance-based unknown value",
+    "virtual card issuer/provider_not_configured copy",
+    "no raw PAN/CVV storage evidence",
+    "no fake NFT minting",
+    "no fake card issuing",
+    "no fake balance",
+  ],
+  targetFilesModifiedNow: false,
+  backendRestartNow: false,
+  runtimeDbWriteNow: false,
+  providerCallsNow: false,
+  secretValueExposureNow: false,
+  walletMutationNow: false,
+  paymentAuthorizationNow: false,
+  moneyMovementNow: false,
+  noFakeNftMinting: true,
+  noFakeCardIssuing: true,
+  noFakeBalance: true,
+  noFakeSuccess: true,
+  nextStage: "PLAY-READY-14",
+  readiness: getPlayReady13Readiness(),
+} as const;

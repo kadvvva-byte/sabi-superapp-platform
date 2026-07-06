@@ -1,0 +1,32 @@
+import { getPlayReady15Readiness } from "./play-ready-15-admin-reviewer-evidence-center-planning";
+
+export const PLAY_READY_15_ADMIN_REVIEWER_EVIDENCE_CENTER_PLANNING_STAGING_MANIFEST = {
+  version: "PLAY-READY-15",
+  stage: "controlled_admin_and_reviewer_evidence_center_planning_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/play-ready/foundation/play-ready-15-admin-reviewer-evidence-center-planning/**",
+  reviewCovers: [
+    "privacy/account deletion",
+    "AI report/flag",
+    "UGC report/block",
+    "provider_not_configured",
+    "billing-vs-wallet separation",
+    "financial features/NFT/virtual card disclosures",
+    "permission rationale",
+    "target SDK/AAB readiness",
+    "closed testing notes",
+    "reviewer access instructions",
+  ],
+  targetFilesModifiedNow: false,
+  backendRestartNow: false,
+  runtimeDbWriteNow: false,
+  providerCallsNow: false,
+  secretValueExposureNow: false,
+  walletMutationNow: false,
+  paymentAuthorizationNow: false,
+  moneyMovementNow: false,
+  noFakeEvidence: true,
+  noFakeSuccess: true,
+  nextStage: "PLAY-READY-16",
+  readiness: getPlayReady15Readiness(),
+} as const;

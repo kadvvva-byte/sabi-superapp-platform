@@ -1,0 +1,36 @@
+import { getStreamFoundationBlockedAdapterIntegrationReviewReadiness } from "./blocked-adapter-integration-review";
+
+export const STREAM_141Z_BLOCKED_ADAPTER_INTEGRATION_REVIEW_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-141Z",
+  stage: "blocked_adapter_integration_review_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/blocked-adapter-integration-review/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-141Y",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimeBindingAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy141Z: false,
+    serverTsChangeBy141Z: false,
+    streamIndexChangeBy141Z: false,
+    liveWriteHandlerChangeBy141Z: false,
+    schemaMigrationBy141Z: false,
+    backendRestartBy141Z: false,
+    runtimeHttpBy141Z: false,
+    runtimePostBy141Z: false,
+    databaseReadBy141Z: false,
+    databaseWriteBy141Z: false,
+    providerCallBy141Z: false,
+    providerSecretReadBy141Z: false,
+    walletMutationBy141Z: false,
+    paymentAuthorizationBy141Z: false,
+    monthlyPayoutBy141Z: false,
+    moneyMovementBy141Z: false,
+    fakeSuccessBy141Z: false,
+  },
+  readiness: getStreamFoundationBlockedAdapterIntegrationReviewReadiness(),
+} as const;

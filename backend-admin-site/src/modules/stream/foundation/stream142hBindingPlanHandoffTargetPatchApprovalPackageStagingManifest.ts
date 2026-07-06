@@ -1,0 +1,38 @@
+import { getStreamFoundationBindingPlanHandoffTargetPatchApprovalPackageReadiness } from "./binding-plan-handoff-target-patch-approval-package";
+
+export const STREAM_142H_BINDING_PLAN_HANDOFF_TARGET_PATCH_APPROVAL_PACKAGE_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-142H",
+  stage: "binding_plan_handoff_and_controlled_target_patch_approval_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/binding-plan-handoff-target-patch-approval-package/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-142G",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    targetPatchAllowedNow: false,
+    routeBindingAllowedNow: false,
+    runtimePostAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy142H: false,
+    serverTsChangeBy142H: false,
+    streamIndexChangeBy142H: false,
+    liveWriteHandlerChangeBy142H: false,
+    schemaMigrationBy142H: false,
+    backendRestartBy142H: false,
+    runtimeHttpBy142H: false,
+    runtimePostBy142H: false,
+    databaseReadBy142H: false,
+    databaseWriteBy142H: false,
+    providerCallBy142H: false,
+    providerSecretReadBy142H: false,
+    walletMutationBy142H: false,
+    paymentAuthorizationBy142H: false,
+    monthlyPayoutBy142H: false,
+    moneyMovementBy142H: false,
+    fakeSuccessBy142H: false,
+  },
+  readiness: getStreamFoundationBindingPlanHandoffTargetPatchApprovalPackageReadiness(),
+} as const;

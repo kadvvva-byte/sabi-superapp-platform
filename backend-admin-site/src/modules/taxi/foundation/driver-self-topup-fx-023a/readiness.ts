@@ -1,0 +1,48 @@
+import type { TaxiDriverSelfTopupFxReadiness023A } from './types';
+
+export const taxiDriverSelfTopupFxReadiness023A: TaxiDriverSelfTopupFxReadiness023A = Object.freeze({
+  version: 'TAXI-DRIVER-SELF-TOPUP-FX-023A',
+  driverSelfTopupOnly: false,
+  driverSelfTopupDisabledNow: true,
+  driverBalanceTopupActor: 'approved_taxi_agent_only',
+  taxiAgentApplicationRequired: true,
+  taxiAgentAdminApprovalRequired: true,
+  taxiAgentMobileScreenLockedUntilApproved: true,
+  nonAgentMobileAccessBlocked: true,
+  driverDirectTopupUiAllowed: false,
+  adminManualTopupAllowed: false,
+  adminManualTransferAllowed: false,
+  adminManualPayoutAllowed: false,
+  adminWalletCreditDebitAllowed: false,
+  acceptedTopupChannels: Object.freeze(['agent_official_payment_link', 'agent_proof_tx_hash'] as const),
+  officialPaymentLinkRequired: true,
+  proofOrTxHashRequiredBeforeCredit: true,
+  visaCardTopupSupportedByContract: false,
+  sabiWalletTopupSupportedByContract: false,
+  countryCurrencyMode: 'country_configured_currency',
+  noFixedGlobalCurrency: true,
+  perCountryCurrencyRequired: true,
+  currentExchangeRateRequiredWhenConversionNeeded: true,
+  fxRateSnapshotRequired: true,
+  providerConfirmationRequiredBeforeCredit: true,
+  idempotencyRequired: true,
+  auditRequired: true,
+  sabiAiFxMonitoringRequired: true,
+  sabiAiProviderCoverageMonitoringRequired: true,
+  sabiAiReportOnlyNoMoneyMutation: true,
+  noPhysicalBranchRequiredByProductFlow: true,
+  branchlessProviderCoverageModel: true,
+  driverBalanceAutoUnlockByRealBalanceAfterTopup: true,
+  orderStartPositiveBalanceRequired: true,
+  noBalanceAutoBlock: true,
+  fakePaymentGenerated: false,
+  fakeWalletCreditGenerated: false,
+  fakePayoutGenerated: false,
+  providerCallPerformedByReadiness: false,
+  walletMutationPerformedByReadiness: false,
+  dbWritePerformedByReadiness: false,
+});
+
+export function getTaxiDriverSelfTopupFxReadiness023A(): TaxiDriverSelfTopupFxReadiness023A {
+  return taxiDriverSelfTopupFxReadiness023A;
+}

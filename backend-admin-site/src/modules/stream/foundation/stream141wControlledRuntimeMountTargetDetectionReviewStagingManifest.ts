@@ -1,0 +1,35 @@
+import { getStreamFoundationControlledRuntimeMountTargetDetectionReviewSnapshot } from "./controlled-runtime-mount-target-detection-review";
+
+export const STREAM_141W_CONTROLLED_RUNTIME_MOUNT_TARGET_DETECTION_REVIEW_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-141W",
+  stage: "controlled_runtime_mount_target_detection_and_source_patch_review",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-141V",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimeMountAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy141W: false,
+    serverTsChangeBy141W: false,
+    streamIndexChangeBy141W: false,
+    schemaMigrationBy141W: false,
+    backendRestartBy141W: false,
+    runtimeHttpBy141W: false,
+    runtimePostBy141W: false,
+    databaseReadBy141W: false,
+    databaseWriteBy141W: false,
+    providerCallBy141W: false,
+    providerSecretReadBy141W: false,
+    walletMutationBy141W: false,
+    paymentAuthorizationBy141W: false,
+    monthlyPayoutBy141W: false,
+    moneyMovementBy141W: false,
+    fakeSuccessBy141W: false,
+  },
+  snapshot: getStreamFoundationControlledRuntimeMountTargetDetectionReviewSnapshot(),
+} as const;

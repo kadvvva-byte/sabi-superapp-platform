@@ -1,0 +1,22 @@
+{
+  "version": "BACKEND-STREAM-FOUNDATION-140K",
+  "stage": "controlled_runtime_http_smoke_only",
+  "allowed_http_methods": ["GET"],
+  "targets": [
+    "/health",
+    "/api/admin/stream/foundation/diagnostics/readiness",
+    "/api/admin/stream/foundation/diagnostics/preview"
+  ],
+  "forbidden_actions": [
+    "backend_restart",
+    "db_write",
+    "provider_call",
+    "wallet_mutation",
+    "payment_authorization",
+    "monthly_payout",
+    "money_movement",
+    "raw_secret_output",
+    "fake_success"
+  ],
+  "notes": "Run against an already-running backend only. If stale process does not contain 140H app.ts changes, smoke can fail safely."
+}

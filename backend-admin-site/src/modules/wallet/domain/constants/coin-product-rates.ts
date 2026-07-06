@@ -1,0 +1,5 @@
+export const COIN_DEPOSIT_ANNUAL_RATE = 0.16
+export const COIN_CREDIT_ANNUAL_RATE = 0.2
+
+export const COIN_DEPOSIT_MIN_TERM_MONTHS = 6
+export const COIN_DEPOSIT_MAX_TERM_MONTHS = 12

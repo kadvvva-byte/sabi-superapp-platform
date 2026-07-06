@@ -1,0 +1,30 @@
+export const sabiAiFixedDecisionValueCandidate254U = {
+  version: 'SABI-AI-LEARNING-254U-OWNER-DECISION-INTAKE-CANDIDATE-FIXED-VALUE-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'candidate_value_only_no_selection_no_write_no_execution',
+  fixedDecisionValueCandidatePreparedNow: true,
+  fixedCandidateValue: 'approve_local_dry_run_without_provider_calls',
+  candidateValueSelectedNow: false,
+  candidateValueValidatedNow: false,
+  candidateValueAppliedNow: false,
+  candidateValueWrittenNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiFixedDecisionValueSafety254U = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;

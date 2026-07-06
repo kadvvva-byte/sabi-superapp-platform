@@ -1,0 +1,5 @@
+export const TAXI_TRIP_SABI_AI_PERSONA_RUNTIME_REPORT_036I_VERSION = 'TAXI-036I-TRIP-SABI-AI-PERSONA-RUNTIME-REPORT-LOCKED';
+export const TAXI_TRIP_SABI_AI_PERSONA_RUNTIME_REPORT_036I_NEXT_STEP = '036j_trip_admin_sabi_ai_persona_report_visibility_or_resume_wallet_owner_plan_locked';
+export const TAXI_TRIP_SABI_AI_PERSONA_RUNTIME_REPORT_036I_SCOPE = 'backend_trip_sabi_ai_persona_runtime_report_safe_read_only_locked';
+export const TAXI_TRIP_SABI_AI_PERSONA_RUNTIME_REPORT_036I_TARGET_SCALE = '10000_plus_and_scalable';
+export const TAXI_TRIP_SABI_AI_PERSONA_RUNTIME_REPORT_036I_GOOGLE_BOUNDARY = 'training_reference_not_primary_control_source';

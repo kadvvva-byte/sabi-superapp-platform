@@ -1,0 +1,25 @@
+export const PLAY_READY_27_REVIEWER_EVIDENCE_CENTER_SERVICE_PLANNING_STAGING_MANIFEST = {
+  version: "PLAY-READY-27",
+  mode: "reviewer_evidence_center_service_planning_source_only",
+  sourceOnly: true,
+  createdFiles: [
+    "src/modules/play-ready/foundation/play-ready-27-reviewer-evidence-center-service-planning/index.ts",
+    "src/modules/play-ready/foundation/play-ready-27-reviewer-evidence-center-service-planning/playReady27ReviewerEvidenceCenterServicePlanning.ts",
+    "src/modules/play-ready/foundation/playReady27ReviewerEvidenceCenterServicePlanningStagingManifest.ts",
+  ],
+  basedOn: [
+    "PLAY-READY-24C",
+    "PLAY-READY-25",
+    "PLAY-READY-26",
+  ],
+  runtimeRouteMounted: false,
+  adminUiMounted: false,
+  adminUiBuildPerformed: false,
+  backendRestartPerformed: false,
+  databaseWritePerformed: false,
+  providerCallPerformed: false,
+  walletMutationPerformed: false,
+  moneyMovementPerformed: false,
+  fakeSuccessPerformed: false,
+  nextRecommendedStage: "PLAY-READY-28 source-only reviewer evidence center Admin API contract planning",
+} as const;

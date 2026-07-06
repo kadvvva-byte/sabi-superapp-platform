@@ -1,0 +1,41 @@
+import {
+  STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_ADMIN_LOCAL_ROUTE_DRAFT,
+  STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_PUBLIC_ROUTE_DRAFT,
+  STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_VERSION,
+} from "./stream-billing-ledger-admin-provider-readiness.contracts";
+
+export const STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_143F_ROUTE_DRAFT_PLAN = {
+  version: "BACKEND-STREAM-FOUNDATION-143F",
+  dependsOn: STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_VERSION,
+  planningOnly: true,
+  sourceOnly: true,
+  sourceWriteAllowedByOwnerForThisDraft: true,
+  routeSourceDraftCreated: true,
+  routeMountedNow: false,
+  routeMountAllowedNow: false,
+  backendRestartAllowedNow: false,
+  providerCallAllowedNow: false,
+  walletMutationAllowedNow: false,
+  moneyMovementAllowedNow: false,
+  databaseWriteAllowedNow: false,
+  adminUiTouchAllowedNow: false,
+  mobileTouchAllowedNow: false,
+  adminLocalRouteDraft: STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_ADMIN_LOCAL_ROUTE_DRAFT,
+  publicRouteDraft: STREAM_BILLING_LEDGER_ADMIN_PROVIDER_READINESS_PUBLIC_ROUTE_DRAFT,
+  requiredMountRulesForFutureStage: [
+    "mount only under Admin router after createRequireAdmin",
+    "protect with admin:read permission",
+    "do not expose raw provider env values",
+    "do not call provider APIs",
+    "do not mutate Wallet",
+    "do not move money",
+    "do not write DB",
+    "keep liveBillingEnabledNow false until provider verification and owner approval",
+  ],
+  nextStages: [
+    "143G protected route mount approval package planning",
+    "143H controlled source patch to mount protected route after owner approval",
+    "143I backend restart and authenticated smoke after mount",
+    "143J final Admin/provider readiness route handoff",
+  ],
+} as const;

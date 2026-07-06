@@ -1,0 +1,32 @@
+export const sabiAiOwnerConfirmationGate254V = {
+  version: 'SABI-AI-LEARNING-254V-OWNER-CONFIRMATION-GATE-FOR-FIXED-VALUE-CANDIDATE-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'gate_only_no_confirmation_no_write_no_execution',
+  ownerConfirmationGatePreparedNow: true,
+  confirmationGateOpenNow: false,
+  confirmationInputReceivedNow: false,
+  confirmationValidatedNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  candidateValueSelectedNow: false,
+  candidateValueAppliedNow: false,
+  candidateValueWrittenNow: false,
+  decisionRecordWrittenNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiOwnerConfirmationGateSafety254V = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;

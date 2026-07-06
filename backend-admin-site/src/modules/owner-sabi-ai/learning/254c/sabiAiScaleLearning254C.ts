@@ -1,0 +1,63 @@
+import type {
+  SabiAiDomainLearningPipeline254C,
+  SabiAiLearningSafetyLocks254C,
+  SabiAiMillionAccountOrchestration254C,
+} from './sabiAiScaleLearning254C.types';
+
+export const sabiAiDomainLearningPipelines254C: readonly SabiAiDomainLearningPipeline254C[] = [
+  { domain: 'legal', learnsSeparately: true, learns: ['laws and policies', 'KYC/AML', 'privacy', 'evidence', 'lawful escalation'], contributesToUnifiedBrain: true },
+  { domain: 'crime_compliance', learnsSeparately: true, learns: ['fraud', 'AML', 'corruption', 'red priority risks', 'evidence preservation'], contributesToUnifiedBrain: true },
+  { domain: 'taxi', learnsSeparately: true, learns: ['passenger help', 'driver help', 'agent help', 'complaints', 'lost property', 'ride fraud patterns'], contributesToUnifiedBrain: true },
+  { domain: 'messenger', learnsSeparately: true, learns: ['safe chat help', 'spam risk', 'scam risk', 'abuse reporting', 'private evidence flow'], contributesToUnifiedBrain: true },
+  { domain: 'profile_account', learnsSeparately: true, learns: ['profile help', 'account security', 'KYC/KYB', 'privacy', 'identity risk'], contributesToUnifiedBrain: true },
+  { domain: 'wallet_finance', learnsSeparately: true, learns: ['wallet help', 'statements', 'OTP/3DS', 'restricted finance', 'money safety gates'], contributesToUnifiedBrain: true },
+  { domain: 'stream', learnsSeparately: true, learns: ['creative planning', 'copyright safety', 'moderation', 'live gate'], contributesToUnifiedBrain: true },
+  { domain: 'merchant_business', learnsSeparately: true, learns: ['limited cabinet', 'own reports', 'own orders', 'KYB', 'restricted finance'], contributesToUnifiedBrain: true },
+  { domain: 'public_ecology_transparency', learnsSeparately: true, learns: ['project submissions', 'voting', 'tenders', 'own-funds rules', 'anti-corruption'], contributesToUnifiedBrain: true },
+  { domain: 'future_programs', learnsSeparately: true, learns: ['hotels', 'supermarket', 'games', 'QR', 'gallery', 'camera', 'translation', 'presentation'], contributesToUnifiedBrain: true },
+] as const;
+
+export const sabiAiMillionAccountOrchestration254C: SabiAiMillionAccountOrchestration254C = {
+  millionsOfAccountsSupportedByDesign: true,
+  millionsOfConcurrentUsersSupportedByDesign: true,
+  perAccountIsolationRequired: true,
+  perSessionIsolationRequired: true,
+  perProgramRoutingRequired: true,
+  horizontalScalingRequiredFuture: true,
+  queueBasedProcessingRequiredFuture: true,
+  statelessRuntimeWorkersRequiredFuture: true,
+  distributedMemoryIndexRequiredFuture: true,
+  rateLimitAndAbuseProtectionRequiredFuture: true,
+} as const;
+
+export const sabiAiLearningSafetyLocks254C: SabiAiLearningSafetyLocks254C = {
+  localCodeArtifactOnly: true,
+  separatedDomainLearningMappedNow: true,
+  unifiedBrainKnowledgeMergeMappedNow: true,
+  millionAccountOrchestrationMappedNow: true,
+  simultaneousHelpContractMappedNow: true,
+  noModelProviderTrainingNow: true,
+  noAiProviderCallNow: true,
+  noNetworkCallNow: true,
+  noDbReadNow: true,
+  noDbWriteNow: true,
+  noRuntimeMountNow: true,
+  noDeploymentNow: true,
+  noPaymentNow: true,
+  noPayoutNow: true,
+  noProviderActivationNow: true,
+  noSecretReadWriteNow: true,
+  noRealUserMonitoringNow: true,
+  noDistributedQueueNow: true,
+  noDistributedMemoryNow: true,
+  noMillionUserRuntimeNow: true,
+  noLawEnforcementSendNow: true,
+  noAccountBlockNow: true,
+  ownerApprovalRequiredForProviderTraining: true,
+  ownerApprovalRequiredForDbPersistence: true,
+  ownerApprovalRequiredForRuntimeLearningService: true,
+  ownerApprovalRequiredForDistributedQueue: true,
+  ownerApprovalRequiredForDistributedMemory: true,
+  ownerApprovalRequiredForMillionUserRuntime: true,
+  ownerApprovalRequiredForLegalEscalation: true,
+} as const;

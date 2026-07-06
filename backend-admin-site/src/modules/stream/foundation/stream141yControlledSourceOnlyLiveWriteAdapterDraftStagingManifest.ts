@@ -1,0 +1,35 @@
+import { getStreamFoundationLiveWriteSourceOnlyAdapterDraftReadiness } from "./live-write-source-only-adapter-draft";
+
+export const STREAM_141Y_CONTROLLED_SOURCE_ONLY_LIVE_WRITE_ADAPTER_DRAFT_STAGING_MANIFEST = {
+  version: "BACKEND-STREAM-FOUNDATION-141Y",
+  stage: "controlled_source_only_live_write_adapter_draft_package",
+  sourceOnly: true,
+  changedScope: "src/modules/stream/foundation/live-write-source-only-adapter-draft/**",
+  previousStage: "BACKEND-STREAM-FOUNDATION-141X",
+  currentRouteFreeze: {
+    routesStayBlocked: true,
+    expectedCurrentStatusCode: 423,
+    runtimeMountAllowedNow: false,
+    runtimeSuccessAllowedNow: false,
+    fakeSuccessAllowedNow: false,
+  },
+  forbidden: {
+    appTsChangeBy141Y: false,
+    serverTsChangeBy141Y: false,
+    streamIndexChangeBy141Y: false,
+    schemaMigrationBy141Y: false,
+    backendRestartBy141Y: false,
+    runtimeHttpBy141Y: false,
+    runtimePostBy141Y: false,
+    databaseReadBy141Y: false,
+    databaseWriteBy141Y: false,
+    providerCallBy141Y: false,
+    providerSecretReadBy141Y: false,
+    walletMutationBy141Y: false,
+    paymentAuthorizationBy141Y: false,
+    monthlyPayoutBy141Y: false,
+    moneyMovementBy141Y: false,
+    fakeSuccessBy141Y: false,
+  },
+  readiness: getStreamFoundationLiveWriteSourceOnlyAdapterDraftReadiness(),
+} as const;

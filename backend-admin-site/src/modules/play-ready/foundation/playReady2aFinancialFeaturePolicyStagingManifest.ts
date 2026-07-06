@@ -1,0 +1,28 @@
+import { getPlayReady2aFinancialFeaturePolicyReadiness } from "./play-ready-2a-financial-feature-policy";
+
+export const PLAY_READY_2A_FINANCIAL_FEATURE_POLICY_STAGING_MANIFEST = {
+  version: "PLAY-READY-2A",
+  stage: "controlled_nft_tokenized_assets_virtual_card_google_pay_airwallex_policy_planning_source_only",
+  sourceOnly: true,
+  changedScope: "src/modules/play-ready/foundation/play-ready-2a-financial-feature-policy/**",
+  tokenizedDigitalAssetsModeNow: "planned_source_only",
+  virtualCardModeNow: "blocked_until_policy_and_provider_ready",
+  correctCardNaming: "Sabi Virtual Visa Card issued by Airwallex or licensed issuer; Google Pay compatible later",
+  blockedCardNaming: "Google Visa Card",
+  googlePlayBillingRequiredForDigitalCollectiblesInPlayBuild: true,
+  financialFeatureDeclarationRequired: true,
+  noNftGambling: true,
+  noNftStaking: true,
+  noChanceBasedUnknownValueNft: true,
+  noCryptoExchangeWithoutCertifiedRegulatedProvider: true,
+  noFakeNftMinting: true,
+  noFakeCardIssuing: true,
+  noFakeBalance: true,
+  noRawPanCvvStorageOnSabiInfrastructure: true,
+  providerCallsNow: false,
+  walletMutationNow: false,
+  paymentAuthorizationNow: false,
+  moneyMovementNow: false,
+  nextStage: "PLAY-READY-3",
+  readiness: getPlayReady2aFinancialFeaturePolicyReadiness(),
+} as const;

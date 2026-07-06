@@ -1,0 +1,33 @@
+export const sabiAi255DPreExecutionSafetyScan = {
+  version: 'SABI-AI-LEARNING-255D-PRE-EXECUTION-SAFETY-SCAN-FOR-SEALED-RUNBOOK-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'static_scan_only_no_execution_no_runtime_no_provider_calls',
+  preExecutionSafetyScanPreparedNow: true,
+  staticSafetyScanRunNow: true,
+  ownerExecutionApprovalGrantedNow: false,
+  sealedRunbookExecutedNow: false,
+  localDryRunExecutionAllowedNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeDryRunExecutedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAi255DPreExecutionSafety = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  internetLookupNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noPaymentActionNow: true,
+  noPayoutActionNow: true,
+  noAccountActionNow: true,
+  noLegalActionNow: true,
+  noProductionLaunchNow: true,
+} as const;

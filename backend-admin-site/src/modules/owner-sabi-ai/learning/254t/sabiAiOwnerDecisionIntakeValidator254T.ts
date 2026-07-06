@@ -1,0 +1,31 @@
+export const sabiAiOwnerDecisionIntakeValidator254T = {
+  version: 'SABI-AI-LEARNING-254T-OWNER-DECISION-INTAKE-SAFE-VALIDATOR-NO-EXECUTION-NO-PROVIDER-CALLS',
+  readiness: 100,
+  mode: 'validator_only_no_decision_write_no_execution',
+  ownerDecisionIntakeValidatorPreparedNow: true,
+  intakeReceivedNow: false,
+  intakeValidatedNow: false,
+  validationRunNow: false,
+  decisionRecordWrittenNow: false,
+  decisionSelectedNow: false,
+  ownerConfirmedNow: false,
+  ownerApprovalGrantedNow: false,
+  gateOpenNow: false,
+  dryRunExecutionStartedNow: false,
+  dryRunExecutionCompletedNow: false,
+  runtimeMountedNow: false,
+  runtimeMountAttemptedNow: false,
+  noRuntimeMountNow: true,
+} as const;
+
+export const sabiAiOwnerDecisionIntakeSafety254T = {
+  rawSecretReadNow: false,
+  googleApiCallNow: false,
+  googleProviderCallNow: false,
+  googleVerifiedDataCallNow: false,
+  bigQueryQueryNow: false,
+  dbReadNow: false,
+  dbWriteNow: false,
+  noTrainingIngestionNow: true,
+  noAutoActionNow: true,
+} as const;
