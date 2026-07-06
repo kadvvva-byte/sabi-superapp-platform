@@ -41,7 +41,7 @@ export const PROFILE_USER: ProfileUser = {
   language: "Русский",
   bio: "Sabi identity center for wallet, privacy, compliance, premium services, and future ecosystem features.",
   sabiId: "SABI-001-USER",
-  verificationStatus: "verified",
+  verificationStatus: "pending",
   joinedDate: "2026-03-24",
   statusMode: "online",
 };

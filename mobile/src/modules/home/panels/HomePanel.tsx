@@ -70,6 +70,7 @@ import { useI18n } from "../../../shared/i18n";
 import { useHomeMobileText } from "../../../shared/i18n/home-mobile-translations";
 import { getSabiMobilePolicy, isHomeCryptoPanelVisibleForSabiPolicy, isMiniAppKindVisibleForSabiPolicy } from "../../../shared/policy/sabiMobilePolicy";
 import { isFirstLaunchWalletSurface } from "../../../shared/launch/firstLaunchScope";
+import { getFullActivationRequiredMessage, isFullActivationApproved, isSurfaceAllowedBeforeFullActivation } from "../../../shared/auth/fullActivationPolicy";
 import { localizeSilkRoadMiniAppItem } from "../../marketplace/presentation/marketplace.i18n";
 import { useAppearance } from "../../../theme/AppearanceProvider";
 import HomeFoundationStrip from "../components/HomeFoundationStrip";
@@ -831,6 +832,7 @@ export default function HomePanel() {
   const homeText = useHomeMobileText();
   const { language } = useI18n();
   const mobilePolicy = useMemo(() => getSabiMobilePolicy(), []);
+  const fullActivationApproved = isFullActivationApproved();
 
   const safePinnedMiniApps = useMemo(
     () => (Array.isArray(pinnedMiniApps) ? pinnedMiniApps : []),
@@ -1175,6 +1177,30 @@ export default function HomePanel() {
     router.push("/tabs" as never);
   }, [closeEditMode]);
 
+  const openActivationRequiredAlert = useCallback((surface: string) => {
+    Alert.alert("Full activation required", getFullActivationRequiredMessage(surface), [
+      {
+        text: "Open verification",
+        onPress: () => router.push("/profile/verification" as never),
+      },
+      {
+        text: "OK",
+        style: "cancel",
+      },
+    ]);
+  }, []);
+
+  const openAiVoiceControl = useCallback(() => {
+    closeEditMode();
+
+    if (!fullActivationApproved && !isSurfaceAllowedBeforeFullActivation("ai_voice")) {
+      openActivationRequiredAlert("SABI Voice");
+      return;
+    }
+
+    router.push("/ai/voice-control" as never);
+  }, [closeEditMode, fullActivationApproved, openActivationRequiredAlert]);
+
   const homeAlertsPullGesture = useMemo(
     () =>
       Gesture.Pan()
@@ -1207,6 +1233,11 @@ export default function HomePanel() {
   const openCard = (card: HomeCard) => {
     if (isEditMode) {
       closeEditMode();
+      return;
+    }
+
+    if (!fullActivationApproved && !isSurfaceAllowedBeforeFullActivation(card.kind)) {
+      openActivationRequiredAlert(card.title || card.kind);
       return;
     }
 
@@ -1445,7 +1476,7 @@ export default function HomePanel() {
               <TouchableOpacity
                 activeOpacity={0.9}
                 style={styles.aiButton}
-                onPress={() => { closeEditMode(); router.push("/ai/voice-control" as never); }}
+                onPress={openAiVoiceControl}
               >
                 <LinearGradient
                   colors={["#FFFFFF", "#FAFAFA", "#F3F4F6"]}

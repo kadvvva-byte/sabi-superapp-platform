@@ -10,6 +10,7 @@ import { SABI_QR_FUNCTION_CATALOG } from "../../src/modules/qr/data/qrFunctionCa
 import { useSabiQrActorIdentity } from "../../src/modules/qr/runtime/qrIdentityBinding";
 import { useQrMobileTranslations } from "../../src/shared/i18n/qr-mobile-hooks";
 import type { SabiQrFunctionCode, SabiQrFunctionDefinition } from "../../src/modules/qr/contracts/universalQr.contracts";
+import FullActivationGate from "../../src/shared/auth/FullActivationGate";
 
 type QrGroupId = "profile" | "wallets" | "business" | "mobility" | "attendance";
 
@@ -75,7 +76,7 @@ function resolveActorName(actor: ReturnType<typeof useSabiQrActorIdentity>, fall
   return actor.displayName || [actor.firstName, actor.lastName].filter(Boolean).join(" ").trim() || actor.username || fallback;
 }
 
-export default function SabiQrCenterScreen() {
+function SabiQrCenterScreenContent() {
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ scope?: string }>();
   const actor = useSabiQrActorIdentity();
