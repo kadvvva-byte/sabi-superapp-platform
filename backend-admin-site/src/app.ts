@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import { configureRealtimeEmitter } from "./core/realtime/realtime.emitter";
 
 import { errorMiddleware } from "./middleware/error.middleware";
+import { requireAuthenticatedUser } from "./middleware/authenticated-user.middleware";
 
 import { IdempotencyRepository } from "./core/idempotency/idempotency.repository";
 import { IdempotencyService } from "./core/idempotency/idempotency.service";
@@ -822,7 +823,7 @@ app.use("/users", userModule.router);
 app.use("/api/users", userModule.router);
 app.use("/api/v2/users", userModule.router);
 
-app.use("/api/v2/messenger", messengerModuleRoutes);
+app.use("/api/v2/messenger", requireAuthenticatedUser, messengerModuleRoutes);
 
 const sabiCallsRouter = sabiCallsKernelModule.getRouter();
 
@@ -832,8 +833,8 @@ app.locals.calls = {
   getHealth: () => sabiCallsKernelModule.getHealth(),
 };
 
-app.use("/api/v2/calls", sabiCallsRouter);
-app.use("/api/calls", sabiCallsRouter);
+app.use("/api/v2/calls", requireAuthenticatedUser, sabiCallsRouter);
+app.use("/api/calls", requireAuthenticatedUser, sabiCallsRouter);
 
 app.use("/api/qr", qrModuleRoutes);
 app.use("/api/v2/qr", qrModuleRoutes);

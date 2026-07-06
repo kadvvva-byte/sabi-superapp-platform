@@ -72,27 +72,47 @@ function normalizeKernelKind(value: unknown): KernelMessageKind {
   }
 }
 
+function isProductionMode(): boolean {
+  return process.env.NODE_ENV === "production";
+}
+
+function isDevHeaderUserAllowed(): boolean {
+  return !isProductionMode() && process.env.SABI_DEV_ALLOW_HEADER_USER === "1";
+}
+
 function getRequestUserId(req: Request): string | null {
   const requestRecord = req as Request & {
     messengerCurrentUser?: { id?: string | null };
     currentUser?: { id?: string | null; userId?: string | null; sub?: string | null };
     user?: { id?: string | null; userId?: string | null; sub?: string | null };
+    sabiAuth?: { userId?: string | null };
   };
 
-  return (
-    normalizeString(req.body?.userId) ??
-    normalizeString(req.body?.senderId) ??
-    normalizeString(req.body?.actorUserId) ??
+  const authenticatedUserId =
+    normalizeString(requestRecord.sabiAuth?.userId) ??
     normalizeString(requestRecord.messengerCurrentUser?.id) ??
     normalizeString(requestRecord.currentUser?.id) ??
     normalizeString(requestRecord.currentUser?.userId) ??
     normalizeString(requestRecord.currentUser?.sub) ??
     normalizeString(requestRecord.user?.id) ??
     normalizeString(requestRecord.user?.userId) ??
-    normalizeString(requestRecord.user?.sub) ??
+    normalizeString(requestRecord.user?.sub);
+
+  if (authenticatedUserId) {
+    return authenticatedUserId;
+  }
+
+  if (!isDevHeaderUserAllowed()) {
+    return null;
+  }
+
+  return (
     normalizeString(req.header("x-user-id")) ??
     normalizeString(req.header("x-current-user-id")) ??
     normalizeString(req.header("x-auth-user-id")) ??
+    normalizeString(req.body?.userId) ??
+    normalizeString(req.body?.senderId) ??
+    normalizeString(req.body?.actorUserId) ??
     null
   );
 }

@@ -1,5 +1,5 @@
 ﻿import { io, type Socket } from "socket.io-client";
-import { resolveSabiApiBaseUrl } from "../api/apiBaseUrl";
+import { resolveSabiApiBaseUrl } from "../api/apiBaseUrl";\nimport { getAuthSessionState } from "../../core/kernel/auth";
 
 const SOCKET_BASE_URL = resolveSabiApiBaseUrl(undefined, { port: "4001" }).replace(/\/+$/, "");
 
@@ -52,9 +52,19 @@ function uniqueEventNames(eventNames: string[]) {
   return Array.from(new Set(eventNames.filter(Boolean)));
 }
 
+function getActiveAccessToken(): string | null {
+  const session = getAuthSessionState();
+  return normalizeString(session.accessToken);
+}
+
 function buildAuth(userId?: string | null): Record<string, string> {
   const resolvedUserId = normalizeString(userId) ?? activeUserId ?? null;
-  return resolvedUserId ? { userId: resolvedUserId } : {};
+  const accessToken = getActiveAccessToken();
+
+  return {
+    ...(resolvedUserId ? { userId: resolvedUserId } : {}),
+    ...(accessToken ? { accessToken, token: accessToken } : {}),
+  };
 }
 
 function buildQuery(userId?: string | null): Record<string, string> | undefined {

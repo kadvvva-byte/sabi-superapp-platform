@@ -28,9 +28,53 @@ function readBoolean(value: unknown): boolean | undefined {
   return typeof value === "boolean" ? value : undefined;
 }
 
+function isProductionMode(): boolean {
+  return process.env.NODE_ENV === "production";
+}
+
+function isDevHeaderUserAllowed(): boolean {
+  return !isProductionMode() && process.env.SABI_DEV_ALLOW_HEADER_USER === "1";
+}
+
+function readAuthenticatedUserId(req: Request): string | null {
+  const requestRecord = req as Request & {
+    currentUser?: { id?: string | null; userId?: string | null; sub?: string | null };
+    user?: { id?: string | null; userId?: string | null; sub?: string | null };
+    messengerCurrentUser?: { id?: string | null };
+    sabiAuth?: { userId?: string | null };
+  };
+
+  return (
+    readString(requestRecord.sabiAuth?.userId) ??
+    readString(requestRecord.currentUser?.id) ??
+    readString(requestRecord.currentUser?.userId) ??
+    readString(requestRecord.currentUser?.sub) ??
+    readString(requestRecord.user?.id) ??
+    readString(requestRecord.user?.userId) ??
+    readString(requestRecord.user?.sub) ??
+    readString(requestRecord.messengerCurrentUser?.id)
+  );
+}
+
 function readUser(req: Request, body: Record<string, unknown>): string {
+  const authenticatedUserId = readAuthenticatedUserId(req);
+  if (authenticatedUserId) return authenticatedUserId;
+
+  if (!isDevHeaderUserAllowed()) {
+    return "";
+  }
+
   const header = req.headers["x-user-id"];
-  return readString(body.userId) ?? readString(Array.isArray(header) ? header[0] : header) ?? "";
+  const currentHeader = req.headers["x-current-user-id"];
+  const authHeader = req.headers["x-auth-user-id"];
+
+  return (
+    readString(Array.isArray(header) ? header[0] : header) ??
+    readString(Array.isArray(currentHeader) ? currentHeader[0] : currentHeader) ??
+    readString(Array.isArray(authHeader) ? authHeader[0] : authHeader) ??
+    readString(body.userId) ??
+    ""
+  );
 }
 
 function isJsonPrimitive(value: unknown): value is JsonPrimitive {
