@@ -408,13 +408,45 @@ export async function saveUserProfileToApi(
   if (!targetUserId) throw new Error("user_profile_id_required");
 
   const encoded = encodePath(targetUserId);
-  const data = await requestProfileEndpoint(`/api/v2/users/${encoded}/profile`, session, {
-    method: "PUT",
-    headers: buildHeaders(session, { includeJson: true, includeUser: true }),
-    body: JSON.stringify({ ...payload, userId: targetUserId }),
-  });
+  const body = JSON.stringify({ ...payload, userId: targetUserId });
+  const headers = buildHeaders(session, { includeJson: true, includeUser: true });
 
-  return normalizeUserProfileSnapshot(data, targetUserId);
+  const candidates: Array<{ method: "PUT" | "PATCH" | "POST"; path: string }> = [
+    { method: "PUT", path: `/api/v2/users/${encoded}/profile` },
+    { method: "PATCH", path: `/api/v2/users/${encoded}/profile` },
+    { method: "PUT", path: `/api/v2/users/${encoded}` },
+    { method: "PATCH", path: `/api/v2/users/${encoded}` },
+    { method: "POST", path: "/api/v2/users/profile" },
+    { method: "POST", path: "/api/v2/profile" },
+    { method: "PUT", path: `/api/users/${encoded}/profile` },
+    { method: "PATCH", path: `/api/users/${encoded}/profile` },
+    { method: "POST", path: "/api/users/profile" },
+    { method: "POST", path: "/api/profile" },
+  ];
+
+  const errors: string[] = [];
+
+  for (const candidate of candidates) {
+    try {
+      const data = await requestProfileEndpoint(candidate.path, session, {
+        method: candidate.method,
+        headers,
+        body,
+      });
+
+      return normalizeUserProfileSnapshot(data, targetUserId);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error ?? "unknown_profile_save_error");
+      errors.push(`${candidate.method} ${candidate.path}: ${message}`);
+
+      if (!/profile_api_404|user_not_found|profile_not_found|not_found|endpoint not found/i.test(message)) {
+        console.warn("[user-profile-api] profile save endpoint failed", candidate.method, candidate.path, message);
+      }
+    }
+  }
+
+  console.warn("[user-profile-api] all profile save endpoints failed", errors.join(" | "));
+  throw new Error(`profile_save_failed: ${errors.join(" | ")}`);
 }
 
 

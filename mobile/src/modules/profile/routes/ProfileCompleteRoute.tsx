@@ -231,10 +231,17 @@ export default function ProfileCompleteScreen() {
         userId: savedProfile.userId,
       });
       return;
-    } catch {
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : t("profile.completeScreen.saveErrorMessage");
+
+      console.warn("[ProfileCompleteRoute] profile save failed", message);
+
       Alert.alert(
         t("profile.completeScreen.saveErrorTitle"),
-        t("profile.completeScreen.saveErrorMessage"),
+        message,
       );
     } finally {
       setSaving(false);
