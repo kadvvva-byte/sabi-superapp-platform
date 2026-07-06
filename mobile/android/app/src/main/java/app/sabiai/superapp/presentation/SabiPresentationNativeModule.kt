@@ -65,7 +65,7 @@ class SabiPresentationNativeModule(
     Settings.ACTION_SETTINGS,
   )
 
-  private fun activeActivity(): Activity? = currentActivity
+  private fun activeActivity(): Activity? = reactContext.currentActivity
 
   private fun launchFirstAvailable(actions: List<String>): WritableMap {
     val result = Arguments.createMap()
