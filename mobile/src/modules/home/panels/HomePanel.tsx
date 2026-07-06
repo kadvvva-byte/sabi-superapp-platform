@@ -69,6 +69,7 @@ import { useHomeKernel } from "../../../core/kernel/home/bindings";
 import { useI18n } from "../../../shared/i18n";
 import { useHomeMobileText } from "../../../shared/i18n/home-mobile-translations";
 import { getSabiMobilePolicy, isHomeCryptoPanelVisibleForSabiPolicy, isMiniAppKindVisibleForSabiPolicy } from "../../../shared/policy/sabiMobilePolicy";
+import { isFirstLaunchWalletSurface } from "../../../shared/launch/firstLaunchScope";
 import { localizeSilkRoadMiniAppItem } from "../../marketplace/presentation/marketplace.i18n";
 import { useAppearance } from "../../../theme/AppearanceProvider";
 import HomeFoundationStrip from "../components/HomeFoundationStrip";
@@ -844,7 +845,10 @@ export default function HomePanel() {
   const accountReady = home.isReady;
 
   const defaultDockItems = useMemo(
-    () => (isWeb ? WEB_DOCK_ITEMS : MOBILE_DOCK_ITEMS),
+    () =>
+      (isWeb ? WEB_DOCK_ITEMS : MOBILE_DOCK_ITEMS).filter(
+        (item) => !isFirstLaunchWalletSurface(item.kind),
+      ),
     [isWeb],
   );
 
@@ -853,15 +857,20 @@ export default function HomePanel() {
     [language, mobilePolicy],
   );
 
-  const staticKinds = useMemo(
-    () => new Set(localizedStaticHomeCards.map((item) => item.kind)),
+  const firstLaunchStaticHomeCards = useMemo(
+    () => localizedStaticHomeCards.filter((item) => !isFirstLaunchWalletSurface(item.kind)),
     [localizedStaticHomeCards],
+  );
+
+  const staticKinds = useMemo(
+    () => new Set(firstLaunchStaticHomeCards.map((item) => item.kind)),
+    [firstLaunchStaticHomeCards],
   );
 
   const miniAppCards = useMemo<HomeCard[]>(
     () =>
       safePinnedMiniApps
-        .filter((app) => app.kind !== "mini_apps" && app.id !== "mini-apps" && !staticKinds.has(app.kind) && isMiniAppKindVisibleForSabiPolicy(app.kind, mobilePolicy))
+        .filter((app) => app.kind !== "mini_apps" && app.id !== "mini-apps" && !staticKinds.has(app.kind) && !isFirstLaunchWalletSurface(app.kind) && isMiniAppKindVisibleForSabiPolicy(app.kind, mobilePolicy))
         .map((app) => ({
           id: `miniapp-${app.id}`,
           title: localizeSilkRoadMiniAppItem(app, language).title,
@@ -874,8 +883,8 @@ export default function HomePanel() {
   );
 
   const allKnownCards = useMemo<HomeCard[]>(
-    () => [...localizedStaticHomeCards, ...miniAppCards],
-    [localizedStaticHomeCards, miniAppCards],
+    () => [...firstLaunchStaticHomeCards, ...miniAppCards],
+    [firstLaunchStaticHomeCards, miniAppCards],
   );
 
   const allCardsSource = useMemo<HomeCard[]>(

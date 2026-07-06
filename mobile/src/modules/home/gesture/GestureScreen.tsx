@@ -12,6 +12,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useHomeEditMode } from "../HomeEditModeProvider";
 import HomePanel from "../panels/HomePanel";
+import { isFirstLaunchFeatureEnabled } from "../../../shared/launch/firstLaunchScope";
 
 type PanelKey = "messenger" | "home" | "wallet" | "miniapps";
 type LazyPanelKey = Exclude<PanelKey, "home">;
@@ -45,6 +46,7 @@ export default function GestureScreen() {
   const windowSize = useWindowDimensions();
   const isWeb = Platform.OS === "web";
   const { isHomeEditMode } = useHomeEditMode();
+  const walletPanelEnabled = isFirstLaunchFeatureEnabled("wallet");
 
   const [layoutSize, setLayoutSize] = useState({
     width: Math.max(1, windowSize.width),
@@ -202,9 +204,11 @@ export default function GestureScreen() {
   const homeToWalletResponder = useMemo(
     () =>
       PanResponder.create({
-        onStartShouldSetPanResponder: () => !isHomeEditMode && currentPanelRef.current === "home",
+        onStartShouldSetPanResponder: () =>
+          walletPanelEnabled && !isHomeEditMode && currentPanelRef.current === "home",
         onMoveShouldSetPanResponder: (_, gesture) => {
           const shouldOpen =
+            walletPanelEnabled &&
             !isHomeEditMode &&
             currentPanelRef.current === "home" &&
             Math.abs(gesture.dx) > START_THRESHOLD_X &&
@@ -229,7 +233,7 @@ export default function GestureScreen() {
           animateTo("home");
         },
       }),
-    [animateTo, completeDistanceX, isHomeEditMode, loadLazyPanel, screenWidth, translateX],
+    [animateTo, completeDistanceX, isHomeEditMode, loadLazyPanel, screenWidth, translateX, walletPanelEnabled],
   );
 
   const homeToMiniAppsResponder = useMemo(

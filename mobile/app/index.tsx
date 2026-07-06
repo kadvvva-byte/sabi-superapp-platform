@@ -5,6 +5,7 @@ import {
   ChevronDown,
   Globe2,
   MessageCircleMore,
+  QrCode,
   ShieldCheck,
   Sparkles,
   Wallet,
@@ -28,6 +29,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthSession } from "../src/core/kernel/auth/use-auth-session";
 import { LANGUAGES } from "../src/shared/data/languages";
 import { setAppLanguage, useI18n } from "../src/shared/i18n";
+import { isFirstLaunchFeatureEnabled } from "../src/shared/launch/firstLaunchScope";
 
 const SABI_GOOGLE_REVIEW_MODE = process.env.EXPO_PUBLIC_GOOGLE_REVIEW_MODE === "1";
 
@@ -157,6 +159,7 @@ export default function WelcomeScreen() {
     : safeText(t("auth.getStarted"), "Continue");
 
   const compact = height < 720;
+  const showWalletOnboarding = isFirstLaunchFeatureEnabled("wallet");
 
   return (
     <LinearGradient
@@ -231,9 +234,19 @@ export default function WelcomeScreen() {
                   </View>
 
                   <FeatureRow
-                    icon={<Wallet size={20} color="#FFFFFF" />}
-                    title={t("onboarding.walletTitle")}
-                    text={t("onboarding.walletSubtitle")}
+                    icon={
+                      showWalletOnboarding ? (
+                        <Wallet size={20} color="#FFFFFF" />
+                      ) : (
+                        <QrCode size={20} color="#FFFFFF" />
+                      )
+                    }
+                    title={showWalletOnboarding ? t("onboarding.walletTitle") : "QR"}
+                    text={
+                      showWalletOnboarding
+                        ? t("onboarding.walletSubtitle")
+                        : "Sabi QR, secure entry and identity tools."
+                    }
                     compact={compact}
                   />
 

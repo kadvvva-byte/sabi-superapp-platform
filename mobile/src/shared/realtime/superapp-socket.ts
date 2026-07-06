@@ -1,5 +1,6 @@
 ﻿import { io, type Socket } from "socket.io-client";
-import { resolveSabiApiBaseUrl } from "../api/apiBaseUrl";\nimport { getAuthSessionState } from "../../core/kernel/auth";
+import { resolveSabiApiBaseUrl } from "../api/apiBaseUrl";
+import { getAuthSessionState } from "../../core/kernel/auth";
 
 const SOCKET_BASE_URL = resolveSabiApiBaseUrl(undefined, { port: "4001" }).replace(/\/+$/, "");
 
