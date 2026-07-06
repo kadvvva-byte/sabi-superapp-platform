@@ -195,6 +195,14 @@ function SabiQrCenterScreenContent() {
   );
 }
 
+export default function SabiQrCenterScreen() {
+  return (
+    <FullActivationGate service="qr">
+      <SabiQrCenterScreenContent />
+    </FullActivationGate>
+  );
+}
+
 const styles = StyleSheet.create({
   root: { flex: 1 },
   headerRow: { flexDirection: "row", alignItems: "flex-start", gap: 12 },

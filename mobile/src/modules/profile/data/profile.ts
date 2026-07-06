@@ -214,20 +214,20 @@ export const PROFILE_VERIFICATION_DOCUMENTS: ProfileVerificationDocument[] = [
   {
     id: "doc-1",
     title: "Passport",
-    status: "approved",
-    updatedAt: "2026-03-24",
+    status: "pending",
+    updatedAt: "Not submitted",
   },
   {
     id: "doc-2",
     title: "Liveness / Selfie Check",
-    status: "approved",
-    updatedAt: "2026-03-24",
+    status: "pending",
+    updatedAt: "Not submitted",
   },
   {
     id: "doc-3",
     title: "Address Confirmation",
-    status: "review",
-    updatedAt: "2026-03-25",
+    status: "pending",
+    updatedAt: "Not submitted",
   },
 ];
 
@@ -299,17 +299,21 @@ export const PROFILE_APP_PREFERENCES_DEFAULTS: ProfileAppPreferencesState = {
 };
 
 export const PROFILE_KYC_STATE: ProfileKycState = {
-  status: "verified",
-  kycLevel: "KYC Level 2",
+  status: "pending",
+  kycLevel: "Basic profile only",
   phoneVerified: true,
-  emailVerified: true,
-  livenessVerified: true,
+  emailVerified: false,
+  livenessVerified: false,
   addressVerified: false,
   residencyCountry: "Uzbekistan",
   sourceOfFundsRequested: false,
   complianceStatus: "review",
-  restrictedActions: ["High-value payout review", "Business/KYB not started yet"],
-  reviewReason: "Address confirmation still under review.",
+  restrictedActions: [
+    "Full KYC/AML review required",
+    "Selfie/liveness confirmation required",
+    "Identity documents required",
+  ],
+  reviewReason: "Full service activation requires KYC/AML review and required selfie/liveness confirmation from Profile.",
   reverificationRequired: false,
 };
 
