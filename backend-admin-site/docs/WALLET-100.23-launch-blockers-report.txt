@@ -1,0 +1,34 @@
+WALLET-100.23 — Launch blockers report
+
+Purpose:
+- Verify that Wallet provider-config endpoints are mounted and available.
+- Produce a clear launch blockers report without enabling payment execution.
+- Confirm token-only policy is preserved in mobile-safe API payloads.
+
+This step does not:
+- Enable fake payments.
+- Enable provider execution.
+- Store PAN/CVV.
+- Expose API keys or provider secrets to mobile.
+- Store crypto seed phrase or private keys.
+
+Expected states before real bank/provider contracts:
+- API endpoints: available.
+- Provider status: provider_not_configured or not ready.
+- LaunchReady: false until real provider env/vault refs, webhooks, adapters, KYC/AML, and execution flags are configured.
+- Policy violations: 0.
+
+Run:
+cd C:\Users\User\Desktop\superapp
+npm run dev
+
+In another PowerShell:
+cd C:\Users\User\Desktop\superapp
+powershell -ExecutionPolicy Bypass -File .\tools\wallet-launch-blockers-report.ps1
+
+Optional admin run:
+$env:WALLET_PROVIDER_ADMIN_TOKEN="YOUR_TOKEN"
+powershell -ExecutionPolicy Bypass -File .\tools\wallet-launch-blockers-report.ps1
+
+Output:
+wallet-launch-blockers-current.json

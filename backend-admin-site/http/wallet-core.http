@@ -1,0 +1,262 @@
+@baseUrl = http://localhost:3000/api/wallet-core
+@contentType = application/json
+
+###
+# =========================================================
+# WALLET CORE
+# manual test file
+# use with VS Code REST Client / JetBrains HTTP Client
+# =========================================================
+
+@businessWalletIdA = biz_wallet_demo_a
+@businessWalletIdB = biz_wallet_demo_b
+@merchantWalletId = merchant_wallet_demo_001
+
+@businessIdA = business_demo_a
+@businessIdB = business_demo_b
+@merchantId = merchant_demo_001
+
+@ownerUserIdA = user_demo_a
+@ownerUserIdB = user_demo_b
+
+###
+# 1) CREATE BUSINESS WALLET A
+POST {{baseUrl}}/business
+Content-Type: {{contentType}}
+
+{
+  "id": "{{businessWalletIdA}}",
+  "ownerUserId": "{{ownerUserIdA}}",
+  "businessId": "{{businessIdA}}",
+  "businessName": "Sabi Business A",
+  "displayName": "Sabi Business A",
+  "defaultCurrency": "USD",
+  "availableCurrencies": ["USD"],
+  "balance": 200,
+  "holdBalance": 0,
+  "serviceFeePercent": 1.5,
+  "isMerchantEnabled": true,
+  "isBusinessEnabled": true,
+  "status": "active"
+}
+
+###
+# 2) CREATE BUSINESS WALLET B
+POST {{baseUrl}}/business
+Content-Type: {{contentType}}
+
+{
+  "id": "{{businessWalletIdB}}",
+  "ownerUserId": "{{ownerUserIdB}}",
+  "businessId": "{{businessIdB}}",
+  "businessName": "Sabi Business B",
+  "displayName": "Sabi Business B",
+  "defaultCurrency": "USD",
+  "availableCurrencies": ["USD"],
+  "balance": 50,
+  "holdBalance": 0,
+  "serviceFeePercent": 1.0,
+  "isMerchantEnabled": false,
+  "isBusinessEnabled": true,
+  "status": "active"
+}
+
+###
+# 3) CREATE MERCHANT WALLET
+POST {{baseUrl}}/merchant
+Content-Type: {{contentType}}
+
+{
+  "id": "{{merchantWalletId}}",
+  "ownerUserId": "{{ownerUserIdA}}",
+  "businessWalletId": "{{businessWalletIdA}}",
+  "merchantId": "{{merchantId}}",
+  "merchantName": "Sabi Merchant POS",
+  "displayName": "Sabi Merchant POS",
+  "defaultCurrency": "USD",
+  "availableCurrencies": ["USD"],
+  "balance": 0,
+  "holdBalance": 0,
+  "serviceFeePercent": 2.5,
+  "settlementFeePercent": 1,
+  "isMerchantEnabled": true,
+  "isSettlementEnabled": true,
+  "status": "active"
+}
+
+###
+# 4) GET BUSINESS WALLET BY ID
+GET {{baseUrl}}/business/{{businessWalletIdA}}
+
+###
+# 5) GET BUSINESS WALLET BY BUSINESS ID
+GET {{baseUrl}}/business/by-business/{{businessIdA}}
+
+###
+# 6) LIST BUSINESS WALLETS BY OWNER
+GET {{baseUrl}}/business/owner/{{ownerUserIdA}}
+
+###
+# 7) GET MERCHANT WALLET BY ID
+GET {{baseUrl}}/merchant/{{merchantWalletId}}
+
+###
+# 8) LIST MERCHANT WALLETS BY OWNER
+GET {{baseUrl}}/merchant/owner/{{ownerUserIdA}}
+
+###
+# 9) LIST MERCHANT WALLETS BY BUSINESS WALLET
+GET {{baseUrl}}/merchant/business/{{businessWalletIdA}}
+
+###
+# 10) PREVIEW BUSINESS TRANSFER
+POST {{baseUrl}}/business/transfer/preview
+Content-Type: {{contentType}}
+
+{
+  "amount": 25,
+  "currency": "USD",
+  "senderWalletId": "{{businessWalletIdA}}",
+  "senderWalletMeta": {
+    "ownerUserId": "{{ownerUserIdA}}",
+    "businessName": "Sabi Business A",
+    "serviceFeePercent": 1.5
+  },
+  "recipientWalletId": "{{businessWalletIdB}}",
+  "recipientWalletMeta": {
+    "ownerUserId": "{{ownerUserIdB}}",
+    "businessName": "Sabi Business B"
+  }
+}
+
+###
+# 11) EXECUTE BUSINESS TRANSFER
+# repeat same idempotencyKey to verify reused response / no duplicate sync
+POST {{baseUrl}}/business/transfer/execute
+Content-Type: {{contentType}}
+x-idempotency-key: biz-transfer-001
+
+{
+  "idempotencyKey": "biz-transfer-001",
+  "amount": 25,
+  "currency": "USD",
+  "senderWalletId": "{{businessWalletIdA}}",
+  "senderWalletMeta": {
+    "ownerUserId": "{{ownerUserIdA}}",
+    "businessName": "Sabi Business A",
+    "serviceFeePercent": 1.5
+  },
+  "recipientWalletId": "{{businessWalletIdB}}",
+  "recipientWalletMeta": {
+    "ownerUserId": "{{ownerUserIdB}}",
+    "businessName": "Sabi Business B"
+  }
+}
+
+###
+# 12) PREVIEW MERCHANT PAYMENT
+POST {{baseUrl}}/merchant/payment/preview
+Content-Type: {{contentType}}
+
+{
+  "amount": 40,
+  "currency": "USD",
+  "merchantWalletId": "{{merchantWalletId}}",
+  "merchantWalletMeta": {
+    "ownerUserId": "{{ownerUserIdA}}",
+    "merchantName": "Sabi Merchant POS",
+    "businessWalletId": "{{businessWalletIdA}}",
+    "serviceFeePercent": 2.5
+  }
+}
+
+###
+# 13) EXECUTE MERCHANT PAYMENT
+POST {{baseUrl}}/merchant/payment/execute
+Content-Type: {{contentType}}
+x-idempotency-key: merchant-payment-001
+
+{
+  "idempotencyKey": "merchant-payment-001",
+  "amount": 40,
+  "currency": "USD",
+  "merchantWalletId": "{{merchantWalletId}}",
+  "merchantWalletMeta": {
+    "ownerUserId": "{{ownerUserIdA}}",
+    "merchantName": "Sabi Merchant POS",
+    "businessWalletId": "{{businessWalletIdA}}",
+    "serviceFeePercent": 2.5
+  }
+}
+
+###
+# 14) PREVIEW MERCHANT SETTLEMENT
+POST {{baseUrl}}/merchant/settlement/preview
+Content-Type: {{contentType}}
+
+{
+  "amount": 10,
+  "currency": "USD",
+  "merchantWalletId": "{{merchantWalletId}}",
+  "merchantWalletMeta": {
+    "ownerUserId": "{{ownerUserIdA}}",
+    "merchantName": "Sabi Merchant POS",
+    "businessWalletId": "{{businessWalletIdA}}",
+    "settlementFeePercent": 1
+  }
+}
+
+###
+# 15) EXECUTE MERCHANT SETTLEMENT
+POST {{baseUrl}}/merchant/settlement/execute
+Content-Type: {{contentType}}
+x-idempotency-key: merchant-settlement-001
+
+{
+  "idempotencyKey": "merchant-settlement-001",
+  "amount": 10,
+  "currency": "USD",
+  "merchantWalletId": "{{merchantWalletId}}",
+  "merchantWalletMeta": {
+    "ownerUserId": "{{ownerUserIdA}}",
+    "merchantName": "Sabi Merchant POS",
+    "businessWalletId": "{{businessWalletIdA}}",
+    "settlementFeePercent": 1
+  }
+}
+
+###
+# 16) CHECK UPDATED BUSINESS WALLET A
+GET {{baseUrl}}/business/{{businessWalletIdA}}
+
+###
+# 17) CHECK UPDATED BUSINESS WALLET B
+GET {{baseUrl}}/business/{{businessWalletIdB}}
+
+###
+# 18) CHECK UPDATED MERCHANT WALLET
+GET {{baseUrl}}/merchant/{{merchantWalletId}}
+
+###
+# 19) LIST OPERATIONS FOR BUSINESS WALLET A
+GET {{baseUrl}}/operations/wallet/{{businessWalletIdA}}
+
+###
+# 20) LIST OPERATIONS FOR BUSINESS WALLET B
+GET {{baseUrl}}/operations/wallet/{{businessWalletIdB}}
+
+###
+# 21) LIST OPERATIONS FOR MERCHANT WALLET
+GET {{baseUrl}}/operations/wallet/{{merchantWalletId}}
+
+###
+# 22) GET OPERATION BY IDEMPOTENT OPERATION ID (business transfer)
+GET {{baseUrl}}/operation/business_transfer:biz-transfer-001
+
+###
+# 23) GET OPERATION BY IDEMPOTENT OPERATION ID (merchant payment)
+GET {{baseUrl}}/operation/merchant_payment:merchant-payment-001
+
+###
+# 24) GET OPERATION BY IDEMPOTENT OPERATION ID (merchant settlement)
+GET {{baseUrl}}/operation/merchant_settlement:merchant-settlement-001

@@ -1,0 +1,12 @@
+provider_id,priority,provider_family,module,required_contract,required_sandbox,required_webhooks,required_backend_adapter,required_admin_review,live_execution_default
+kyc_provider,1,identity_compliance,wallet_compliance,yes,yes,yes,yes,yes,disabled
+aml_provider,2,identity_compliance,wallet_compliance,yes,yes,yes,yes,yes,disabled
+bank_card_tokenization,3,bank_card,wallet_cards,yes,yes,yes,yes,yes,disabled
+local_bank_gateway,4,bank_payment,wallet_fiat,yes,yes,yes,yes,yes,disabled
+virtual_card_issuer,5,bank_card,wallet_virtual_card,yes,yes,yes,yes,yes,disabled
+alipay_plus_acquiring,6,acquiring,qr_pay,yes,yes,yes,yes,yes,disabled
+merchant_acquiring,7,acquiring,merchant_wallet,yes,yes,yes,yes,yes,disabled
+business_payout,8,payout,business_wallet,yes,yes,yes,yes,yes,disabled
+coin_wallet_ledger,9,coin_ledger,coin_wallet,internal_or_partner,yes,yes,yes,yes,disabled
+crypto_custody_provider,10,crypto_custody,crypto_wallet,yes,yes,yes,yes,yes,disabled
+crypto_market_data_provider,11,crypto_market_data,crypto_wallet,yes,yes,no,yes,yes,disabled

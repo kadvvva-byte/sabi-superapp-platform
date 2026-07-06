@@ -1,0 +1,10 @@
+# WALLET-100.48 — KYC sandbox env skeleton
+# Do not use fake approval/rejection.
+# Do not enable until a real KYC provider contract, sandbox keys, vault refs, and webhook secret exist.
+
+WALLET_PROVIDER_KYC_PROVIDER_ENABLED=false
+WALLET_PROVIDER_KYC_PROVIDER_ID=kyc_provider_sandbox_pending
+WALLET_PROVIDER_KYC_PROVIDER_BASE_URL=
+WALLET_PROVIDER_KYC_PROVIDER_API_KEY_VAULT_REF=
+WALLET_PROVIDER_KYC_PROVIDER_WEBHOOK_SECRET_VAULT_REF=
+WALLET_PROVIDER_KYC_PROVIDER_WEBHOOK_URL=http://localhost:4001/api/wallet/provider-config/webhooks/kyc-provider

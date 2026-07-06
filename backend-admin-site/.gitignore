@@ -1,0 +1,113 @@
+﻿node_modules/
+dist/
+build/
+.next/
+.expo/
+.firebase/
+.cache/
+coverage/
+
+.env
+.env.*
+!.env.example
+
+firebase-adminsdk*.json
+serviceAccount*.json
+google-credentials*.json
+*credentials*.json
+*.pem
+*.key
+*.p12
+*.keystore
+*.jks
+
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.data/**/secrets/
+.data/**/private/
+
+# Owner safety excludes
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+.ops-backups/
+mobile-cleanup-quarantine/
+uploads/
+var/
+typeof
+
+# Generated/private runtime data
+.data/
+reports/**/private/
+reports/**/secrets/
+
+# Local locked/backups snapshots - keep outside Git unless Owner explicitly approves
+FINAL-LOCKED-SABI-LIVE-288O/
+site-ui-approved-live-LOCKED-287N/
+
+# Firebase / Google local state
+.firebase/
+.firebaserc.local
+gcloud-*.json
+firebase-debug.log
+ui-debug.log
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*secret*
+*secrets*
+*private*
+*credentials*
+*credential*
+*serviceAccount*
+*adminsdk*
+*.pem
+*.key
+*.p12
+*.keystore
+*.jks
+
+# Do not sync generated reports/patch archives/runtime data in first GitHub owner sync
+reports/
+.patches/
+data/
+
+# Backup / temporary generated files
+*.bak
+*.bak-*
+*.backup
+*.backup.*
+*.old
+*.tmp
+*.temp
+*.orig
+*.rej
+*.before-*
+*.rollback*
+*rollback*
+*backup*
+
+# Local generated archives and snapshots
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# Explicit excludes found during first owner sync
+site-ui/.publish-reports/**
+src/modules/messenger/**/*.bak*
+prisma/migrations/20260309041410_rm_rf_node_modulesrm_rf_distrm_rf_prisma/
+
+# First GitHub owner sync: exclude historical generated tools/checkers
+tools/

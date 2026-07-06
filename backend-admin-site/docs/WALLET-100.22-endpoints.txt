@@ -1,0 +1,43 @@
+Mobile-safe endpoints:
+GET /api/wallet/provider-config/mobile-manifest
+GET /api/wallet/provider-config/mobile-adapter-readiness
+GET /api/wallet/provider-config/mobile-launch-checklist
+GET /api/wallet/provider-config/mobile-sync
+GET /api/wallet/provider-config/mobile-final-launch-summary
+GET /api/wallet/provider-config/mobile-execution-readiness/:route
+
+Admin endpoints:
+GET /api/wallet/provider-config/admin/manifest
+GET /api/wallet/provider-config/admin/adapter-readiness
+GET /api/wallet/provider-config/admin/launch-checklist
+GET /api/wallet/provider-config/admin/final-launch-audit
+GET /api/wallet/provider-config/admin/execution-readiness/:route
+GET /api/wallet/provider-config/admin/providers/:providerId
+POST /api/wallet/provider-config/admin/providers/:providerId/validate
+
+Execution routes checked:
+wallet_transfer
+qr_wallet_payment
+card_tokenization
+virtual_card_issue
+merchant_payment
+merchant_settlement
+business_payout
+coin_topup
+coin_send
+coin_withdraw
+crypto_send
+crypto_market_data
+
+Providers checked:
+alipay_plus_acquiring
+local_bank_gateway
+bank_card_tokenization
+virtual_card_issuer
+merchant_acquiring
+business_payout
+coin_wallet_ledger
+crypto_custody_provider
+crypto_market_data_provider
+kyc_provider
+aml_provider

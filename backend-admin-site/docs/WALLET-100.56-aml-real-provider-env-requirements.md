@@ -1,0 +1,18 @@
+# WALLET-100.56 — AML provider env requirements
+
+Safe-disabled skeleton must remain disabled until real provider onboarding.
+
+Example safe-disabled state:
+
+```env
+WALLET_PROVIDER_AML_PROVIDER_ENABLED=false
+WALLET_PROVIDER_AML_PROVIDER_ID=
+WALLET_PROVIDER_AML_PROVIDER_BASE_URL=
+WALLET_PROVIDER_AML_PROVIDER_API_KEY_VAULT_REF=
+WALLET_PROVIDER_AML_PROVIDER_WEBHOOK_SECRET_VAULT_REF=
+WALLET_PROVIDER_AML_PROVIDER_WEBHOOK_URL=
+WALLET_PROVIDER_EXECUTION_AML_PROVIDER_ENABLED=false
+WALLET_PROVIDER_EXECUTION_AML_SCREENING_ENABLED=false
+```
+
+Real secrets must live in backend vault/secret manager, not mobile.

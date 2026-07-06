@@ -1,0 +1,21 @@
+# WALLET-100.37 KYC/AML provider env template
+# Values must be backend-only. Do not put these in mobile.
+
+KYC_PROVIDER_ENABLED=false
+KYC_PROVIDER_ENVIRONMENT=sandbox
+KYC_PROVIDER_ID=
+KYC_PROVIDER_API_KEY_VAULT_REF=
+KYC_PROVIDER_WEBHOOK_SECRET_VAULT_REF=
+KYC_PROVIDER_WEBHOOK_URL=/api/wallet/compliance/kyc/webhook
+
+AML_PROVIDER_ENABLED=false
+AML_PROVIDER_ENVIRONMENT=sandbox
+AML_PROVIDER_ID=
+AML_PROVIDER_API_KEY_VAULT_REF=
+AML_PROVIDER_WEBHOOK_SECRET_VAULT_REF=
+AML_PROVIDER_WEBHOOK_URL=/api/wallet/compliance/aml/webhook
+
+# Execution stays disabled until provider contracts, sandbox tests, signature validation,
+# audit persistence, admin review, and production approvals are complete.
+WALLET_PROVIDER_EXECUTION_KYC_PROVIDER_ENABLED=false
+WALLET_PROVIDER_EXECUTION_AML_PROVIDER_ENABLED=false

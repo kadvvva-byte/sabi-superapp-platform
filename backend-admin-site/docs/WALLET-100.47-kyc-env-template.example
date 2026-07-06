@@ -1,0 +1,13 @@
+# WALLET-100.47 KYC sandbox env template
+# Do not put secrets into mobile.
+# Real secret values should be stored in vault/secret manager where possible.
+
+WALLET_PROVIDER_KYC_PROVIDER_ENABLED=false
+WALLET_PROVIDER_KYC_PROVIDER_ID=kyc_provider
+WALLET_PROVIDER_KYC_PROVIDER_BASE_URL=
+WALLET_PROVIDER_KYC_PROVIDER_API_KEY_VAULT_REF=
+WALLET_PROVIDER_KYC_PROVIDER_WEBHOOK_SECRET_VAULT_REF=
+WALLET_PROVIDER_KYC_PROVIDER_WEBHOOK_URL=/api/wallet/provider-config/webhooks/kyc
+
+# Execution must remain false until real provider binding is complete.
+WALLET_PROVIDER_EXECUTION_KYC_PROVIDER_ENABLED=false
