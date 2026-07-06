@@ -1,0 +1,43 @@
+{
+  "name": "sabi-superapp-api",
+  "version": "100.5.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/app.ts",
+    "start": "tsx src/app.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.json",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-rate-limit": "latest",
+    "firebase-admin": "latest",
+    "jsonwebtoken": "latest",
+    "multer": "latest",
+    "nanoid": "latest",
+    "pino": "latest",
+    "qrcode": "latest",
+    "socket.io": "latest",
+    "tsx": "^4.22.4",
+    "uuid": "latest",
+    "ws": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/cors": "latest",
+    "@types/express": "latest",
+    "@types/jsonwebtoken": "latest",
+    "@types/multer": "latest",
+    "@types/node": "latest",
+    "@types/qrcode": "latest",
+    "@types/uuid": "latest",
+    "@types/ws": "latest",
+    "prisma": "latest",
+    "typescript": "latest"
+  }
+}

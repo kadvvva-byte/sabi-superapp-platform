@@ -1,0 +1,15 @@
+{
+  "status": "prepared_not_connected",
+  "provider": "gemini",
+  "apiKeyLocation": "server_env_or_secret_manager_only",
+  "browserApiKeyAllowed": false,
+  "directBrowserGoogleAIAllowed": false,
+  "requestEnvelopeRequired": true,
+  "auditRequired": true,
+  "ownerPolicyRequired": true,
+  "endpoints": {
+    "chat": "/api/sabi-ai/studio/gemini/chat",
+    "health": "/api/sabi-ai/studio/gemini/health"
+  },
+  "officialCompanyEmail": "admin@sabiai.app"
+}

@@ -1,0 +1,30 @@
+.taxiFinanceFix7 { display: flex; flex-direction: column; gap: 14px; padding: 16px; color: #e8fbff; }
+.tf7Hero, .tf7Card, .tf7Log { border: 1px solid rgba(45, 221, 255, 0.35); border-radius: 14px; background: rgba(3, 17, 32, 0.88); box-shadow: 0 18px 45px rgba(0,0,0,0.28); }
+.tf7Hero { display: flex; justify-content: space-between; gap: 18px; padding: 18px; }
+.tf7Hero h2 { margin: 4px 0; font-size: 26px; }
+.tf7Hero p { margin: 0; max-width: 900px; color: #9fd6df; line-height: 1.45; }
+.tf7Eyebrow { color: #24e4ff !important; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.tf7Status { min-width: 190px; border: 1px solid rgba(37, 243, 173, .45); border-radius: 12px; padding: 12px; background: rgba(13, 83, 64, .28); }
+.tf7Status strong { display: block; font-size: 20px; color: #55ffd0; }
+.tf7Status span { display: block; font-weight: 800; }
+.tf7Status small { color: #b8fff1; }
+.tf7Tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.tf7Tabs button { text-align: left; border: 1px solid rgba(45, 221, 255, .35); border-radius: 12px; background: rgba(8, 27, 49, .92); color: #e8fbff; padding: 12px; cursor: pointer; }
+.tf7Tabs button.active { border-color: #20e5ff; background: linear-gradient(135deg, rgba(0, 191, 255, .35), rgba(14, 104, 198, .35)); }
+.tf7Tabs strong, .tf7Tabs span { display: block; }
+.tf7Tabs span { color: #95cbd6; margin-top: 4px; }
+.tf7Grid { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 12px; }
+.tf7Card { padding: 14px; }
+.tf7Rules h3, .tf7Form h3, .tf7Log h3 { margin: 0 0 8px; }
+.tf7Rules p, .tf7Rules li, .tf7Hint { color: #a9d8e0; line-height: 1.45; }
+.tf7Fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.tf7Fields label { display: flex; flex-direction: column; gap: 5px; color: #bdefff; font-size: 12px; font-weight: 800; }
+.tf7Fields input, .tf7Fields textarea { border: 1px solid rgba(74, 162, 190, .55); border-radius: 10px; background: rgba(2, 13, 25, .75); color: #e8fbff; padding: 10px; outline: none; min-height: 38px; }
+.tf7Fields textarea { min-height: 72px; resize: vertical; }
+.tf7Actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.tf7Actions button { border: 0; border-radius: 10px; background: linear-gradient(180deg, #21defb, #1573e8); color: #001525; font-weight: 900; padding: 10px 14px; cursor: pointer; }
+.tf7Actions button:disabled { opacity: .55; cursor: wait; }
+.tf7Log { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 10px; padding: 14px; }
+.tf7Log p { color: #a9d8e0; margin: 0; }
+.tf7Log pre { margin: 0; border: 1px dashed rgba(45, 221, 255, .35); border-radius: 12px; padding: 12px; max-height: 220px; overflow: auto; color: #c7fbff; background: rgba(0,0,0,.22); }
+@media (max-width: 1100px) { .tf7Hero, .tf7Grid, .tf7Log { grid-template-columns: 1fr; display: grid; } .tf7Tabs, .tf7Fields { grid-template-columns: 1fr; } }

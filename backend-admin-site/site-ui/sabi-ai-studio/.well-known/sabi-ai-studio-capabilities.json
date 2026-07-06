@@ -1,0 +1,129 @@
+{
+  "module": "sabi-ai-studio",
+  "version": "281T",
+  "company": "SABI AI TECHNOLOGIES LIMITED",
+  "officialCompanyEmail": "admin@sabiai.app",
+  "organismMode": "Sabi AI controls all generation capabilities through backend provider proxy",
+  "mountPathRecommended": "/sabi-ai-studio/",
+  "publicStatus": "capabilities_prepared_not_live",
+  "rule": "No browser API keys, no direct provider calls, no fake generation success. All live generation requires approved backend/env/provider stage.",
+  "categories": {
+    "imagePhoto": {
+      "label": "Photo and image generation",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/image",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "gif": {
+      "label": "GIF generation",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/gif",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "stickers": {
+      "label": "Sticker generation",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/sticker",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "video": {
+      "label": "Video generation",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/video",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "audio": {
+      "label": "Audio / voice / sound generation",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/audio",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "code": {
+      "label": "Code generation",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/code",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "application": {
+      "label": "Application creation",
+      "endpointPrepared": "/api/sabi-ai/studio/build/application",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "program": {
+      "label": "Program / software creation",
+      "endpointPrepared": "/api/sabi-ai/studio/build/program",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "website": {
+      "label": "Website creation",
+      "endpointPrepared": "/api/sabi-ai/studio/build/website",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    },
+    "documentPresentation": {
+      "label": "Documents and presentations",
+      "endpointPrepared": "/api/sabi-ai/studio/generate/document",
+      "liveEnabled": false,
+      "backendProxyRequired": true,
+      "adminAuditRequired": true
+    }
+  },
+  "backendContractPrepared": {
+    "health": "/api/sabi-ai/studio/capabilities/health",
+    "status": "/api/sabi-ai/studio/capabilities/status",
+    "adminStatus": "/api/sabi/admin/studio/capabilities/status",
+    "requestEnvelopeRequired": true,
+    "ownerPolicyRequired": true,
+    "sessionRequired": true,
+    "entitlementRequired": true,
+    "providerKeyLocation": "server_env_or_secret_manager_only"
+  },
+  "safetyLocks": {
+    "imageProviderEnabled": false,
+    "gifProviderEnabled": false,
+    "stickerProviderEnabled": false,
+    "videoProviderEnabled": false,
+    "audioProviderEnabled": false,
+    "codeExecutionEnabled": false,
+    "appBuildProviderEnabled": false,
+    "websiteBuildProviderEnabled": false,
+    "directProviderCallsFromBrowserAllowed": false,
+    "providerApiKeysInBrowserAllowed": false,
+    "simulatedSuccessAllowed": false,
+    "paymentProviderEnabled": false,
+    "backendMutationEnabled": false,
+    "databaseMutationEnabled": false,
+    "walletMutationEnabled": false,
+    "payoutEnabled": false
+  },
+  "adminControlPrepared": {
+    "futureScreen": "Admin / Sabi AI Studio / Generation Capabilities Control",
+    "ownerRole": "OWNER_ROOT_ADMIN",
+    "allowedNow": [
+      "read capabilities contract",
+      "verify provider locks",
+      "verify routes are prepared",
+      "verify no browser provider key",
+      "verify no direct provider calls"
+    ],
+    "enabledLaterAfterApproval": [
+      "provider key status",
+      "capability health smoke",
+      "generation audit",
+      "usage reports",
+      "risk and policy reports",
+      "daily Owner Sabi AI report"
+    ]
+  }
+}

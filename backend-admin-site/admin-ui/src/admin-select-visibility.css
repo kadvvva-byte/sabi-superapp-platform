@@ -1,0 +1,30 @@
+/* ADMIN-113.6: make native dropdown text readable on the dark Admin UI. */
+select {
+  color-scheme: dark;
+  background-color: rgba(20, 34, 50, 0.98);
+  color: #f4fbff;
+  border-color: rgba(86, 224, 255, 0.22);
+}
+
+select option,
+select optgroup {
+  background: #0f1d2c !important;
+  color: #f4fbff !important;
+}
+
+select option:checked,
+select option:hover,
+select option:focus {
+  background: #36d9e8 !important;
+  color: #031018 !important;
+}
+
+select option:disabled {
+  background: #0f1d2c !important;
+  color: #7890a4 !important;
+}
+
+select:focus {
+  border-color: rgba(54, 217, 232, 0.75);
+  box-shadow: 0 0 0 3px rgba(54, 217, 232, 0.13);
+}

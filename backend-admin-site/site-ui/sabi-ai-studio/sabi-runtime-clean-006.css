@@ -1,0 +1,10 @@
+/* 006: kill legacy access UI only. No design replacement. */
+[data-auth], [data-account], [data-profile], [data-login], [data-signin], [data-sign-up], [data-register],
+.auth, .auth-modal, .auth-panel, .auth-overlay, .account, .account-menu, .profile, .profile-menu,
+.login, .signin, .sign-in, .signup, .sign-up, .register, .registration,
+.sabi-auth-only, .sabi-standard-auth, .sabi-studio-auth, .sabi-studio-auth-only,
+.sabi-auth-modal, .sabi-auth-backdrop, .sabi-studio-auth-backdrop {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

@@ -1,0 +1,341 @@
+.taxi026dShell{display:flex;flex-direction:column;gap:18px;padding:18px;border-radius:30px;background:linear-gradient(135deg,#08111f,#111827 48%,#070b14);border:1px solid rgba(148,163,184,.26);box-shadow:0 24px 70px rgba(0,0,0,.32);color:#e5eefb}.taxi026dHeader{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;padding:20px;border-radius:26px;background:radial-gradient(circle at top left,rgba(56,189,248,.22),transparent 38%),rgba(15,23,42,.82)}.taxi026dHeader span{display:inline-flex;margin-bottom:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#93c5fd}.taxi026dHeader h2{margin:0;font-size:30px}.taxi026dHeader p{max-width:860px;margin:10px 0 0;color:#cbd5e1}.taxi026dHeader strong{padding:12px 16px;border-radius:999px;background:#102a43;color:#bfdbfe}.taxi026dRouteBar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border-radius:18px;background:rgba(2,6,23,.88);border:1px solid rgba(148,163,184,.22)}.taxi026dRouteBar code{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fef3c7}.taxi026dRouteBar b{color:#fecaca}.taxi026dGrid{display:grid;grid-template-columns:1.05fr 1fr .95fr;gap:16px}.taxi026dCommandCard{min-height:360px;padding:18px;border-radius:26px;background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(30,41,59,.82));border:1px solid rgba(148,163,184,.24)}.taxi026dCommandCard.accent{background:linear-gradient(180deg,rgba(20,83,45,.42),rgba(15,23,42,.9))}.taxi026dCommandCard.dark{background:linear-gradient(180deg,rgba(88,28,135,.32),rgba(15,23,42,.9))}.taxi026dCommandCard h3{margin:0 0 14px;font-size:20px}.taxi026dCommandCard label{display:flex;flex-direction:column;gap:7px;margin-bottom:12px;color:#cbd5e1}.taxi026dCommandCard input,.taxi026dCommandCard textarea{width:100%;box-sizing:border-box;border:1px solid rgba(148,163,184,.3);border-radius:16px;background:rgba(2,6,23,.72);color:#f8fafc;padding:12px 14px;font:inherit}.taxi026dCommandCard textarea{min-height:94px;resize:vertical}.taxi026dCommandCard button{border:0;border-radius:16px;background:#f8fafc;color:#0f172a;padding:12px 16px;font-weight:900;cursor:pointer}.taxi026dCommandCard button:disabled{opacity:.45;cursor:not-allowed}.taxi026dCurrencyBox{display:flex;flex-direction:column;gap:12px}.taxi026dCurrencyList{display:flex;flex-wrap:wrap;gap:8px;min-height:48px;padding:10px;border-radius:18px;background:rgba(2,6,23,.5)}.taxi026dCurrencyList button{background:#1e293b;color:#e2e8f0}.taxi026dCurrencyList button.active{background:#facc15;color:#111827}.taxi026dComplaintReplies{display:flex;flex-direction:column;gap:10px}.taxi026dContactRow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.taxi026dFunctionTiles{display:grid;gap:12px}.taxi026dFunctionTiles div{padding:14px;border-radius:18px;background:rgba(2,6,23,.46);border:1px solid rgba(148,163,184,.18)}.taxi026dFunctionTiles b,.taxi026dFunctionTiles span{display:block}.taxi026dResponse{display:flex;flex-direction:column;gap:8px;margin-top:14px;padding:14px;border-radius:18px;background:rgba(2,6,23,.58);border:1px solid rgba(148,163,184,.2)}.taxi026dResponse code{word-break:break-all;color:#fde68a}.taxi026d-drivers .taxi026dHeader{background:radial-gradient(circle at top left,rgba(34,197,94,.28),transparent 40%),rgba(15,23,42,.84)}.taxi026d-vehicles .taxi026dHeader{background:radial-gradient(circle at top left,rgba(249,115,22,.28),transparent 40%),rgba(15,23,42,.84)}.taxi026d-trips .taxi026dHeader{background:radial-gradient(circle at top left,rgba(14,165,233,.3),transparent 40%),rgba(15,23,42,.84)}.taxi026d-complaints .taxi026dHeader{background:radial-gradient(circle at top left,rgba(239,68,68,.32),transparent 40%),rgba(15,23,42,.84)}.taxi026d-balance .taxi026dHeader{background:radial-gradient(circle at top left,rgba(250,204,21,.28),transparent 40%),rgba(15,23,42,.84)}.taxi026d-rewards .taxi026dHeader{background:radial-gradient(circle at top left,rgba(168,85,247,.3),transparent 40%),rgba(15,23,42,.84)}.taxi026d-contests .taxi026dHeader{background:radial-gradient(circle at top left,rgba(244,63,94,.28),transparent 40%),rgba(15,23,42,.84)}.taxi026d-archive .taxi026dHeader{background:radial-gradient(circle at top left,rgba(100,116,139,.32),transparent 40%),rgba(15,23,42,.84)}.taxi026d-reports .taxi026dHeader{background:radial-gradient(circle at top left,rgba(45,212,191,.28),transparent 40%),rgba(15,23,42,.84)}.taxi026d-management .taxi026dHeader{background:radial-gradient(circle at top left,rgba(99,102,241,.3),transparent 40%),rgba(15,23,42,.84)}.taxi026d-access .taxi026dHeader{background:radial-gradient(circle at top left,rgba(217,70,239,.28),transparent 40%),rgba(15,23,42,.84)}@media(max-width:1120px){.taxi026dGrid{grid-template-columns:1fr}.taxi026dRouteBar{grid-template-columns:1fr}.taxi026dHeader{grid-template-columns:1fr}}
+
+
+.taxiBonus020AWorkspace{display:flex;flex-direction:column;gap:16px;padding:18px;border-radius:28px;background:linear-gradient(135deg,rgba(9,11,31,.98),rgba(21,11,42,.92));border:1px solid rgba(168,85,247,.34);box-shadow:0 24px 70px rgba(0,0,0,.38);color:#e5eefb}.taxiBonus020AHero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;padding:20px;border-radius:24px;background:radial-gradient(circle at top left,rgba(168,85,247,.34),transparent 42%),rgba(15,23,42,.88);border:1px solid rgba(196,181,253,.24)}.taxiBonus020AHero span{display:inline-flex;margin-bottom:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d8b4fe}.taxiBonus020AHero h2{margin:0;font-size:28px}.taxiBonus020AHero p{max-width:980px;margin:9px 0 0;color:#cbd5e1}.taxiBonus020AHero strong{display:grid;place-items:center;min-width:82px;min-height:58px;border-radius:20px;background:linear-gradient(135deg,#a855f7,#22d3ee);color:#020617;font-size:24px}.taxiBonus020AGrid{display:grid;grid-template-columns:320px minmax(0,1fr) 380px;gap:14px}.taxiBonus020AQueue,.taxiBonus020ADossier,.taxiBonus020AApproval{min-height:420px;padding:16px;border-radius:24px;background:rgba(2,6,23,.72);border:1px solid rgba(148,163,184,.24)}.taxiBonus020AQueue>button{width:100%;margin:10px 0 12px;border:0;border-radius:15px;padding:12px 14px;background:#22d3ee;color:#03212b;font-weight:900;cursor:pointer}.taxiBonus020AQueue>button:disabled{opacity:.55;cursor:not-allowed}.taxiBonus020AList{display:flex;flex-direction:column;gap:10px}.taxiBonus020AList button{display:flex;flex-direction:column;gap:5px;text-align:left;border:1px solid rgba(148,163,184,.25);border-radius:18px;background:rgba(15,23,42,.8);color:#e5eefb;padding:12px;cursor:pointer}.taxiBonus020AList button.active{border-color:#c084fc;background:linear-gradient(135deg,rgba(126,34,206,.46),rgba(14,165,233,.14))}.taxiBonus020AList span,.taxiBonus020AList small{color:#cbd5e1}.taxiBonus020AHead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;margin-bottom:14px}.taxiBonus020AHead h2{margin:0}.taxiBonus020AHead p{margin:6px 0 0;color:#a5b4fc}.taxiBonus020AHead strong{padding:12px 14px;border-radius:18px;background:rgba(34,197,94,.16);border:1px solid rgba(74,222,128,.32);color:#bbf7d0}.taxiBonus020ADataGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.taxiBonus020ADataGrid div{min-height:64px;padding:12px;border-radius:16px;background:rgba(15,23,42,.78);border:1px solid rgba(148,163,184,.18)}.taxiBonus020ADataGrid span,.taxiBonus020ADataGrid strong{display:block}.taxiBonus020ADataGrid span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#93c5fd}.taxiBonus020ADataGrid strong{margin-top:7px;color:#f8fafc}.taxiBonus020AEvidence{margin-top:14px;padding:14px;border-radius:18px;background:rgba(88,28,135,.24);border:1px solid rgba(216,180,254,.22)}.taxiBonus020AEvidence h3{margin:0 0 10px}.taxiBonus020AEvidence span{display:inline-flex;margin:0 8px 8px 0;padding:8px 10px;border-radius:999px;background:rgba(15,23,42,.72);border:1px solid rgba(148,163,184,.18);color:#e9d5ff}.taxiBonus020AChecks{display:flex;flex-direction:column;gap:9px;margin:10px 0 12px}.taxiBonus020AChecks label{display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;background:rgba(15,23,42,.76);border:1px solid rgba(148,163,184,.18);color:#cbd5e1}.taxiBonus020AChecks label.checked{border-color:rgba(74,222,128,.45);background:rgba(20,83,45,.25);color:#dcfce7}.taxiBonus020AApproval label{display:flex;flex-direction:column;gap:7px;margin-bottom:10px;color:#cbd5e1}.taxiBonus020AApproval textarea{min-height:76px;resize:vertical;border:1px solid rgba(148,163,184,.3);border-radius:15px;background:rgba(2,6,23,.8);color:#f8fafc;padding:11px;font:inherit}.taxiBonus020AActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.taxiBonus020AActions button{border:0;border-radius:15px;padding:12px 10px;background:#8b5cf6;color:#eaf2ff;font-weight:900;cursor:pointer}.taxiBonus020AActions button:nth-child(2){background:#22c55e;color:#04130a}.taxiBonus020AActions button:nth-child(3){background:#7f1d1d;color:#fecaca}.taxiBonus020AActions button:nth-child(4){background:#1e293b;color:#dbeafe}.taxiBonus020AActions button:disabled{opacity:.5;cursor:not-allowed}.taxiBonus020AReport{display:flex;flex-direction:column;gap:8px;margin-top:13px;padding:13px;border-radius:18px;background:rgba(2,6,23,.72);border:1px solid rgba(148,163,184,.22)}.taxiBonus020AReport span{color:#fef3c7}.taxiBonus020AReport small{color:#cbd5e1}.taxiBonus020AReport code{word-break:break-all;color:#67e8f9}@media(max-width:1320px){.taxiBonus020AGrid{grid-template-columns:1fr}.taxiBonus020AHero{grid-template-columns:1fr}.taxiBonus020ADataGrid{grid-template-columns:1fr}}
+
+.taxiBonus020CStatusStrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.taxiBonus020CStatusStrip>div{display:flex;flex-direction:column;gap:5px;padding:14px;border-radius:20px;background:rgba(2,6,23,.72);border:1px solid rgba(34,211,238,.22)}.taxiBonus020CStatusStrip span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#7dd3fc}.taxiBonus020CStatusStrip strong{color:#f8fafc;font-size:18px}.taxiBonus020CStatusStrip small{color:#cbd5e1}.taxiBonus020CControls{display:flex;flex-direction:column;gap:9px;margin:0 0 12px;padding:10px;border-radius:18px;background:rgba(15,23,42,.62);border:1px solid rgba(148,163,184,.18)}.taxiBonus020CControls input{width:100%;box-sizing:border-box;border:1px solid rgba(148,163,184,.28);border-radius:14px;background:rgba(2,6,23,.8);color:#e5eefb;padding:11px;font:inherit}.taxiBonus020CControls div{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.taxiBonus020CControls button{border:1px solid rgba(148,163,184,.28);border-radius:13px;background:rgba(15,23,42,.85);color:#cbd5e1;padding:9px;cursor:pointer;font-weight:800}.taxiBonus020CControls button.active{border-color:#22d3ee;background:rgba(34,211,238,.18);color:#e0f2fe}.taxiBonus020CEmpty{padding:14px;border-radius:16px;background:rgba(127,29,29,.18);border:1px solid rgba(248,113,113,.24);color:#fecaca}.taxiBonus020CReviewMatrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.taxiBonus020CReviewMatrix article{padding:13px;border-radius:18px;background:linear-gradient(135deg,rgba(8,47,73,.42),rgba(30,41,59,.72));border:1px solid rgba(125,211,252,.18)}.taxiBonus020CReviewMatrix span,.taxiBonus020CReviewMatrix strong,.taxiBonus020CReviewMatrix small{display:block}.taxiBonus020CReviewMatrix span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#67e8f9}.taxiBonus020CReviewMatrix strong{margin-top:7px;color:#f8fafc}.taxiBonus020CReviewMatrix small{margin-top:6px;color:#cbd5e1}.taxiBonus020CDecisionGate{display:flex;flex-direction:column;gap:8px;margin:10px 0 12px;padding:13px;border-radius:18px;background:rgba(88,28,135,.2);border:1px solid rgba(216,180,254,.22)}.taxiBonus020CDecisionGate strong{color:#f5d0fe}.taxiBonus020CDecisionGate span,.taxiBonus020CDecisionGate small{color:#cbd5e1}.taxiBonus020CDecisionGate ul{margin:0;padding-left:18px;color:#fde68a}.taxiBonus020AReport em{font-style:normal;color:#bae6fd;line-height:1.4}@media(max-width:1320px){.taxiBonus020CStatusStrip,.taxiBonus020CReviewMatrix{grid-template-columns:1fr}}
+
+
+/* TAXI-CONTEST-021A-ADMIN-CONTESTS-100-UI-FOUNDATION */
+.taxiContest021A { display: flex; flex-direction: column; gap: 14px; min-height: 620px; }
+.taxiContest021AHero { display: flex; justify-content: space-between; align-items: center; gap: 14px; border: 1px solid rgba(34, 211, 238, .42); border-radius: 18px; padding: 18px; background: linear-gradient(135deg, rgba(12, 20, 48, .98), rgba(20, 10, 48, .92)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); }
+.taxiContest021AHero span { color: #22d3ee; font-weight: 800; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.taxiContest021AHero h2 { margin: 6px 0; font-size: 26px; color: #f8fafc; }
+.taxiContest021AHero p { margin: 0; color: #b6c7e8; max-width: 920px; }
+.taxiContest021AHero strong { min-width: 74px; height: 74px; border-radius: 24px; display: grid; place-items: center; background: linear-gradient(135deg, #06b6d4, #7c3aed); color: white; font-size: 22px; box-shadow: 0 18px 45px rgba(6, 182, 212, .2); }
+.taxiContest021AStatus { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.taxiContest021AStatus div { border: 1px solid rgba(34, 211, 238, .24); border-radius: 16px; padding: 14px; background: rgba(8, 16, 33, .88); }
+.taxiContest021AStatus span, .taxiContest021ADataGrid span, .taxiContest021AFormula span { display: block; color: #7dd3fc; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.taxiContest021AStatus strong { display: block; color: #f8fafc; font-size: 18px; margin-top: 4px; }
+.taxiContest021AStatus small, .taxiContest021AFormula small, .taxiContest021AGate small, .taxiContest021AReport small { display: block; color: #9fb0d0; margin-top: 4px; }
+.taxiContest021AGrid { display: grid; grid-template-columns: 300px minmax(420px, 1fr) 340px; gap: 12px; align-items: stretch; }
+.taxiContest021AQueue, .taxiContest021ADossier, .taxiContest021AApproval { border: 1px solid rgba(129, 140, 248, .34); border-radius: 18px; background: rgba(4, 9, 25, .88); padding: 14px; min-height: 520px; }
+.taxiContest021AQueue button, .taxiContest021AActions button { border: 1px solid rgba(34, 211, 238, .38); border-radius: 12px; background: rgba(14, 23, 48, .94); color: #e0f2fe; padding: 10px 12px; font-weight: 800; cursor: pointer; }
+.taxiContest021AQueue > button { width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, rgba(6, 182, 212, .34), rgba(20, 184, 166, .18)); }
+.taxiContest021AQueue input, .taxiContest021AApproval input, .taxiContest021AApproval textarea { width: 100%; border: 1px solid rgba(148, 163, 184, .25); border-radius: 12px; background: rgba(2, 6, 23, .72); color: #f8fafc; padding: 10px; box-sizing: border-box; }
+.taxiContest021AApproval label { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; color: #bfdbfe; font-size: 12px; }
+.taxiContest021AFilters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 10px 0; }
+.taxiContest021AFilters button.active, .taxiContest021AList button.active { border-color: #22d3ee; background: rgba(34, 211, 238, .14); }
+.taxiContest021AList { display: flex; flex-direction: column; gap: 8px; max-height: 390px; overflow: auto; padding-right: 4px; }
+.taxiContest021AList button { text-align: left; display: grid; gap: 4px; }
+.taxiContest021AList strong { color: #f8fafc; }
+.taxiContest021AList span { color: #bae6fd; font-size: 12px; }
+.taxiContest021AList small { color: #a78bfa; }
+.taxiContest021AHead { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+.taxiContest021AHead h2 { color: #f8fafc; margin: 0; }
+.taxiContest021AHead p { color: #94a3b8; margin: 4px 0 0; }
+.taxiContest021AHead strong { color: #22d3ee; border: 1px solid rgba(34, 211, 238, .4); border-radius: 999px; padding: 8px 12px; }
+.taxiContest021ADataGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.taxiContest021ADataGrid div { border: 1px solid rgba(148, 163, 184, .18); border-radius: 14px; padding: 10px; background: rgba(15, 23, 42, .72); }
+.taxiContest021ADataGrid strong { display: block; color: #f8fafc; margin-top: 5px; font-size: 12px; line-height: 1.35; }
+.taxiContest021AFormula { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.taxiContest021AFormula article { border: 1px solid rgba(34, 197, 94, .25); border-radius: 16px; padding: 12px; background: rgba(6, 78, 59, .18); }
+.taxiContest021AFormula strong { display: block; color: #dcfce7; margin-top: 5px; }
+.taxiContest021AEvidence { margin-top: 12px; border: 1px solid rgba(168, 85, 247, .36); border-radius: 16px; padding: 12px; background: rgba(88, 28, 135, .16); }
+.taxiContest021AEvidence h3 { margin: 0 0 8px; color: #f5d0fe; }
+.taxiContest021AEvidence span { display: inline-flex; margin: 4px; border: 1px solid rgba(216, 180, 254, .28); border-radius: 999px; padding: 6px 10px; color: #e9d5ff; font-size: 12px; }
+.taxiContest021AGate { border: 1px solid rgba(251, 191, 36, .38); border-radius: 14px; padding: 12px; background: rgba(120, 53, 15, .16); }
+.taxiContest021AGate strong { color: #fde68a; display: block; margin-bottom: 6px; }
+.taxiContest021AChecks { display: grid; gap: 8px; margin-top: 12px; }
+.taxiContest021AChecks label { flex-direction: row; align-items: center; border: 1px solid rgba(148, 163, 184, .2); border-radius: 12px; padding: 9px; margin: 0; }
+.taxiContest021AChecks label.checked { border-color: rgba(34, 197, 94, .5); background: rgba(22, 163, 74, .12); }
+.taxiContest021AActions { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
+.taxiContest021AActions button:nth-child(2) { background: linear-gradient(135deg, #06b6d4, #2563eb); color: white; }
+.taxiContest021AActions button:nth-child(3) { border-color: rgba(248, 113, 113, .5); color: #fecaca; }
+.taxiContest021AActions button:disabled { opacity: .48; cursor: not-allowed; }
+.taxiContest021AReport { margin-top: 12px; border: 1px solid rgba(34, 211, 238, .28); border-radius: 14px; padding: 12px; background: rgba(8, 47, 73, .18); display: grid; gap: 5px; }
+.taxiContest021AReport strong { color: #cffafe; }
+.taxiContest021AReport span { color: #bae6fd; }
+.taxiContest021AReport code { white-space: normal; color: #67e8f9; font-size: 11px; }
+.taxiContest021AEmpty { border: 1px dashed rgba(148, 163, 184, .32); border-radius: 14px; padding: 14px; color: #94a3b8; text-align: center; }
+@media (max-width: 1300px) { .taxiContest021AGrid { grid-template-columns: 1fr; } .taxiContest021AStatus, .taxiContest021ADataGrid, .taxiContest021AFormula { grid-template-columns: 1fr; } }
+
+.taxiContest021BWorld { border: 1px solid rgba(34, 211, 238, .28); border-radius: 16px; padding: 10px; margin: 10px 0; background: linear-gradient(135deg, rgba(8, 47, 73, .28), rgba(30, 41, 59, .34)); display: grid; gap: 8px; }
+.taxiContest021BWorldHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.taxiContest021BWorldHead strong { color: #e0f2fe; font-size: 14px; }
+.taxiContest021BWorldHead span { min-width: 42px; min-height: 32px; border-radius: 999px; display: inline-grid; place-items: center; background: rgba(34, 211, 238, .16); color: #67e8f9; border: 1px solid rgba(34, 211, 238, .35); font-weight: 900; }
+.taxiContest021BWorld select { width: 100%; border: 1px solid rgba(148, 163, 184, .25); border-radius: 12px; background: rgba(2, 6, 23, .72); color: #f8fafc; padding: 10px; box-sizing: border-box; }
+.taxiContest021BWorldList { max-height: 230px; overflow: auto; display: grid; gap: 6px; padding-right: 4px; }
+.taxiContest021BWorldList button { width: 100%; border: 1px solid rgba(148, 163, 184, .18); border-radius: 12px; background: rgba(15, 23, 42, .82); color: #dbeafe; padding: 8px 9px; text-align: left; display: grid; gap: 3px; }
+.taxiContest021BWorldList button.active { border-color: #22d3ee; background: rgba(34, 211, 238, .16); }
+.taxiContest021BWorldList span { color: #f8fafc; font-weight: 800; font-size: 12px; }
+.taxiContest021BWorldList small, .taxiContest021BWorld > small { color: #93c5fd; font-size: 11px; }
+@media (max-width: 1300px) { .taxiContest021AStatus { grid-template-columns: 1fr; } }
+
+
+/* TAXI-ARCHIVE-022A-SEPARATE-ADMIN-SCREEN-100-UI-FOUNDATION */
+.taxiArchive022A{display:flex;flex-direction:column;gap:18px;color:#eef7ff}
+.taxiArchive022AHero{display:flex;align-items:stretch;justify-content:space-between;gap:18px;padding:22px;border:1px solid rgba(110,231,255,.24);border-radius:28px;background:linear-gradient(135deg,rgba(14,25,42,.98),rgba(19,31,55,.94));box-shadow:0 20px 70px rgba(0,0,0,.28)}
+.taxiArchive022AHero span{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(110,231,255,.12);color:#8eeeff;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.taxiArchive022AHero h2{margin:10px 0 8px;font-size:30px;color:#fff}
+.taxiArchive022AHero p{margin:0;max-width:940px;color:#aebfd2;line-height:1.55}
+.taxiArchive022AHero>strong{display:grid;place-items:center;min-width:104px;border-radius:24px;background:rgba(35,197,94,.14);border:1px solid rgba(35,197,94,.28);color:#86efac;font-size:30px}
+.taxiArchive022AStatus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.taxiArchive022AStatus>div{padding:16px;border-radius:22px;border:1px solid rgba(148,163,184,.18);background:rgba(10,18,32,.78)}
+.taxiArchive022AStatus span,.taxiArchive022ADataGrid span{display:block;color:#8ea1b7;font-size:12px}
+.taxiArchive022AStatus strong{display:block;margin:6px 0;color:#fff;font-size:20px}
+.taxiArchive022AStatus small{color:#94a3b8}
+.taxiArchive022AGrid{display:grid;grid-template-columns:minmax(270px,330px) minmax(420px,1fr) minmax(310px,370px);gap:14px;align-items:start}
+.taxiArchive022AQueue,.taxiArchive022ADossier,.taxiArchive022AActions{min-height:620px;border:1px solid rgba(148,163,184,.18);border-radius:26px;background:rgba(8,15,28,.82);box-shadow:0 20px 60px rgba(0,0,0,.25);padding:16px}
+.taxiArchive022AQueue button,.taxiArchive022AActions button{border:0;border-radius:16px;padding:12px 14px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#03130b;font-weight:900;cursor:pointer}
+.taxiArchive022AQueue input,.taxiArchive022AQueue select,.taxiArchive022AActions textarea{width:100%;box-sizing:border-box;margin-top:10px;border:1px solid rgba(148,163,184,.2);border-radius:16px;background:rgba(2,6,23,.72);color:#eef7ff;padding:12px;outline:none}
+.taxiArchive022AActions textarea{min-height:112px;resize:vertical}
+.taxiArchive022AList{display:flex;flex-direction:column;gap:10px;margin-top:14px;max-height:430px;overflow:auto;padding-right:4px}
+.taxiArchive022AList button{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;background:rgba(15,23,42,.82);border:1px solid rgba(148,163,184,.16);color:#e5edf7;text-align:left}
+.taxiArchive022AList button.active{border-color:rgba(110,231,255,.55);box-shadow:0 0 0 1px rgba(110,231,255,.18) inset;background:linear-gradient(135deg,rgba(14,165,233,.18),rgba(15,23,42,.9))}
+.taxiArchive022AList span,.taxiArchive022AList small{color:#9fb0c4}
+.taxiArchive022AHead{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:14px}
+.taxiArchive022AHead h2{margin:0;color:#fff}.taxiArchive022AHead p{margin:6px 0 0;color:#9fb0c4}.taxiArchive022AHead strong{font-size:24px;color:#86efac}
+.taxiArchive022ADataGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.taxiArchive022ADataGrid>div,.taxiArchive022AEvidence,.taxiArchive022AAudit,.taxiArchive022AGuard,.taxiArchive022AReport{border:1px solid rgba(148,163,184,.16);border-radius:18px;background:rgba(15,23,42,.72);padding:13px}
+.taxiArchive022ADataGrid strong{display:block;margin-top:6px;color:#f8fafc;word-break:break-word}
+.taxiArchive022AEvidence,.taxiArchive022AAudit{margin-top:14px}.taxiArchive022AEvidence h3,.taxiArchive022AAudit h3{margin:0 0 10px;color:#fff}
+.taxiArchive022AEvidence{display:flex;flex-wrap:wrap;gap:8px}.taxiArchive022AEvidence h3{width:100%}
+.taxiArchive022AEvidence span{padding:8px 10px;border-radius:999px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);color:#bbf7d0;font-size:12px;font-weight:800}
+.taxiArchive022AAudit{display:flex;flex-direction:column;gap:8px}.taxiArchive022AAudit article{display:flex;gap:10px;align-items:center;color:#dbeafe}.taxiArchive022AAudit article strong{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(110,231,255,.14);color:#8eeeff}
+.taxiArchive022ACheck{display:flex!important;gap:10px;align-items:center;padding:12px;border-radius:16px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:#fde68a}
+.taxiArchive022AButtons{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}.taxiArchive022AButtons button:disabled{opacity:.45;cursor:not-allowed}
+.taxiArchive022AGuard,.taxiArchive022AReport{margin-top:14px;color:#dbeafe}.taxiArchive022AGuard strong,.taxiArchive022AReport strong{display:block;color:#fff;margin-bottom:7px}.taxiArchive022AGuard span,.taxiArchive022AReport span{display:block;color:#cbd5e1}.taxiArchive022AReport code{display:block;margin:9px 0;color:#8eeeff;white-space:normal;word-break:break-all}.taxiArchive022AReport small,.taxiArchive022AGuard small{color:#94a3b8}
+.taxiArchive022AEmpty{padding:18px;border-radius:18px;background:rgba(15,23,42,.72);color:#94a3b8;text-align:center}
+@media (max-width:1280px){.taxiArchive022AGrid{grid-template-columns:1fr}.taxiArchive022AQueue,.taxiArchive022ADossier,.taxiArchive022AActions{min-height:auto}.taxiArchive022AStatus{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.taxiArchive022AStatus,.taxiArchive022ADataGrid{grid-template-columns:1fr}.taxiArchive022AHero{flex-direction:column}}
+
+
+/* TAXI-ARCHIVE-022B-NO-FAKE-DATA-GLOBAL-195-COUNTRIES */
+.taxiArchive022BWorld{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:18px;background:rgba(10,14,24,.78);border:1px solid rgba(148,163,184,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.taxiArchive022BWorldHead{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#e5e7eb}
+.taxiArchive022BWorldHead span{font-size:12px;color:#67e8f9;border:1px solid rgba(103,232,249,.24);border-radius:999px;padding:3px 8px;background:rgba(8,145,178,.12)}
+.taxiArchive022BWorld input,.taxiArchive022BWorld select{width:100%;border-radius:14px;border:1px solid rgba(148,163,184,.2);background:rgba(15,23,42,.9);color:#f8fafc;padding:10px 12px;outline:none}
+.taxiArchive022BWorldList{display:grid;grid-template-columns:1fr;gap:6px;max-height:180px;overflow:auto;padding-right:4px}
+.taxiArchive022BWorldList button{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;text-align:left;border:1px solid rgba(148,163,184,.16);border-radius:13px;background:rgba(15,23,42,.7);color:#e5e7eb;padding:8px 10px;cursor:pointer}
+.taxiArchive022BWorldList button.active{border-color:rgba(34,197,94,.55);background:linear-gradient(135deg,rgba(22,163,74,.25),rgba(14,165,233,.14))}
+.taxiArchive022BWorldList small{font-size:10px;color:#94a3b8;max-width:120px;text-align:right}
+
+
+/* TAXI-REPORTS-023A-ADMIN-SCREEN */
+.taxiReport023A{display:flex;flex-direction:column;gap:18px;color:#e8eefc}
+.taxiReport023AHero{display:flex;justify-content:space-between;gap:18px;padding:20px;border:1px solid rgba(122,162,255,.22);border-radius:24px;background:linear-gradient(135deg,rgba(29,37,63,.96),rgba(11,18,35,.98));box-shadow:0 22px 60px rgba(0,0,0,.22)}
+.taxiReport023AHero h2{margin:4px 0 8px;font-size:28px}.taxiReport023AHero p{margin:0;max-width:920px;color:#aab7d9;line-height:1.55}.taxiReport023AHero span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9fb4ff}.taxiReport023AReady{min-width:150px;text-align:center;padding:14px;border-radius:20px;background:rgba(38,50,86,.72);border:1px solid rgba(132,172,255,.18)}.taxiReport023AReady strong{display:block;font-size:34px}.taxiReport023AReady small{display:block;color:#94a3c7}
+.taxiReport023AControls{display:grid;grid-template-columns:1.35fr 1fr 1.2fr;gap:12px}.taxiReport023AControls label,.taxiReport023AWorld{border:1px solid rgba(122,162,255,.18);border-radius:18px;background:rgba(13,20,39,.9);padding:12px}.taxiReport023AControls span,.taxiReport023AWorld span{display:block;color:#9fb0d4;font-size:12px;margin-bottom:6px}.taxiReport023AControls input,.taxiReport023AControls select,.taxiReport023AWorld input,.taxiReport023AWorld select{width:100%;box-sizing:border-box;border:1px solid rgba(132,172,255,.22);border-radius:14px;background:#0a1020;color:#e8eefc;padding:10px 12px;outline:none}
+.taxiReport023AWorld{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;align-items:end}.taxiReport023AWorld strong{display:block;font-size:16px}.taxiReport023AWorld small{color:#8290b1}
+.taxiReport023AGrid{display:grid;grid-template-columns:280px minmax(360px,1fr) 360px;gap:14px;align-items:start}.taxiReport023ASections,.taxiReport023AQueue,.taxiReport023ADossier{border:1px solid rgba(122,162,255,.18);border-radius:22px;background:rgba(11,18,35,.94);padding:14px;min-height:560px}.taxiReport023ASections h3,.taxiReport023AQueue h3,.taxiReport023ADossier h3{margin:0 0 10px}.taxiReport023ASections button{width:100%;display:flex;flex-direction:column;gap:5px;text-align:left;border:1px solid rgba(132,172,255,.14);border-radius:16px;background:rgba(24,34,60,.62);color:#e8eefc;padding:11px;margin-bottom:8px;cursor:pointer}.taxiReport023ASections button.active{border-color:#7aa2ff;background:rgba(51,78,135,.72)}.taxiReport023ASections span,.taxiReport023AQueue p,.taxiReport023AEmpty span{color:#9daacc;font-size:12px;line-height:1.45}
+.taxiReport023AQueueHead{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.taxiReport023AQueueHead button,.taxiReport023AActions button{border:0;border-radius:14px;background:#4f7cff;color:#fff;padding:10px 12px;font-weight:700;cursor:pointer}.taxiReport023AQueueHead button:disabled,.taxiReport023AActions button:disabled{opacity:.55;cursor:not-allowed}.taxiReport023AEmpty{display:flex;flex-direction:column;gap:8px;justify-content:center;min-height:330px;text-align:center;border:1px dashed rgba(132,172,255,.24);border-radius:18px;background:rgba(20,30,55,.48);padding:22px}.taxiReport023ARow{width:100%;text-align:left;border:1px solid rgba(132,172,255,.18);border-radius:16px;background:rgba(20,31,56,.74);color:#e8eefc;padding:12px;margin-bottom:8px}.taxiReport023ARow span,.taxiReport023ARow small{display:block;color:#aab7d9;margin-top:4px}
+.taxiReport023AMatrix{display:grid;gap:8px;margin:12px 0}.taxiReport023AMatrix span{border:1px solid rgba(91,201,143,.22);background:rgba(34,88,61,.22);color:#b8f4cd;border-radius:14px;padding:9px}.taxiReport023AActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.taxiReport023ALast,.taxiReport023APolicy{display:flex;flex-direction:column;gap:6px;border:1px solid rgba(132,172,255,.16);border-radius:16px;background:rgba(22,31,54,.62);padding:12px;margin-top:10px}.taxiReport023ALast span,.taxiReport023APolicy span{color:#aab7d9}.taxiReport023ALast code{color:#91e0ff;white-space:pre-wrap;word-break:break-word}
+
+
+/* TAXI-DRIVERS-CARS-024A-ONE-SCREEN-NO-FAKE-GLOBAL */
+.taxiDriversCars024A{display:flex;flex-direction:column;gap:18px;color:#e8eefc}
+.taxiDriversCars024AHero{display:flex;justify-content:space-between;gap:18px;padding:20px;border:1px solid rgba(122,162,255,.22);border-radius:24px;background:linear-gradient(135deg,rgba(28,38,64,.97),rgba(8,15,31,.98));box-shadow:0 22px 60px rgba(0,0,0,.22)}
+.taxiDriversCars024AHero h2{margin:4px 0 8px;font-size:28px}.taxiDriversCars024AHero p{margin:0;max-width:940px;color:#aab7d9;line-height:1.55}.taxiDriversCars024AHero span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9fb4ff}.taxiDriversCars024AReady{min-width:150px;text-align:center;padding:14px;border-radius:20px;background:rgba(38,50,86,.72);border:1px solid rgba(132,172,255,.18)}.taxiDriversCars024AReady strong{display:block;font-size:34px}.taxiDriversCars024AReady small{display:block;color:#94a3c7}
+.taxiDriversCars024AControls{display:grid;grid-template-columns:1.4fr 1fr 220px;gap:12px}.taxiDriversCars024AControls label,.taxiDriversCars024AWorld{border:1px solid rgba(122,162,255,.18);border-radius:18px;background:rgba(13,20,39,.9);padding:12px}.taxiDriversCars024AControls span,.taxiDriversCars024AWorld span{display:block;color:#9fb0d4;font-size:12px;margin-bottom:6px}.taxiDriversCars024AControls input,.taxiDriversCars024AControls select,.taxiDriversCars024AWorld input,.taxiDriversCars024AWorld select{width:100%;box-sizing:border-box;border:1px solid rgba(132,172,255,.22);border-radius:14px;background:#0a1020;color:#e8eefc;padding:10px 12px;outline:none}.taxiDriversCars024AControls button,.taxiDriversCars024AActions button{border:0;border-radius:14px;background:#4f7cff;color:#fff;padding:10px 12px;font-weight:700;cursor:pointer}.taxiDriversCars024AControls button:disabled,.taxiDriversCars024AActions button:disabled{opacity:.55;cursor:not-allowed}
+.taxiDriversCars024AWorld{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;align-items:end}.taxiDriversCars024AWorld strong{display:block;font-size:16px}.taxiDriversCars024AWorld small{color:#8290b1}
+.taxiDriversCars024AGrid{display:grid;grid-template-columns:300px minmax(420px,1fr) 360px;gap:14px;align-items:start}.taxiDriversCars024AList,.taxiDriversCars024ADossier,.taxiDriversCars024ACheck{border:1px solid rgba(122,162,255,.18);border-radius:22px;background:rgba(11,18,35,.94);padding:14px;min-height:600px}.taxiDriversCars024AListHead,.taxiDriversCars024ADossierHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.taxiDriversCars024AList h3,.taxiDriversCars024ADossier h3,.taxiDriversCars024ACheck h3{margin:0}.taxiDriversCars024AList button{width:100%;display:flex;flex-direction:column;gap:5px;text-align:left;border:1px solid rgba(132,172,255,.14);border-radius:16px;background:rgba(24,34,60,.62);color:#e8eefc;padding:11px;margin-bottom:8px;cursor:pointer}.taxiDriversCars024AList button.active{border-color:#7aa2ff;background:rgba(51,78,135,.72)}.taxiDriversCars024AList span,.taxiDriversCars024AList small,.taxiDriversCars024AEmpty span{color:#9daacc;font-size:12px;line-height:1.45}
+.taxiDriversCars024AEmpty{display:flex;flex-direction:column;gap:8px;justify-content:center;min-height:330px;text-align:center;border:1px dashed rgba(132,172,255,.24);border-radius:18px;background:rgba(20,30,55,.48);padding:22px}.taxiDriversCars024AEmpty.large{min-height:450px}.taxiDriversCars024ATwoColumns{display:grid;grid-template-columns:1fr 1fr;gap:12px}.taxiDriversCars024ATwoColumns section{border:1px solid rgba(132,172,255,.16);border-radius:18px;background:rgba(17,27,50,.72);padding:14px}.taxiDriversCars024ATwoColumns h4{margin:0 0 10px}.taxiDriversCars024ATwoColumns dl{display:grid;grid-template-columns:130px 1fr;gap:8px 10px;margin:0}.taxiDriversCars024ATwoColumns dt{color:#8fa2cc}.taxiDriversCars024ATwoColumns dd{margin:0;color:#eef4ff}
+.taxiDriversCars024AChecks{display:grid;gap:8px;margin:12px 0}.taxiDriversCars024AChecks span{border:1px solid rgba(91,201,143,.22);background:rgba(34,88,61,.22);color:#b8f4cd;border-radius:14px;padding:9px}.taxiDriversCars024AActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.taxiDriversCars024APolicy,.taxiDriversCars024ALast{display:flex;flex-direction:column;gap:6px;border:1px solid rgba(132,172,255,.16);border-radius:16px;background:rgba(22,31,54,.62);padding:12px;margin-top:10px}.taxiDriversCars024APolicy span,.taxiDriversCars024ALast span{color:#aab7d9}.taxiDriversCars024ALast code{color:#91e0ff;white-space:pre-wrap;word-break:break-word}
+
+
+/* TAXI-MANAGEMENT-025A-ADMIN-SCREEN-GLOBAL-NO-FAKE */
+.taxiManagement025A{display:flex;flex-direction:column;gap:18px;color:#e8eefc}.taxiManagement025AHero{display:flex;justify-content:space-between;gap:18px;padding:20px;border:1px solid rgba(122,162,255,.22);border-radius:24px;background:linear-gradient(135deg,rgba(28,38,64,.97),rgba(8,15,31,.98));box-shadow:0 22px 60px rgba(0,0,0,.22)}.taxiManagement025AHero h2{margin:4px 0 8px;font-size:28px}.taxiManagement025AHero p{margin:0;max-width:980px;color:#aab7d9;line-height:1.55}.taxiManagement025AHero span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9fb4ff}.taxiManagement025AReady{min-width:150px;text-align:center;padding:14px;border-radius:20px;background:rgba(38,50,86,.72);border:1px solid rgba(132,172,255,.18)}.taxiManagement025AReady strong{display:block;font-size:34px}.taxiManagement025AReady small{display:block;color:#94a3c7}.taxiManagement025AStatus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.taxiManagement025AStatus>div{border:1px solid rgba(122,162,255,.18);border-radius:18px;background:rgba(13,20,39,.9);padding:14px}.taxiManagement025AStatus span{display:block;color:#9fb0d4;font-size:12px}.taxiManagement025AStatus strong{display:block;margin:6px 0;color:#eef4ff;font-size:20px}.taxiManagement025AStatus small{color:#8290b1}.taxiManagement025AWorld{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;align-items:end;border:1px solid rgba(122,162,255,.18);border-radius:18px;background:rgba(13,20,39,.9);padding:12px}.taxiManagement025AWorld strong{display:block;font-size:16px}.taxiManagement025AWorld span{display:block;color:#9fb0d4;font-size:12px;margin:3px 0}.taxiManagement025AWorld small{color:#8290b1}.taxiManagement025AWorld input,.taxiManagement025AWorld select,.taxiManagement025AControls input,.taxiManagement025AGate textarea{width:100%;box-sizing:border-box;border:1px solid rgba(132,172,255,.22);border-radius:14px;background:#0a1020;color:#e8eefc;padding:10px 12px;outline:none}.taxiManagement025AGrid{display:grid;grid-template-columns:300px minmax(420px,1fr) 360px;gap:14px;align-items:start}.taxiManagement025ASections,.taxiManagement025AWorkspace,.taxiManagement025AGate{border:1px solid rgba(122,162,255,.18);border-radius:22px;background:rgba(11,18,35,.94);padding:14px;min-height:620px}.taxiManagement025ASections h3,.taxiManagement025AWorkspace h3,.taxiManagement025AGate h3{margin:0 0 10px}.taxiManagement025ASections button{width:100%;display:flex;flex-direction:column;gap:5px;text-align:left;border:1px solid rgba(132,172,255,.14);border-radius:16px;background:rgba(24,34,60,.62);color:#e8eefc;padding:11px;margin-bottom:8px;cursor:pointer}.taxiManagement025ASections button.active{border-color:#7aa2ff;background:rgba(51,78,135,.72)}.taxiManagement025ASections span,.taxiManagement025AEmpty span,.taxiManagement025APolicy span,.taxiManagement025ALast span{color:#9daacc;font-size:12px;line-height:1.45}.taxiManagement025AControls{display:grid;grid-template-columns:1fr 240px;gap:12px;margin-bottom:12px}.taxiManagement025AControls label,.taxiManagement025AGate label{display:flex;flex-direction:column;gap:6px;color:#9fb0d4;font-size:12px}.taxiManagement025AControls button,.taxiManagement025AActions button{border:0;border-radius:14px;background:#4f7cff;color:#fff;padding:10px 12px;font-weight:700;cursor:pointer}.taxiManagement025AControls button:disabled,.taxiManagement025AActions button:disabled{opacity:.55;cursor:not-allowed}.taxiManagement025AHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border:1px solid rgba(132,172,255,.14);border-radius:18px;background:rgba(24,34,60,.45);padding:12px;margin-bottom:12px}.taxiManagement025AHead p{margin:6px 0 0;color:#aab7d9}.taxiManagement025AHead strong{color:#b8f4cd;border:1px solid rgba(91,201,143,.26);border-radius:999px;padding:7px 10px;background:rgba(34,88,61,.18);white-space:nowrap}.taxiManagement025AEmpty{display:flex;flex-direction:column;gap:8px;justify-content:center;min-height:380px;text-align:center;border:1px dashed rgba(132,172,255,.24);border-radius:18px;background:rgba(20,30,55,.48);padding:22px}.taxiManagement025ARecord{border:1px solid rgba(132,172,255,.16);border-radius:16px;background:rgba(20,31,56,.74);padding:12px;margin-bottom:8px}.taxiManagement025ARecord span,.taxiManagement025ARecord small{display:block;color:#aab7d9;margin-top:4px}.taxiManagement025AChecks{display:grid;gap:8px;margin:12px 0}.taxiManagement025AChecks span{border:1px solid rgba(91,201,143,.22);background:rgba(34,88,61,.22);color:#b8f4cd;border-radius:14px;padding:9px}.taxiManagement025AGate textarea{min-height:116px;resize:vertical}.taxiManagement025AActions{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0}.taxiManagement025APolicy,.taxiManagement025ALast{display:flex;flex-direction:column;gap:6px;border:1px solid rgba(132,172,255,.16);border-radius:16px;background:rgba(22,31,54,.62);padding:12px;margin-top:10px}.taxiManagement025ALast code{color:#91e0ff;white-space:pre-wrap;word-break:break-word}@media(max-width:1300px){.taxiManagement025AGrid,.taxiManagement025AWorld,.taxiManagement025AStatus,.taxiManagement025AControls{grid-template-columns:1fr}.taxiManagement025AHero{flex-direction:column}}
+
+
+/* TAXI-ACCESS-026A-ADMIN-SCREEN */
+.taxiAccess026A{display:flex;flex-direction:column;gap:18px;padding:18px;border:1px solid rgba(148,163,184,.18);border-radius:28px;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(2,6,23,.98));color:#e5e7eb;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.taxiAccess026AHero,.taxiAccess026AStatus,.taxiAccess026AWorld,.taxiAccess026AGrid{border:1px solid rgba(148,163,184,.16);border-radius:24px;background:rgba(15,23,42,.72)}
+.taxiAccess026AHero{display:flex;justify-content:space-between;gap:16px;padding:20px;align-items:flex-start}.taxiAccess026AHero span,.taxiAccess026AHero p,.taxiAccess026AStatus small,.taxiAccess026AWorld small,.taxiAccess026ARecord small,.taxiAccess026APolicy small{color:#94a3b8}.taxiAccess026AHero h2{margin:6px 0;font-size:28px}.taxiAccess026AReady{min-width:150px;text-align:right}.taxiAccess026AReady strong{display:block;font-size:34px;color:#22c55e}.taxiAccess026AReady span{display:block;color:#e5e7eb}.taxiAccess026AStatus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px}.taxiAccess026AStatus div{border:1px solid rgba(148,163,184,.12);border-radius:18px;padding:14px;background:rgba(2,6,23,.36)}.taxiAccess026AStatus span,.taxiAccess026AStatus small{display:block}.taxiAccess026AStatus strong{display:block;margin:5px 0;font-size:22px;color:#f8fafc}.taxiAccess026AWorld{display:grid;grid-template-columns:1.4fr .8fr .9fr;gap:12px;align-items:center;padding:14px}.taxiAccess026AWorld strong,.taxiAccess026AWorld span,.taxiAccess026AWorld small{display:block}.taxiAccess026AWorld input,.taxiAccess026AWorld select,.taxiAccess026AControls input,.taxiAccess026AGate textarea{width:100%;border:1px solid rgba(148,163,184,.18);border-radius:14px;background:rgba(2,6,23,.62);color:#e5e7eb;padding:12px;box-sizing:border-box}.taxiAccess026AGrid{display:grid;grid-template-columns:300px minmax(360px,1fr) 330px;gap:14px;padding:14px}.taxiAccess026ARoles,.taxiAccess026AWorkspace,.taxiAccess026AGate{border:1px solid rgba(148,163,184,.14);border-radius:20px;background:rgba(2,6,23,.42);padding:14px}.taxiAccess026ARoles{display:flex;flex-direction:column;gap:8px}.taxiAccess026ARoles h3,.taxiAccess026AGate h3{margin:0 0 10px}.taxiAccess026ARoles button{border:1px solid rgba(148,163,184,.15);border-radius:16px;background:rgba(15,23,42,.65);color:#e5e7eb;text-align:left;padding:12px;cursor:pointer}.taxiAccess026ARoles button.active{border-color:rgba(34,197,94,.65);box-shadow:0 0 0 1px rgba(34,197,94,.2) inset;background:rgba(22,101,52,.16)}.taxiAccess026ARoles button strong,.taxiAccess026ARoles button span,.taxiAccess026ARoles button small{display:block}.taxiAccess026ARoles button span,.taxiAccess026ARoles button small{color:#94a3b8;margin-top:4px}.taxiAccess026AControls{display:grid;grid-template-columns:1fr 220px 190px;gap:10px;align-items:end}.taxiAccess026AControls label,.taxiAccess026AGate label{display:flex;flex-direction:column;gap:6px;color:#cbd5e1}.taxiAccess026AControls button,.taxiAccess026AActions button{border:0;border-radius:14px;background:#2563eb;color:white;font-weight:800;padding:12px;cursor:pointer}.taxiAccess026AControls button:disabled,.taxiAccess026AActions button:disabled{opacity:.45;cursor:not-allowed}.taxiAccess026AHead{display:flex;justify-content:space-between;gap:12px;margin:14px 0;padding:14px;border:1px solid rgba(148,163,184,.12);border-radius:18px;background:rgba(15,23,42,.5)}.taxiAccess026AHead h3{margin:0}.taxiAccess026AHead p{margin:4px 0 0;color:#94a3b8}.taxiAccess026AEmpty{border:1px dashed rgba(148,163,184,.3);border-radius:18px;padding:24px;background:rgba(15,23,42,.3);display:flex;flex-direction:column;gap:6px;color:#cbd5e1}.taxiAccess026ARecord{border:1px solid rgba(148,163,184,.14);border-radius:16px;padding:12px;background:rgba(15,23,42,.5);display:flex;flex-direction:column;gap:4px}.taxiAccess026AChecks{display:flex;flex-wrap:wrap;gap:8px}.taxiAccess026AChecks span{border:1px solid rgba(34,197,94,.25);background:rgba(22,101,52,.15);border-radius:999px;padding:8px 10px;color:#bbf7d0}.taxiAccess026AGate textarea{min-height:110px;resize:vertical}.taxiAccess026AActions{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}.taxiAccess026APolicy,.taxiAccess026ALast{display:flex;flex-direction:column;gap:5px;border:1px solid rgba(148,163,184,.14);border-radius:16px;padding:12px;background:rgba(15,23,42,.5);margin-top:10px}.taxiAccess026ALast code{white-space:normal;color:#93c5fd}
+@media (max-width:1200px){.taxiAccess026AGrid{grid-template-columns:1fr}.taxiAccess026AWorld,.taxiAccess026AControls,.taxiAccess026AStatus{grid-template-columns:1fr}.taxiAccess026AReady{text-align:left}}
+
+
+.taxiFinance027A{display:flex;flex-direction:column;gap:16px;padding:18px;border-radius:28px;background:linear-gradient(135deg,rgba(14,18,32,.96),rgba(5,8,18,.98));border:1px solid rgba(148,163,184,.16);color:#e5eefb;box-shadow:0 24px 80px rgba(0,0,0,.34)}
+.taxiFinance027AHero{display:flex;justify-content:space-between;gap:18px;padding:18px;border-radius:24px;background:radial-gradient(circle at top left,rgba(34,197,94,.22),rgba(15,23,42,.78));border:1px solid rgba(148,163,184,.14)}
+.taxiFinance027AHero h2{margin:4px 0 8px;font-size:28px}.taxiFinance027AHero p{margin:0;max-width:920px;color:#afbed4;line-height:1.45}.taxiFinance027AHero span{color:#86efac;font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:.08em}
+.taxiFinance027AReady{min-width:160px;display:flex;flex-direction:column;align-items:flex-end}.taxiFinance027AReady strong{font-size:42px;color:#bbf7d0}.taxiFinance027AReady span{color:#e2e8f0}.taxiFinance027AReady small{color:#94a3b8}
+.taxiFinance027AStatus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.taxiFinance027AStatus>div,.taxiFinance027AWorld,.taxiFinance027ARecord,.taxiFinance027AEmpty,.taxiFinance027AScale,.taxiFinance027AFormula,.taxiFinance027AGate{border-radius:20px;background:rgba(15,23,42,.72);border:1px solid rgba(148,163,184,.14);padding:14px}.taxiFinance027AStatus span,.taxiFinance027AStatus small{display:block;color:#94a3b8}.taxiFinance027AStatus strong{display:block;color:#f8fafc;font-size:19px;margin:3px 0}
+.taxiFinance027AWorld{display:grid;grid-template-columns:1fr minmax(200px,.35fr) minmax(220px,.35fr);gap:12px;align-items:center}.taxiFinance027AWorld strong{display:block}.taxiFinance027AWorld span,.taxiFinance027AWorld small{display:block;color:#94a3b8}.taxiFinance027AWorld input,.taxiFinance027AWorld select,.taxiFinance027AControls input,.taxiFinance027AControls select,.taxiFinance027AGate textarea{width:100%;border:1px solid rgba(148,163,184,.22);background:rgba(2,6,23,.6);color:#e5eefb;border-radius:14px;padding:11px 12px;outline:none}
+.taxiFinance027AGrid{display:grid;grid-template-columns:280px 1fr 320px;gap:14px;align-items:start}.taxiFinance027ASections{display:flex;flex-direction:column;gap:10px}.taxiFinance027ASections h3,.taxiFinance027AGate h3,.taxiFinance027AScale h3,.taxiFinance027AFormula h3{margin:0 0 8px}.taxiFinance027ASections button{border:1px solid rgba(148,163,184,.13);background:rgba(15,23,42,.72);color:#e5eefb;border-radius:18px;padding:12px;text-align:left;cursor:pointer}.taxiFinance027ASections button.active{border-color:rgba(34,197,94,.7);background:rgba(34,197,94,.13)}.taxiFinance027ASections strong,.taxiFinance027ASections span{display:block}.taxiFinance027ASections span{color:#94a3b8;font-size:12px;line-height:1.35;margin-top:3px}
+.taxiFinance027AWorkspace{display:flex;flex-direction:column;gap:12px}.taxiFinance027AControls{display:grid;grid-template-columns:1fr 1fr 150px 210px;gap:10px;align-items:end}.taxiFinance027AControls label span,.taxiFinance027AGate label span{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px}.taxiFinance027AControls button,.taxiFinance027AActions button{border:none;border-radius:14px;padding:12px 13px;font-weight:900;background:linear-gradient(135deg,#22c55e,#15803d);color:#04130a;cursor:pointer}.taxiFinance027AControls button:disabled,.taxiFinance027AActions button:disabled{opacity:.55;cursor:not-allowed}.taxiFinance027AHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;background:rgba(15,23,42,.56);border:1px solid rgba(148,163,184,.12)}.taxiFinance027AHead h3{margin:0 0 5px}.taxiFinance027AHead p{margin:0;color:#94a3b8}.taxiFinance027AHead strong{color:#bbf7d0}.taxiFinance027AEmpty strong,.taxiFinance027ARecord strong{display:block}.taxiFinance027AEmpty span,.taxiFinance027ARecord span,.taxiFinance027ARecord small{display:block;color:#94a3b8;margin-top:4px}
+.taxiFinance027AScale{display:grid;gap:8px}.taxiFinance027AScale div{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;padding:9px 10px;border-radius:14px;background:rgba(2,6,23,.38);border:1px solid rgba(148,163,184,.09)}.taxiFinance027AScale div strong{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(34,197,94,.16);color:#bbf7d0}.taxiFinance027AFormula{display:flex;flex-wrap:wrap;gap:8px}.taxiFinance027AFormula h3{flex-basis:100%}.taxiFinance027AFormula span{border-radius:999px;padding:8px 10px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.18);color:#dcfce7;font-size:12px}
+.taxiFinance027AGate{display:flex;flex-direction:column;gap:12px}.taxiFinance027AChecks{display:flex;flex-wrap:wrap;gap:7px}.taxiFinance027AChecks span{border-radius:999px;padding:7px 9px;background:rgba(15,23,42,.88);border:1px solid rgba(148,163,184,.14);color:#cbd5e1;font-size:12px}.taxiFinance027AActions{display:grid;grid-template-columns:1fr;gap:8px}.taxiFinance027APolicy{border-radius:16px;padding:12px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.16)}.taxiFinance027APolicy strong,.taxiFinance027APolicy span,.taxiFinance027APolicy small{display:block}.taxiFinance027APolicy span,.taxiFinance027APolicy small{color:#a7f3d0;margin-top:5px}.taxiFinance027ALast{border-radius:16px;padding:12px;background:rgba(2,6,23,.44);border:1px solid rgba(148,163,184,.12)}.taxiFinance027ALast span,.taxiFinance027ALast code{display:block;color:#94a3b8;margin-top:4px;word-break:break-all}
+@media (max-width:1180px){.taxiFinance027AGrid,.taxiFinance027AWorld{grid-template-columns:1fr}.taxiFinance027AStatus{grid-template-columns:repeat(2,minmax(0,1fr))}.taxiFinance027AControls{grid-template-columns:1fr 1fr}}@media (max-width:720px){.taxiFinance027AHero{flex-direction:column}.taxiFinance027AStatus,.taxiFinance027AControls{grid-template-columns:1fr}.taxiFinance027AReady{align-items:flex-start}}
+
+/* TAXI-ADMIN-RUNTIME-028H-ADMIN-UI-LIVE-COUNT-BINDING */
+.taxiRuntime028HBridge {
+  margin: 16px 0 18px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.82));
+  box-shadow: 0 18px 60px rgba(2, 6, 23, 0.25);
+}
+.taxiRuntime028HHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.taxiRuntime028HHead span {
+  display: inline-flex;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.94);
+}
+.taxiRuntime028HHead h2 {
+  margin: 4px 0;
+  font-size: 22px;
+  color: rgba(248, 250, 252, 0.98);
+}
+.taxiRuntime028HHead p {
+  margin: 0;
+  max-width: 780px;
+  color: rgba(203, 213, 225, 0.86);
+  line-height: 1.45;
+}
+.taxiRuntime028HHead button {
+  border: 0;
+  border-radius: 16px;
+  padding: 11px 14px;
+  color: rgba(15, 23, 42, 0.96);
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.98), rgba(34, 211, 238, 0.92));
+  font-weight: 800;
+  cursor: pointer;
+}
+.taxiRuntime028HHead button:disabled { opacity: 0.6; cursor: wait; }
+.taxiRuntime028HStatus,
+.taxiRuntime028HGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+}
+.taxiRuntime028HStatus > div,
+.taxiRuntime028HItem {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.64);
+}
+.taxiRuntime028HStatus span,
+.taxiRuntime028HItem span {
+  display: block;
+  font-size: 12px;
+  color: rgba(203, 213, 225, 0.72);
+}
+.taxiRuntime028HStatus strong,
+.taxiRuntime028HItem strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 20px;
+  color: rgba(248, 250, 252, 0.98);
+}
+.taxiRuntime028HStatus small,
+.taxiRuntime028HItem small {
+  display: block;
+  margin-top: 5px;
+  color: rgba(148, 163, 184, 0.78);
+  word-break: break-word;
+}
+.taxiRuntime028HGrid { margin-top: 10px; }
+
+.taxiRuntime028KReadModels {
+  margin: 14px 0;
+  padding: 16px;
+  border: 1px solid rgba(129, 140, 248, 0.24);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.88));
+  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.28);
+}
+.taxiRuntime028KHead,
+.taxiRuntime028KStatus,
+.taxiRuntime028KGrid {
+  display: grid;
+  gap: 12px;
+}
+.taxiRuntime028KHead {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+.taxiRuntime028KHead span {
+  display: inline-flex;
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.16);
+  color: #bfdbfe;
+  font-size: 11px;
+  letter-spacing: .04em;
+}
+.taxiRuntime028KHead h2 {
+  margin: 0;
+  color: #f8fafc;
+}
+.taxiRuntime028KHead p {
+  margin: 5px 0 0;
+  color: #cbd5e1;
+  max-width: 880px;
+}
+.taxiRuntime028KHead button {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.72);
+  color: #e0f2fe;
+  border-radius: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.taxiRuntime028KStatus {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 14px;
+}
+.taxiRuntime028KStatus > div,
+.taxiRuntime028KItem {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 16px;
+  background: rgba(2, 6, 23, 0.48);
+  padding: 12px;
+}
+.taxiRuntime028KStatus span,
+.taxiRuntime028KItem span {
+  display: block;
+  color: #94a3b8;
+  font-size: 12px;
+}
+.taxiRuntime028KStatus strong,
+.taxiRuntime028KItem strong {
+  display: block;
+  margin-top: 4px;
+  color: #f8fafc;
+  font-size: 20px;
+}
+.taxiRuntime028KStatus small,
+.taxiRuntime028KItem small,
+.taxiRuntime028KItem em {
+  display: block;
+  margin-top: 5px;
+  color: #bae6fd;
+  font-size: 11px;
+  font-style: normal;
+  word-break: break-word;
+}
+.taxiRuntime028KItem em {
+  color: #bbf7d0;
+}
+.taxiRuntime028KGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+}
+@media (max-width: 900px) {
+  .taxiRuntime028KHead,
+  .taxiRuntime028KStatus,
+  .taxiRuntime028KGrid {
+    grid-template-columns: 1fr;
+  }
+}

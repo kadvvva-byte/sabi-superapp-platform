@@ -1,0 +1,80 @@
+﻿# dependencies
+node_modules/
+**/node_modules/
+
+# env and API keys
+.env
+.env.*
+!.env.example
+google-services.json
+GoogleService-Info.plist
+firebase-web-config*.js
+*api-key*
+*apikey*
+*API_KEY*
+*ApiKey*
+
+# real secret/private key file extensions
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+# service account / credentials by explicit names
+*serviceAccount*.json
+*service-account*.json
+*firebase-adminsdk*.json
+*google-credentials*.json
+*gcloud-credentials*.json
+*credentials.local*.json
+*credential.local*.json
+
+# runtime/generated/local data
+.data/
+**/.data/
+var/
+**/var/
+reports/
+**/reports/
+uploads/
+**/uploads/
+mnt/
+**/mnt/
+.expo/
+.firebase/
+.patches/
+.ops-backups/
+
+# build/cache
+dist/
+build/
+web-build/
+coverage/
+.cache/
+.vite/
+
+# archives/backups/logs
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.log
+*.bak
+*.bak-*
+*.backup
+*.backup.*
+*.tmp
+*.temp
+*.old
+*.orig
+
+# local snapshots / generated packages
+FINAL-LOCKED-SABI-LIVE-288O/
+site-ui-approved-live-LOCKED-287N/
+.sabi-taxi-client-final/
+
+# local token helper folders only
+backend-admin-site/tools/firebase-token-getter-287B/
+**/firebase-token-getter-*/

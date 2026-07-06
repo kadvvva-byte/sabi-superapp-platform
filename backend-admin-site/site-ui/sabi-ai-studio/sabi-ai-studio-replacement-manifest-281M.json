@@ -1,0 +1,26 @@
+{
+  "createdAt": "2026-06-29T15:11:23.686Z",
+  "outputStage": "C:\\Users\\User\\Desktop\\superapp\\site-ui\\sabi-ai-studio-site-replacement-281M-proof-ready",
+  "validation": {
+    "replacementPackageCreated": true,
+    "studioModuleIndexRoutesToAuth": true,
+    "studioMainPreserved": true,
+    "authRegisterPresent": true,
+    "accountPresent": true,
+    "subscriptionPresent": true,
+    "emailCodeFlowPresent": true,
+    "googleOAuthWordingPresent": true,
+    "noGooglePasswordCollection": true,
+    "oldCreateSabiAccountRemoved": true,
+    "paymentLocked": true,
+    "noOldTopbarInApprovedScreens": true,
+    "backHomeOnApprovedScreens": true,
+    "copiedMissingRefsFromSource": 16,
+    "missingLocalRefs": 0,
+    "mobileStaticFindings": 0,
+    "stageBlockers": 0,
+    "stageWarnings": 7
+  },
+  "note": "Proof-ready replacement package. Replace only the Studio module on the already launched public site.",
+  "officialCompanyEmail": "admin@sabiai.app"
+}

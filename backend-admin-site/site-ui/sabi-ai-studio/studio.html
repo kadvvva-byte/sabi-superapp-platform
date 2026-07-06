@@ -1,0 +1,146 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sabi AI Studio</title>
+  <link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="./sabi-ai-studio-281L-mobile-safety.css?v=281L" />
+</head>
+<body>
+  <div id="app" class="app" data-mode="Auto" data-sidebar="open">
+    <aside id="sidebar" class="sidebar" aria-label="Sabi AI Studio navigation">
+      <div class="side-brand">
+        <button id="brandHome" class="side-logo" type="button" aria-label="Sabi AI Studio main">S</button>
+        <span class="side-title">SABI AI STUDIO</span>
+      </div>
+
+      <nav class="side-nav" aria-label="Main navigation">
+        <button id="newChat" class="nav-btn active" type="button"><span class="nav-ico plus" aria-hidden="true"></span><span>New chat</span></button>
+        <button id="projectsNav" class="nav-btn" type="button"><span class="nav-ico folder" aria-hidden="true"></span><span>Projects</span></button>
+        <button id="authNav" class="nav-btn" type="button"><span class="nav-ico user" aria-hidden="true"></span><span>Authorization</span></button>
+      </nav>
+
+      <section id="recentChats" class="recent-chats" aria-label="Recent chats" hidden>
+        <div class="recent-title">Recent chats</div>
+        <div id="recentChatList" class="recent-list"></div>
+      </section>
+
+      <button id="hideSidebar" class="hide-btn" type="button" aria-label="Hide sidebar" aria-expanded="true"><span>в‰Є</span><span>Hide sidebar</span></button>
+
+      <button id="profileBtn" class="profile" type="button" aria-label="Sabi AI owner profile">
+        <span class="profile-logo">S</span>
+        <span class="profile-copy"><strong>Sabi AI</strong><small>Owner</small></span>
+        <span class="profile-arrow">›</span>
+      </button>
+    </aside>
+
+    <button id="showSidebar" class="show-sidebar" type="button" aria-label="Show sidebar">›</button>
+
+    <main class="stage" aria-label="Sabi AI Studio main screen">
+      <div class="top-actions" aria-label="Sabi AI status controls">
+        <button id="statusBtn" class="status" type="button" aria-label="Sabi AI status"><span class="status-dot"></span><span>Sabi AI</span><span class="status-chev">вЊ„</span></button>
+        <button id="fullscreenBtn" class="fullscreen" type="button" aria-label="Fullscreen">⛶</button>
+      </div>
+
+      <section class="main-center" aria-label="Main composer area">
+        <div class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="brand-name">SABI AI STUDIO</span>
+        </div>
+        <h1>Create without limits.</h1>
+        <p class="subtitle">Your ideas. Our intelligence. Real results.</p>
+
+        <form id="composer" class="composer" autocomplete="off">
+          <div class="composer-row">
+            <div id="promptEditor" class="prompt-editor" role="textbox" aria-label="Prompt input" aria-multiline="true" contenteditable="true" data-placeholder="What would you like to create today?"></div>
+            <div class="composer-actions" aria-label="Input actions">
+              <button id="attachBtn" class="icon-btn" type="button" aria-label="Attach file">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 13.5 15.7 6.3a3 3 0 0 1 4.2 4.2l-9.2 9.2a5.1 5.1 0 0 1-7.2-7.2l9.7-9.7"/><path d="m9.7 14.3 7.4-7.4"/></svg>
+              </button>
+              <button id="micBtn" class="icon-btn" type="button" aria-label="Voice input">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 17v4"/><path d="M8.5 21h7"/></svg>
+              </button>
+              <button id="sendBtn" class="send-btn" type="submit" aria-label="Send prompt">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="mainAttachmentTray" class="attachment-tray" hidden></div>
+        </form>
+
+        <div class="mode-panel" role="tablist" aria-label="Creation modes">
+          <button class="mode active" type="button" data-mode="Auto" role="tab" aria-selected="true"><span class="mode-ico auto"></span><span>Auto</span></button>
+          <button class="mode" type="button" data-mode="Text" role="tab" aria-selected="false"><span class="mode-ico text"></span><span>Text</span></button>
+          <button class="mode" type="button" data-mode="Code" role="tab" aria-selected="false"><span class="mode-ico code"></span><span>Code</span></button>
+          <button class="mode" type="button" data-mode="Image" role="tab" aria-selected="false"><span class="mode-ico image"></span><span>Image</span></button>
+          <button class="mode" type="button" data-mode="Video" role="tab" aria-selected="false"><span class="mode-ico video"></span><span>Video</span></button>
+          <button class="mode" type="button" data-mode="File" role="tab" aria-selected="false"><span class="mode-ico file"></span><span>File</span></button>
+          <button class="mode" type="button" data-mode="Document" role="tab" aria-selected="false"><span class="mode-ico document"></span><span>Document</span></button>
+          <button class="mode" type="button" data-mode="Presentation" role="tab" aria-selected="false"><span class="mode-ico presentation"></span><span>Presentation</span></button>
+        </div>
+      </section>
+
+      <section id="chatScreen" class="chat-screen" aria-label="Sabi AI Studio chat screen" hidden>
+        <header class="chat-header">
+          <button id="chatBack" class="chat-back" type="button" aria-label="Back to main">←</button>
+          <h2 id="chatTitle">New chat</h2>
+        </header>
+
+        <div id="messageList" class="message-list" aria-label="Conversation messages"></div>
+
+        <form id="chatComposer" class="chat-composer" autocomplete="off">
+          <div id="chatAttachmentTray" class="attachment-tray chat-attachment-tray" aria-label="Attached files" hidden></div>
+          <textarea id="chatEditor" class="chat-editor" aria-label="Chat message input" rows="1" placeholder="Type your message..."></textarea>
+          <div class="chat-actions" aria-label="Chat input actions">
+            <button id="chatAttach" class="icon-btn" type="button" aria-label="Attach file">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 13.5 15.7 6.3a3 3 0 0 1 4.2 4.2l-9.2 9.2a5.1 5.1 0 0 1-7.2-7.2l9.7-9.7"/><path d="m9.7 14.3 7.4-7.4"/></svg>
+            </button>
+            <button id="chatMic" class="icon-btn" type="button" aria-label="Voice input">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 17v4"/><path d="M8.5 21h7"/></svg>
+            </button>
+            <button id="chatSend" class="send-btn" type="submit" aria-label="Send message">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+            </button>
+          </div>
+        </form>
+        <div class="sabi-disclaimer" aria-label="Sabi AI disclaimer">Sabi AI may make mistakes. We recommend checking important information.</div>
+      </section>
+    </main>
+
+    <input id="fileInput" type="file" accept="*/*" hidden multiple />
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="./sabi-ai-studio-281P-gemini-organism-bridge.js?v=281P"></script>
+  <script src="./sabi-ai-studio-281Q-final-gemini-organism-bridge.js?v=281Q"></script>
+  <script src="./sabi-ai-studio-281T-generation-capabilities-bridge.js?v=281T"></script>
+
+  <script src="./sabi-studio-generation-safe-router-w15b.js?v=W15B-20260702-195116"></script>
+<script src="./main-chat-v143B-safe-nonvisual-sync.js"></script>
+<script src="./main-visible-mojibake-clean-v154D.js"></script>
+<script src="./sabi-ai-studio-281O-superapp-admin-bridge.js?v=281O"></script>
+
+  <script src="/__/firebase/10.14.1/firebase-app-compat.js"></script>
+  <script src="/__/firebase/10.14.1/firebase-auth-compat.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+{
+  "name": "Sabi SuperApp — Sabi AI",
+  "short_name": "Sabi",
+  "start_url": "https://sabiai.app/",
+  "display": "standalone",
+  "background_color": "#efe6d2",
+  "theme_color": "#102b60",
+  "lang": "ru",
+  "description": "Официальная витрина Sabi SuperApp и SABI AI TECHNOLOGIES LIMITED."
+}

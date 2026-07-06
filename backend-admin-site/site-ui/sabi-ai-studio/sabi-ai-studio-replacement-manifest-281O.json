@@ -1,0 +1,31 @@
+{
+  "createdAt": "2026-06-29T15:22:33.116Z",
+  "outputStage": "C:\\Users\\User\\Desktop\\superapp\\site-ui\\sabi-ai-studio-site-replacement-281O-superapp-admin-ready",
+  "validation": {
+    "publicSiteRootUntouched": true,
+    "sourceApprovedScreensUnchanged": true,
+    "replacementPackageCreated": true,
+    "studioModuleIndexRoutesToAuth": true,
+    "studioMainPreserved": true,
+    "authRegisterPresent": true,
+    "accountPresent": true,
+    "subscriptionPresent": true,
+    "superAppAdminContractPresent": true,
+    "wellKnownContractPresent": true,
+    "bridgeLinkedAllMajorPages": true,
+    "emailCodeFlowPresent": true,
+    "googleOAuthWordingPresent": true,
+    "noGooglePasswordCollection": true,
+    "oldCreateSabiAccountRemoved": true,
+    "paymentLocked": true,
+    "backendProviderLocksPreserved": true,
+    "noOldTopbarInApprovedScreens": true,
+    "backHomeOnApprovedScreens": true,
+    "missingLocalRefs": 0,
+    "mobileStaticFindings": 0,
+    "stageBlockers": 0,
+    "stageWarnings": 0
+  },
+  "note": "Studio replacement package with SuperApp/Admin integration foundation. Replace only Studio module on the already launched public site.",
+  "officialCompanyEmail": "admin@sabiai.app"
+}

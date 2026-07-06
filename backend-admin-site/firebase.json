@@ -1,0 +1,31 @@
+﻿{
+  "hosting": {
+    "site": "sabi-official-prod-37629",
+    "public": "site-ui-approved-live-LOCKED-287N",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.bak",
+      "**/*.zip",
+      "**/*.log",
+      "**/*backup*/**",
+      "**/*rollback*/**",
+      "**/*quarantine*/**",
+      "**/*before*/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}

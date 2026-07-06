@@ -1,0 +1,23 @@
+﻿.sabi-studio-launch-w14{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-height:48px;
+  padding:0 18px;
+  border:1px solid rgba(154,202,255,.38);
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(28,79,191,.92),rgba(31,205,255,.82));
+  color:#fff;
+  text-decoration:none;
+  font:800 14px/1.1 Inter,Arial,sans-serif;
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
+  backdrop-filter:blur(14px);
+}
+.sabi-studio-launch-w14:hover{transform:translateY(-1px)}
+@media(max-width:720px){
+  .sabi-studio-launch-w14{right:12px;bottom:12px;left:12px;justify-content:center}
+}

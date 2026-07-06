@@ -1,0 +1,19 @@
+{
+  "futureScreen": "Admin / Sabi AI Studio / Gemini Control",
+  "ownerRole": "OWNER_ROOT_ADMIN",
+  "allowedNow": [
+    "read contract",
+    "verify provider lock",
+    "verify route health",
+    "verify no browser API key",
+    "verify Studio package version"
+  ],
+  "enabledLaterAfterApproval": [
+    "Gemini API key status",
+    "Gemini health smoke",
+    "chat audit report",
+    "daily Sabi AI Owner report",
+    "risk and violation report"
+  ],
+  "officialCompanyEmail": "admin@sabiai.app"
+}

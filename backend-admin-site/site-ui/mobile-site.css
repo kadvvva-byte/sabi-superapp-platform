@@ -1,0 +1,127 @@
+/* SABI-SITE-266Z mobile-first and PC-version toggle */
+:root {
+  --sabi-mobile-safe-top: env(safe-area-inset-top, 0px);
+  --sabi-mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.sabi-view-switch {
+  position: fixed;
+  z-index: 99999;
+  right: 12px;
+  bottom: calc(12px + var(--sabi-mobile-safe-bottom));
+  display: none;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(202, 220, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(5, 8, 20, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.32);
+}
+
+.sabi-view-switch button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 12px;
+  background: transparent;
+  color: rgba(246,248,255,.72);
+  font: 700 12px/1 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-sabi-view="mobile"] .sabi-view-switch button[data-sabi-view="mobile"],
+html[data-sabi-view="desktop"] .sabi-view-switch button[data-sabi-view="desktop"] {
+  color: #04101d;
+  background: linear-gradient(135deg, #73a7ff, #66f0c2);
+}
+
+@media (max-width: 820px) {
+  html:not([data-sabi-view="desktop"]) {
+    font-size: 15px;
+  }
+
+  html:not([data-sabi-view="desktop"]) .sabi-view-switch {
+    display: inline-flex;
+  }
+
+  html:not([data-sabi-view="desktop"]) body {
+    min-width: 0 !important;
+  }
+
+  html:not([data-sabi-view="desktop"]) main,
+  html:not([data-sabi-view="desktop"]) section,
+  html:not([data-sabi-view="desktop"]) header,
+  html:not([data-sabi-view="desktop"]) footer {
+    max-width: 100vw;
+  }
+
+  html:not([data-sabi-view="desktop"]) [class*="grid"],
+  html:not([data-sabi-view="desktop"]) [class*="cards"],
+  html:not([data-sabi-view="desktop"]) [class*="columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  html:not([data-sabi-view="desktop"]) h1 {
+    font-size: clamp(34px, 11vw, 58px) !important;
+    line-height: .96 !important;
+  }
+
+  html:not([data-sabi-view="desktop"]) h2 {
+    font-size: clamp(26px, 8vw, 42px) !important;
+    line-height: 1.04 !important;
+  }
+
+  html:not([data-sabi-view="desktop"]) p,
+  html:not([data-sabi-view="desktop"]) li {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+
+  html:not([data-sabi-view="desktop"]) a,
+  html:not([data-sabi-view="desktop"]) button {
+    min-height: 44px;
+  }
+}
+
+html[data-sabi-view="desktop"] {
+  min-width: 1180px;
+}
+
+html[data-sabi-view="desktop"] body {
+  min-width: 1180px;
+}
+
+html[data-sabi-view="desktop"] .sabi-view-switch {
+  display: inline-flex;
+}
+
+
+/* SABI-SITE-266Z-FIX1-MOBILE-SEARCH */
+@media (max-width: 820px) {
+  html:not([data-sabi-view="desktop"]) .sabi-view-switch {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  html:not([data-sabi-view="desktop"]) .sabi-view-switch button {
+    white-space: nowrap;
+  }
+}
+
+html[data-sabi-view="mobile"] {
+  scroll-padding-top: calc(12px + env(safe-area-inset-top, 0px));
+}

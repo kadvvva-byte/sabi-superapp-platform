@@ -1,0 +1,137 @@
+﻿/* v156E Premium strengthening for Profile Settings/Help center screens. */
+.sabi156d-screen.sabi156e-premium {
+  width: min(860px, calc(100vw - 32px));
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(86,190,255,.22), transparent 34%),
+    radial-gradient(circle at 85% 18%, rgba(75,114,255,.18), transparent 38%),
+    linear-gradient(180deg, rgba(9,25,57,.985), rgba(2,9,24,.99));
+  border-color: rgba(148,207,255,.42);
+  box-shadow:
+    0 36px 110px rgba(0,0,0,.68),
+    0 0 58px rgba(42,142,255,.25),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+.sabi156e-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+.sabi156e-hero-title {
+  font-size: 15px;
+  font-weight: 950;
+  color: #ffffff;
+}
+.sabi156e-hero-sub {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(221,237,255,.74);
+}
+.sabi156e-pill {
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(210,239,255,.92);
+  background: rgba(54,151,255,.12);
+  border: 1px solid rgba(124,199,255,.24);
+  white-space: nowrap;
+}
+.sabi156e-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sabi156e-status {
+  min-width: 0;
+  border-radius: 18px;
+  padding: 12px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.075);
+}
+.sabi156e-status b {
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,.94);
+  margin-bottom: 5px;
+}
+.sabi156e-status span {
+  display: block;
+  font-size: 10px;
+  line-height: 1.35;
+  color: rgba(220,236,255,.68);
+}
+.sabi156e-status.ok {
+  border-color: rgba(114,255,195,.18);
+  background: rgba(58,255,181,.055);
+}
+.sabi156e-status.locked {
+  border-color: rgba(255,210,122,.18);
+  background: rgba(255,190,80,.06);
+}
+.sabi156e-actionbar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.sabi156e-action {
+  min-width: 0;
+  height: 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(126,192,255,.25);
+  background: linear-gradient(180deg, rgba(66,154,255,.16), rgba(20,72,160,.13));
+  color: rgba(246,251,255,.96);
+  font-size: 12px;
+  font-weight: 950;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sabi156e-action:hover {
+  border-color: rgba(137,207,255,.52);
+  background: linear-gradient(180deg, rgba(66,154,255,.25), rgba(20,72,160,.18));
+}
+.sabi156e-action.secondary {
+  background: rgba(255,255,255,.055);
+}
+.sabi156e-note {
+  margin-top: 12px;
+  border-radius: 16px;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(240,247,255,.78);
+  background: rgba(7,18,39,.48);
+  border: 1px solid rgba(255,255,255,.07);
+}
+@media (max-width: 720px) {
+  .sabi156d-screen.sabi156e-premium {
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+    border-radius: 24px;
+  }
+  .sabi156e-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sabi156e-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sabi156e-actionbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 360px) {
+  .sabi156e-status-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

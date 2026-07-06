@@ -1,0 +1,18 @@
+{
+  "module": "sabi-ai-studio",
+  "version": "281Q",
+  "organismMode": "Sabi AI controls Gemini through same-origin backend proxy",
+  "mountPathRecommended": "/sabi-ai-studio/",
+  "chatEndpoint": "/api/sabi-ai/studio/gemini/chat",
+  "healthEndpoint": "/api/sabi-ai/studio/gemini/health",
+  "adminStatusEndpoint": "/api/sabi/admin/studio/gemini/status",
+  "safety": {
+    "browserGeminiApiKeyAllowed": false,
+    "directBrowserGoogleAIAllowed": false,
+    "geminiLiveEnabled": false,
+    "backendProxyRequired": true,
+    "ownerPolicyRequired": true,
+    "auditRequired": true
+  },
+  "officialCompanyEmail": "admin@sabiai.app"
+}

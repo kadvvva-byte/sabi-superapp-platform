@@ -1,0 +1,125 @@
+# Dependencies
+node_modules/
+
+# Expo / Metro generated files
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.metro-health-check*
+
+# Build outputs and local generated artifacts
+build/
+coverage/
+*.tsbuildinfo
+
+# Native build cache only
+.kotlin/
+.gradle/
+.cxx/
+
+# Logs / crash dumps
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+hs_err_pid*.log
+replay_pid*.log
+
+# macOS / editor
+.DS_Store
+.idea/
+*.iml
+
+# Secrets / local environment / signing keys
+.env
+.env.*
+*.env
+*.pem
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.mobileprovision
+fcm-service-account.json
+android-keys/
+
+# Archives and temporary backups
+*.zip
+*.bak
+*.tmp
+*.orig.*
+*backup*/
+*BACKUP*/
+
+# Keep real project/source files visible to Git:
+# - android/ and ios/ are NOT ignored
+# - modules/**/android and modules/**/ios are NOT ignored
+# - .txt, .md, .ps1, .cjs are NOT globally ignored
+
+# Local/generated folders - do not commit
+android/
+ios/
+backend/
+public/
+docs/
+tools/
+scripts/
+patches/
+.vscode/
+
+# Local repair / backup files
+*.bak
+*.bak-*
+*.log
+README.md
+README_*.txt
+REMOVED_FILES_MANIFEST.txt
+SABI_REPAIR_README_RU.txt
+src/README.txt
+src/modules/**/README.md
+src/modules/**/README.txt
+# Local/runtime/generated excludes
+node_modules/
+.expo/
+dist/
+build/
+web-build/
+coverage/
+reports/
+mnt/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# OS/logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Generated owner local packages / reports
+.sabi-taxi-client-final/
+reports/
+mnt/
+
+# Sabi platform unified baseline override:
+# keep Android native source, exclude generated builds and signing secrets.
+!android/
+!android/**
+
+android/**/.gradle/
+android/**/build/
+android/**/.cxx/
+android/**/captures/
+android/**/*.apk
+android/**/*.aab
+android/**/*.keystore
+android/**/*.jks
+android/**/*.p12
+android/**/google-services.json

@@ -1,0 +1,121 @@
+﻿{
+    "files":  {
+                  "studioHtmlExists":  true,
+                  "appJsExists":  true,
+                  "studioHtmlBytes":  8386,
+                  "appJsBytes":  377814
+              },
+    "realDomIds":  {
+                       "newChat":  1,
+                       "projectsNav":  1,
+                       "chatScreen":  1,
+                       "chatComposer":  1,
+                       "chatEditor":  1,
+                       "chatSend":  1,
+                       "chatAttach":  1,
+                       "chatMic":  1,
+                       "authNav":  1,
+                       "authModal":  0,
+                       "signIn":  0,
+                       "createAccount":  0,
+                       "googleText":  0
+                   },
+    "appLogic":  {
+                     "appUsesNewChat":  true,
+                     "appUsesChatScreen":  true,
+                     "appUsesChatEditor":  true,
+                     "appUsesFirebaseAuth":  false,
+                     "appUsesAuthModal":  true,
+                     "appHasRouteFunction":  true
+                 },
+    "scripts":  [
+                    "./sabi-ai-studio-281P-gemini-organism-bridge.js?v=281P",
+                    "./sabi-ai-studio-281Q-final-gemini-organism-bridge.js?v=281Q",
+                    "./sabi-ai-studio-281T-generation-capabilities-bridge.js?v=281T",
+                    "./sabi-studio-generation-safe-router-w15b.js?v=W15B-20260702-195116",
+                    "./app.js",
+                    "./main-chat-v143B-safe-nonvisual-sync.js",
+                    "./main-visible-mojibake-clean-v154D.js",
+                    "./sabi-ai-studio-281O-superapp-admin-bridge.js?v=281O",
+                    "/__/firebase/10.14.1/firebase-app-compat.js",
+                    "/__/firebase/10.14.1/firebase-auth-compat.js",
+                    "/__/firebase/init.js"
+                ],
+    "styles":  [
+                   "./styles.css",
+                   "./sabi-ai-studio-281L-mobile-safety.css?v=281L"
+               ],
+    "authButtons":  {
+                        "tag":  "button",
+                        "id":  "authNav",
+                        "class":  "nav-btn",
+                        "text":  "Authorization"
+                    },
+    "chatButtons":  [
+                        {
+                            "tag":  "button",
+                            "id":  "newChat",
+                            "class":  "nav-btn active",
+                            "text":  "New chat"
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "projectsNav",
+                            "class":  "nav-btn",
+                            "text":  "Projects"
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "attachBtn",
+                            "class":  "icon-btn",
+                            "text":  ""
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "micBtn",
+                            "class":  "icon-btn",
+                            "text":  ""
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "sendBtn",
+                            "class":  "send-btn",
+                            "text":  ""
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "chatBack",
+                            "class":  "chat-back",
+                            "text":  "←"
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "chatAttach",
+                            "class":  "icon-btn",
+                            "text":  ""
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "chatMic",
+                            "class":  "icon-btn",
+                            "text":  ""
+                        },
+                        {
+                            "tag":  "button",
+                            "id":  "chatSend",
+                            "class":  "send-btn",
+                            "text":  ""
+                        }
+                    ],
+    "suspiciousPatchLayersLeft":  {
+                                      "auth013":  false,
+                                      "auth014":  false,
+                                      "auth015":  false,
+                                      "auth016":  false,
+                                      "auth017":  false,
+                                      "clean018":  false,
+                                      "chat010":  false,
+                                      "chat011":  false,
+                                      "auth009":  false
+                                  }
+}

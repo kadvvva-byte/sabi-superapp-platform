@@ -1,0 +1,2803 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//////////////////////////////////////////////////////
+// USERS
+//////////////////////////////////////////////////////
+
+model User {
+  id String @id @default(uuid())
+
+  email    String  @unique
+  phone    String? @unique
+  username String? @unique
+  password String
+
+  displayName     String  @default("")
+  avatarUrl       String?
+  bio             String?
+  isPublicProfile Boolean @default(true)
+
+  role Role
+
+  pushToken String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  messages     Message[]
+  reactions    MessageReaction[]
+  stories      Story[]
+  tokens       RefreshToken[]
+  authAccounts AuthAccount[]
+
+  wallets Wallet[]
+  qrs     Qr[]
+
+  businessWallets BusinessWallet[] @relation("BusinessWalletOwner")
+  merchantWallets MerchantWallet[] @relation("MerchantWalletOwner")
+
+  sentP2PTransfers     P2PTransfer[] @relation("P2PTransferSender")
+  receivedP2PTransfers P2PTransfer[] @relation("P2PTransferRecipient")
+
+  coinDeposits       CoinDeposit[]
+  coinCreditRequests CoinCreditRequest[]
+  walletOperations   WalletOperation[] @relation("WalletOperationOwner")
+
+  chats ChatMember[]
+
+  payments Payment[]
+
+  presences               Presence?
+  Product                 Product[]
+  Order                   Order[]
+  AIConversation          AIConversation[]
+  aiSessions              AISession[]
+  aiConsent               AIConsent?
+  aiConsentEvents         AIConsentEvent[]
+  aiMemoryEntries         AIMemoryEntry[]
+  aiWorkspaceConnections  AIWorkspaceConnection[]
+  aiTasks                 AITask[]
+  aiUsageEvents           AIUsageEvent[]
+
+  initiatedSabiCallSessions SabiCallSession[]     @relation("SabiCallSessionInitiator")
+  sabiCallParticipations    SabiCallParticipant[] @relation("SabiCallParticipantUser")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+//////////////////////////////////////////////////////
+// AUTH
+//////////////////////////////////////////////////////
+
+model RefreshToken {
+  id String @id @default(uuid())
+
+  tokenHash String @unique
+
+  userId String
+
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model AuthAccount {
+  id String @id @default(uuid())
+
+  userId String?
+
+  email    String? @unique
+  phone    String? @unique
+  username String? @unique
+
+  passwordHash String
+  passwordSalt String?
+
+  provider          String  @default("local")
+  providerAccountId String?
+
+  status String @default("active")
+
+  emailVerified Boolean @default(false)
+  phoneVerified Boolean @default(false)
+
+  lastLoginAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([provider])
+}
+
+//////////////////////////////////////////////////////
+// CHAT SYSTEM
+//////////////////////////////////////////////////////
+
+model Chat {
+  id String @id @default(uuid())
+
+  type ChatType
+
+  title     String?
+  avatarUrl String?
+
+  createdBy String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members  ChatMember[]
+  messages Message[]
+
+  pinnedMessages PinnedMessage[]
+
+  invites ChatInvite[]
+
+  stories Story[]
+
+  settings ChatUserSettings[]
+
+  @@index([type])
+}
+
+enum ChatType {
+  PRIVATE
+  GROUP
+  CHANNEL
+}
+
+//////////////////////////////////////////////////////
+// CHAT MEMBERS
+//////////////////////////////////////////////////////
+
+model ChatMember {
+  id String @id @default(uuid())
+
+  chatId String
+  userId String
+
+  role ChatRole @default(MEMBER)
+
+  mutedUntil DateTime?
+  isArchived Boolean   @default(false)
+
+  joinedAt DateTime @default(now())
+
+  chat Chat @relation(fields: [chatId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([chatId, userId])
+}
+
+enum ChatRole {
+  OWNER
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+
+//////////////////////////////////////////////////////
+// CHAT INVITES
+//////////////////////////////////////////////////////
+
+model ChatInvite {
+  id String @id @default(uuid())
+
+  chatId String
+
+  code String @unique
+
+  createdBy String
+
+  usageLimit Int?
+  usedCount  Int  @default(0)
+
+  expiresAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  chat Chat @relation(fields: [chatId], references: [id])
+}
+
+model ChatUserSettings {
+  id String @id @default(uuid())
+
+  chatId String
+  userId String
+
+  muted    Boolean @default(false)
+  archived Boolean @default(false)
+  pinned   Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  chat Chat @relation(fields: [chatId], references: [id])
+
+  @@unique([chatId, userId])
+}
+
+model ChatFolder {
+  id     String @id @default(uuid())
+  userId String
+  name   String
+
+  createdAt DateTime @default(now())
+
+  chats ChatFolderItem[]
+}
+
+model ChatFolderItem {
+  id       String @id @default(uuid())
+  folderId String
+  chatId   String
+
+  folder ChatFolder @relation(fields: [folderId], references: [id])
+
+  @@unique([folderId, chatId])
+}
+
+//////////////////////////////////////////////////////
+// MESSAGE
+//////////////////////////////////////////////////////
+
+model Message {
+  id String @id @default(uuid())
+
+  chatId String
+  userId String
+
+  type MessageType @default(TEXT)
+
+  content String?
+
+  mediaUrl  String?
+  mediaType MediaType?
+
+  fileName String?
+  fileSize Int?
+
+  latitude  Float?
+  longitude Float?
+
+  transactionId     String?
+  paymentId         String?
+  p2pTransferId     String?
+  qrOperationId     String?
+  walletOperationId String?
+
+  replyToMessageId String?
+  replyToMessage   Message?  @relation("MessageReply", fields: [replyToMessageId], references: [id])
+  replies          Message[] @relation("MessageReply")
+
+  forwardedFromMessageId String?
+  forwardedFromMessage   Message?  @relation("MessageForward", fields: [forwardedFromMessageId], references: [id])
+  forwardedMessages      Message[] @relation("MessageForward")
+
+  reactions MessageReaction[]
+
+  deliveredAt DateTime?
+  readAt      DateTime?
+
+  editedAt DateTime?
+
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  chat Chat @relation(fields: [chatId], references: [id])
+
+  transaction     Transaction?     @relation(fields: [transactionId], references: [id])
+  payment         Payment?         @relation("MessagePayment", fields: [paymentId], references: [id])
+  p2pTransfer     P2PTransfer?     @relation("MessageP2PTransfer", fields: [p2pTransferId], references: [id])
+  qrOperation     QrOperation?     @relation("MessageQrOperation", fields: [qrOperationId], references: [id])
+  walletOperation WalletOperation? @relation("MessageWalletOperation", fields: [walletOperationId], references: [id])
+
+  @@index([chatId, createdAt])
+  @@index([replyToMessageId])
+  @@index([transactionId])
+  @@index([paymentId])
+  @@index([p2pTransferId])
+  @@index([qrOperationId])
+  @@index([walletOperationId])
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  VIDEO
+  VOICE
+  FILE
+  LOCATION
+  MONEY
+  QR
+  PAYMENT_REQUEST
+  SYSTEM
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  FILE
+  VOICE
+}
+
+//////////////////////////////////////////////////////
+// MESSAGE REACTIONS
+//////////////////////////////////////////////////////
+
+model MessageReaction {
+  id String @id @default(uuid())
+
+  messageId String
+  userId    String
+
+  reaction String
+
+  createdAt DateTime @default(now())
+
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([messageId, userId])
+}
+
+//////////////////////////////////////////////////////
+// PINNED
+//////////////////////////////////////////////////////
+
+model PinnedMessage {
+  id String @id @default(uuid())
+
+  chatId    String
+  messageId String
+
+  pinnedBy String
+
+  createdAt DateTime @default(now())
+
+  chat Chat @relation(fields: [chatId], references: [id])
+}
+
+//////////////////////////////////////////////////////
+// STORIES
+//////////////////////////////////////////////////////
+
+model Story {
+  id     String @id @default(uuid())
+  userId String
+
+  mediaUrl String?
+  text     String?
+
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  views  StoryView[]
+  User   User        @relation(fields: [userId], references: [id])
+  Chat   Chat?       @relation(fields: [chatId], references: [id])
+  chatId String?
+}
+
+model StoryView {
+  id String @id @default(uuid())
+
+  storyId  String
+  viewerId String
+
+  viewedAt DateTime @default(now())
+
+  story Story @relation(fields: [storyId], references: [id])
+
+  @@unique([storyId, viewerId])
+}
+
+//////////////////////////////////////////////////////
+// PRESENCE
+//////////////////////////////////////////////////////
+
+model Presence {
+  userId String @id
+
+  status PresenceStatus
+
+  lastSeen DateTime
+
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum PresenceStatus {
+  ONLINE
+  OFFLINE
+}
+
+//////////////////////////////////////////////////////
+// MARKETPLACE
+//////////////////////////////////////////////////////
+
+model Product {
+  id String @id @default(uuid())
+
+  sellerId String
+
+  title       String
+  description String?
+
+  price Decimal @db.Decimal(20, 6)
+
+  currency String
+
+  stock Int
+
+  createdAt DateTime @default(now())
+
+  seller    User        @relation(fields: [sellerId], references: [id])
+  OrderItem OrderItem[]
+}
+
+model Order {
+  id String @id @default(uuid())
+
+  buyerId String
+
+  status OrderStatus
+
+  total Decimal @db.Decimal(20, 6)
+
+  createdAt DateTime @default(now())
+
+  buyer User @relation(fields: [buyerId], references: [id])
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id String @id @default(uuid())
+
+  orderId   String
+  productId String
+
+  quantity Int
+  price    Decimal @db.Decimal(20, 6)
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+enum OrderStatus {
+  CREATED
+  PAID
+  SHIPPED
+  COMPLETED
+  CANCELLED
+}
+
+//////////////////////////////////////////////////////
+// AI SYSTEM
+//////////////////////////////////////////////////////
+
+model AIConversation {
+  id String @id @default(uuid())
+
+  userId String
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  messages AIMessage[]
+}
+
+model AIMessage {
+  id String @id @default(uuid())
+
+  conversationId String
+
+  role AIRole
+
+  content String
+
+  createdAt DateTime @default(now())
+
+  conversation AIConversation @relation(fields: [conversationId], references: [id])
+}
+
+enum AIRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+model AISession {
+  id String @id @default(uuid())
+
+  userId           String
+  mode             AIRuntimeMode @default(PERSONAL)
+  locale           String        @default("ru")
+  workspaceEnabled Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  lastActiveAt     DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, mode])
+}
+
+model AIConsent {
+  id String @id @default(uuid())
+
+  userId                String  @unique
+  allowInternetSearch   Boolean @default(true)
+  allowMemoryWrite      Boolean @default(false)
+  allowWorkspaceBilling Boolean @default(false)
+  allowProfileLearning  Boolean @default(false)
+  allowFileRead         Boolean @default(true)
+  allowWriteActions     Boolean @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model AIConsentEvent {
+  id String @id @default(uuid())
+
+  userId   String
+  scope    AIConsentScope
+  allowed  Boolean @default(false)
+  reason   String
+  createdAt DateTime @default(now())
+  metadata Json?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, scope])
+}
+
+model AIMemoryEntry {
+  id String @id @default(uuid())
+
+  userId          String
+  key             String
+  kind            AIMemoryKind   @default(CUSTOM)
+  value           Json
+  confirmedByUser Boolean        @default(false)
+  source          AIMemorySource @default(USER_SAVED)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, kind])
+}
+
+model AIWorkspaceConnection {
+  id String @id @default(uuid())
+
+  userId    String
+  kind      AIConnectionKind
+  label     String
+  enabled   Boolean @default(true)
+  config    Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, kind])
+}
+
+model AITask {
+  id String @id @default(uuid())
+
+  userId               String
+  title                String
+  mode                 AIRuntimeMode @default(PERSONAL)
+  functionKey          AIFunctionKey
+  status               AITaskStatus  @default(DRAFT)
+  coinPrice            Int           @default(0)
+  requiresConfirmation Boolean       @default(true)
+  input                Json?
+  output               Json?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+}
+
+model AIUsageEvent {
+  id String @id @default(uuid())
+
+  userId     String
+  featureKey String
+  coinAmount Int    @default(0)
+  status     String @default("preview")
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, featureKey])
+}
+
+enum AIRuntimeMode {
+  PERSONAL
+  BUSINESS
+  EDUCATION
+}
+
+enum AIMemoryKind {
+  PREFERENCE
+  BUSINESS_CONTEXT
+  STUDY_CONTEXT
+  CUSTOM
+}
+
+enum AIMemorySource {
+  ASSISTANT_SUGGESTION
+  USER_SAVED
+  IMPORTED
+}
+
+enum AIConnectionKind {
+  WALLET
+  BUSINESS_WALLET
+  MESSENGER
+  NOTIFICATIONS
+  PROFILE
+  WEB_SEARCH_GATEWAY
+  TRANSLATION_GATEWAY
+  FILE_STORE
+  MEDIA_PLAYER
+}
+
+enum AITaskStatus {
+  DRAFT
+  QUEUED
+  WAITING_CONFIRMATION
+  COMPLETED
+  BLOCKED
+  CANCELLED
+}
+
+enum AIConsentScope {
+  INTERNET_SEARCH
+  MEMORY_WRITE
+  WORKSPACE_BILLING
+  PROFILE_LEARNING
+  FILE_READ
+  WRITE_ACTION
+}
+
+enum AIFunctionKey {
+  CHAT
+  WEB_SEARCH
+  IMAGE_SEARCH
+  VIDEO_SEARCH
+  MUSIC_SEARCH
+  FILE_SEARCH
+  STUDY_ASSISTANT
+  BUSINESS_ASSISTANT
+  TRANSLATION_TEXT
+  TRANSLATION_AUDIO
+  TRANSLATION_VIDEO
+  TRANSLATION_CALL
+}
+
+//////////////////////////////////////////////////////
+// WALLET
+//////////////////////////////////////////////////////
+
+model Wallet {
+  id String @id @default(uuid())
+
+  userId String
+
+  type     WalletType
+  currency String
+
+  nonce  Int     @default(0)
+  locked Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  transactions         Transaction[] @relation("TransactionPrimaryWallet")
+  outgoingTransactions Transaction[] @relation("TransactionFromWallet")
+  incomingTransactions Transaction[] @relation("TransactionToWallet")
+
+  ledgerEntries LedgerEntry[]
+
+  walletOperations WalletOperation[]
+
+  qrs Qr[]
+
+  qrPayments         QRPayment[] @relation("QrPaymentPayerWallet")
+  receivedQrPayments QRPayment[] @relation("QrPaymentReceiverWallet")
+
+  payments Payment[]
+
+  sentP2PTransfers     P2PTransfer[] @relation("P2PTransferFromWallet")
+  receivedP2PTransfers P2PTransfer[] @relation("P2PTransferToWallet")
+
+  buyerEscrows  Escrow[] @relation("EscrowBuyerWallet")
+  sellerEscrows Escrow[] @relation("EscrowSellerWallet")
+
+  coinDeposits       CoinDeposit[]
+  coinCreditRequests CoinCreditRequest[]
+
+  balance WalletBalance?
+
+  @@index([userId])
+}
+
+enum WalletType {
+  MAIN
+  SAVINGS
+  BONUS
+  MERCHANT
+  CRYPTO
+  COIN
+}
+
+model WalletBalance {
+  walletId String @id
+
+  balance Decimal @default(0) @db.Decimal(20, 6)
+
+  updatedAt DateTime @updatedAt
+
+  wallet Wallet @relation(fields: [walletId], references: [id])
+}
+
+model BusinessWallet {
+  id String @id
+
+  ownerUserId String
+
+  businessId   String  @unique
+  businessName String
+  displayName  String?
+
+  defaultCurrency     String   @default("USD")
+  availableCurrencies String[] @default(["USD"])
+
+  balance           Decimal @default(0) @db.Decimal(20, 6)
+  holdBalance       Decimal @default(0) @db.Decimal(20, 6)
+  serviceFeePercent Decimal @default(0) @db.Decimal(10, 4)
+
+  isMerchantEnabled Boolean @default(false)
+  isBusinessEnabled Boolean @default(true)
+
+  status String @default("pending")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner User @relation("BusinessWalletOwner", fields: [ownerUserId], references: [id])
+
+  merchantWallets    MerchantWallet[]
+  outgoingOperations WalletOperation[] @relation("BusinessWalletSender")
+  incomingOperations WalletOperation[] @relation("BusinessWalletRecipient")
+
+  @@index([ownerUserId])
+}
+
+model MerchantWallet {
+  id String @id
+
+  ownerUserId String
+
+  businessWalletId String
+  merchantId       String? @unique
+  merchantName     String
+  displayName      String?
+
+  defaultCurrency     String   @default("USD")
+  availableCurrencies String[] @default(["USD"])
+
+  balance              Decimal @default(0) @db.Decimal(20, 6)
+  holdBalance          Decimal @default(0) @db.Decimal(20, 6)
+  serviceFeePercent    Decimal @default(0) @db.Decimal(10, 4)
+  settlementFeePercent Decimal @default(0) @db.Decimal(10, 4)
+
+  isMerchantEnabled   Boolean @default(true)
+  isSettlementEnabled Boolean @default(true)
+
+  status String @default("pending")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner          User              @relation("MerchantWalletOwner", fields: [ownerUserId], references: [id])
+  businessWallet BusinessWallet    @relation(fields: [businessWalletId], references: [id])
+  operations     WalletOperation[]
+
+  @@index([ownerUserId])
+  @@index([businessWalletId])
+}
+
+model WalletOperation {
+  id String @id
+
+  kind   String
+  status String @default("completed")
+
+  ownerUserId   String?
+  walletId      String
+  transactionId String? @unique
+
+  senderBusinessWalletId    String?
+  recipientBusinessWalletId String?
+  merchantWalletId          String?
+
+  amount    Decimal  @db.Decimal(20, 6)
+  feeAmount Decimal  @default(0) @db.Decimal(20, 6)
+  netAmount Decimal? @db.Decimal(20, 6)
+  currency  String?
+
+  idempotencyKey    String? @unique
+  clientOperationId String?
+  reference         String? @unique
+  metadata          Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner  User?  @relation("WalletOperationOwner", fields: [ownerUserId], references: [id])
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+
+  senderBusinessWallet    BusinessWallet? @relation("BusinessWalletSender", fields: [senderBusinessWalletId], references: [id])
+  recipientBusinessWallet BusinessWallet? @relation("BusinessWalletRecipient", fields: [recipientBusinessWalletId], references: [id])
+  merchantWallet          MerchantWallet? @relation(fields: [merchantWalletId], references: [id])
+
+  messages Message[] @relation("MessageWalletOperation")
+
+  @@index([walletId])
+  @@index([ownerUserId])
+  @@index([kind, createdAt])
+  @@index([transactionId])
+}
+
+model CoinDeposit {
+  id String @id
+
+  ownerUserId String
+  walletId    String
+
+  amount          Decimal @db.Decimal(20, 6)
+  termMonths      Int
+  apr             Decimal @default(16) @db.Decimal(10, 4)
+  accruedInterest Decimal @default(0) @db.Decimal(20, 6)
+
+  status String @default("active")
+
+  startedAt     DateTime  @default(now())
+  maturesAt     DateTime
+  lastAccruedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner  User   @relation(fields: [ownerUserId], references: [id])
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  @@index([ownerUserId])
+  @@index([walletId])
+}
+
+model CoinCreditRequest {
+  id String @id
+
+  ownerUserId String
+  walletId    String
+
+  amount Decimal @db.Decimal(20, 6)
+
+  status String  @default("requested")
+  reason String?
+
+  requestedAt DateTime  @default(now())
+  reviewedAt  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner  User   @relation(fields: [ownerUserId], references: [id])
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  @@index([ownerUserId])
+  @@index([walletId])
+}
+
+//////////////////////////////////////////////////////
+// TRANSACTIONS
+//////////////////////////////////////////////////////
+
+model Transaction {
+  id String @id @default(uuid())
+
+  walletId String
+
+  fromWalletId String?
+  toWalletId   String?
+
+  qrId String?
+
+  reference String? @unique
+
+  amount Decimal @db.Decimal(20, 6)
+
+  type   TransactionType
+  status TransactionStatus
+
+  createdAt DateTime @default(now())
+
+  wallet     Wallet  @relation("TransactionPrimaryWallet", fields: [walletId], references: [id])
+  fromWallet Wallet? @relation("TransactionFromWallet", fields: [fromWalletId], references: [id])
+  toWallet   Wallet? @relation("TransactionToWallet", fields: [toWalletId], references: [id])
+
+  qr Qr? @relation(fields: [qrId], references: [id])
+
+  ledgerEntries LedgerEntry[]
+
+  payment         Payment?
+  qrPayment       QRPayment?
+  qrOperations    QrOperation[]
+  p2pTransfer     P2PTransfer?
+  escrow          Escrow?
+  walletOperation WalletOperation?
+  messages        Message[]
+
+  @@index([walletId])
+  @@index([fromWalletId])
+  @@index([toWalletId])
+  @@index([reference])
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAW
+  TRANSFER
+  PAYMENT
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+//////////////////////////////////////////////////////
+// LEDGER
+//////////////////////////////////////////////////////
+
+model LedgerEntry {
+  id String @id @default(uuid())
+
+  walletId      String
+  transactionId String
+
+  amount Decimal @db.Decimal(20, 6)
+
+  type LedgerEntryType
+
+  operationType LedgerOperationType
+
+  uniqueOperationId String @unique
+
+  createdAt DateTime @default(now())
+
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  transaction Transaction @relation(fields: [transactionId], references: [id])
+
+  @@index([walletId])
+  @@index([transactionId])
+}
+
+enum LedgerEntryType {
+  DEBIT
+  CREDIT
+}
+
+enum LedgerOperationType {
+  TRANSFER
+  QR_PAYMENT
+  DEPOSIT
+  WITHDRAW
+  MARKETPLACE
+  ESCROW_LOCK
+  ESCROW_RELEASE
+  ESCROW_REFUND
+}
+
+//////////////////////////////////////////////////////
+// QR SYSTEM
+//////////////////////////////////////////////////////
+
+model Qr {
+  id String @id @default(uuid())
+
+  ownerUserId String?
+  walletId    String?
+
+  type QRType
+
+  rail        String  @default("sabi_core")
+  domain      String  @default("payment")
+  payloadType String  @default("merchant_payment")
+  route       String?
+
+  payload String
+
+  amount Decimal? @db.Decimal(20, 6)
+
+  currency String?
+
+  provider String?
+
+  reference String?
+  issuer    String?
+  signature String?
+  metadata  Json?
+
+  status QRStatus @default(ACTIVE)
+
+  usedCount Int @default(0)
+
+  usageLimit Int?
+
+  expiresAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  ownerUser User?   @relation(fields: [ownerUserId], references: [id])
+  wallet    Wallet? @relation(fields: [walletId], references: [id])
+
+  payments   QRPayment[]
+  operations QrOperation[]
+
+  transactions Transaction[]
+
+  @@index([ownerUserId])
+  @@index([walletId])
+  @@index([rail, domain, payloadType])
+  @@index([reference])
+}
+
+enum QRType {
+  STATIC
+  DYNAMIC
+}
+
+enum QRStatus {
+  ACTIVE
+  EXPIRED
+  DISABLED
+}
+
+//////////////////////////////////////////////////////
+// QR PAYMENTS
+//////////////////////////////////////////////////////
+
+model QRPayment {
+  id String @id @default(uuid())
+
+  qrId             String
+  payerWalletId    String
+  receiverWalletId String?
+  transactionId    String? @unique
+
+  amount Decimal @db.Decimal(20, 6)
+
+  currency String
+
+  status PaymentStatus
+
+  route          String?
+  failureReason  String?
+  idempotencyKey String? @unique
+  actorUserId    String?
+
+  createdAt DateTime @default(now())
+
+  qr Qr @relation(fields: [qrId], references: [id])
+
+  payerWallet    Wallet  @relation("QrPaymentPayerWallet", fields: [payerWalletId], references: [id])
+  receiverWallet Wallet? @relation("QrPaymentReceiverWallet", fields: [receiverWalletId], references: [id])
+
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+
+  operations QrOperation[]
+
+  @@index([payerWalletId])
+  @@index([receiverWalletId])
+  @@index([transactionId])
+}
+
+model QrOperation {
+  id String @id @default(uuid())
+
+  qrId      String?
+  paymentId String?
+
+  rail        String
+  domain      String?
+  payloadType String
+  route       String
+
+  actorUserId      String?
+  payerWalletId    String?
+  receiverWalletId String?
+
+  amount   Decimal? @db.Decimal(20, 6)
+  currency String?
+
+  status         String
+  failureReason  String?
+  idempotencyKey String? @unique
+  reference      String? @unique
+  transactionId  String?
+  metadata       Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  qr      Qr?        @relation(fields: [qrId], references: [id])
+  payment QRPayment? @relation(fields: [paymentId], references: [id])
+
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+
+  messages Message[] @relation("MessageQrOperation")
+
+  @@index([rail, route])
+  @@index([reference])
+  @@index([transactionId])
+}
+
+//////////////////////////////////////////////////////
+// PAYMENTS
+//////////////////////////////////////////////////////
+
+model PaymentAudit {
+  id String @id @default(uuid())
+
+  paymentId String
+
+  action String
+
+  previousState Json?
+  data          Json?
+
+  createdAt DateTime @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+}
+
+enum PaymentStatus {
+  CREATED
+  AUTHORIZED
+  CAPTURED
+  REFUNDED
+  FAILED
+}
+
+//////////////////////////////////////////////////////
+// ESCROW
+//////////////////////////////////////////////////////
+
+model Escrow {
+  id String @id @default(uuid())
+
+  buyerWalletId  String
+  sellerWalletId String
+
+  amount Decimal @db.Decimal(20, 6)
+
+  status EscrowStatus
+
+  transactionId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  buyerWallet  Wallet      @relation("EscrowBuyerWallet", fields: [buyerWalletId], references: [id])
+  sellerWallet Wallet      @relation("EscrowSellerWallet", fields: [sellerWalletId], references: [id])
+  transaction  Transaction @relation(fields: [transactionId], references: [id])
+
+  @@index([buyerWalletId])
+  @@index([sellerWalletId])
+}
+
+enum EscrowStatus {
+  LOCKED
+  RELEASED
+  REFUNDED
+}
+
+//////////////////////////////////////////////////////
+// IDEMPOTENCY
+//////////////////////////////////////////////////////
+
+model IdempotencyKey {
+  id String @id @default(uuid())
+
+  key String @unique
+
+  requestHash String?
+
+  responseBody Json?
+
+  createdAt DateTime @default(now())
+}
+
+//////////////////////////////////////////////////////
+// OUTBOX
+//////////////////////////////////////////////////////
+
+model Outbox {
+  id String @id @default(uuid())
+
+  aggregateId String
+
+  type String
+
+  payload Json
+
+  processedAt DateTime?
+
+  createdAt DateTime @default(now())
+}
+
+model OutboxEvent {
+  id String @id @default(uuid())
+
+  aggregateId String
+
+  type String
+
+  payload Json
+
+  processed Boolean @default(false)
+
+  occurredAt DateTime
+
+  createdAt DateTime @default(now())
+}
+
+//////////////////////////////////////////////////////
+// DEAD LETTER
+//////////////////////////////////////////////////////
+
+model DeadLetter {
+  id String @id @default(uuid())
+
+  aggregateId String
+
+  type String
+
+  payload Json
+
+  error String
+
+  createdAt DateTime @default(now())
+}
+
+//////////////////////////////////////////////////////
+// ACTIVITY FEED
+//////////////////////////////////////////////////////
+
+model ActivityFeed {
+  id String @id @default(uuid())
+
+  userId String
+
+  type String
+
+  data Json?
+
+  createdAt DateTime @default(now())
+}
+
+//////////////////////////////////////////////////////
+// CHAT LIST
+//////////////////////////////////////////////////////
+
+model ChatList {
+  id String @id @default(uuid())
+
+  userId String
+  chatId String
+
+  lastMessageId   String?
+  lastMessageText String?
+
+  unreadCount Int @default(0)
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([userId, chatId])
+}
+
+//////////////////////////////////////////////////////
+// P2P TRANSFER
+//////////////////////////////////////////////////////
+
+model P2PTransfer {
+  id String @id @default(uuid())
+
+  fromUserId String
+  toUserId   String
+
+  fromWalletId String
+  toWalletId   String
+
+  transactionId  String? @unique
+  idempotencyKey String? @unique
+  reference      String? @unique
+
+  amount Decimal @db.Decimal(20, 6)
+
+  status String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  fromUser   User   @relation("P2PTransferSender", fields: [fromUserId], references: [id])
+  toUser     User   @relation("P2PTransferRecipient", fields: [toUserId], references: [id])
+  fromWallet Wallet @relation("P2PTransferFromWallet", fields: [fromWalletId], references: [id])
+  toWallet   Wallet @relation("P2PTransferToWallet", fields: [toWalletId], references: [id])
+
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+
+  messages Message[] @relation("MessageP2PTransfer")
+
+  @@index([fromUserId])
+  @@index([toUserId])
+  @@index([fromWalletId])
+  @@index([toWalletId])
+}
+
+//////////////////////////////////////////////////////
+// PAYMENTS
+//////////////////////////////////////////////////////
+
+model Payment {
+  id String @id @default(uuid())
+
+  providerPaymentId String @unique
+
+  userId        String
+  walletId      String?
+  transactionId String? @unique
+  reference     String? @unique
+
+  user   User    @relation(fields: [userId], references: [id])
+  wallet Wallet? @relation(fields: [walletId], references: [id])
+
+  provider String
+  currency String
+
+  status PaymentStatus
+
+  capturedAmount Decimal @default(0) @db.Decimal(20, 6)
+  refundedAmount Decimal @default(0) @db.Decimal(20, 6)
+
+  version Int @default(1)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transaction Transaction? @relation(fields: [transactionId], references: [id])
+
+  audits   PaymentAudit[]
+  messages Message[]      @relation("MessagePayment")
+
+  @@index([userId])
+  @@index([walletId])
+  @@index([transactionId])
+}
+
+//////////////////////////////////////////////////////
+// MINI APPS / BOTS
+//////////////////////////////////////////////////////
+
+model MiniApp {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  iconUrl     String?
+  launchUrl   String
+  createdBy   String
+  createdAt   DateTime @default(now())
+}
+
+model Bot {
+  id        String   @id @default(uuid())
+  name      String
+  username  String   @unique
+  token     String   @unique
+  webhook   String?
+  ownerId   String
+  createdAt DateTime @default(now())
+}
+
+model MiniAppSession {
+  id        String   @id @default(uuid())
+  userId    String
+  miniAppId String
+  createdAt DateTime @default(now())
+}
+
+//////////////////////////////////////////////////////
+// SABI CALLS - SEPARATE MODULE
+//////////////////////////////////////////////////////
+
+enum SabiCallKind {
+  AUDIO
+  VIDEO
+}
+
+enum SabiCallSessionStatus {
+  RINGING
+  CONNECTING
+  ACTIVE
+  ENDED
+  DECLINED
+  MISSED
+  CANCELLED
+  FAILED
+}
+
+enum SabiCallParticipantRole {
+  INITIATOR
+  TARGET
+  PARTICIPANT
+}
+
+enum SabiCallParticipantStatus {
+  INVITED
+  RINGING
+  ACCEPTED
+  JOINED
+  DECLINED
+  LEFT
+  MISSED
+}
+
+enum SabiCallToneState {
+  NONE
+  INCOMING_RINGTONE
+  OUTGOING_RINGBACK
+}
+
+enum SabiCallPresentationStatus {
+  IDLE
+  ACTIVE
+}
+
+enum SabiCallSignalType {
+  OFFER
+  ANSWER
+  ICE_CANDIDATE
+  RENEGOTIATION
+  DATA
+}
+
+enum SabiCallEventType {
+  CREATED
+  RINGING
+  ACCEPTED
+  DECLINED
+  CANCELLED
+  ENDED
+  FAILED
+  MEDIA_UPDATED
+  TONE_UPDATED
+  SIGNAL_SENT
+  PRESENTATION_STARTED
+  PRESENTATION_STOPPED
+  EFFECT_UPDATED
+  TRANSLATION_REQUESTED
+  TRANSLATION_UNAVAILABLE
+}
+
+model SabiCallSession {
+  id String @id @default(uuid())
+
+  kind   SabiCallKind
+  status SabiCallSessionStatus @default(RINGING)
+
+  contextType String @default("direct")
+  contextId   String?
+
+  initiatedByUserId String
+
+  toneState SabiCallToneState @default(OUTGOING_RINGBACK)
+
+  presentationStatus    SabiCallPresentationStatus @default(IDLE)
+  presenterUserId       String?
+  presentationStartedAt DateTime?
+  presentationEndedAt   DateTime?
+
+  effectState      Json?
+  translationState Json?
+  metadata         Json?
+
+  startedAt DateTime?
+  endedAt   DateTime?
+
+  failureReason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  initiatedBy  User                  @relation("SabiCallSessionInitiator", fields: [initiatedByUserId], references: [id], onDelete: Cascade)
+  participants SabiCallParticipant[]
+  signals      SabiCallSignal[]
+  events       SabiCallEvent[]
+
+  @@index([initiatedByUserId])
+  @@index([contextType, contextId])
+  @@index([status])
+  @@index([presentationStatus])
+  @@index([presenterUserId])
+  @@index([createdAt])
+}
+
+model SabiCallParticipant {
+  id String @id @default(uuid())
+
+  callId String
+  userId String
+
+  role   SabiCallParticipantRole   @default(PARTICIPANT)
+  status SabiCallParticipantStatus @default(INVITED)
+
+  audioEnabled       Boolean @default(true)
+  videoEnabled       Boolean @default(false)
+  speakerEnabled     Boolean @default(false)
+  screenShareEnabled Boolean @default(false)
+  cameraFacing       String  @default("front")
+
+  joinedAt DateTime?
+  leftAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  call SabiCallSession @relation(fields: [callId], references: [id], onDelete: Cascade)
+  user User            @relation("SabiCallParticipantUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([callId, userId])
+  @@index([callId])
+  @@index([userId])
+  @@index([status])
+}
+
+model SabiCallSignal {
+  id String @id @default(uuid())
+
+  callId String
+
+  type SabiCallSignalType
+
+  fromUserId String
+  toUserId   String?
+
+  payload Json
+
+  createdAt DateTime @default(now())
+
+  call SabiCallSession @relation(fields: [callId], references: [id], onDelete: Cascade)
+
+  @@index([callId])
+  @@index([fromUserId])
+  @@index([toUserId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model SabiCallEvent {
+  id String @id @default(uuid())
+
+  callId String
+
+  type SabiCallEventType
+
+  actorUserId String?
+  payload     Json?
+
+  createdAt DateTime @default(now())
+
+  call SabiCallSession @relation(fields: [callId], references: [id], onDelete: Cascade)
+
+  @@index([callId])
+  @@index([actorUserId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// BACKEND-STREAM-FOUNDATION-141T STREAM BILLING LEDGER MODELS BEGIN
+// Controlled schema.prisma patch execution only.
+// No migration file creation, no migration execution, no prisma generate, no DB write.
+// BACKEND-STREAM-FOUNDATION-141P PATCH DRAFT ONLY
+// Do not apply without separate owner approval.
+// Raw purchase tokens and raw provider secrets are forbidden.
+
+model StreamPurchaseIntent {
+  id String @id
+  userId String
+  sku String
+  platform String
+  purchasePurpose String
+  targetKind String
+  idempotencyKey String @unique
+  status String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, status])
+  @@index([sku])
+}
+
+model StreamPurchaseClassification {
+  id String @id
+  purchaseIntentId String
+  classifierVersion String
+  decisionStatus String
+  requiredRail String
+  ledgerBucket String
+  hardBlockReasons Json
+  createdAt DateTime @default(now())
+
+  @@index([purchaseIntentId])
+}
+
+model StreamGooglePurchaseVerification {
+  id String @id
+  purchaseIntentId String
+  sku String
+  productType String
+  packageName String
+  purchaseTokenHash String
+  verificationStatus String
+  acknowledgementStatus String
+  providerResponseMetadata Json?
+  createdAt DateTime @default(now())
+
+  @@index([purchaseIntentId])
+  @@index([sku])
+  @@index([purchaseTokenHash])
+}
+
+model StreamAppendOnlyLedgerEntry {
+  id String @id
+  purchaseIntentId String
+  entryKind String
+  direction String
+  sourceBucket String
+  targetBucket String
+  requiredRail String
+  partyKind String
+  amountMinor String
+  currency String
+  idempotencyKey String @unique
+  metadata Json?
+  createdAt DateTime @default(now())
+
+  @@index([purchaseIntentId])
+  @@index([entryKind])
+  @@index([sourceBucket, targetBucket])
+}
+
+model StreamLedgerHold {
+  id String @id
+  ledgerEntryId String
+  holdKind String
+  holdStatus String
+  amountMinor String
+  currency String
+  reason String
+  createdAt DateTime @default(now())
+
+  @@index([ledgerEntryId])
+  @@index([holdStatus])
+}
+
+model StreamCreatorEarningState {
+  id String @id
+  creatorId String
+  purchaseIntentId String
+  stateKind String
+  amountMinor String
+  currency String
+  blockedReasons Json?
+  createdAt DateTime @default(now())
+
+  @@index([creatorId, stateKind])
+  @@index([purchaseIntentId])
+}
+
+model StreamMerchantSettlementState {
+  id String @id
+  merchantId String
+  purchaseIntentId String
+  stateKind String
+  amountMinor String
+  currency String
+  kybAmlState String
+  blockedReasons Json?
+  createdAt DateTime @default(now())
+
+  @@index([merchantId, stateKind])
+  @@index([purchaseIntentId])
+}
+
+model StreamRefundVoidAdjustment {
+  id String @id
+  purchaseIntentId String
+  adjustmentKind String
+  sourceReferenceHash String
+  amountMinor String
+  currency String
+  createdAt DateTime @default(now())
+
+  @@index([purchaseIntentId])
+  @@index([sourceReferenceHash])
+}
+
+model StreamIdempotencyKey {
+  id String @id
+  scope String
+  keyHash String @unique
+  status String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  @@index([scope, status])
+  @@index([expiresAt])
+}
+
+model StreamProviderGateSnapshot {
+  id String @id
+  gateId String
+  status String
+  configuredNow Boolean
+  callsAllowedNow Boolean
+  rawSecretValuesReturned Boolean
+  createdAt DateTime @default(now())
+
+  @@index([gateId, createdAt])
+}
+// BACKEND-STREAM-FOUNDATION-141T STREAM BILLING LEDGER MODELS END
+
+
+// SABI-CORE-MONETIZATION-103E controlled schema source patch.
+// Boundary: no Prisma migrate, no Prisma generate, no DB write in this stage.
+// Provider activation/calls, Wallet mutation, money movement, and payout execution remain disabled.
+
+enum SabiProviderKind {
+  GOOGLE_BILLING
+  AIRWALLEX
+  SABI_WALLET_BRIDGE
+  SABI_INTERNAL_POLICY
+}
+
+enum SabiProviderRuntimeState {
+  PROVIDER_NOT_CONFIGURED
+  READY_DISABLED
+  READY_READONLY
+  LIVE_ALLOWED_LATER
+  BLOCKED
+}
+
+enum SabiEntitlementKind {
+  STREAM_PREMIUM
+  CREATOR_SUPPORT
+  DIGITAL_GIFT
+  PAID_EFFECT
+  PAID_GAME_ITEM_LOCKED
+  BUSINESS_MERCHANT_FEATURE
+  AI_PREMIUM_FEATURE
+}
+
+enum SabiEntitlementStatus {
+  PENDING_VERIFICATION
+  ACTIVE
+  HELD
+  REVOKED
+  EXPIRED
+  REFUNDED
+}
+
+enum SabiPurchaseProviderStatus {
+  RECEIVED
+  SERVER_VERIFICATION_PENDING
+  SERVER_VERIFIED
+  SERVER_REJECTED
+  REVOKED_OR_REFUNDED
+}
+
+enum SabiCreatorPayoutHoldReason {
+  PROVIDER_SETTLEMENT_PENDING
+  REFUND_WINDOW
+  CHARGEBACK_RISK
+  COMPLIANCE_REVIEW
+  ADMIN_REVIEW
+  PAYOUT_PROVIDER_NOT_CONFIGURED
+}
+
+model SabiProviderKeyReference {
+  id                     String   @id
+  providerKind           SabiProviderKind
+  providerKey            String   @unique
+  environment            String
+  secretReference        String?
+  secretValueStored      Boolean  @default(false)
+  rawSecretOutputAllowed Boolean  @default(false)
+  configured             Boolean  @default(false)
+  runtimeState           SabiProviderRuntimeState @default(PROVIDER_NOT_CONFIGURED)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}
+
+model SabiProviderReadinessGate {
+  id                            String   @id
+  providerKind                  SabiProviderKind
+  runtimeState                  SabiProviderRuntimeState @default(PROVIDER_NOT_CONFIGURED)
+  providerActivationAllowed     Boolean  @default(false)
+  providerCallAllowed           Boolean  @default(false)
+  dbWriteAllowed                Boolean  @default(false)
+  walletMutationAllowed         Boolean  @default(false)
+  moneyMovementAllowed          Boolean  @default(false)
+  rawSecretOutputAllowed        Boolean  @default(false)
+  rawPurchaseTokenOutputAllowed Boolean  @default(false)
+  lastCheckedAt                 DateTime?
+  createdAt                     DateTime @default(now())
+  updatedAt                     DateTime @updatedAt
+}
+
+model SabiEntitlement {
+  id                String   @id
+  ownerUserId       String?
+  businessAccountId String?
+  entitlementKind   SabiEntitlementKind
+  status            SabiEntitlementStatus @default(PENDING_VERIFICATION)
+  sourceProviderKind SabiProviderKind
+  sourceReferenceId String?
+  startsAt          DateTime?
+  expiresAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model SabiEntitlementEvent {
+  id             String   @id
+  entitlementId  String
+  eventType      String
+  fromStatus     SabiEntitlementStatus?
+  toStatus       SabiEntitlementStatus?
+  reasonCode     String?
+  idempotencyKey String?  @unique
+  createdAt      DateTime @default(now())
+}
+
+model SabiPurchaseVerificationAttempt {
+  id                            String   @id
+  providerKind                  SabiProviderKind
+  providerPurchaseRef           String?
+  purchaseTokenHash             String?
+  rawPurchaseTokenStored        Boolean  @default(false)
+  rawPurchaseTokenOutputAllowed Boolean  @default(false)
+  status                        SabiPurchaseProviderStatus @default(RECEIVED)
+  serverVerificationRequired    Boolean  @default(true)
+  providerCallAllowedAtCreate   Boolean  @default(false)
+  createdAt                     DateTime @default(now())
+  updatedAt                     DateTime @updatedAt
+}
+
+model SabiCreatorEarningsLedgerEntry {
+  id                     String   @id
+  creatorUserId          String
+  sourceEntitlementId    String?
+  sourceProviderKind     SabiProviderKind
+  amountMinor            BigInt
+  currency               String
+  ledgerDirection        String
+  payoutEligible         Boolean  @default(false)
+  payoutExecutionAllowed Boolean  @default(false)
+  createdAt              DateTime @default(now())
+}
+
+model SabiCreatorPayoutHold {
+  id                     String   @id
+  creatorUserId          String
+  reason                 SabiCreatorPayoutHoldReason
+  active                 Boolean  @default(true)
+  payoutExecutionAllowed Boolean  @default(false)
+  releasedAt             DateTime?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}
+
+model SabiRevenueSharePolicyVersion {
+  id            String   @id
+  policyKey     String
+  version       Int
+  providerKind  SabiProviderKind
+  active        Boolean  @default(false)
+  effectiveFrom DateTime?
+  createdAt     DateTime @default(now())
+
+  @@unique([policyKey, version])
+}
+
+model SabiProviderRuntimeAuditEvent {
+  id                        String   @id
+  providerKind              SabiProviderKind
+  eventType                 String
+  providerActivationAllowed Boolean  @default(false)
+  providerCallAllowed       Boolean  @default(false)
+  dbWriteAllowed            Boolean  @default(false)
+  walletMutationAllowed     Boolean  @default(false)
+  moneyMovementAllowed      Boolean  @default(false)
+  createdAt                 DateTime @default(now())
+}
+
+// BACKEND-STREAM-GIFTS-LEDGER-198C CONTROLLED SCHEMA SOURCE WRITE START
+// Scope: source-only Prisma schema write for Stream/Messenger unified gift ledger.
+// No migration, no prisma generate, no DB read/write, no Wallet mutation, no provider call, no payout, no fake gift send success.
+
+enum StreamGiftRuntimeContext {
+  STREAM_LIVE
+  MESSENGER
+  SHORTS
+  CREATOR_PROFILE
+}
+
+enum StreamGiftSendIntentStatus {
+  DRAFT
+  PROVIDER_AUTH_REQUIRED
+  PROVIDER_AUTHORIZED
+  LEDGER_COMMITTED
+  BLOCKED
+  VOIDED
+}
+
+enum StreamGiftLedgerEntryKind {
+  SENDER_DEBIT_AUTHORIZATION
+  RECEIVER_PENDING_CREDIT
+  PLATFORM_FEE_RESERVE
+  SETTLEMENT_RELEASE
+  REFUND_REVERSAL
+  VOID_REVERSAL
+  ADMIN_ADJUSTMENT
+}
+
+enum StreamGiftCreatorEarningStatus {
+  PENDING
+  HELD
+  AVAILABLE
+  PAYOUT_REQUESTED
+  PAID
+  VOIDED
+}
+
+enum StreamGiftSettlementGateKind {
+  PROVIDER_SETTLEMENT
+  REFUND_WINDOW
+  CHARGEBACK_RISK
+  FRAUD_REVIEW
+  COMPLIANCE_REVIEW
+  TAX_WITHHOLDING
+  KYC_KYB_AML
+  AGE_REGION_POLICY
+  ADMIN_APPROVAL
+}
+
+enum StreamGiftSettlementGateStatus {
+  PENDING
+  PASSED
+  FAILED
+  WAIVED_BY_ADMIN
+}
+
+model StreamGiftCatalogItem {
+  id String @id
+  giftKey String @unique
+  title String
+  runtimeContexts StreamGiftRuntimeContext[]
+  diamondPrice Int
+  assetId String?
+  assetPosterUrl String?
+  assetAnimationUrl String?
+  premiumTier String @default("standard")
+  active Boolean @default(false)
+  metadata Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sendIntents StreamGiftSendIntent[]
+
+  @@index([active])
+  @@index([diamondPrice])
+  @@index([premiumTier])
+}
+
+model StreamGiftSendIntent {
+  id String @id
+  context StreamGiftRuntimeContext
+  senderUserId String
+  receiverUserId String
+  roomId String?
+  conversationId String?
+  giftCatalogItemId String
+  quantity Int
+  grossDiamondMicros BigInt
+  receiverPendingDiamondMicros BigInt
+  platformFeeDiamondMicros BigInt
+  idempotencyKeyHash String @unique
+  providerReferenceHash String?
+  status StreamGiftSendIntentStatus @default(DRAFT)
+  blockedReasons Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  giftCatalogItem StreamGiftCatalogItem @relation(fields: [giftCatalogItemId], references: [id])
+  ledgerEntries StreamGiftLedgerEntry[]
+  creatorEarnings StreamGiftCreatorEarning[]
+  settlementGates StreamGiftSettlementGate[]
+  deliveryReceiptAudits StreamGiftDeliveryReceiptAudit[]
+
+  @@index([senderUserId, status])
+  @@index([receiverUserId, status])
+  @@index([roomId])
+  @@index([conversationId])
+  @@index([giftCatalogItemId])
+  @@index([providerReferenceHash])
+}
+
+model StreamGiftLedgerEntry {
+  id String @id
+  sendIntentId String
+  entryKind StreamGiftLedgerEntryKind
+  partyUserId String
+  amountDiamondMicros BigInt
+  currency String @default("DIAMOND_MICROS")
+  idempotencyKeyHash String @unique
+  metadata Json?
+  createdAt DateTime @default(now())
+
+  sendIntent StreamGiftSendIntent @relation(fields: [sendIntentId], references: [id])
+  creatorEarnings StreamGiftCreatorEarning[]
+
+  @@index([sendIntentId])
+  @@index([partyUserId, entryKind])
+  @@index([createdAt])
+}
+
+model StreamGiftCreatorEarning {
+  id String @id
+  creatorUserId String
+  sendIntentId String
+  ledgerEntryId String
+  pendingDiamondMicros BigInt
+  availableDiamondMicros BigInt @default(0)
+  status StreamGiftCreatorEarningStatus @default(PENDING)
+  holdReasons Json?
+  payoutEligible Boolean @default(false)
+  payoutExecutionAllowed Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sendIntent StreamGiftSendIntent @relation(fields: [sendIntentId], references: [id])
+  ledgerEntry StreamGiftLedgerEntry @relation(fields: [ledgerEntryId], references: [id])
+
+  @@index([creatorUserId, status])
+  @@index([sendIntentId])
+  @@index([ledgerEntryId])
+}
+
+model StreamGiftSettlementGate {
+  id String @id
+  sendIntentId String
+  creatorUserId String?
+  gateKind StreamGiftSettlementGateKind
+  status StreamGiftSettlementGateStatus @default(PENDING)
+  reasonCode String?
+  evidenceHash String?
+  adminReviewRequired Boolean @default(false)
+  payoutReleaseAllowed Boolean @default(false)
+  checkedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sendIntent StreamGiftSendIntent @relation(fields: [sendIntentId], references: [id])
+
+  @@index([sendIntentId, gateKind])
+  @@index([creatorUserId, status])
+  @@index([status])
+}
+
+// BACKEND-STREAM-GIFTS-LEDGER-198T PERSISTENT DELIVERY RECEIPT AUDIT STORE START
+// Scope: idempotent receipt/audit persistence after committed ledger event verification.
+// No available balance release, no payout, no Wallet mutation, no provider call, no fake delivered confirmation.
+
+model StreamGiftDeliveryReceiptAudit {
+  id String @id
+  sendIntentId String
+  clientReceiptId String
+  clientPlatform String @default("unknown")
+  ackMode String @default("unknown")
+  receivedEventName String
+  receivedAtClientIso String?
+  deliveredPayloadHash String?
+  senderUserId String?
+  receiverUserId String?
+  roomId String?
+  conversationId String?
+  receiptStatus String @default("VERIFIED_AUDIT_ONLY")
+  availableBalanceReleased Boolean @default(false)
+  payoutReleaseAllowed Boolean @default(false)
+  metadata Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sendIntent StreamGiftSendIntent @relation(fields: [sendIntentId], references: [id])
+
+  @@unique([sendIntentId, clientReceiptId])
+  @@index([sendIntentId])
+  @@index([clientReceiptId])
+  @@index([receiverUserId])
+  @@index([createdAt])
+}
+// BACKEND-STREAM-GIFTS-LEDGER-198T PERSISTENT DELIVERY RECEIPT AUDIT STORE END
+
+// BACKEND-STREAM-GIFTS-LEDGER-198C CONTROLLED SCHEMA SOURCE WRITE END
+
+/// BEGIN SABI TAXI BACKEND FOUNDATION 002B SCHEMA APPEND
+
+enum TaxiDriverVerificationStatus {
+  draft
+  submitted
+  under_review
+  approved
+  rejected
+  suspended
+}
+
+enum TaxiVehicleReviewStatus {
+  draft
+  submitted
+  approved
+  rejected
+  suspended
+}
+
+enum TaxiTariffRegionStatus {
+  draft
+  active
+  paused
+  retired
+}
+
+enum TaxiQuoteStatus {
+  draft
+  quoted
+  expired
+  accepted
+  cancelled
+}
+
+enum TaxiRiderRequestStatus {
+  created
+  searching
+  matched
+  cancelled
+  expired
+}
+
+enum TaxiDispatchOfferStatus {
+  created
+  sent
+  accepted
+  declined
+  expired
+  revoked
+}
+
+enum TaxiTripStatus {
+  accepted
+  driver_arriving
+  arrived
+  rider_onboard
+  active
+  completed
+  cancelled
+  disputed
+}
+
+enum TaxiPaymentHoldStatus {
+  planned
+  requires_provider
+  authorized
+  captured
+  released
+  failed
+  refunded
+}
+
+enum TaxiSettlementStatus {
+  planned
+  under_review
+  approved
+  blocked
+  paid
+  reversed
+}
+
+enum TaxiSupportCaseStatus {
+  open
+  waiting_for_user
+  under_review
+  resolved
+  rejected
+  escalated
+}
+
+enum TaxiDisputeEvidenceType {
+  message
+  photo
+  video
+  receipt
+  location
+  system_event
+}
+
+enum TaxiSafetyEventType {
+  sos
+  route_deviation
+  harassment_report
+  accident
+  fraud_signal
+  manual_admin_flag
+}
+
+enum TaxiAuditActorType {
+  system
+  admin
+  rider
+  driver
+  provider
+}
+
+enum TaxiProviderArea {
+  maps_routes_eta
+  dispatch_matching
+  wallet_payment
+  driver_kyc
+  notifications
+  fraud_safety
+  storage_cdn
+}
+
+enum TaxiIdempotencyStatus {
+  created
+  completed
+  failed
+  expired
+}
+
+enum TaxiRatingLedgerSource {
+  rider_to_driver
+  driver_to_rider
+  admin_adjustment
+  support_resolution
+}
+
+enum TaxiRealtimeShadowStatus {
+  planned
+  safe_disabled
+  ready_for_mount
+  mounted_after_approval
+  failed_smoke
+}
+
+model TaxiRiderProfile {
+  id String @id @default(cuid())
+  userId String @unique
+  countryCode String
+  cityId String
+  trustStatus String @default("standard")
+  safetyFlagsJson Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  requests TaxiRiderRequest[]
+  quotes TaxiQuote[]
+  supportCases TaxiSupportCase[]
+  ratings TaxiTripRatingLedger[]
+  @@index([countryCode, cityId])
+  @@index([trustStatus])
+}
+
+model TaxiDriverProfile {
+  id String @id @default(cuid())
+  userId String @unique
+  countryCode String
+  cityId String
+  status TaxiDriverVerificationStatus @default(draft)
+  adminApprovedAt DateTime?
+  balanceReserveMinor Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  applications TaxiDriverApplication[]
+  vehicles TaxiVehicle[]
+  assignments TaxiDriverVehicleAssignment[]
+  offers TaxiDispatchOffer[]
+  trips TaxiTrip[]
+  settlements TaxiDriverSettlement[]
+  ratings TaxiTripRatingLedger[]
+  @@index([status, countryCode, cityId])
+  @@index([adminApprovedAt])
+}
+
+model TaxiDriverApplication {
+  id String @id @default(cuid())
+  driverProfileId String
+  driverProfile TaxiDriverProfile @relation(fields: [driverProfileId], references: [id])
+  status TaxiDriverVerificationStatus @default(submitted)
+  documentBundleJson Json
+  reviewerAdminId String?
+  decisionReason String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([driverProfileId, status])
+  @@index([reviewerAdminId])
+}
+
+model TaxiVehicle {
+  id String @id @default(cuid())
+  driverProfileId String
+  driverProfile TaxiDriverProfile @relation(fields: [driverProfileId], references: [id])
+  status TaxiVehicleReviewStatus @default(draft)
+  plateNumberHash String @unique
+  vehicleClass String
+  inspectionBundleJson Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  assignments TaxiDriverVehicleAssignment[]
+  trips TaxiTrip[]
+  @@index([driverProfileId, status])
+  @@index([vehicleClass, status])
+}
+
+model TaxiDriverVehicleAssignment {
+  id String @id @default(cuid())
+  driverProfileId String
+  driverProfile TaxiDriverProfile @relation(fields: [driverProfileId], references: [id])
+  vehicleId String
+  vehicle TaxiVehicle @relation(fields: [vehicleId], references: [id])
+  active Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([driverProfileId, active])
+  @@index([vehicleId, active])
+}
+
+model TaxiTariffRegion {
+  id String @id @default(cuid())
+  countryCode String
+  cityId String
+  zoneId String
+  tariffCode String
+  status TaxiTariffRegionStatus @default(draft)
+  baseFareMinor Int
+  perKmMinor Int
+  perMinuteMinor Int
+  commissionBasisPoints Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quotes TaxiQuote[]
+  requests TaxiRiderRequest[]
+  @@unique([countryCode, cityId, zoneId, tariffCode])
+  @@index([status, countryCode, cityId])
+}
+
+model TaxiQuote {
+  id String @id @default(cuid())
+  riderProfileId String
+  riderProfile TaxiRiderProfile @relation(fields: [riderProfileId], references: [id])
+  tariffRegionId String
+  tariffRegion TaxiTariffRegion @relation(fields: [tariffRegionId], references: [id])
+  status TaxiQuoteStatus @default(draft)
+  pickupGeoJson Json
+  dropoffGeoJson Json
+  routeProviderRef String?
+  estimatedFareMinor Int
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  requests TaxiRiderRequest[]
+  @@index([riderProfileId, status])
+  @@index([expiresAt, status])
+  @@index([routeProviderRef])
+}
+
+model TaxiRiderRequest {
+  id String @id @default(cuid())
+  riderProfileId String
+  riderProfile TaxiRiderProfile @relation(fields: [riderProfileId], references: [id])
+  quoteId String
+  quote TaxiQuote @relation(fields: [quoteId], references: [id])
+  tariffRegionId String
+  tariffRegion TaxiTariffRegion @relation(fields: [tariffRegionId], references: [id])
+  status TaxiRiderRequestStatus @default(created)
+  pickupGeoJson Json
+  dropoffGeoJson Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  offers TaxiDispatchOffer[]
+  @@index([riderProfileId, status])
+  @@index([quoteId])
+  @@index([tariffRegionId, status])
+}
+
+model TaxiDispatchOffer {
+  id String @id @default(cuid())
+  riderRequestId String
+  riderRequest TaxiRiderRequest @relation(fields: [riderRequestId], references: [id])
+  driverProfileId String
+  driverProfile TaxiDriverProfile @relation(fields: [driverProfileId], references: [id])
+  status TaxiDispatchOfferStatus @default(created)
+  offerExpiresAt DateTime
+  matchingScore Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  trip TaxiTrip?
+  @@index([riderRequestId, status])
+  @@index([driverProfileId, status])
+  @@index([offerExpiresAt, status])
+}
+
+model TaxiTrip {
+  id String @id @default(cuid())
+  dispatchOfferId String @unique
+  dispatchOffer TaxiDispatchOffer @relation(fields: [dispatchOfferId], references: [id])
+  driverProfileId String
+  driverProfile TaxiDriverProfile @relation(fields: [driverProfileId], references: [id])
+  vehicleId String
+  vehicle TaxiVehicle @relation(fields: [vehicleId], references: [id])
+  status TaxiTripStatus @default(accepted)
+  pickupStartedAt DateTime?
+  pickedUpAt DateTime?
+  completedAt DateTime?
+  finalFareMinor Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  paymentHolds TaxiPaymentHold[]
+  settlements TaxiDriverSettlement[]
+  supportCases TaxiSupportCase[]
+  safetyEvents TaxiSafetyEvent[]
+  realtimeShadows TaxiRealtimeTripShadow[]
+  ratings TaxiTripRatingLedger[]
+  @@index([driverProfileId, status])
+  @@index([vehicleId, status])
+  @@index([completedAt])
+}
+
+model TaxiPaymentHold {
+  id String @id @default(cuid())
+  tripId String
+  trip TaxiTrip @relation(fields: [tripId], references: [id])
+  status TaxiPaymentHoldStatus @default(planned)
+  providerReferenceLabel String?
+  amountMinor Int
+  currency String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([tripId, status])
+  @@index([providerReferenceLabel])
+}
+
+model TaxiDriverSettlement {
+  id String @id @default(cuid())
+  tripId String
+  trip TaxiTrip @relation(fields: [tripId], references: [id])
+  driverProfileId String
+  driverProfile TaxiDriverProfile @relation(fields: [driverProfileId], references: [id])
+  status TaxiSettlementStatus @default(planned)
+  grossFareMinor Int
+  commissionMinor Int
+  driverNetMinor Int
+  currency String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([driverProfileId, status])
+  @@index([tripId, status])
+}
+
+model TaxiSupportCase {
+  id String @id @default(cuid())
+  tripId String?
+  trip TaxiTrip? @relation(fields: [tripId], references: [id])
+  riderProfileId String?
+  riderProfile TaxiRiderProfile? @relation(fields: [riderProfileId], references: [id])
+  status TaxiSupportCaseStatus @default(open)
+  caseType String
+  priority Int @default(0)
+  assignedAdminId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  evidence TaxiDisputeEvidence[]
+  @@index([tripId, status])
+  @@index([riderProfileId, status])
+  @@index([assignedAdminId, status])
+}
+
+model TaxiDisputeEvidence {
+  id String @id @default(cuid())
+  supportCaseId String
+  supportCase TaxiSupportCase @relation(fields: [supportCaseId], references: [id])
+  evidenceType TaxiDisputeEvidenceType
+  storageReferenceLabel String
+  submittedByActorId String
+  createdAt DateTime @default(now())
+  @@index([supportCaseId, evidenceType])
+  @@index([submittedByActorId])
+}
+
+model TaxiSafetyEvent {
+  id String @id @default(cuid())
+  tripId String
+  trip TaxiTrip @relation(fields: [tripId], references: [id])
+  eventType TaxiSafetyEventType
+  severity Int
+  payloadJson Json
+  createdAt DateTime @default(now())
+  @@index([tripId, eventType])
+  @@index([severity, createdAt])
+}
+
+model TaxiAuditLog {
+  id String @id @default(cuid())
+  actorType TaxiAuditActorType
+  actorId String
+  action String
+  targetType String
+  targetId String
+  payloadJson Json?
+  createdAt DateTime @default(now())
+  @@index([actorType, actorId])
+  @@index([targetType, targetId])
+  @@index([action, createdAt])
+}
+
+model TaxiProviderReadinessSnapshot {
+  id String @id @default(cuid())
+  providerArea TaxiProviderArea
+  countryCode String
+  cityId String
+  configured Boolean @default(false)
+  referenceLabelsJson Json
+  readinessJson Json
+  createdAt DateTime @default(now())
+  @@index([providerArea, countryCode, cityId])
+  @@index([configured])
+}
+
+model TaxiIdempotencyRecord {
+  id String @id @default(cuid())
+  idempotencyKey String @unique
+  scope String
+  status TaxiIdempotencyStatus @default(created)
+  responseFingerprint String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([scope, status])
+}
+
+model TaxiTripRatingLedger {
+  id String @id @default(cuid())
+  tripId String
+  trip TaxiTrip @relation(fields: [tripId], references: [id])
+  riderProfileId String?
+  riderProfile TaxiRiderProfile? @relation(fields: [riderProfileId], references: [id])
+  driverProfileId String?
+  driverProfile TaxiDriverProfile? @relation(fields: [driverProfileId], references: [id])
+  source TaxiRatingLedgerSource
+  stars Int
+  comment String?
+  createdAt DateTime @default(now())
+  @@index([tripId, source])
+  @@index([driverProfileId])
+  @@index([riderProfileId])
+}
+
+model TaxiRealtimeTripShadow {
+  id String @id @default(cuid())
+  tripId String
+  trip TaxiTrip @relation(fields: [tripId], references: [id])
+  status TaxiRealtimeShadowStatus @default(planned)
+  lastKnownGeoJson Json?
+  lastEventAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([tripId, status])
+  @@index([lastEventAt])
+}
+
+/// END SABI TAXI BACKEND FOUNDATION 002B SCHEMA APPEND
+
+
+/// BEGIN TAXI-039F GLOBAL WALLET LINKED TAXI FINANCE SCHEMA APPEND - NO STANDALONE TAXI WALLET
+// TAXI-039F GLOBAL WALLET LINKED TAXI FINANCE SCHEMA APPEND WRITE CANDIDATE
+// Scope: exact Owner-approved schema.prisma append only.
+// Rule: Taxi must NOT have a standalone wallet. Taxi references the main/global Wallet ledger.
+// Fare rule: direct ride fare, 0 bps Taxi commission.
+// Visa rule: Visa card cashback 200 bps / 2%, posted through main Wallet ledger.
+
+model TaxiTripDirectFarePayment {
+  id                        String   @id @default(cuid())
+  tripId                    String
+  riderUserId               String
+  driverUserId              String
+  amountMinor               Int
+  currency                  String
+  commissionBps             Int      @default(0)
+  globalWalletTransactionId String?
+  globalWalletLedgerEntryId String?
+  paymentMethodSnapshotId   String?
+  idempotencyKey            String   @unique
+  ownerApprovalId           String?
+  status                    String   @default("pending")
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@index([tripId])
+  @@index([riderUserId])
+  @@index([driverUserId])
+  @@index([status])
+  @@index([globalWalletTransactionId])
+  @@index([globalWalletLedgerEntryId])
+}
+
+model TaxiVisaCashbackLedgerReference {
+  id                        String   @id @default(cuid())
+  tripId                    String
+  riderUserId               String
+  cardNetwork               String   @default("VISA")
+  farePaymentId             String
+  cashbackBps               Int      @default(200)
+  cashbackAmountMinor       Int
+  currency                  String
+  globalWalletLedgerEntryId String?
+  globalWalletTransactionId String?
+  idempotencyKey            String   @unique
+  status                    String   @default("pending")
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@index([tripId])
+  @@index([riderUserId])
+  @@index([farePaymentId])
+  @@index([cardNetwork])
+  @@index([status])
+  @@index([globalWalletLedgerEntryId])
+}
+
+model TaxiFinanceAuditEvidence {
+  id                 String   @id @default(cuid())
+  entityType         String
+  entityId           String
+  evidenceType       String
+  redactedStorageRef String?
+  txHashOrPaymentNo  String?
+  ownerApprovalId    String?
+  reviewerUserId     String?
+  createdAt          DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([ownerApprovalId])
+  @@index([reviewerUserId])
+}
+
+model TaxiDriverBalanceTopUp {
+  id                        String   @id @default(cuid())
+  driverUserId              String
+  agentUserId               String?
+  amountMinor               Int
+  currency                  String
+  globalWalletTransferId    String?
+  globalWalletLedgerEntryId String?
+  auditEvidenceId           String?
+  idempotencyKey            String   @unique
+  status                    String   @default("pending")
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@index([driverUserId])
+  @@index([agentUserId])
+  @@index([status])
+  @@index([globalWalletTransferId])
+  @@index([globalWalletLedgerEntryId])
+}
+
+model TaxiAgentBalanceCredit {
+  id                        String   @id @default(cuid())
+  agentUserId               String
+  amountMinor               Int
+  currency                  String
+  sourcePaymentReference    String?
+  globalWalletLedgerEntryId String?
+  auditEvidenceId           String?
+  ownerApprovalId           String?
+  idempotencyKey            String   @unique
+  status                    String   @default("pending")
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@index([agentUserId])
+  @@index([status])
+  @@index([ownerApprovalId])
+  @@index([globalWalletLedgerEntryId])
+}
+
+model TaxiTripPaymentMethodSnapshot {
+  id                String   @id @default(cuid())
+  tripId            String
+  riderUserId       String
+  paymentMethod     String
+  cardNetwork       String?
+  cashbackEligible  Boolean  @default(false)
+  createdAt         DateTime @default(now())
+
+  @@index([tripId])
+  @@index([riderUserId])
+  @@index([paymentMethod])
+  @@index([cardNetwork])
+}
+
+model TaxiOwnerFinanceApprovalRecord {
+  id               String   @id @default(cuid())
+  scope            String
+  entityType       String
+  entityId         String
+  ownerApprovalId  String
+  approvedByUserId String?
+  status           String   @default("approved")
+  createdAt        DateTime @default(now())
+
+  @@index([scope])
+  @@index([entityType, entityId])
+  @@index([ownerApprovalId])
+  @@index([approvedByUserId])
+}
+/// END TAXI-039F GLOBAL WALLET LINKED TAXI FINANCE SCHEMA APPEND

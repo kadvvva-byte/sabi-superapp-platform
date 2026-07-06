@@ -1,0 +1,158 @@
+﻿/* v156D Profile center Settings/Help screens + hide RU/EN buttons. */
+.sabi156d-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 20%, rgba(48,137,255,.20), rgba(0,0,0,.68) 62%, rgba(0,0,0,.78));
+  backdrop-filter: blur(18px);
+}
+.sabi156d-overlay.open {
+  display: flex;
+}
+.sabi156d-screen {
+  width: min(760px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 48px);
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(8,22,50,.98), rgba(3,10,25,.98));
+  border: 1px solid rgba(135,195,255,.34);
+  box-shadow: 0 32px 90px rgba(0,0,0,.62), 0 0 44px rgba(34,128,255,.22), inset 0 1px 0 rgba(255,255,255,.07);
+  color: #f4f9ff;
+}
+.sabi156d-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  gap: 12px;
+  align-items: center;
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.sabi156d-kicker {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(135,205,255,.82);
+}
+.sabi156d-title {
+  margin-top: 4px;
+  font-size: 24px;
+  line-height: 1.08;
+  font-weight: 950;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.sabi156d-close {
+  width: 42px;
+  height: 42px;
+  border-radius: 15px;
+  border: 1px solid rgba(139,196,255,.22);
+  background: rgba(255,255,255,.055);
+  color: rgba(242,248,255,.94);
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.sabi156d-close:hover {
+  background: rgba(76,154,255,.16);
+  border-color: rgba(139,196,255,.42);
+}
+.sabi156d-body {
+  padding: 18px 20px 20px;
+  overflow: auto;
+  max-height: calc(100vh - 168px);
+}
+.sabi156d-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.sabi156d-card {
+  min-width: 0;
+  padding: 15px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.075);
+}
+.sabi156d-card b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+.sabi156d-card span {
+  display: block;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(222,237,255,.74);
+  overflow-wrap: anywhere;
+}
+.sabi156d-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.sabi156d-action {
+  height: 44px;
+  border-radius: 15px;
+  border: 1px solid rgba(116,184,255,.28);
+  background: rgba(55,142,255,.13);
+  color: rgba(245,250,255,.96);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.sabi156d-action:hover {
+  background: rgba(55,142,255,.22);
+  border-color: rgba(116,184,255,.48);
+}
+.sabi156d-muted {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255,196,92,.08);
+  border: 1px solid rgba(255,213,122,.16);
+  color: rgba(245,236,210,.86);
+  font-size: 12px;
+  line-height: 1.45;
+}
+[data-sabi156d-hidden-lang="true"] {
+  display: none !important;
+}
+@media (max-width: 720px) {
+  .sabi156d-overlay {
+    padding: 12px;
+  }
+  .sabi156d-screen {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+    border-radius: 22px;
+  }
+  .sabi156d-head {
+    padding: 16px 16px 12px;
+    grid-template-columns: minmax(0, 1fr) 38px;
+  }
+  .sabi156d-title {
+    font-size: 21px;
+  }
+  .sabi156d-close {
+    width: 38px;
+    height: 38px;
+  }
+  .sabi156d-body {
+    padding: 14px 16px 16px;
+    max-height: calc(100vh - 132px);
+  }
+  .sabi156d-grid,
+  .sabi156d-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

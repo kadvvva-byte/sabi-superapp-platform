@@ -1,0 +1,227 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Sabi AI Studio</title>
+  <link rel="stylesheet" href="./studio.css" />
+</head>
+<body>
+  <div id="app" class="studio-app" data-approved-ui="Sabi AI private cloud Upgrade Subscription History My projects Library Ask Sabi AI Build, verify and control">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-orb"></div>
+        <div>
+          <strong>Sabi AI</strong>
+          <span>Studio</span>
+        </div>
+      </div>
+
+      <button class="nav-button nav-new active-glow" data-view="home">
+        <span class="nav-icon">＋</span><span>New chat</span><b>＋</b>
+      </button>
+
+      <button class="nav-button" data-view="projects"><span class="nav-icon">▱</span><span>My projects</span></button>
+      <button class="nav-button" data-view="library"><span class="nav-icon">▥</span><span>Library</span></button>
+      <button class="nav-button" data-view="subscription"><span class="nav-icon">♕</span><span>Subscription</span></button>
+
+      <div class="nav-label">BUILD MODES</div>
+      <button class="nav-button" data-view="chat" data-mode="brain"><span class="nav-icon">⌘</span><span>Sabi Brain</span></button>
+      <button class="nav-button" data-view="chat" data-mode="website"><span class="nav-icon">◎</span><span>Website</span></button>
+      <button class="nav-button" data-view="chat" data-mode="app"><span class="nav-icon">▣</span><span>App UI</span></button>
+      <button class="nav-button" data-view="chat" data-mode="admin"><span class="nav-icon">◇</span><span>Admin</span></button>
+      <button class="nav-button" data-view="chat" data-mode="analytics"><span class="nav-icon">▥</span><span>Analytics</span></button>
+
+      <div class="nav-label">HISTORY</div>
+      <div id="sidebarHistory" class="sidebar-history">
+        <span>No chats yet</span>
+      </div>
+
+      <div class="account-card">
+        <div class="account-line">
+          <div class="account-avatar"></div>
+          <div>
+            <strong>Sabi account</strong>
+            <span>Guest mode</span>
+          </div>
+        </div>
+        <button data-view="signin" class="account-action">Sign in</button>
+        <button data-view="subscription" class="upgrade-action">✦ Upgrade</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="planet-bg"></div>
+      <div class="stars-bg"></div>
+
+      <div class="top-status">
+        <span class="green-dot"></span>
+        <span>Sabi AI private cloud</span>
+      </div>
+
+      <section id="view-home" class="view view-home active">
+        <div class="hero-wrap">
+          <div class="spark">✦</div>
+          <div class="eyebrow">PREMIUM CONTROL INTELLIGENCE</div>
+          <h1 aria-label="Ask Sabi AI. Build, verify and control the ecosystem.">Ask Sabi AI. Build,<br/>verify and control<br/><span>the ecosystem.</span></h1>
+          <p>Sabi AI is the brain of Sabi SuperApp. It studies, compares and returns the final checked answer.</p>
+
+          <form class="hero-composer" data-composer="home">
+            <div class="hero-input-row">
+              <span class="input-icon">✧</span>
+              <textarea rows="2" placeholder="Describe what you want to build, verify, or understand..."></textarea>
+              <button type="submit">Start <span>→</span></button>
+            </div>
+            <div class="quick-grid">
+              <button type="button" data-quick="website"><span>◎</span><b>Website plan</b><small>Plan and structure your website</small><em>›</em></button>
+              <button type="button" data-quick="brain"><span>◇</span><b>Safe next steps</b><small>Get a secure, step-by-step plan</small><em>›</em></button>
+              <button type="button" data-quick="admin"><span>▤</span><b>Admin checklist</b><small>Key tasks and operational checklist</small><em>›</em></button>
+              <button type="button" data-quick="brain"><span>⌘</span><b>Brain architecture</b><small>Design the core intelligence layer</small><em>›</em></button>
+            </div>
+          </form>
+
+          <div class="trust-strip">
+            <div><span>◇</span><b>Private by design</b><small>Your data stays secure and under your control.</small></div>
+            <div><span>ϟ</span><b>Verified intelligence</b><small>Cross-checked answers from trusted sources.</small></div>
+            <div><span>⌬</span><b>Ecosystem control</b><small>Build and manage your entire digital ecosystem.</small></div>
+            <div><span>☁</span><b>Private cloud</b><small>Isolated, reliable, and built for performance.</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-chat" class="view view-chat">
+        <header class="view-header compact">
+          <h2>Sabi AI Studio</h2>
+        </header>
+
+        <div id="messages" class="messages"></div>
+
+        <form class="chat-composer" data-composer="chat">
+          <div class="composer-top">
+            <button type="button" class="round-plus" id="fileButton">＋</button>
+            <button type="button" class="round-plus" data-mode-direct="voice">♩</button>
+            <textarea rows="2" placeholder="Ask anything or give a command..."></textarea>
+            <button type="submit" class="send-button">Send <span>➤</span></button>
+          </div>
+          <div class="sticker-row" id="stickerRow">
+            <button type="button" data-mode="website"><span>◎</span>Website</button>
+            <button type="button" data-mode="app"><span>▯</span>App</button>
+            <button type="button" data-mode="image"><span>▧</span>Image</button>
+            <button type="button" data-mode="video"><span>▻</span>Video</button>
+            <button type="button" data-mode="presentation"><span>▤</span>Presentation</button>
+            <button type="button" data-mode="document"><span>▣</span>Document</button>
+            <button type="button" data-mode="code"><span>&lt;/&gt;</span>Code</button>
+            <button type="button" data-mode="music"><span>♫</span>Music</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="view-signin" class="view view-signin">
+        <div class="signin-grid">
+          <div class="signin-copy">
+            <div class="eyebrow">WELCOME BACK</div>
+            <h2>Sign in to<br/>Sabi AI <span>Studio</span></h2>
+            <p>Access your workspace, projects, and private cloud.</p>
+            <div class="orb-large"></div>
+            <div class="mini-points">
+              <div><span>◇</span><b>Private by design</b><small>Your data stays yours</small></div>
+              <div><span>◇</span><b>Secure workspace access</b><small>Enterprise-grade encryption</small></div>
+              <div><span>⌘</span><b>Built for control</b><small>Isolation, sync and safety</small></div>
+            </div>
+          </div>
+
+          <form class="signin-card">
+            <div class="signin-tabs">
+              <button type="button" class="selected">✉ Email</button>
+              <button type="button">♙ Workspace</button>
+            </div>
+            <label>Email address<input type="email" placeholder="name@company.com" /></label>
+            <label>Password<input type="password" placeholder="••••••••" /></label>
+            <label class="checkline"><input type="checkbox" checked /> Keep me signed in</label>
+            <button type="button" class="primary-wide">Continue <span>→</span></button>
+            <div class="or">OR</div>
+            <button type="button" class="secondary-wide">♙ Sign in with workspace</button>
+            <p>Don’t have an account? <a>Create account</a></p>
+          </form>
+        </div>
+        <div class="security-strip">
+          <div>◇ SOC 2<br/><small>Compliant</small></div>
+          <div>◌ GDPR<br/><small>Ready</small></div>
+          <div>▣ 256-bit<br/><small>Encryption</small></div>
+          <div>▣ Your data stays private<br/><small>We never use your data to train models.</small></div>
+        </div>
+      </section>
+
+      <section id="view-subscription" class="view view-subscription">
+        <header class="view-header">
+          <div><h2>Subscription</h2><p>Choose the plan that fits your needs. All plans include core AI capabilities and regular updates.</p></div>
+          <div class="payment-lock">▣ Payments are not connected<br/><small>All checkout actions are currently disabled.</small></div>
+        </header>
+        <div class="billing-tabs"><button class="selected">Monthly billing</button><button>Yearly billing</button><span>Save up to 20%</span></div>
+        <div class="plans-grid">
+          <article class="plan-card"><i>✧</i><b>Free</b><h3>$0 <span>/month</span></h3><p>Explore Sabi AI with essential features for individuals.</p><ul><li>5 AI queries per day</li><li>1 project</li><li>Basic templates</li><li>Community support</li></ul><button disabled>Current plan</button></article>
+          <article class="plan-card green"><i>ϟ</i><b>Plus</b><h3>$12 <span>/month</span></h3><p>More power and flexibility for creators and professionals.</p><ul><li>100 AI queries per day</li><li>Unlimited projects</li><li>Advanced templates</li><li>Faster response speed</li></ul><button disabled>Payment locked</button></article>
+          <article class="plan-card premium"><i>◇</i><b>Premium</b><h3>$29 <span>/month</span></h3><p>Unlock advanced intelligence and premium capabilities.</p><ul><li>Unlimited AI queries</li><li>Advanced AI models</li><li>Custom workflows</li><li>API access</li></ul><button disabled>Payment locked</button></article>
+          <article class="plan-card gold"><i>♙</i><b>Business</b><h3>Custom pricing</h3><p>Enterprise-grade control, security, and dedicated support.</p><ul><li>Everything in Premium</li><li>SSO & role management</li><li>Audit logs & compliance</li><li>Custom integrations</li></ul><button type="button">Contact sales</button></article>
+        </div>
+        <div class="compare-table">
+          <div>Compare plans</div><div>Free</div><div>Plus</div><div>Premium</div><div>Business</div>
+          <div>AI queries</div><div>5</div><div>100</div><div>Unlimited</div><div>Unlimited</div>
+          <div>Projects</div><div>1</div><div>Unlimited</div><div>Unlimited</div><div>Unlimited</div>
+          <div>Security & compliance</div><div>—</div><div>—</div><div>Standard</div><div>Advanced</div>
+        </div>
+      </section>
+
+      <section id="view-history" class="view view-history">
+        <header class="view-header">
+          <div><h2>History</h2><p>Your recent chats and actions. Pick up where you left off.</p></div>
+          <button class="danger-btn" id="clearHistory">▢ Clear history</button>
+        </header>
+        <div class="toolbar">
+          <button class="selected">All</button><button>Today</button><button>This week</button><button>This month</button><button>All time</button>
+          <input placeholder="Search history..." />
+        </div>
+        <div id="historyRows" class="history-rows"></div>
+      </section>
+
+      <section id="view-projects" class="view view-projects">
+        <header class="view-header">
+          <div><h2>My projects</h2><p>Manage, organize, and build across your ideas.</p></div>
+          <button class="primary-small">＋ Create project</button>
+        </header>
+        <div class="project-layout">
+          <div>
+            <div class="toolbar"><button class="selected">All <span>12</span></button><button>Active <span>8</span></button><button>Archived <span>4</span></button><input placeholder="Search projects..." /></div>
+            <div class="project-list" id="projectList"></div>
+          </div>
+          <aside class="project-settings">
+            <button class="close-x">×</button>
+            <div class="project-avatar">✦</div>
+            <h3>Sabi SuperApp</h3>
+            <span class="status-active">● Active</span>
+            <label>Project name<input value="Sabi SuperApp" /></label>
+            <label>Description<textarea rows="4">All-in-one super app with AI assistant, dashboard, and analytics.</textarea></label>
+            <label>Visibility<select><option>Private</option></select></label>
+            <label>Default mode<select><option>Sabi Brain</option></select></label>
+            <button class="danger-outline">Delete project</button>
+          </aside>
+        </div>
+      </section>
+
+      <section id="view-library" class="view view-library">
+        <header class="view-header">
+          <div><h2>Library</h2><p>All your saved assets, templates, and creations.</p></div>
+        </header>
+        <div class="library-tabs">
+          <button class="selected">⌘ Templates</button><button>▣ Documents</button><button>▧ Images</button><button>▤ Presentations</button><button>&lt;/&gt; Code</button><button>☆ Favorites</button>
+        </div>
+        <div class="toolbar"><input placeholder="Search library..." /><button class="selected">All</button><button>Website</button><button>App</button><button>Admin</button><button>Analytics</button><button>Filters</button></div>
+        <div id="libraryGrid" class="library-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./studio.js"></script>
+</body>
+</html>

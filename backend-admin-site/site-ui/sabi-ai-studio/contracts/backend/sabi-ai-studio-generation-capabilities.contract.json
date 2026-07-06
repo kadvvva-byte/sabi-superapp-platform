@@ -1,0 +1,10 @@
+{
+  "health": "/api/sabi-ai/studio/capabilities/health",
+  "status": "/api/sabi-ai/studio/capabilities/status",
+  "adminStatus": "/api/sabi/admin/studio/capabilities/status",
+  "requestEnvelopeRequired": true,
+  "ownerPolicyRequired": true,
+  "sessionRequired": true,
+  "entitlementRequired": true,
+  "providerKeyLocation": "server_env_or_secret_manager_only"
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sabi AI Studio</title>
+  <meta name="description" content="Sabi AI Studio &mdash; premium AI workspace for Sabi SuperApp." />
+  <link rel="stylesheet" href="./studio.css" />
+  <meta name="theme-color" content="#050814" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Sabi AI" />
+  <link rel="stylesheet" href="./mobile-site.css" />
+  <script defer src="./mobile-view.js"></script>
+  <meta name="format-detection" content="telephone=no,email=no,address=no" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+</head>
+<body>
+
+<div class="sabi-view-switch" data-sabi-view-switch>
+  <button type="button" data-sabi-view="mobile">Mobile version</button>
+  <button type="button" data-sabi-view="desktop">PC version</button>
+</div>
+
+  <div class="studio-shell" data-sabi-studio>
+    <aside class="studio-sidebar" aria-label="Sabi AI Studio navigation">
+      <div class="studio-brand">
+        <div class="studio-orb" aria-hidden="true"></div>
+        <div>
+          <strong>Sabi AI</strong>
+          <span>Studio</span>
+        </div>
+      </div>
+
+      <button class="studio-nav is-active" data-action="new-chat">New chat</button>
+      <button class="studio-nav" data-action="projects">My projects</button>
+      <button class="studio-nav" data-action="library">Library</button>
+      <button class="studio-nav" data-action="subscription">Subscription</button>
+
+      <div class="studio-section-title">Build modes</div>
+      <button class="studio-mode" data-mode="brain">Sabi Brain</button>
+      <button class="studio-mode" data-mode="site">Website</button>
+      <button class="studio-mode" data-mode="app">App UI</button>
+      <button class="studio-mode" data-mode="admin">Admin</button>
+      <button class="studio-mode" data-mode="analysis">Analysis</button>
+
+      <div class="studio-history">
+        <div class="studio-section-title">History</div>
+        <div id="studioHistoryList" class="studio-history-list">No chats yet</div>
+      </div>
+
+      <div class="studio-account">
+        <div>
+          <strong>Sabi account</strong>
+          <span id="studioAccountState">Guest mode</span>
+        </div>
+        <button data-action="sign-in">Sign in</button>
+        <button data-action="upgrade">Upgrade</button>
+      </div>
+    </aside>
+
+    <main class="studio-main">
+      <header class="studio-topbar">
+        <div>
+          <p class="studio-eyebrow">Sabi AI Brain</p>
+          <h1>Sabi AI Studio</h1>
+        </div>
+        <div class="studio-status">
+          <span class="studio-status-dot"></span>
+          <span id="studioCloudStatus">Cloud AI connected</span>
+        </div>
+      </header>
+
+      <section id="studioStart" class="studio-start">
+        <div class="studio-hero-card">
+          <div class="studio-hero-orb" aria-hidden="true"></div>
+          <p class="studio-eyebrow">Premium control intelligence</p>
+          <h2>Ask Sabi AI. Build, verify and control the ecosystem.</h2>
+          <p>Sabi AI is the brain of Sabi SuperApp. It studies, compares and returns the final checked answer as Sabi AI.</p>
+          <div class="studio-quick-grid">
+            <button data-prompt="Prepare a premium website improvement plan for Sabi SuperApp.">Website plan</button>
+            <button data-prompt="Check this Sabi SuperApp task and give safe next steps with readiness percentages.">Safe next steps</button>
+            <button data-prompt="Create a clean admin control checklist for Sabi AI Studio.">Admin checklist</button>
+            <button data-prompt="Explain Sabi AI brain architecture without mentioning internal secrets.">Brain architecture</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="studioChat" class="studio-chat" aria-live="polite"></section>
+
+      <footer class="studio-composer-wrap">
+        <div id="studioPanel" class="studio-panel" hidden></div>
+        <div id="studioFiles" class="studio-files" hidden></div>
+        <form id="studioComposer" class="studio-composer">
+          <button type="button" class="studio-icon-button" data-action="attach" aria-label="Attach file">+</button>
+          <input id="studioFileInput" type="file" multiple hidden />
+          <textarea id="studioInput" rows="1" placeholder="Ask Sabi AI..." autocomplete="off"></textarea>
+          <button type="button" class="studio-icon-button" data-action="mic" aria-label="Voice input">Mic</button>
+          <button type="submit" class="studio-send">Send</button>
+        </form>
+        <p class="studio-footnote">Sabi AI answers as the user-facing brain. Payment is locked until approved integration.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    window.SABI_AI_API_BASE = "https://sabi-superapp-api-1047545881519.europe-west1.run.app";
+  </script>
+  <script src="./studio.js"></script>
+</body>
+</html>

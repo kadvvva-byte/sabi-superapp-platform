@@ -1,0 +1,93 @@
+/* SABI_281I_EMAIL_CODE_FLOW_START
+   Registration flow clarification:
+   - existing Sabi app users sign in through QR
+   - new users create a new account with any email
+   - email verification code field is visible
+   - email sending/checking remains locked until real backend/provider approval
+   - no approved account/subscription screen changes
+*/
+
+.sabi281i-code-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  width: 100%;
+  margin-top: 0;
+}
+
+.sabi281i-code-label {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  color: rgba(232, 243, 255, .88);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sabi281i-code-input {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 12px;
+  border: 1px solid rgba(118, 180, 248, .34);
+  background: rgba(2, 8, 22, .60);
+  color: #f3f8ff;
+  outline: none;
+  padding: 0 14px;
+  font: 800 14px/1 Inter, ui-sans-serif, system-ui;
+  letter-spacing: .06em;
+}
+
+.sabi281i-code-input::placeholder {
+  color: rgba(225, 236, 250, .54);
+  letter-spacing: 0;
+}
+
+.sabi281i-send-code {
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(116,178,240,.34);
+  background: rgba(3, 12, 30, .68);
+  color: #edf7ff;
+  font: 900 13px/1 Inter, ui-sans-serif, system-ui;
+  cursor: pointer;
+}
+
+.sabi281i-send-code:hover {
+  border-color: rgba(31,145,255,.78);
+  background: rgba(18,64,128,.70);
+}
+
+.sabi281i-code-note {
+  grid-column: 1 / -1;
+  margin: -4px 0 0;
+  color: rgba(231, 243, 255, .62);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sabi281i-status {
+  grid-column: 1 / -1;
+  display: none;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 177, 52, .35);
+  border-radius: 12px;
+  background: rgba(255, 177, 52, .10);
+  color: #ffd89a;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sabi281i-status.is-visible {
+  display: block;
+}
+
+@media (max-width: 720px) {
+  .sabi281i-code-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SABI_281I_EMAIL_CODE_FLOW_END */

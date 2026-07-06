@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sabi AI — Owner/Admin Secure Gate</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{--bg:#06111f;--panel:#071525;--panel2:#0b1f36;--line:rgba(238,210,150,.34);--text:#f8fbff;--muted:#b9c7da;--gold:#f2dca3;--blue:#74bbff;--danger:#ff8d8d}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text)}
+    body{background:radial-gradient(circle at 20% 12%,rgba(242,220,163,.2),transparent 32%),radial-gradient(circle at 85% 20%,rgba(116,187,255,.18),transparent 34%),linear-gradient(135deg,#030811,#07182a 55%,#02060d);padding:28px}
+    .wrap{min-height:calc(100vh - 56px);display:grid;place-items:center}
+    .card{width:min(1160px,100%);border:1px solid var(--line);border-radius:30px;overflow:hidden;background:linear-gradient(145deg,rgba(7,21,37,.95),rgba(2,8,18,.98));box-shadow:0 40px 120px rgba(0,0,0,.55)}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 28px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--blue));color:#06111f;font-weight:1000}
+    .brand b{display:block;font-size:18px}.brand span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    .back{color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 14px;background:rgba(255,255,255,.04);font-weight:800}
+    .main{display:grid;grid-template-columns:1fr 1fr}
+    .info{padding:38px;border-right:1px solid var(--line)}
+    .form{padding:38px;background:linear-gradient(180deg,rgba(11,31,54,.82),rgba(4,12,25,.88))}
+    .kicker{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:900}
+    h1{font-size:clamp(32px,5vw,58px);line-height:.98;letter-spacing:-.055em;margin:13px 0 18px}
+    h2{margin:0 0 10px;font-size:25px}
+    p{color:var(--muted);line-height:1.62;margin:0 0 16px}
+    .lang{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+    .box{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.035);padding:16px}
+    .box b{display:block;margin-bottom:8px;color:var(--gold)}
+    label{display:block;margin:15px 0 7px;color:#fff1c8;font-size:13px;font-weight:900}
+    input,select{width:100%;border:1px solid var(--line);background:rgba(0,6,15,.76);color:var(--text);border-radius:15px;padding:14px;outline:none;font:inherit}
+    option{background:#071525;color:#fff}
+    button{width:100%;margin-top:22px;border:0;border-radius:16px;padding:15px 18px;background:linear-gradient(135deg,var(--gold),#fff0b9);color:#06111f;font-weight:1000;cursor:pointer}
+    .notice{margin-top:16px;border:1px solid rgba(141,240,189,.28);background:rgba(141,240,189,.07);border-radius:18px;padding:14px;color:#ddfff0;font-size:13px;line-height:1.55}
+    .alert{display:none;margin-top:14px;border:1px solid rgba(255,141,141,.30);background:rgba(255,141,141,.08);border-radius:16px;padding:12px;color:#ffd4d4;font-weight:800;font-size:13px}
+    .footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:17px 28px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media(max-width:860px){body{padding:14px}.main{grid-template-columns:1fr}.info{border-right:0;border-bottom:1px solid var(--line);padding:26px}.form{padding:26px}.top{align-items:flex-start;flex-direction:column}.lang{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">S</div>
+          <div>
+            <b>Sabi AI · Owner/Admin Gate</b>
+            <span>RU / EN secure access · no regular user admin accounts</span>
+          </div>
+        </div>
+        <a class="back" href="/">← Back to site / На сайт</a>
+      </header>
+
+      <div class="main">
+        <section class="info">
+          <div class="kicker">Official access boundary</div>
+          <h1>Вход только для разрешённых ролей.</h1>
+          <p><b>RU:</b> Обычные пользователи не имеют административного аккаунта. На этой странице нет клиентского аккаунта и нет бизнес-аккаунта для обычных клиентов.</p>
+          <p><b>EN:</b> Regular users do not have an administrative account. This page has no customer login option and no business login option for regular customers.</p>
+
+          <div class="lang">
+            <div class="box">
+              <b>Русский</b>
+              <p>Разрешены только: Владелец/Админ, Merchant и Partner. Пароль и секретный ключ не передаются в чат и не хранятся на этой публичной странице.</p>
+            </div>
+            <div class="box">
+              <b>English</b>
+              <p>Allowed roles only: Owner/Admin, Merchant and Partner. Passwords and secret keys are never sent to chat and are not stored on this public page.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="form">
+          <h2>Secure sign-in / Защищённый вход</h2>
+          <p>Owner/Admin account must be created in the protected backend before real login. This static page does not create passwords or secret keys.</p>
+
+          <form id="gateForm" autocomplete="off">
+            <label for="email">Email / Официальный email</label>
+            <input id="email" name="email" type="email" placeholder="admin@sabiai.app" required />
+
+            <label for="password">Password / Пароль</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" required />
+
+            <label for="accessSecretKey">Secret access key / Секретный ключ</label>
+            <input id="accessSecretKey" name="accessSecretKey" type="password" placeholder="SABI-ACCESS-KEY" required />
+
+            <label for="accessType">Access type / Тип доступа</label>
+            <select id="accessType" name="accessType" required>
+              <option value="owner-admin">Владелец / Админ — Owner/Admin</option>
+              <option value="merchant">Merchant access / Доступ merchant</option>
+              <option value="partner">Partner access / Доступ партнёра</option>
+            </select>
+
+            <button type="submit">Continue / Продолжить</button>
+            <div id="alert" class="alert">Owner/Admin account is not created yet. Backend bootstrap is required before real login. / Аккаунт владельца ещё не создан.</div>
+          </form>
+
+          <div class="notice">
+            No wallet, payment, payout, SMS, provider call, database write or secret storage is executed by this public static page.
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span>SABI AI TECHNOLOGIES LIMITED · sabiai.app</span>
+        <span>Owner controlled · Sabi AI monitored</span>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("gateForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      document.getElementById("alert").style.display = "block";
+    });
+  </script>
+</body>
+</html>

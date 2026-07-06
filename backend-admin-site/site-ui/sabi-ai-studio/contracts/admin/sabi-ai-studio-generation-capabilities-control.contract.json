@@ -1,0 +1,19 @@
+{
+  "futureScreen": "Admin / Sabi AI Studio / Generation Capabilities Control",
+  "ownerRole": "OWNER_ROOT_ADMIN",
+  "allowedNow": [
+    "read capabilities contract",
+    "verify provider locks",
+    "verify routes are prepared",
+    "verify no browser provider key",
+    "verify no direct provider calls"
+  ],
+  "enabledLaterAfterApproval": [
+    "provider key status",
+    "capability health smoke",
+    "generation audit",
+    "usage reports",
+    "risk and policy reports",
+    "daily Owner Sabi AI report"
+  ]
+}

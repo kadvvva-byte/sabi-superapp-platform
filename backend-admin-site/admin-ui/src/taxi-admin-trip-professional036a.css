@@ -1,0 +1,1262 @@
+
+.taxiTrip036aShell {
+  --trip-bg: #07111f;
+  --trip-panel: rgba(15, 23, 42, 0.92);
+  --trip-card: rgba(30, 41, 59, 0.78);
+  --trip-line: rgba(148, 163, 184, 0.2);
+  --trip-text: #e5eefb;
+  --trip-muted: #94a3b8;
+  --trip-accent: #38bdf8;
+  --trip-good: #34d399;
+  --trip-warn: #fbbf24;
+  --trip-danger: #fb7185;
+  color: var(--trip-text);
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.16), transparent 32%),
+    linear-gradient(135deg, #020617 0%, var(--trip-bg) 52%, #0f172a 100%);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: 0 30px 90px rgba(2, 6, 23, 0.34);
+}
+.taxiTrip036aHero { display: flex; justify-content: space-between; gap: 18px; align-items: stretch; margin-bottom: 18px; }
+.taxiTrip036aHeroCopy { flex: 1; background: rgba(15, 23, 42, 0.72); border: 1px solid var(--trip-line); border-radius: 24px; padding: 22px; }
+.taxiTrip036aHeroCopy span,
+.taxiTrip036aSectionTitle span,
+.taxiTrip036aSummaryCard span,
+.taxiTrip036aInfoCard span { color: #7dd3fc; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.taxiTrip036aHeroCopy h2 { margin: 8px 0 8px; font-size: 30px; line-height: 1.05; }
+.taxiTrip036aHeroCopy p { margin: 0; max-width: 940px; color: #cbd5e1; }
+.taxiTrip036aHeroStatus { min-width: 170px; border-radius: 24px; padding: 22px; background: linear-gradient(160deg, rgba(14, 165, 233, .26), rgba(59, 130, 246, .12)); border: 1px solid rgba(125, 211, 252, .25); display: grid; place-content: center; text-align: center; }
+.taxiTrip036aHeroStatus strong { font-size: 42px; line-height: 1; }
+.taxiTrip036aHeroStatus small { color: #bfdbfe; margin-top: 8px; }
+.taxiTrip036aTopGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+.taxiTrip036aSummaryCard { background: var(--trip-panel); border: 1px solid var(--trip-line); border-radius: 20px; padding: 16px; min-height: 108px; }
+.taxiTrip036aSummaryCard.primary { border-color: rgba(56, 189, 248, .38); }
+.taxiTrip036aSummaryCard.locked { border-color: rgba(251, 191, 36, .36); }
+.taxiTrip036aSummaryCard strong { display: block; margin: 8px 0; font-size: 20px; overflow-wrap: anywhere; }
+.taxiTrip036aSummaryCard small { color: var(--trip-muted); }
+.taxiTrip036aLayout { display: grid; grid-template-columns: 250px minmax(0, 1fr) 300px; gap: 14px; align-items: start; }
+.taxiTrip036aRail,
+.taxiTrip036aMain > section,
+.taxiTrip036aInspector section { background: var(--trip-panel); border: 1px solid var(--trip-line); border-radius: 22px; }
+.taxiTrip036aRail { padding: 14px; position: sticky; top: 12px; }
+.taxiTrip036aRailHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.taxiTrip036aRailHead span { color: var(--trip-good); font-size: 12px; }
+.taxiTrip036aRail button { width: 100%; text-align: left; margin: 8px 0; border: 1px solid rgba(148, 163, 184, .18); background: rgba(15, 23, 42, .86); color: var(--trip-text); border-radius: 16px; padding: 12px; cursor: pointer; }
+.taxiTrip036aRail button.active,
+.taxiTrip036aRail button:hover { border-color: rgba(56, 189, 248, .55); background: rgba(14, 165, 233, .16); }
+.taxiTrip036aRail button strong { display: block; }
+.taxiTrip036aRail button small,
+.taxiTrip036aRailNote { color: var(--trip-muted); font-size: 12px; }
+.taxiTrip036aControlCard,
+.taxiTrip036aTimelineCard { padding: 18px; margin-bottom: 14px; }
+.taxiTrip036aSectionTitle { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.taxiTrip036aSectionTitle h3 { margin: 4px 0 0; font-size: 19px; }
+.taxiTrip036aSectionTitle b { color: var(--trip-good); font-size: 12px; text-transform: uppercase; }
+.taxiTrip036aFormGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.taxiTrip036aFormGrid label { display: block; }
+.taxiTrip036aFormGrid label.wide { grid-column: 1 / -1; }
+.taxiTrip036aFormGrid span { display: block; margin-bottom: 6px; color: #bfdbfe; font-size: 12px; }
+.taxiTrip036aFormGrid input,
+.taxiTrip036aFormGrid textarea { width: 100%; box-sizing: border-box; background: rgba(2, 6, 23, .62); color: var(--trip-text); border: 1px solid rgba(148, 163, 184, .24); border-radius: 14px; padding: 12px; outline: none; }
+.taxiTrip036aFormGrid textarea { min-height: 84px; resize: vertical; }
+.taxiTrip036aFormGrid input:focus,
+.taxiTrip036aFormGrid textarea:focus { border-color: rgba(56, 189, 248, .66); box-shadow: 0 0 0 3px rgba(56, 189, 248, .1); }
+.taxiTrip036aPrimaryAction { margin-top: 14px; width: 100%; border: 0; border-radius: 16px; padding: 14px 16px; background: linear-gradient(135deg, #0ea5e9, #2563eb); color: white; font-weight: 900; cursor: pointer; }
+.taxiTrip036aPrimaryAction:disabled { opacity: .48; cursor: not-allowed; }
+.taxiTrip036aHint { color: var(--trip-muted); margin: 10px 0 0; }
+.taxiTrip036aTimeline { display: grid; gap: 10px; }
+.taxiTrip036aTimelineItem { display: grid; grid-template-columns: 16px 1fr auto; gap: 10px; align-items: center; background: rgba(15, 23, 42, .68); border: 1px solid rgba(148, 163, 184, .14); border-radius: 16px; padding: 12px; }
+.taxiTrip036aTimelineItem i { width: 12px; height: 12px; border-radius: 50%; background: var(--trip-muted); }
+.taxiTrip036aTimelineItem.ready i { background: var(--trip-good); }
+.taxiTrip036aTimelineItem.locked i { background: var(--trip-warn); }
+.taxiTrip036aTimelineItem span { color: var(--trip-muted); }
+.taxiTrip036aCardsGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.taxiTrip036aInfoCard { padding: 16px; border-radius: 20px; background: var(--trip-card); border: 1px solid var(--trip-line); min-height: 150px; }
+.taxiTrip036aInfoCard strong { display: block; font-size: 18px; margin: 8px 0; }
+.taxiTrip036aInfoCard small { color: #bfdbfe; display: block; margin-bottom: 10px; }
+.taxiTrip036aInfoCard em { color: var(--trip-muted); font-style: normal; }
+.taxiTrip036aInfoCard.finance { border-color: rgba(251, 191, 36, .35); }
+.taxiTrip036aInspector { display: grid; gap: 14px; }
+.taxiTrip036aInspector section { padding: 16px; }
+.taxiTrip036aInspector h3 { margin: 0 0 8px; }
+.taxiTrip036aInspector p,
+.taxiTrip036aLast span { color: #cbd5e1; }
+.taxiTrip036aPills,
+.taxiTrip036aAuditRows { display: flex; flex-wrap: wrap; gap: 8px; }
+.taxiTrip036aPills span,
+.taxiTrip036aAuditRows span,
+.taxiTrip036aSafetyBar span { border: 1px solid rgba(148, 163, 184, .18); border-radius: 999px; padding: 7px 10px; color: #cbd5e1; background: rgba(2, 6, 23, .36); font-size: 12px; }
+.taxiTrip036aLast strong { display: block; font-size: 20px; color: var(--trip-good); }
+.taxiTrip036aLast code { display: block; margin-top: 8px; color: #7dd3fc; white-space: pre-wrap; overflow-wrap: anywhere; }
+.taxiTrip036aSafetyBar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--trip-line); }
+@media (max-width: 1180px) { .taxiTrip036aLayout { grid-template-columns: 1fr; } .taxiTrip036aRail { position: static; } .taxiTrip036aTopGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .taxiTrip036aHero { flex-direction: column; } .taxiTrip036aTopGrid, .taxiTrip036aFormGrid, .taxiTrip036aCardsGrid { grid-template-columns: 1fr; } }
+
+
+/* TAXI-ADMIN-UI-TRIP-036B-FULL-CONTROL-ROUTE-SAFETY-SABI-AI */
+.taxiTrip036bOpsDeck {
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.taxiTrip036bQueueGrid,
+.taxiTrip036bIntelligenceGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.taxiTrip036bQueueCard,
+.taxiTrip036bIntelligenceGrid article {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 6, 23, 0.34);
+  border-radius: 18px;
+  padding: 14px;
+}
+.taxiTrip036bQueueCard span,
+.taxiTrip036bIntelligenceGrid span {
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.taxiTrip036bQueueCard strong,
+.taxiTrip036bIntelligenceGrid strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 17px;
+  color: #e5eefb;
+}
+.taxiTrip036bQueueCard small,
+.taxiTrip036bIntelligenceGrid small,
+.taxiTrip036bProviderNote {
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+.taxiTrip036bProviderNote {
+  margin: 14px 0 0;
+  border-top: 1px solid rgba(148, 163, 184, .16);
+  padding-top: 12px;
+}
+.taxiTrip036bRouteIntelligence {
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(56, 189, 248, .25);
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.taxiTrip036bRouteMap {
+  border-radius: 22px;
+  border: 1px solid rgba(56, 189, 248, .24);
+  background:
+    radial-gradient(circle at 24% 50%, rgba(52, 211, 153, .2), transparent 18%),
+    radial-gradient(circle at 72% 46%, rgba(251, 191, 36, .16), transparent 18%),
+    linear-gradient(135deg, rgba(2, 6, 23, .74), rgba(15, 23, 42, .8));
+  padding: 18px;
+  margin-bottom: 12px;
+}
+.taxiTrip036bMapLine {
+  display: grid;
+  grid-template-columns: 18px 1fr 1.5fr 1fr 18px;
+  align-items: center;
+  gap: 8px;
+  color: #dbeafe;
+}
+.taxiTrip036bMapLine i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 6px rgba(52, 211, 153, .12);
+}
+.taxiTrip036bMapLine b {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #34d399, #38bdf8, #fbbf24);
+  color: transparent;
+}
+.taxiTrip036bRoadWarnings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.taxiTrip036bRoadWarnings span,
+.taxiTrip036bAiList span {
+  border: 1px solid rgba(251, 191, 36, .28);
+  background: rgba(251, 191, 36, .1);
+  color: #fde68a;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 12px;
+}
+.taxiTrip036bSabiControl {
+  border-color: rgba(52, 211, 153, .28) !important;
+  background: linear-gradient(150deg, rgba(6, 78, 59, .3), rgba(15, 23, 42, .92)) !important;
+}
+.taxiTrip036bAiList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.taxiTrip036bAiList span {
+  border-color: rgba(52, 211, 153, .3);
+  background: rgba(52, 211, 153, .1);
+  color: #bbf7d0;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036bQueueGrid,
+  .taxiTrip036bIntelligenceGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .taxiTrip036bQueueGrid,
+  .taxiTrip036bIntelligenceGrid,
+  .taxiTrip036bMapLine { grid-template-columns: 1fr; }
+  .taxiTrip036bMapLine b { width: 100%; }
+}
+
+/* TAXI-ADMIN-UI-TRIP-036C-DISPATCH-COMMANDER-MAP-SAFETY-AI-ONLY */
+.taxiTrip036cCommander {
+  border: 1px solid rgba(20, 184, 166, 0.22);
+  border-radius: 28px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(7, 15, 32, 0.98), rgba(12, 33, 54, 0.94));
+  box-shadow: 0 22px 70px rgba(2, 6, 23, 0.28);
+  color: #eefcff;
+  display: grid;
+  gap: 16px;
+}
+.taxiTrip036cControlGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.taxiTrip036cControlGrid article,
+.taxiTrip036cAiMatrix article {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(15, 23, 42, 0.72);
+  display: grid;
+  gap: 5px;
+}
+.taxiTrip036cControlGrid span,
+.taxiTrip036cAiMatrix span,
+.taxiTrip036cPlaybook h3 {
+  color: #7dd3fc;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.taxiTrip036cControlGrid strong,
+.taxiTrip036cAiMatrix strong {
+  color: #ffffff;
+  font-size: 16px;
+}
+.taxiTrip036cControlGrid small,
+.taxiTrip036cAiMatrix small,
+.taxiTrip036cRoadCopy p,
+.taxiTrip036cPlaybook p {
+  color: rgba(226, 232, 240, 0.78);
+  line-height: 1.45;
+}
+.taxiTrip036cRoadPanel {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.4fr) minmax(260px, 0.9fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.taxiTrip036cRoadVisual {
+  min-height: 190px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(20,184,166,.22), transparent 26%),
+    radial-gradient(circle at 80% 70%, rgba(59,130,246,.20), transparent 28%),
+    linear-gradient(135deg, rgba(2,6,23,.94), rgba(15,23,42,.92));
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+.taxiTrip036cRoadVisual .point {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  background: #ecfeff;
+  color: #0f172a;
+}
+.taxiTrip036cRoadVisual .start { left: 24px; top: 132px; }
+.taxiTrip036cRoadVisual .finish { right: 24px; top: 28px; }
+.taxiTrip036cRoadVisual .road {
+  position: absolute;
+  left: 70px;
+  right: 70px;
+  top: 42px;
+  bottom: 42px;
+  border-bottom: 5px solid rgba(125, 211, 252, .75);
+  border-right: 5px solid rgba(45, 212, 191, .65);
+  border-radius: 0 0 90px 0;
+}
+.taxiTrip036cRoadVisual .car,
+.taxiTrip036cRoadVisual b {
+  position: absolute;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-style: normal;
+  color: #082f49;
+  background: #cffafe;
+  box-shadow: 0 12px 26px rgba(8, 145, 178, .22);
+}
+.taxiTrip036cRoadVisual .car { left: 34%; bottom: -18px; }
+.taxiTrip036cRoadVisual .camera { left: 58%; bottom: 18px; background: #fde68a; }
+.taxiTrip036cRoadVisual .speed { right: 2%; top: 16px; background: #bbf7d0; }
+.taxiTrip036cRoadVisual .reroute { left: 8%; top: 16px; background: #ddd6fe; }
+.taxiTrip036cRoadCopy {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 24px;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.74);
+}
+.taxiTrip036cRoadCopy h3 { margin: 0 0 8px; color: #fff; }
+.taxiTrip036cRoadCopy div,
+.taxiTrip036cPlaybook div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.taxiTrip036cRoadCopy span,
+.taxiTrip036cPlaybook span {
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: rgba(14, 165, 233, 0.11);
+  color: #e0f2fe;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 12px;
+}
+.taxiTrip036cAiMatrix {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.taxiTrip036cPlaybook {
+  border: 1px solid rgba(20, 184, 166, 0.22);
+  border-radius: 22px;
+  padding: 16px;
+  background: rgba(8, 47, 73, 0.82);
+}
+.taxiTrip036cPlaybook h3 { margin: 0 0 10px; }
+@media (max-width: 980px) {
+  .taxiTrip036cControlGrid,
+  .taxiTrip036cAiMatrix,
+  .taxiTrip036cRoadPanel { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036D-FINAL-POLISH-PREMIUM-CONTROL-ONLY */
+.taxiTrip036dPolish {
+  margin-bottom: 14px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(168, 85, 247, .26);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(168, 85, 247, .2), transparent 34%),
+    linear-gradient(140deg, rgba(15, 23, 42, .94), rgba(2, 6, 23, .88));
+}
+.taxiTrip036dGuardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.taxiTrip036dGuardGrid article {
+  border: 1px solid rgba(148, 163, 184, .18);
+  background: rgba(15, 23, 42, .66);
+  border-radius: 18px;
+  padding: 14px;
+}
+.taxiTrip036dGuardGrid span {
+  color: #c4b5fd;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.taxiTrip036dGuardGrid strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 17px;
+  color: #f8fafc;
+}
+.taxiTrip036dGuardGrid small,
+.taxiTrip036dBoundary {
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+.taxiTrip036dCommandStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, .15);
+}
+.taxiTrip036dCommandStrip span {
+  border: 1px solid rgba(196, 181, 253, .26);
+  background: rgba(168, 85, 247, .1);
+  color: #ede9fe;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+}
+.taxiTrip036dBoundary {
+  margin: 14px 0 0;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036dGuardGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .taxiTrip036dGuardGrid { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036E-GLOBAL-SCALE-SABI-AI-PERSONA-CONTROL-ONLY */
+.taxiTrip036eScale,
+.taxiTrip036ePersona {
+  border: 1px solid rgba(129, 140, 248, 0.26);
+  border-radius: 28px;
+  padding: 20px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, rgba(8, 13, 32, 0.96), rgba(24, 35, 74, 0.88));
+  color: #eef2ff;
+  box-shadow: 0 24px 72px rgba(2, 6, 23, 0.26);
+}
+.taxiTrip036eScaleHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 14px;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+.taxiTrip036eScaleHero > div,
+.taxiTrip036eScaleHero > aside {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 22px;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.72);
+}
+.taxiTrip036eScaleHero strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.taxiTrip036eScaleHero p,
+.taxiTrip036eBoundary {
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin: 0;
+}
+.taxiTrip036eScaleHero aside {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.taxiTrip036eScaleHero aside span,
+.taxiTrip036eScaleGrid span,
+.taxiTrip036ePersonaGrid span {
+  color: #a5b4fc;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.taxiTrip036eScaleHero aside b {
+  font-size: 44px;
+  color: #ffffff;
+}
+.taxiTrip036eScaleHero aside small,
+.taxiTrip036eScaleGrid small,
+.taxiTrip036ePersonaGrid small {
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+.taxiTrip036eScaleGrid,
+.taxiTrip036ePersonaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.taxiTrip036eScaleGrid article,
+.taxiTrip036ePersonaGrid article {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(2, 6, 23, 0.36);
+  display: grid;
+  gap: 7px;
+}
+.taxiTrip036eScaleGrid strong,
+.taxiTrip036ePersonaGrid strong {
+  color: #ffffff;
+  font-size: 17px;
+}
+.taxiTrip036ePersona {
+  border-color: rgba(52, 211, 153, 0.3);
+  background: linear-gradient(135deg, rgba(5, 46, 22, 0.42), rgba(15, 23, 42, 0.92));
+}
+.taxiTrip036eTiers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.taxiTrip036eTiers span {
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  background: rgba(52, 211, 153, 0.1);
+  color: #bbf7d0;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036eScaleGrid,
+  .taxiTrip036ePersonaGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTrip036eScaleHero { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .taxiTrip036eScaleGrid,
+  .taxiTrip036ePersonaGrid { grid-template-columns: 1fr; }
+}
+
+/* TAXI-ADMIN-UI-TRIP-036F-RUNTIME-SAFE-READ-SCALE-PREFLIGHT-LOCKED */
+.taxiTrip036fPreflight {
+  border: 1px solid rgba(45, 212, 191, 0.28);
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 14px;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(45, 212, 191, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(4, 47, 46, 0.82), rgba(2, 6, 23, 0.94));
+  color: #ecfeff;
+  box-shadow: 0 26px 74px rgba(2, 6, 23, 0.28);
+}
+.taxiTrip036fHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.taxiTrip036fHero > div,
+.taxiTrip036fHero > aside {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.72);
+  padding: 16px;
+}
+.taxiTrip036fHero strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.taxiTrip036fHero p,
+.taxiTrip036fBoundary {
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin: 0;
+}
+.taxiTrip036fHero aside {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.taxiTrip036fHero aside span,
+.taxiTrip036fGrid span,
+.taxiTrip036fPersonaGrid span {
+  color: #67e8f9;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.taxiTrip036fHero aside b {
+  font-size: 44px;
+  color: #fff;
+}
+.taxiTrip036fHero aside small,
+.taxiTrip036fGrid small,
+.taxiTrip036fPersonaGrid small {
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+.taxiTrip036fGrid,
+.taxiTrip036fPersonaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036fGrid article,
+.taxiTrip036fPersonaGrid article {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(2, 6, 23, 0.38);
+  display: grid;
+  gap: 7px;
+}
+.taxiTrip036fGrid strong,
+.taxiTrip036fPersonaGrid strong {
+  color: #ffffff;
+  font-size: 17px;
+}
+.taxiTrip036fPersonaGrid {
+  border-top: 1px solid rgba(45, 212, 191, 0.18);
+  padding-top: 14px;
+}
+.taxiTrip036fActionStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.taxiTrip036fActionStrip span {
+  border: 1px solid rgba(45, 212, 191, 0.28);
+  background: rgba(20, 184, 166, 0.12);
+  color: #ccfbf1;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036fGrid,
+  .taxiTrip036fPersonaGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTrip036fHero { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .taxiTrip036fGrid,
+  .taxiTrip036fPersonaGrid { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036H-ADMIN-RUNTIME-SAFE-READ-VISIBILITY-LOCKED */
+.taxiTrip036hRuntimeVisibility {
+  border: 1px solid rgba(129, 140, 248, 0.30);
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 14px;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(129, 140, 248, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.96));
+  color: #eef2ff;
+  box-shadow: 0 26px 74px rgba(15, 23, 42, 0.28);
+}
+.taxiTrip036hHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.taxiTrip036hHero > div,
+.taxiTrip036hHero > aside,
+.taxiTrip036hVisibilityGrid article,
+.taxiTrip036hEndpointDeck > div {
+  border: 1px solid rgba(199, 210, 254, 0.18);
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.72);
+  padding: 16px;
+}
+.taxiTrip036hHero strong {
+  display: block;
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.taxiTrip036hHero p,
+.taxiTrip036hBoundary,
+.taxiTrip036hVisibilityGrid small {
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin: 0;
+}
+.taxiTrip036hHero aside {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.taxiTrip036hHero aside span,
+.taxiTrip036hVisibilityGrid span {
+  color: #c4b5fd;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.taxiTrip036hHero aside b {
+  color: #fff;
+  font-size: 44px;
+}
+.taxiTrip036hHero aside small { color: #cbd5e1; }
+.taxiTrip036hVisibilityGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036hVisibilityGrid article { display: grid; gap: 7px; }
+.taxiTrip036hVisibilityGrid strong { color: #ffffff; font-size: 17px; }
+.taxiTrip036hEndpointDeck {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036hEndpointDeck h4 {
+  margin: 0 0 10px;
+  color: #fff;
+}
+.taxiTrip036hEndpointDeck code {
+  display: block;
+  border: 1px solid rgba(129, 140, 248, 0.22);
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.5);
+  color: #e0e7ff;
+  padding: 8px 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.taxiTrip036hRuleStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.taxiTrip036hRuleStrip span {
+  border: 1px solid rgba(129, 140, 248, 0.28);
+  background: rgba(99, 102, 241, 0.13);
+  color: #e0e7ff;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036hVisibilityGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTrip036hHero,
+  .taxiTrip036hEndpointDeck { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .taxiTrip036hVisibilityGrid { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036J-SABI-AI-PERSONA-REPORT-VISIBILITY-LOCKED */
+.taxiTrip036jPersonaReportVisibility {
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 14px;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(34, 197, 94, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(6, 78, 59, 0.92), rgba(15, 23, 42, 0.96));
+  color: #ecfdf5;
+  box-shadow: 0 26px 74px rgba(6, 78, 59, 0.25);
+}
+.taxiTrip036jHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.taxiTrip036jHero > div,
+.taxiTrip036jHero > aside,
+.taxiTrip036jReportGrid article,
+.taxiTrip036jEndpointDeck > div {
+  border: 1px solid rgba(187, 247, 208, 0.18);
+  border-radius: 22px;
+  background: rgba(2, 44, 34, 0.58);
+  padding: 16px;
+}
+.taxiTrip036jHero strong {
+  display: block;
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.taxiTrip036jHero p,
+.taxiTrip036jBoundary,
+.taxiTrip036jReportGrid small {
+  color: #dcfce7;
+  line-height: 1.55;
+  margin: 0;
+}
+.taxiTrip036jHero aside {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.taxiTrip036jHero aside span,
+.taxiTrip036jReportGrid span {
+  color: #bbf7d0;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.taxiTrip036jHero aside b {
+  color: #fff;
+  font-size: 44px;
+}
+.taxiTrip036jHero aside small { color: #dcfce7; }
+.taxiTrip036jReportGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036jReportGrid article { display: grid; gap: 7px; }
+.taxiTrip036jReportGrid strong { color: #ffffff; font-size: 17px; }
+.taxiTrip036jEndpointDeck {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036jEndpointDeck h4 {
+  margin: 0 0 10px;
+  color: #fff;
+}
+.taxiTrip036jEndpointDeck code {
+  display: block;
+  border: 1px solid rgba(74, 222, 128, 0.22);
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.46);
+  color: #dcfce7;
+  padding: 8px 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.taxiTrip036jRuleStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.taxiTrip036jRuleStrip span {
+  border: 1px solid rgba(74, 222, 128, 0.28);
+  background: rgba(22, 163, 74, 0.14);
+  color: #dcfce7;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036jReportGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTrip036jHero,
+  .taxiTrip036jEndpointDeck { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .taxiTrip036jReportGrid { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036K-DAILY-OWNER-PRIVATE-REPORT-VISIBILITY-LOCKED */
+.taxiTrip036kDailyOwnerPrivateReport {
+  border: 1px solid rgba(252, 211, 77, 0.34);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.56), rgba(24, 24, 27, 0.76));
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 24px 70px rgba(120, 53, 15, 0.22);
+}
+.taxiTrip036kHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(220px, .5fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.taxiTrip036kHero strong {
+  display: block;
+  color: #fff7ed;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.taxiTrip036kHero p,
+.taxiTrip036kBoundary,
+.taxiTrip036kReportGrid small {
+  color: #fef3c7;
+  line-height: 1.55;
+  margin: 0;
+}
+.taxiTrip036kHero aside {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 1px solid rgba(252, 211, 77, 0.22);
+  border-radius: 22px;
+  background: rgba(2, 6, 23, 0.3);
+}
+.taxiTrip036kHero aside span,
+.taxiTrip036kReportGrid span {
+  color: #fde68a;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.taxiTrip036kHero aside b { color: #fff; font-size: 42px; }
+.taxiTrip036kHero aside small { color: #fef3c7; }
+.taxiTrip036kReportGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036kReportGrid article { display: grid; gap: 7px; }
+.taxiTrip036kReportGrid strong { color: #ffffff; font-size: 17px; }
+.taxiTrip036kEndpointDeck {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.taxiTrip036kEndpointDeck h4 { margin: 0 0 10px; color: #fff7ed; }
+.taxiTrip036kEndpointDeck code {
+  display: block;
+  border: 1px solid rgba(252, 211, 77, 0.25);
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.46);
+  color: #fef3c7;
+  padding: 8px 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.taxiTrip036kRuleStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.taxiTrip036kRuleStrip span {
+  border: 1px solid rgba(252, 211, 77, 0.31);
+  background: rgba(245, 158, 11, 0.14);
+  color: #fef3c7;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 800;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036kReportGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTrip036kHero,
+  .taxiTrip036kEndpointDeck { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .taxiTrip036kReportGrid { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036L-SABI-AI-ESCALATION-POLICY-VISIBILITY-LOCKED */
+.taxiTrip036lEscalationPolicyVisibility {
+  margin: 18px 0;
+  padding: 20px;
+  border: 1px solid rgba(248, 113, 113, 0.34);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(248, 113, 113, 0.22), transparent 30%),
+    linear-gradient(135deg, rgba(69, 10, 10, 0.92), rgba(17, 24, 39, 0.92));
+  box-shadow: 0 24px 70px rgba(127, 29, 29, 0.26);
+}
+.taxiTrip036lHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 14px;
+}
+.taxiTrip036lHero strong { display: block; color: #fff7ed; font-size: 21px; margin-bottom: 8px; }
+.taxiTrip036lHero p,
+.taxiTrip036lBoundary,
+.taxiTrip036lPolicyGrid small {
+  color: rgba(255, 237, 213, 0.8);
+  line-height: 1.55;
+}
+.taxiTrip036lHero aside {
+  border-radius: 22px;
+  border: 1px solid rgba(252, 165, 165, 0.3);
+  background: rgba(127, 29, 29, 0.52);
+  padding: 16px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+}
+.taxiTrip036lHero aside span,
+.taxiTrip036lPolicyGrid span { color: #fecaca; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+.taxiTrip036lHero aside b { color: #fff; font-size: 40px; }
+.taxiTrip036lHero aside small { color: #fed7aa; }
+.taxiTrip036lPolicyGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.taxiTrip036lPolicyGrid article { display: grid; gap: 7px; }
+.taxiTrip036lPolicyGrid strong { color: #ffffff; font-size: 16px; }
+.taxiTrip036lEndpointDeck {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.taxiTrip036lEndpointDeck h4 { margin: 0 0 10px; color: #fff7ed; }
+.taxiTrip036lEndpointDeck code {
+  display: block;
+  margin: 6px 0;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.62);
+  border: 1px solid rgba(248, 113, 113, 0.22);
+  color: #fecaca;
+  white-space: normal;
+  word-break: break-all;
+}
+.taxiTrip036lRuleStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.taxiTrip036lRuleStrip span {
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  background: rgba(120, 53, 15, 0.32);
+  color: #ffedd5;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+}
+@media (max-width: 1180px) {
+  .taxiTrip036lPolicyGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTrip036lHero,
+  .taxiTrip036lEndpointDeck { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .taxiTrip036lPolicyGrid { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036M-SAFE-READ-FINAL-HANDOFF-LOCKED */
+.taxiTrip036mFinalHandoffVisibility {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 28px;
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 64, 175, 0.28), rgba(2, 6, 23, 0.96));
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.22);
+}
+.taxiTrip036mHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 14px;
+}
+.taxiTrip036mHero > div,
+.taxiTrip036mHero > aside {
+  border-radius: 22px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.68);
+}
+.taxiTrip036mHero strong { color: #f8fafc; font-size: 18px; display: block; }
+.taxiTrip036mHero p { color: #cbd5e1; margin: 8px 0 0; line-height: 1.55; }
+.taxiTrip036mHero aside { display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.taxiTrip036mHero aside span { color: #93c5fd; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.taxiTrip036mHero aside b { color: #fff; font-size: 36px; }
+.taxiTrip036mHero aside small { color: #cbd5e1; }
+.taxiTrip036mCompletionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.taxiTrip036mCompletionGrid article {
+  border-radius: 20px;
+  padding: 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.taxiTrip036mCompletionGrid span { display:block; color:#bfdbfe; font-size:12px; text-transform:uppercase; letter-spacing:.06em; }
+.taxiTrip036mCompletionGrid strong { display:block; color:#fff; margin-top:6px; }
+.taxiTrip036mCompletionGrid small { display:block; color:#dbeafe; margin-top:6px; line-height:1.45; }
+.taxiTrip036mEndpointDeck {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.taxiTrip036mEndpointDeck > div {
+  border-radius: 20px;
+  padding: 14px;
+  background: rgba(2, 6, 23, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+.taxiTrip036mEndpointDeck h4 { margin: 0 0 10px; color: #f8fafc; }
+.taxiTrip036mEndpointDeck code,
+.taxiTrip036mEndpointDeck span {
+  display: block;
+  margin-top: 7px;
+  color: #dbeafe;
+  background: rgba(15,23,42,.64);
+  border: 1px solid rgba(148, 163, 184, .16);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+.taxiTrip036mBoundary {
+  margin: 14px 0 0;
+  color: #bfdbfe;
+  border-top: 1px solid rgba(148,163,184,.18);
+  padding-top: 12px;
+}
+@media (max-width: 960px) {
+  .taxiTrip036mHero,
+  .taxiTrip036mCompletionGrid,
+  .taxiTrip036mEndpointDeck { grid-template-columns: 1fr; }
+}
+
+
+/* TAXI-ADMIN-UI-TRIP-036M-FIX2-PREMIUM-CLEAN-RESTORE */
+.taxiTripPremiumCleanShell {
+  --pc-bg: #07111f;
+  --pc-panel: rgba(15, 23, 42, .92);
+  --pc-card: rgba(30, 41, 59, .74);
+  --pc-line: rgba(148, 163, 184, .2);
+  --pc-text: #eaf4ff;
+  --pc-muted: #9fb3c8;
+  --pc-accent: #22d3ee;
+  --pc-green: #34d399;
+  --pc-warn: #f59e0b;
+  --pc-red: #fb7185;
+  min-height: 720px;
+  color: var(--pc-text);
+  border: 1px solid rgba(125, 211, 252, .2);
+  border-radius: 28px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(34, 211, 238, .15), transparent 30%),
+    radial-gradient(circle at 88% 14%, rgba(52, 211, 153, .11), transparent 28%),
+    linear-gradient(140deg, #020617 0%, #07111f 54%, #0f172a 100%);
+  box-shadow: 0 32px 90px rgba(2, 6, 23, .36);
+}
+.taxiTripPremiumCleanHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.taxiTripPremiumCleanHero > div,
+.taxiTripPremiumCleanHero > aside,
+.taxiTripPremiumCleanTopGrid article,
+.taxiTripPremiumCleanPanel {
+  border: 1px solid var(--pc-line);
+  background: var(--pc-panel);
+  border-radius: 22px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+.taxiTripPremiumCleanHero > div { padding: 22px; }
+.taxiTripPremiumCleanHero span,
+.taxiTripPremiumCleanTopGrid span,
+.taxiTripPremiumCleanTitle span,
+.taxiTripPremiumCleanInfo span,
+.taxiTripPremiumCleanRows span {
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.taxiTripPremiumCleanHero h2 { margin: 8px 0 8px; font-size: 34px; line-height: 1.05; }
+.taxiTripPremiumCleanHero p { margin: 0; color: #cbd5e1; max-width: 980px; line-height: 1.5; }
+.taxiTripPremiumCleanHero > aside { display: grid; place-content: center; text-align: center; background: linear-gradient(160deg, rgba(8, 145, 178, .28), rgba(22, 163, 74, .12)); }
+.taxiTripPremiumCleanHero strong { font-size: 42px; line-height: 1; }
+.taxiTripPremiumCleanHero small,
+.taxiTripPremiumCleanTopGrid small,
+.taxiTripPremiumCleanRows small,
+.taxiTripPremiumCleanInfo article strong + small { color: var(--pc-muted); }
+.taxiTripPremiumCleanTopGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+.taxiTripPremiumCleanTopGrid article { padding: 16px; min-height: 104px; }
+.taxiTripPremiumCleanTopGrid strong { display: block; font-size: 22px; margin: 8px 0; }
+.taxiTripPremiumCleanWorkspace { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.taxiTripPremiumCleanPanel { padding: 18px; grid-column: span 4; }
+.taxiTripPremiumCleanPanel.wide,
+.taxiTripPremiumCleanCommand { grid-column: span 8; }
+.taxiTripPremiumCleanPanel.danger { border-color: rgba(251, 113, 133, .32); background: linear-gradient(150deg, rgba(127, 29, 29, .22), rgba(15, 23, 42, .92)); }
+.taxiTripPremiumCleanPanel.success { border-color: rgba(52, 211, 153, .3); background: linear-gradient(150deg, rgba(6, 78, 59, .24), rgba(15, 23, 42, .92)); }
+.taxiTripPremiumCleanTitle { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 14px; }
+.taxiTripPremiumCleanTitle b { color: var(--pc-green); font-size: 12px; }
+.taxiTripPremiumCleanForm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.taxiTripPremiumCleanForm label.wide { grid-column: 1 / -1; }
+.taxiTripPremiumCleanForm label > span { display: block; margin-bottom: 6px; color: #bfdbfe; font-size: 12px; }
+.taxiTripPremiumCleanForm input,
+.taxiTripPremiumCleanForm textarea {
+  width: 100%; box-sizing: border-box; border: 1px solid rgba(148, 163, 184, .24); border-radius: 14px; padding: 12px;
+  background: rgba(2, 6, 23, .58); color: var(--pc-text); outline: none;
+}
+.taxiTripPremiumCleanForm textarea { min-height: 82px; resize: vertical; }
+.taxiTripPremiumCleanForm input:focus,
+.taxiTripPremiumCleanForm textarea:focus { border-color: rgba(34, 211, 238, .66); box-shadow: 0 0 0 3px rgba(34, 211, 238, .1); }
+.taxiTripPremiumCleanButton { margin-top: 14px; width: 100%; border: 0; border-radius: 16px; padding: 14px; color: #06202a; background: linear-gradient(135deg, #22d3ee, #34d399); font-weight: 1000; cursor: pointer; }
+.taxiTripPremiumCleanButton:disabled { opacity: .45; cursor: not-allowed; }
+.taxiTripPremiumCleanInfo { display: grid; gap: 10px; }
+.taxiTripPremiumCleanInfo article { border: 1px solid rgba(148, 163, 184, .14); background: rgba(2, 6, 23, .28); border-radius: 16px; padding: 12px; }
+.taxiTripPremiumCleanInfo strong { display: block; margin-top: 6px; overflow-wrap: anywhere; }
+.taxiTripPremiumCleanRows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.taxiTripPremiumCleanRows.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.taxiTripPremiumCleanRows.compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.taxiTripPremiumCleanRows article { border: 1px solid rgba(148, 163, 184, .14); background: rgba(2, 6, 23, .3); border-radius: 16px; padding: 12px; min-height: 78px; }
+.taxiTripPremiumCleanRows strong { display: block; margin: 8px 0 4px; font-size: 16px; }
+.taxiTripPremiumCleanRoute { display: grid; grid-template-columns: 40px 1fr auto 1fr 40px; align-items: center; gap: 10px; padding: 18px; border-radius: 20px; border: 1px solid rgba(34, 211, 238, .22); background: linear-gradient(135deg, rgba(2, 6, 23, .7), rgba(8, 47, 73, .42)); }
+.taxiTripPremiumCleanRoute span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(52, 211, 153, .18); border: 1px solid rgba(52, 211, 153, .36); font-weight: 900; }
+.taxiTripPremiumCleanRoute i { height: 4px; border-radius: 999px; background: linear-gradient(90deg, #34d399, #22d3ee, #fbbf24); }
+.taxiTripPremiumCleanRoute strong { color: #dffaff; }
+.taxiTripPremiumCleanTags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.taxiTripPremiumCleanTags span { border: 1px solid rgba(125, 211, 252, .22); background: rgba(14, 165, 233, .08); color: #dbeafe; border-radius: 999px; padding: 8px 10px; font-size: 12px; }
+.taxiTripPremiumCleanReport { display: grid; gap: 10px; color: #dbeafe; line-height: 1.45; }
+.taxiTripPremiumCleanReport strong { color: #ecfeff; }
+.taxiTripPremiumCleanTimeline { display: grid; gap: 9px; }
+.taxiTripPremiumCleanTimeline div { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; align-items: center; padding: 11px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 14px; background: rgba(2, 6, 23, .28); }
+.taxiTripPremiumCleanTimeline i { width: 10px; height: 10px; border-radius: 50%; background: var(--pc-green); box-shadow: 0 0 0 5px rgba(52, 211, 153, .1); }
+.taxiTripPremiumCleanTimeline b { color: var(--pc-muted); }
+.taxiTripPremiumCleanResponse { min-height: 72px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 16px; padding: 14px; background: rgba(2, 6, 23, .28); color: #dbeafe; overflow-wrap: anywhere; }
+@media (max-width: 1320px) {
+  .taxiTripPremiumCleanHero,
+  .taxiTripPremiumCleanTopGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .taxiTripPremiumCleanPanel,
+  .taxiTripPremiumCleanPanel.wide,
+  .taxiTripPremiumCleanCommand { grid-column: span 12; }
+}
+@media (max-width: 760px) {
+  .taxiTripPremiumCleanHero,
+  .taxiTripPremiumCleanTopGrid,
+  .taxiTripPremiumCleanForm,
+  .taxiTripPremiumCleanRows,
+  .taxiTripPremiumCleanRows.four,
+  .taxiTripPremiumCleanRows.compact,
+  .taxiTripPremiumCleanRoute { grid-template-columns: 1fr; }
+  .taxiTripPremiumCleanRoute i { height: 24px; width: 4px; justify-self: center; }
+}

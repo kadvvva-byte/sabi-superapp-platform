@@ -1,0 +1,15 @@
+﻿{
+  "ok": true,
+  "studioOnly": true,
+  "adminBridgeEnabled": false,
+  "ownerAdminScreenMounted": false,
+  "providerVisibleToUser": false,
+  "publicIdentity": "sabi-ai-studio",
+  "message": "Sabi AI Studio standalone contract. Admin is not mounted inside Studio.",
+  "paymentExecution": false,
+  "walletExecution": false,
+  "payoutExecution": false,
+  "smsExecution": false,
+  "dbWrite": false,
+  "publishDeploy": false
+}

@@ -1,0 +1,416 @@
+.taxi027hRoot {
+  --bg: #07111d;
+  --surface: #0b1726;
+  --surface2: #0f2033;
+  --line: rgba(143, 168, 199, 0.26);
+  --lineStrong: rgba(59, 218, 223, 0.55);
+  --text: #eef7ff;
+  --muted: #8fa7bd;
+  --cyan: #22d3ee;
+  --cyanSoft: rgba(34, 211, 238, 0.14);
+  --gold: #f5b84b;
+  --danger: #ff5d7a;
+  --ok: #31d0aa;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text);
+  min-height: 720px;
+}
+
+.taxi027hRoot * { box-sizing: border-box; }
+
+.taxi027hRoot button,
+.taxi027hRoot input,
+.taxi027hRoot select,
+.taxi027hRoot textarea {
+  font: inherit;
+}
+
+.taxi027hTopBar,
+.taxi027hSearch,
+.taxi027hInbox,
+.taxi027hCase,
+.taxi027hActions,
+.taxi027hJournal {
+  background: linear-gradient(180deg, rgba(15, 32, 51, 0.96), rgba(8, 18, 31, 0.98));
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+.taxi027hTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border-color: var(--lineStrong);
+  border-radius: 18px;
+}
+
+.taxi027hTopTitle span,
+.taxi027hCaseHero span,
+.taxi027hIdentity span,
+.taxi027hRoot label span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.taxi027hTopTitle h2,
+.taxi027hCaseHero h3,
+.taxi027hPanelHead h3,
+.taxi027hActions h3,
+.taxi027hJournal h3,
+.taxi027hWork h4 {
+  margin: 0;
+}
+
+.taxi027hTopTitle h2 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.taxi027hTopTitle p,
+.taxi027hCaseHero p,
+.taxi027hJournal p {
+  max-width: 880px;
+  margin: 6px 0 0;
+  color: #bad4e8;
+  line-height: 1.45;
+}
+
+.taxi027hTopStatus {
+  min-width: 150px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(245, 184, 75, 0.1);
+  border: 1px solid rgba(245, 184, 75, 0.45);
+  text-align: right;
+}
+
+.taxi027hTopStatus strong {
+  display: block;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.taxi027hTopStatus span,
+.taxi027hTopStatus b {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.taxi027hSearch {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 1fr)) 150px;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.taxi027hRoot input,
+.taxi027hRoot select,
+.taxi027hRoot textarea {
+  width: 100%;
+  border: 1px solid rgba(117, 151, 183, 0.3);
+  background: rgba(4, 12, 22, 0.76);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 11px;
+  outline: none;
+}
+
+.taxi027hRoot textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+
+.taxi027hRoot input:focus,
+.taxi027hRoot select:focus,
+.taxi027hRoot textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+}
+
+.taxi027hRoot button {
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: linear-gradient(180deg, rgba(35, 209, 230, 0.95), rgba(28, 111, 220, 0.92));
+  color: #03121a;
+  font-weight: 800;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.taxi027hRoot button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.18);
+}
+
+.taxi027hLayout {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.82fr) minmax(560px, 2.1fr) minmax(240px, 0.9fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.taxi027hInbox,
+.taxi027hCase,
+.taxi027hActions {
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.taxi027hPanelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.taxi027hPanelHead button {
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.taxi027hFilters {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.taxi027hInboxList {
+  display: grid;
+  gap: 9px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 3px;
+}
+
+.taxi027hInboxList button,
+.taxi027hEmpty {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  text-align: left;
+  border-radius: 14px;
+  padding: 12px;
+  color: var(--text);
+  background: rgba(8, 21, 36, 0.82);
+  border: 1px solid rgba(117, 151, 183, 0.26);
+}
+
+.taxi027hInboxList button.active {
+  border-color: var(--cyan);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.22), rgba(18, 61, 87, 0.62));
+}
+
+.taxi027hInboxList button strong,
+.taxi027hEmpty strong {
+  font-size: 13px;
+  color: #f5fbff;
+}
+
+.taxi027hInboxList button span,
+.taxi027hEmpty span,
+.taxi027hInboxList button small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.taxi027hCase {
+  display: grid;
+  gap: 12px;
+}
+
+.taxi027hCaseHero {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), transparent 42%), rgba(4, 12, 22, 0.7);
+  border: 1px solid var(--lineStrong);
+}
+
+.taxi027hCaseHero h3 {
+  margin-top: 4px;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+}
+
+.taxi027hCaseHero button {
+  align-self: center;
+  min-width: 140px;
+}
+
+.taxi027hIdentity {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.taxi027hIdentity article {
+  min-height: 74px;
+  padding: 13px;
+  border-radius: 14px;
+  background: rgba(6, 18, 30, 0.8);
+  border: 1px solid rgba(117, 151, 183, 0.28);
+}
+
+.taxi027hIdentity article.accent {
+  border-color: rgba(245, 184, 75, 0.72);
+  background: rgba(245, 184, 75, 0.08);
+}
+
+.taxi027hIdentity strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 14px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.taxi027hCurrency {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 1fr) auto minmax(150px, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(49, 208, 170, 0.42);
+  background: rgba(49, 208, 170, 0.08);
+}
+
+.taxi027hCurrency strong {
+  color: #dffef6;
+}
+
+.taxi027hProcess {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.taxi027hProcess button {
+  min-height: 86px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  color: var(--text);
+  background: rgba(8, 21, 36, 0.82);
+  border: 1px solid rgba(34, 211, 238, 0.36);
+  text-align: left;
+}
+
+.taxi027hProcess button strong {
+  color: #f6fbff;
+  font-size: 13px;
+}
+
+.taxi027hProcess button span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.taxi027hWork {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.taxi027hWork article,
+.taxi027hActions section {
+  display: grid;
+  gap: 9px;
+  padding: 13px;
+  border-radius: 14px;
+  border: 1px solid rgba(117, 151, 183, 0.28);
+  background: rgba(4, 12, 22, 0.6);
+}
+
+.taxi027hWork h4,
+.taxi027hActions h3 {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.taxi027hActions {
+  display: grid;
+  gap: 12px;
+}
+
+.taxi027hActions button {
+  width: 100%;
+}
+
+.taxi027hJournal {
+  border-radius: 18px;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.taxi027hJournalGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.taxi027hJournal article {
+  min-height: 116px;
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(6, 18, 30, 0.78);
+  border: 1px solid rgba(117, 151, 183, 0.25);
+}
+
+.taxi027hJournal article.ok {
+  border-color: rgba(49, 208, 170, 0.62);
+}
+
+.taxi027hJournal article.bad {
+  border-color: rgba(255, 93, 122, 0.58);
+}
+
+.taxi027hJournal article strong {
+  color: #ffffff;
+}
+
+.taxi027hJournal article span,
+.taxi027hJournal article small {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1320px) {
+  .taxi027hSearch { grid-template-columns: repeat(3, 1fr); }
+  .taxi027hLayout { grid-template-columns: 260px 1fr; }
+  .taxi027hActions { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+  .taxi027hJournalGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 980px) {
+  .taxi027hLayout,
+  .taxi027hActions,
+  .taxi027hIdentity,
+  .taxi027hWork,
+  .taxi027hProcess,
+  .taxi027hCurrency,
+  .taxi027hSearch {
+    grid-template-columns: 1fr;
+  }
+  .taxi027hTopBar,
+  .taxi027hCaseHero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

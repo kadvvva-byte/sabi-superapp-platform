@@ -1,0 +1,49 @@
+﻿{
+    "patch":  "SABI_STUDIO_AUTH_LAUNCH_FIX_002",
+    "target":  "C:\\Users\\User\\Desktop\\superapp\\site-ui\\sabi-ai-studio",
+    "backupDir":  "C:\\Users\\User\\Desktop\\superapp\\site-ui\\sabi-ai-studio\\.sabi-auth-launch-fix-002-backup-20260703-130008",
+    "disabledAuthPieDir":  "C:\\Users\\User\\Desktop\\superapp\\site-ui\\sabi-ai-studio\\.sabi-auth-pie-disabled-20260703-130008",
+    "designReplacement":  false,
+    "deploy":  false,
+    "changedFilesExpected":  [
+                                 "studio.html",
+                                 "sabi-studio-auth-clean-controller.js",
+                                 "sabi-studio-auth-clean-controller.css"
+                             ],
+    "untouchedHashes":  {
+                            "stylesCssUnchanged":  true,
+                            "appJsUnchanged":  true
+                        },
+    "removedActiveIncludes":  [
+                                  "main-chat-v138-access-expired-ui-bridge.js",
+                                  "main-profile-menu-v156B.css",
+                                  "main-profile-menu-v156B.js",
+                                  "main-profile-menu-v156C-upgrade.css",
+                                  "main-profile-menu-v156C-upgrade.js",
+                                  "main-profile-center-screens-v156D.css",
+                                  "main-profile-center-screens-v156D.js",
+                                  "main-profile-center-screens-v156E-premium.css",
+                                  "main-profile-center-screens-v156E-premium.js",
+                                  "sabi-ai-studio-281B-remove-sidebar-auth.css"
+                              ],
+    "removedInlineBlocks":  3,
+    "disabledFiles":  [
+                          "main-chat-v138-access-expired-ui-bridge.js",
+                          "main-profile-menu-v156B.css",
+                          "main-profile-menu-v156B.js",
+                          "main-profile-menu-v156C-upgrade.css",
+                          "main-profile-menu-v156C-upgrade.js",
+                          "main-profile-center-screens-v156D.css",
+                          "main-profile-center-screens-v156D.js",
+                          "main-profile-center-screens-v156E-premium.css",
+                          "main-profile-center-screens-v156E-premium.js",
+                          "sabi-ai-studio-281I-email-code-flow.css"
+                      ],
+    "remainingActiveOldAuthIncludes":  [
+
+                                       ],
+    "cleanAuthCssInstalled":  true,
+    "cleanAuthJsInstalled":  true,
+    "firebaseHostingAuthScriptsPresent":  true,
+    "note":  "Fixes only auth/startup pie and local launch path. It does not replace Studio design, styles.css, app.js, chat, projects, library, history, generation, public site, Admin, or Firebase deploy."
+}

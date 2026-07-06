@@ -1,0 +1,72 @@
+{
+  "module": "sabi-ai-studio",
+  "version": "281O",
+  "packageType": "public-site-studio-replacement",
+  "mountPathRecommended": "/sabi-ai-studio/",
+  "company": "SABI AI TECHNOLOGIES LIMITED",
+  "publicSite": {
+    "alreadyLaunchedSeparately": true,
+    "replaceOnlyStudioModule": true,
+    "doNotOverwritePublicRoot": true,
+    "publicEntryButtonTarget": "/sabi-ai-studio/",
+    "officialCompanyEmail": "admin@sabiai.app"
+  },
+  "routes": {
+    "moduleRoot": "./index.html",
+    "authEntry": "./auth-register.html",
+    "studioMain": "./studio.html",
+    "account": "./auth-account.html",
+    "subscription": "./subscription-change-plan.html"
+  },
+  "superAppMobile": {
+    "webPath": "/sabi-ai-studio/",
+    "futureDeepLink": "sabi://studio",
+    "qrLoginMode": "existing-app-users-login-through-sabi-qr",
+    "newAccountMode": "email-code-verification"
+  },
+  "backendContractPrepared": {
+    "status": "prepared_not_connected",
+    "authEmailStart": "/api/sabi/studio/auth/email/start",
+    "authEmailVerify": "/api/sabi/studio/auth/email/verify",
+    "googleStart": "/api/sabi/studio/auth/google/start",
+    "googleCallback": "/api/sabi/studio/auth/google/callback",
+    "sessionMe": "/api/sabi/studio/session/me",
+    "adminStatus": "/api/sabi/admin/studio/status",
+    "note": "No live backend/provider/DB mutation is enabled in this static package."
+  },
+  "adminContractPrepared": {
+    "futureScreen": "Admin / Sabi AI Studio Control",
+    "ownerRole": "OWNER_ROOT_ADMIN",
+    "allowedAdminActionsNow": [
+      "read integration contract",
+      "open public Studio module",
+      "check locked provider state",
+      "check mobile route health"
+    ],
+    "lockedUntilApprovedBackendStage": [
+      "real email-code sending",
+      "Google OAuth live credentials",
+      "subscription payment activation",
+      "database session mutation",
+      "wallet/payment/payout actions"
+    ]
+  },
+  "safetyLocks": {
+    "paymentProviderEnabled": false,
+    "emailProviderEnabled": false,
+    "googleOAuthLiveEnabled": false,
+    "backendMutationEnabled": false,
+    "databaseMutationEnabled": false,
+    "walletMutationEnabled": false,
+    "payoutEnabled": false,
+    "googlePasswordCollectionAllowed": false
+  },
+  "bankGoogleProof": {
+    "positioning": "real product module connected to an existing public site, with safe locked gates and clear future provider contract",
+    "publicCryptoWordingAllowed": false,
+    "publicTelegramWordingAllowed": false,
+    "donationOrInvestmentWordingAllowed": false
+  },
+  "officialCompanyEmail": "admin@sabiai.app",
+  "companyEmail": "admin@sabiai.app"
+}
