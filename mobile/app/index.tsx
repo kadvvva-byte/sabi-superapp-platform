@@ -30,6 +30,7 @@ import { useAuthSession } from "../src/core/kernel/auth/use-auth-session";
 import { LANGUAGES } from "../src/shared/data/languages";
 import { setAppLanguage, useI18n } from "../src/shared/i18n";
 import { isFirstLaunchFeatureEnabled } from "../src/shared/launch/firstLaunchScope";
+import { hasUnifiedAccountProfile } from "../src/shared/account/unified-account-profile";
 
 const SABI_GOOGLE_REVIEW_MODE = process.env.EXPO_PUBLIC_GOOGLE_REVIEW_MODE === "1";
 
@@ -98,7 +99,7 @@ export default function WelcomeScreen() {
     Boolean(auth.accessToken) &&
     Boolean(auth.currentUserId);
 
-  const goTo = useCallback((path: "/home" | "/register") => {
+  const goTo = useCallback((path: "/home" | "/register" | "/profile/complete") => {
     if (navigationStartedRef.current) return;
     navigationStartedRef.current = true;
     setNavigating(true);
@@ -110,10 +111,22 @@ export default function WelcomeScreen() {
     });
   }, []);
 
+  const routeAuthenticatedEntry = useCallback(async () => {
+    if (navigationStartedRef.current) return;
+    setNavigating(true);
+
+    try {
+      const profileReady = await hasUnifiedAccountProfile();
+      goTo(profileReady ? "/home" : "/profile/complete");
+    } catch {
+      goTo("/profile/complete");
+    }
+  }, [goTo]);
+
   useEffect(() => {
     if (!isAuthenticated) return;
-    goTo("/home");
-  }, [goTo, isAuthenticated]);
+    void routeAuthenticatedEntry();
+  }, [isAuthenticated, routeAuthenticatedEntry]);
 
   const handleContinue = useCallback(() => {
     if (SABI_GOOGLE_REVIEW_MODE) {
@@ -122,12 +135,12 @@ export default function WelcomeScreen() {
     }
 
     if (isAuthenticated) {
-      goTo("/home");
+      void routeAuthenticatedEntry();
       return;
     }
 
     goTo("/register");
-  }, [goTo, isAuthenticated]);
+  }, [goTo, isAuthenticated, routeAuthenticatedEntry]);
 
   const handleSelectLanguage = useCallback(async (item: LanguageRow) => {
     await setAppLanguage(item.code);

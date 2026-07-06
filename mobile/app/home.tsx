@@ -16,18 +16,91 @@ import {
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { router } from "expo-router";
+import { useAuthSession } from "../src/core/kernel/auth/use-auth-session";
+import { hasUnifiedAccountProfile } from "../src/shared/account/unified-account-profile";
 
 type GestureScreenComponent = ComponentType<Record<string, never>>;
 
 let cachedGestureScreen: GestureScreenComponent | null = null;
 
 export default function HomeScreen() {
+  const auth = useAuthSession();
+  const [authRouteReady, setAuthRouteReady] = useState(false);
   const [GestureScreen, setGestureScreen] = useState<GestureScreenComponent | null>(
     () => cachedGestureScreen,
   );
   const [loadFailed, setLoadFailed] = useState(false);
   const [loadingTooLong, setLoadingTooLong] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
+
+  const isAuthenticatedHomeSession =
+    auth.isReady &&
+    auth.isHydrated &&
+    !auth.isHydrating &&
+    auth.status === "authenticated" &&
+    Boolean(auth.apiBaseUrl && auth.accessToken && auth.currentUserId);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function resolveHomeAuthRoute() {
+      setAuthRouteReady(false);
+
+      if (!auth.isHydrated || auth.isHydrating || !auth.isReady) {
+        return;
+      }
+
+      if (!isAuthenticatedHomeSession) {
+        router.replace("/");
+        return;
+      }
+
+      try {
+        const profileReady = await hasUnifiedAccountProfile();
+
+        if (cancelled) return;
+
+        if (!profileReady) {
+          router.replace({
+            pathname: "/profile/complete",
+            params: {
+              phone: auth.phoneNumber ?? "",
+              userId: auth.currentUserId ?? "",
+            },
+          } as never);
+          return;
+        }
+
+        setAuthRouteReady(true);
+      } catch {
+        if (cancelled) return;
+
+        router.replace({
+          pathname: "/profile/complete",
+          params: {
+            phone: auth.phoneNumber ?? "",
+            userId: auth.currentUserId ?? "",
+          },
+        } as never);
+      }
+    }
+
+    void resolveHomeAuthRoute();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    auth.accessToken,
+    auth.apiBaseUrl,
+    auth.currentUserId,
+    auth.isHydrated,
+    auth.isHydrating,
+    auth.isReady,
+    auth.phoneNumber,
+    auth.status,
+    isAuthenticatedHomeSession,
+  ]);
 
   useFocusEffect(
     useCallback(() => {
@@ -102,6 +175,15 @@ export default function HomeScreen() {
   const openRoute = useCallback((path: "/taxi" | "/stream" | "/tabs") => {
     router.push(path as never);
   }, []);
+
+  if (!authRouteReady) {
+    return (
+      <View style={styles.loadingHost}>
+        <ActivityIndicator size="large" color="#77E28C" />
+        <Text style={styles.loadingText}>Загрузка Sabi SuperApp…</Text>
+      </View>
+    );
+  }
 
   if (GestureScreen) {
     return <GestureScreen />;
