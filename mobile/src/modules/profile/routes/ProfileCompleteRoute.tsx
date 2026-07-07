@@ -26,6 +26,7 @@ import {
 } from "lucide-react-native";
 
 import { useI18n } from "../../../shared/i18n";
+import { getProfileRouteTextFallback } from "../utils/profileRouteTextFallback";
 import { useAuthSession } from "../../../core/kernel/auth/use-auth-session";
 import {
   buildSabiDisplayId,
@@ -49,17 +50,23 @@ export default function ProfileCompleteScreen() {
 
   const t = useCallback(
     (key: string, params?: Record<string, unknown>) => {
+      const language =
+        typeof i18n === "object" && i18n && "language" in i18n
+          ? (i18n as { language?: unknown }).language
+          : undefined;
+      const fallback = getProfileRouteTextFallback(language, key, params);
+
       if (typeof i18n === "function") {
         const value = i18n(key, params);
-        return typeof value === "string" && value.length ? value : key;
+        return typeof value === "string" && value.length && value !== key ? value : fallback;
       }
 
       if (i18n && typeof i18n.t === "function") {
         const value = i18n.t(key, params);
-        return typeof value === "string" && value.length ? value : key;
+        return typeof value === "string" && value.length && value !== key ? value : fallback;
       }
 
-      return key;
+      return fallback;
     },
     [i18n],
   );
@@ -337,7 +344,7 @@ export default function ProfileCompleteScreen() {
                         <TextInput
                           value={firstName}
                           onChangeText={setFirstName}
-                          placeholder={t("profile.completeScreen.firstName")}
+                          placeholder={t("profile.completeScreen.firstNamePlaceholder")}
                           placeholderTextColor="rgba(220,235,255,0.38)"
                           style={styles.input}
                           selectionColor="#DCEBFF"
@@ -361,7 +368,7 @@ export default function ProfileCompleteScreen() {
                         <TextInput
                           value={lastName}
                           onChangeText={setLastName}
-                          placeholder={t("profile.completeScreen.lastName")}
+                          placeholder={t("profile.completeScreen.lastNamePlaceholder")}
                           placeholderTextColor="rgba(220,235,255,0.38)"
                           style={styles.input}
                           selectionColor="#DCEBFF"
@@ -388,7 +395,7 @@ export default function ProfileCompleteScreen() {
                             setUsernameTouched(true);
                             setUsername(normalizeUnifiedUsername(value));
                           }}
-                          placeholder={t("profile.completeScreen.username")}
+                          placeholder={t("profile.completeScreen.usernamePlaceholder")}
                           placeholderTextColor="rgba(220,235,255,0.38)"
                           style={styles.input}
                           selectionColor="#DCEBFF"
@@ -401,7 +408,7 @@ export default function ProfileCompleteScreen() {
 
                       <View style={styles.usernamePreviewRow}>
                         <Text style={styles.usernamePreviewLabel}>
-                          {t("profile.completeScreen.username")}:
+                          {t("profile.completeScreen.usernamePreview")}:
                         </Text>
                         <Text style={styles.usernamePreviewValue}>
                           {usernamePreview}

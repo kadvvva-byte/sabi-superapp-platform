@@ -48,6 +48,7 @@ import {
 } from "lucide-react-native";
 
 import { useI18n } from "@/shared/i18n";
+import { getProfileRouteTextFallback } from "@/modules/profile/utils/profileRouteTextFallback";
 import { useAuthSession } from "@/core/kernel/auth/use-auth-session";
 import { resetAuthenticatedSession } from "@/core/kernel/auth/session.actions";
 import {
@@ -113,6 +114,7 @@ const PURPLE = "#B588FF";
 const GOLD = "#FFCC66";
 const PINK = "#FF8FB9";
 const RED = "#FF6B7A";
+const EMPTY_PROFILE_UI_TEXT = "";
 
 type I18nHookValue =
   | ((key: string, params?: Record<string, unknown>) => string)
@@ -222,7 +224,7 @@ function formatBotKindLabel(value?: string | null) {
 
 function extractFirstLetter(value?: string | null) {
   const raw = String(value ?? "").trim();
-  if (!raw) return "";
+  if (!raw) return EMPTY_PROFILE_UI_TEXT;
 
   const match = raw.match(/\p{L}/u);
   return match ? match[0].toUpperCase() : "";
@@ -497,25 +499,30 @@ export default function ProfileScreen() {
 
   const t = useCallback(
     (key: string, params?: Record<string, unknown>) => {
+      const language =
+        typeof i18n === "object" && i18n && "language" in i18n
+          ? (i18n as { language?: unknown }).language
+          : undefined;
+      const fallback = getProfileRouteTextFallback(language, key, params);
+
       if (typeof i18n === "function") {
         const value = i18n(key, params);
-        return typeof value === "string" && value.length ? value : key;
+        return typeof value === "string" && value.length && value !== key ? value : fallback;
       }
 
       if (i18n && typeof i18n.t === "function") {
         const value = i18n.t(key, params);
-        return typeof value === "string" && value.length ? value : key;
+        return typeof value === "string" && value.length && value !== key ? value : fallback;
       }
 
-      return key;
+      return fallback;
     },
     [i18n],
   );
 
   const tt = useCallback(
     (key: string, params?: Record<string, unknown>) => {
-      const translated = t(key, params);
-      return translated === key ? "" : translated;
+      return t(key, params);
     },
     [t],
   );
@@ -523,11 +530,9 @@ export default function ProfileScreen() {
   const te = useCallback(
     (prefix: string, rawValue?: string | null) => {
       const suffix = normalizeEnumKey(rawValue);
-      if (!suffix) return "";
+      if (!suffix) return EMPTY_PROFILE_UI_TEXT;
 
-      const key = `${prefix}.${suffix}`;
-      const translated = t(key);
-      return translated === key ? "" : translated;
+      return t(`${prefix}.${suffix}`);
     },
     [t],
   );
@@ -762,7 +767,7 @@ export default function ProfileScreen() {
   }, [completeDeleteFlow, tt]);
 
   const groupBadge = useMemo(() => {
-    if (!groupPreview.created) return "";
+    if (!groupPreview.created) return EMPTY_PROFILE_UI_TEXT;
 
     const published = tt("profile.group.badges.published") || "Published";
     const publicText = tt("profile.group.badges.public") || "Public";
@@ -773,7 +778,7 @@ export default function ProfileScreen() {
   }, [groupPreview.created, groupPreview.isPublic, groupPreview.isPublished, tt]);
 
   const channelBadge = useMemo(() => {
-    if (!channelPreview.created) return "";
+    if (!channelPreview.created) return EMPTY_PROFILE_UI_TEXT;
 
     const published = tt("profile.channel.badges.published") || "Published";
     const publicText = tt("profile.channel.badges.public") || "Public";
@@ -784,7 +789,7 @@ export default function ProfileScreen() {
   }, [channelPreview.created, channelPreview.isPublic, channelPreview.isPublished, tt]);
 
   const botBadge = useMemo(() => {
-    if (!botPreview.created) return "";
+    if (!botPreview.created) return EMPTY_PROFILE_UI_TEXT;
 
     const translatedKind = te("profile.bot.badges", botPreview.botKind);
     if (translatedKind) return translatedKind;

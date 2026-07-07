@@ -23,6 +23,7 @@ import {
 } from "lucide-react-native";
 
 import { useI18n } from "../../../shared/i18n";
+import { getProfileRouteTextFallback } from "../utils/profileRouteTextFallback";
 import {
   PROFILE_KYC_STATE,
   PROFILE_VERIFICATION_DOCUMENTS,
@@ -106,17 +107,23 @@ export default function VerificationScreen() {
 
   const t = useCallback(
     (key: string, params?: Record<string, unknown>) => {
+      const language =
+        typeof i18n === "object" && i18n && "language" in i18n
+          ? (i18n as { language?: unknown }).language
+          : undefined;
+      const fallback = getProfileRouteTextFallback(language, key, params);
+
       if (typeof i18n === "function") {
         const value = i18n(key, params);
-        return typeof value === "string" && value.length ? value : key;
+        return typeof value === "string" && value.length && value !== key ? value : fallback;
       }
 
       if (i18n && typeof i18n.t === "function") {
         const value = i18n.t(key, params);
-        return typeof value === "string" && value.length ? value : key;
+        return typeof value === "string" && value.length && value !== key ? value : fallback;
       }
 
-      return key;
+      return fallback;
     },
     [i18n],
   );
