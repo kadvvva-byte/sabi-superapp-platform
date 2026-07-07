@@ -160,7 +160,7 @@ export default function ProfileCompleteScreen() {
       userId: string;
     }) => {
       router.replace({
-        pathname: "/",
+        pathname: "/home",
         params: {
           phone: profile.phone,
           firstName: profile.firstName,
@@ -168,6 +168,7 @@ export default function ProfileCompleteScreen() {
           username: profile.username,
           userId: profile.userId,
           profileCompleted: "true",
+          activationSource: "profileComplete",
         },
       });
     },
@@ -224,11 +225,11 @@ export default function ProfileCompleteScreen() {
       const savedProfile = await saveUnifiedAccountProfile(payload);
 
       routeHome({
-        phone: savedProfile.phone,
-        firstName: savedProfile.firstName,
-        lastName: savedProfile.lastName,
-        username: savedProfile.username,
-        userId: savedProfile.userId,
+        phone: savedProfile.phone || payload.phone,
+        firstName: savedProfile.firstName || payload.firstName,
+        lastName: savedProfile.lastName || payload.lastName,
+        username: savedProfile.username || payload.username,
+        userId: savedProfile.userId || payload.userId,
       });
       return;
     } catch (error) {
