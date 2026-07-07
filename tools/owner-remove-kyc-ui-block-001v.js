@@ -1,4 +1,8 @@
-import { PROFILE_KYC_STATE } from "../../modules/profile/data/profile";
+﻿const fs = require("fs");
+
+const file = "mobile/src/shared/auth/fullActivationPolicy.ts";
+
+const content = `import { PROFILE_KYC_STATE } from "../../modules/profile/data/profile";
 import type { ProfileKycState } from "../../modules/profile/types";
 
 export type FullActivationService =
@@ -86,12 +90,18 @@ export function getFullActivationRequiredMessage(surface?: string | null): strin
   const name = String(surface || "this service").trim() || "this service";
 
   return [
-    `${name} is available.`,
+    \`\${name} is available.\`,
     "KYC/AML is not used as a UI access blocker in the Sabi app.",
     "Real provider execution, raw card data, ledger mutation and money movement remain controlled by their own provider/backend/admin safety guards.",
-  ].join("\n\n");
+  ].join("\\n\\n");
 }
 
 export function getFullActivationStatusLabel(_state: ProfileKycState = PROFILE_KYC_STATE): string {
   return "KYC UI blocking disabled";
 }
+`;
+
+fs.writeFileSync(file, content, "utf8");
+
+console.log("OWNER-REMOVE-KYC-UI-BLOCK-001V APPLIED");
+console.log("FIXED", file);
