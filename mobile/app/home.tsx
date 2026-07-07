@@ -2,13 +2,11 @@
   useCallback,
   useEffect,
   useState,
-  type ComponentType,
 } from "react";
 import {
   ActivityIndicator,
   BackHandler,
-  InteractionManager,
-  Pressable,
+Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -18,20 +16,11 @@ import { useFocusEffect } from "@react-navigation/native";
 import { router } from "expo-router";
 import { useAuthSession } from "../src/core/kernel/auth/use-auth-session";
 import { hasUnifiedAccountProfile } from "../src/shared/account/unified-account-profile";
-
-type GestureScreenComponent = ComponentType<Record<string, never>>;
-
-let cachedGestureScreen: GestureScreenComponent | null = null;
+import GestureScreen from "../src/modules/home/gesture/GestureScreen";
 
 export default function HomeScreen() {
   const auth = useAuthSession();
   const [authRouteReady, setAuthRouteReady] = useState(false);
-  const [GestureScreen, setGestureScreen] = useState<GestureScreenComponent | null>(
-    () => cachedGestureScreen,
-  );
-  const [loadFailed, setLoadFailed] = useState(false);
-  const [loadingTooLong, setLoadingTooLong] = useState(false);
-  const [retryKey, setRetryKey] = useState(0);
 
   const isAuthenticatedHomeSession =
     auth.isReady &&
@@ -113,63 +102,8 @@ export default function HomeScreen() {
     }, []),
   );
 
-  useEffect(() => {
-    if (cachedGestureScreen) {
-      setGestureScreen(() => cachedGestureScreen);
-      setLoadFailed(false);
-      setLoadingTooLong(false);
-      return undefined;
-    }
-
-    let mounted = true;
-
-    setLoadFailed(false);
-    setLoadingTooLong(false);
-
-    const slowTimer = setTimeout(() => {
-      if (mounted) {
-        setLoadingTooLong(true);
-      }
-    }, 6500);
-
-    const task = InteractionManager.runAfterInteractions(() => {
-      void import("../src/modules/home/gesture/GestureScreen")
-        .then((module) => {
-          const nextComponent = module.default as GestureScreenComponent;
-          cachedGestureScreen = nextComponent;
-
-          if (mounted) {
-            setGestureScreen(() => nextComponent);
-            setLoadFailed(false);
-            setLoadingTooLong(false);
-          }
-        })
-        .catch((error) => {
-          console.warn(
-            "[home] failed to load gesture screen",
-            error instanceof Error ? error.message : error,
-          );
-
-          if (mounted) {
-            setLoadFailed(true);
-            setLoadingTooLong(false);
-          }
-        });
-    });
-
-    return () => {
-      mounted = false;
-      clearTimeout(slowTimer);
-      task.cancel?.();
-    };
-  }, [retryKey]);
-
   const handleRetry = useCallback(() => {
-    cachedGestureScreen = null;
-    setGestureScreen(null);
-    setLoadFailed(false);
-    setLoadingTooLong(false);
-    setRetryKey((value) => value + 1);
+    router.replace("/home" as never);
   }, []);
 
   const openRoute = useCallback((path: "/taxi" | "/stream" | "/tabs") => {
@@ -185,17 +119,8 @@ export default function HomeScreen() {
     );
   }
 
-  if (GestureScreen) {
+  if (authRouteReady) {
     return <GestureScreen />;
-  }
-
-  if (!loadFailed && !loadingTooLong) {
-    return (
-      <View style={styles.loadingHost}>
-        <ActivityIndicator size="large" color="#77E28C" />
-        <Text style={styles.loadingText}>Загрузка Sabi SuperApp…</Text>
-      </View>
-    );
   }
 
   return (
