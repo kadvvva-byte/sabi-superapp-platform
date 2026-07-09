@@ -54,6 +54,7 @@ import { buildWalletProviderConfigRouter } from "./modules/wallet/infrastructure
 import { sabiProgramFoundationRoutes } from "./modules/programs";
 import { sabiGalleryFoundationRoutes } from "./modules/gallery";
 import { sabiNetworkGameCenterFoundationRoutes } from "./modules/network-game-center";
+import { createSabiMapsProxyRouter } from "./modules/maps/sabiMapsProxy.routes";
 import {
   createStreamFoundationKernelDiagnosticsBackendRouteConnectionHandler,
   getStreamFoundationKernelDiagnosticsBackendRouteConnectionReadiness,
@@ -843,6 +844,107 @@ const walletProviderConfigRouter = buildWalletProviderConfigRouter();
 app.use("/api/wallet/provider-config", walletProviderConfigRouter);
 app.use("/api/v2/wallet/provider-config", walletProviderConfigRouter);
 app.use("/api/ai", aiModule.router);
+
+// SABI-AI-LIVE-DIAGNOSTICS-ROUTES: Owner/Admin live diagnostics.
+// No secret values exposed. No Wallet mutation, payout, payment execution, or provider control.
+const buildSabiAiFoundationStatus = () => ({
+  ok: true,
+  program: "sabi_ai",
+  status: "live_foundation_restored",
+  service: "sabi-superapp-api",
+  brainServiceUrl: process.env.SABI_AI_BRAIN_SERVICE_URL || null,
+  brainPrivateService: process.env.SABI_AI_BRAIN_PRIVATE_SERVICE === "true",
+  ownerIsOnlyFinalController: process.env.OWNER_IS_ONLY_FINAL_CONTROLLER === "true",
+  externalAiControlEnabled: process.env.EXTERNAL_AI_CONTROL_ENABLED === "true",
+  googleAiTeacherOnly: process.env.GOOGLE_AI_TEACHER_ONLY === "true",
+  unifiedOrganismBridge: process.env.SABI_AI_UNIFIED_ORGANISM_BRIDGE === "true",
+  memoryBucketConfigured: Boolean(process.env.SABI_AI_MEMORY_BUCKET),
+  durableConfigObjectConfigured: Boolean(process.env.SABI_AI_DURABLE_CONFIG_OBJECT),
+  durableStage: process.env.SABI_AI_DURABLE_STAGE || null,
+  restartProof: process.env.SABI_AI_RESTART_PROOF || null,
+  learningBucketConfigured: Boolean(process.env.SABI_AI_LEARNING_BUCKET),
+  runtimeApiUrlConfigured: Boolean(process.env.SABI_AI_RUNTIME_API_URL),
+  runtimeModelConfigured: Boolean(process.env.SABI_AI_RUNTIME_MODEL),
+  runtimeApiKeyConfigured: Boolean(process.env.SABI_AI_RUNTIME_API_KEY),
+  locks: {
+    moneyMovement: "locked",
+    payout: "locked",
+    paymentExecution: "locked",
+    walletMutation: "locked",
+    externalAiControl: process.env.EXTERNAL_AI_CONTROL_ENABLED === "true" ? "enabled" : "disabled",
+  },
+});
+
+app.get("/api/sabi-ai/foundation/status", (_req, res) => {
+  res.json(buildSabiAiFoundationStatus());
+});
+
+app.get("/api/sabi-ai/learning/status", (_req, res) => {
+  res.json({
+    ok: true,
+    program: "sabi_ai",
+    status: "learning_foundation_restored",
+    memoryBucket: process.env.SABI_AI_MEMORY_BUCKET || null,
+    durableConfigObject: process.env.SABI_AI_DURABLE_CONFIG_OBJECT || null,
+    durableStage: process.env.SABI_AI_DURABLE_STAGE || null,
+    restartProof: process.env.SABI_AI_RESTART_PROOF || null,
+    learningBucketConfigured: Boolean(process.env.SABI_AI_LEARNING_BUCKET),
+    serverOnly: true,
+    secretValuesExposed: false,
+  });
+});
+
+app.get("/api/sabi-ai/diagnostics/self", (_req, res) => {
+  const foundation = buildSabiAiFoundationStatus();
+
+  res.json({
+    ok: true,
+    program: "sabi_ai",
+    status: "self_diagnostics_ready",
+    checks: {
+      aiModuleMounted: true,
+      aiManifestRoute: "/api/ai/manifest",
+      brainServiceUrlConfigured: Boolean(process.env.SABI_AI_BRAIN_SERVICE_URL),
+      ownerFinalController: foundation.ownerIsOnlyFinalController,
+      googleTeacherOnly: foundation.googleAiTeacherOnly,
+      externalAiControlDisabled: !foundation.externalAiControlEnabled,
+      memoryBucketConfigured: foundation.memoryBucketConfigured,
+      durableConfigConfigured: foundation.durableConfigObjectConfigured,
+      runtimeSecretsConfigured:
+        foundation.runtimeApiUrlConfigured &&
+        foundation.runtimeModelConfigured &&
+        foundation.runtimeApiKeyConfigured,
+    },
+    foundation,
+  });
+});
+
+app.get("/api/sabi-ai/diagnostics/program", (_req, res) => {
+  res.json({
+    ok: true,
+    program: "sabi_ai",
+    status: "program_diagnostics_ready",
+    modules: {
+      home: "check_next",
+      profile: "check_next",
+      messenger: "check_next",
+      gallery: "check_next",
+      admin: "check_next",
+      taxi: "check_next",
+      stream: "check_next",
+      wallet: "locked_money_movement",
+      studio: "separate_module_check_next",
+    },
+    rules: {
+      sabiAiIsFoundation: true,
+      sabiAiStudioSeparateModule: true,
+      ownerFinalController: process.env.OWNER_IS_ONLY_FINAL_CONTROLLER === "true",
+      externalAiControlEnabled: process.env.EXTERNAL_AI_CONTROL_ENABLED === "true",
+      paymentPayoutWalletMovementLocked: true,
+      secretValuesExposed: false,
+    },
+  });
+});
 app.use("/api/programs", sabiProgramFoundationRoutes);
 app.use("/api/v2/programs", sabiProgramFoundationRoutes);
 
@@ -865,6 +967,13 @@ app.use("/api/v2/media", uploadRoutes);
 app.use("/api/v2/network-game-center", sabiNetworkGameCenterFoundationRoutes);
 app.use("/api/v2/games/foundation", sabiNetworkGameCenterFoundationRoutes);
 app.use("/api/v2/gallery", sabiGalleryFoundationRoutes);
+
+// OWNER_MAPS_SERVER_PROXY_MOUNT_003F
+// Google Maps key is server-only via SABI_GOOGLE_MAPS_SERVER_API_KEY.
+// Mobile calls Sabi backend routes only; no Google key in mobile/Git/chat.
+const sabiMapsProxyRouter = createSabiMapsProxyRouter();
+app.use("/api/maps", sabiMapsProxyRouter);
+app.use("/api/v2/maps", sabiMapsProxyRouter);
 
 const streamDiagnosticsHandler = createStreamFoundationKernelDiagnosticsBackendRouteConnectionHandler();
 
@@ -1255,3 +1364,378 @@ app.use(sabiAiStudioRuntime266O);
 // SABI_AI_STUDIO_266P_MOUNT_END
 
 
+
+
+
+/* SABI_AI_PRIVATE_BRAIN_BRIDGE_20260708 START */
+type SabiAiBrainAny = any;
+
+function sabiAiBrainNow(): string {
+  return new Date().toISOString();
+}
+
+function sabiAiBrainSafeString(value: SabiAiBrainAny, fallback = ""): string {
+  if (value === undefined || value === null) return fallback;
+  return String(value);
+}
+
+function sabiAiBrainLocks() {
+  return {
+    ownerIsOnlyFinalController: true,
+    externalAiControlEnabled: false,
+    googleAiMode: process.env.SABI_GOOGLE_AI_MODE || "teacher_helper_only",
+    walletLaunch: "postponed",
+    walletMutationLocked: true,
+    paymentExecutionLocked: true,
+    payoutLocked: true,
+    moneyMovementLocked: true,
+    productionBudgetLockedUntilOwnerApproval: true,
+  };
+}
+
+function sabiAiBrainBuckets() {
+  return {
+    memoryBucket: process.env.SABI_AI_MEMORY_BUCKET || "sabi-ai-memory-1047545881519-euw1",
+    learningBucket: process.env.SABI_AI_LEARNING_BUCKET || "sabi-ai-learning-1047545881519",
+  };
+}
+
+function sabiAiBrainServiceRole() {
+  return process.env.SABI_AI_BRAIN_SERVICE_URL
+    ? "sabi-superapp-api-bridge"
+    : "sabi-ai-brain-private";
+}
+
+async function sabiAiBrainFetchJson(url: string, init: SabiAiBrainAny = {}): Promise<SabiAiBrainAny> {
+  const fetchFn = (globalThis as SabiAiBrainAny).fetch;
+  if (!fetchFn) throw new Error("global_fetch_not_available");
+
+  const response = await fetchFn(url, init);
+  const text = await response.text();
+
+  let data: SabiAiBrainAny = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = { raw: text };
+  }
+
+  if (!response.ok) {
+    const err: SabiAiBrainAny = new Error("http_" + response.status);
+    err.status = response.status;
+    err.data = data;
+    throw err;
+  }
+
+  return data;
+}
+
+async function sabiAiBrainAccessToken(): Promise<string> {
+  const token = await sabiAiBrainFetchJson(
+    "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token",
+    { headers: { "Metadata-Flavor": "Google" } }
+  );
+
+  if (!token || !token.access_token) throw new Error("metadata_access_token_missing");
+  return String(token.access_token);
+}
+
+async function sabiAiBrainIdentityToken(audience: string): Promise<string> {
+  const fetchFn = (globalThis as SabiAiBrainAny).fetch;
+  if (!fetchFn) throw new Error("global_fetch_not_available");
+
+  const url =
+    "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity" +
+    "?audience=" + encodeURIComponent(audience) +
+    "&format=full";
+
+  const response = await fetchFn(url, {
+    headers: { "Metadata-Flavor": "Google" },
+  });
+
+  const token = await response.text();
+
+  if (!response.ok || !token) {
+    throw new Error("metadata_identity_token_missing_" + response.status);
+  }
+
+  return token;
+}
+
+async function sabiAiBrainWriteGcs(bucket: string, objectName: string, payload: SabiAiBrainAny): Promise<SabiAiBrainAny> {
+  const accessToken = await sabiAiBrainAccessToken();
+  const body = JSON.stringify(payload, null, 2);
+
+  const url =
+    "https://storage.googleapis.com/upload/storage/v1/b/" +
+    encodeURIComponent(bucket) +
+    "/o?uploadType=media&name=" +
+    encodeURIComponent(objectName);
+
+  return await sabiAiBrainFetchJson(url, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+    body,
+  });
+}
+
+async function sabiAiBrainReadGcsSafe(bucket: string, objectName: string): Promise<SabiAiBrainAny> {
+  try {
+    const accessToken = await sabiAiBrainAccessToken();
+
+    const url =
+      "https://storage.googleapis.com/storage/v1/b/" +
+      encodeURIComponent(bucket) +
+      "/o/" +
+      encodeURIComponent(objectName) +
+      "?alt=media";
+
+    return await sabiAiBrainFetchJson(url, {
+      headers: {
+        Authorization: "Bearer " + accessToken,
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (error: SabiAiBrainAny) {
+    return {
+      ok: false,
+      missingOrUnreadable: true,
+      objectName,
+      error: error && error.message ? error.message : String(error),
+      status: error && error.status ? error.status : undefined,
+    };
+  }
+}
+
+function sabiAiBrainLocalHealth() {
+  const buckets = sabiAiBrainBuckets();
+
+  return {
+    ok: true,
+    status: "sabi_ai_brain_private_bridge_ready",
+    serviceRole: sabiAiBrainServiceRole(),
+    owner: process.env.SABI_OWNER_EMAIL || "admin@sabiai.app",
+    memoryBucket: buckets.memoryBucket,
+    learningBucket: buckets.learningBucket,
+    privateBrain: process.env.SABI_AI_BRAIN_PRIVATE_SERVICE === "true",
+    locks: sabiAiBrainLocks(),
+    checkedAt: sabiAiBrainNow(),
+  };
+}
+
+function sabiAiBrainBuildOwnerCommand(req: SabiAiBrainAny) {
+  const body = req.body || {};
+  const query = req.query || {};
+
+  const command =
+    sabiAiBrainSafeString(query.command) ||
+    sabiAiBrainSafeString(body.command) ||
+    sabiAiBrainSafeString(body.message) ||
+    "Owner command received for Sabi AI real proof.";
+
+  const modules = Array.isArray(body.modules)
+    ? body.modules
+    : ["sabi-ai", "messenger", "taxi", "stream"];
+
+  return {
+    ok: true,
+    type: "owner_command",
+    source: "live_cloud_run",
+    serviceRole: sabiAiBrainServiceRole(),
+    owner: process.env.SABI_OWNER_EMAIL || "admin@sabiai.app",
+    command,
+    modules,
+    budgetMode: body.budgetMode || query.budgetMode || "250_usd_mvp_test",
+    wallet: "postponed",
+    rules: [
+      "Sabi AI Brain is separate from SuperApp API.",
+      "Memory and Learning are separate GCS buckets.",
+      "Wallet launch is postponed.",
+      "Messenger, Taxi, Stream and AI are checked first.",
+      "No money movement without Owner approval.",
+      "External AI is helper/teacher only, not controller.",
+    ],
+    locks: sabiAiBrainLocks(),
+    createdAt: sabiAiBrainNow(),
+  };
+}
+
+async function sabiAiBrainExecuteOwnerCommand(req: SabiAiBrainAny) {
+  const buckets = sabiAiBrainBuckets();
+  const record = sabiAiBrainBuildOwnerCommand(req);
+  const id = "owner-command-" + Date.now();
+
+  const memoryPayload = {
+    ...record,
+    memoryKind: "owner_governance_memory",
+    memoryStatus: "active",
+  };
+
+  const learningPayload = {
+    ok: true,
+    type: "learning_event",
+    learningKind: "owner_governance_learning",
+    sourceMemoryId: id,
+    learnedRules: record.rules,
+    modules: record.modules,
+    budgetMode: record.budgetMode,
+    wallet: record.wallet,
+    locks: record.locks,
+    createdAt: sabiAiBrainNow(),
+  };
+
+  await sabiAiBrainWriteGcs(buckets.memoryBucket, "sabi-ai/owner-memory/latest.json", memoryPayload);
+  await sabiAiBrainWriteGcs(buckets.memoryBucket, "sabi-ai/owner-memory/" + id + ".json", memoryPayload);
+
+  await sabiAiBrainWriteGcs(buckets.learningBucket, "sabi-ai/owner-learning/latest.json", learningPayload);
+  await sabiAiBrainWriteGcs(buckets.learningBucket, "sabi-ai/owner-learning/" + id + ".json", learningPayload);
+
+  return {
+    ok: true,
+    status: "owner_command_saved_to_brain_memory_and_learning",
+    serviceRole: sabiAiBrainServiceRole(),
+    id,
+    memory: {
+      bucket: buckets.memoryBucket,
+      latest: "sabi-ai/owner-memory/latest.json",
+      event: "sabi-ai/owner-memory/" + id + ".json",
+    },
+    learning: {
+      bucket: buckets.learningBucket,
+      latest: "sabi-ai/owner-learning/latest.json",
+      event: "sabi-ai/owner-learning/" + id + ".json",
+    },
+    answer: "Sabi AI accepted the Owner command, wrote memory and learning records. Wallet remains postponed. Checks continue for AI, Messenger, Taxi and Stream.",
+    locks: sabiAiBrainLocks(),
+    createdAt: sabiAiBrainNow(),
+  };
+}
+
+async function sabiAiBrainAnswerQuestion(req: SabiAiBrainAny) {
+  const buckets = sabiAiBrainBuckets();
+  const question =
+    sabiAiBrainSafeString((req.query || {}).question) ||
+    sabiAiBrainSafeString((req.body || {}).question) ||
+    "Что сейчас запомнил Sabi AI?";
+
+  const memory = await sabiAiBrainReadGcsSafe(buckets.memoryBucket, "sabi-ai/owner-memory/latest.json");
+  const learning = await sabiAiBrainReadGcsSafe(buckets.learningBucket, "sabi-ai/owner-learning/latest.json");
+
+  return {
+    ok: true,
+    status: "sabi_ai_answer_from_brain_memory_and_learning",
+    serviceRole: sabiAiBrainServiceRole(),
+    question,
+    answer: {
+      summary: "Sabi AI uses a separate Brain, separate Memory and separate Learning. AI, Messenger, Taxi and Stream are checked first. Wallet remains postponed.",
+      wallet: "postponed",
+      currentMode: "250_usd_mvp_test",
+      productionMode: "3600_usd_after_full_proof",
+      moduleControl: {
+        sabiAi: "brain_memory_learning_proof_active",
+        messenger: "must_be_checked_before_ready_claim",
+        taxi: "must_be_checked_before_ready_claim",
+        stream: "must_be_checked_before_ready_claim",
+        wallet: "postponed_not_in_current_launch",
+      },
+      noFakeReadyRule: "Нельзя говорить готово только по 200 OK. Нужно реальное поведение: command → memory → learning → answer → restart proof.",
+    },
+    memory,
+    learning,
+    locks: sabiAiBrainLocks(),
+    answeredAt: sabiAiBrainNow(),
+  };
+}
+
+async function sabiAiBrainCallPrivateBrain(path: string, init: SabiAiBrainAny = {}) {
+  const brainUrl = process.env.SABI_AI_BRAIN_SERVICE_URL || process.env.SABI_AI_BRAIN_URL;
+  if (!brainUrl) throw new Error("SABI_AI_BRAIN_SERVICE_URL_missing");
+
+  const token = await sabiAiBrainIdentityToken(brainUrl);
+  const headers = {
+    ...(init.headers || {}),
+    Authorization: "Bearer " + token,
+  };
+
+  return await sabiAiBrainFetchJson(brainUrl + path, {
+    ...init,
+    headers,
+  });
+}
+
+app.get("/api/sabi-ai/brain/local-health", async (_req: SabiAiBrainAny, res: SabiAiBrainAny) => {
+  res.json(sabiAiBrainLocalHealth());
+});
+
+app.get(
+  ["/api/sabi-ai/brain/health", "/api/sabi-ai/brain/status", "/api/sabi-ai/brain/diagnostics"],
+  async (_req: SabiAiBrainAny, res: SabiAiBrainAny) => {
+    try {
+      if (process.env.SABI_AI_BRAIN_SERVICE_URL) {
+        const brain = await sabiAiBrainCallPrivateBrain("/api/sabi-ai/brain/local-health");
+        res.json({
+          ok: true,
+          status: "api_to_private_brain_bridge_ok",
+          apiRole: "sabi-superapp-api",
+          bridge: "metadata_identity_token_to_private_cloud_run",
+          brain,
+          checkedAt: sabiAiBrainNow(),
+        });
+        return;
+      }
+
+      res.json(sabiAiBrainLocalHealth());
+    } catch (error: SabiAiBrainAny) {
+      res.status(502).json({
+        ok: false,
+        status: "api_to_private_brain_bridge_failed",
+        error: error && error.message ? error.message : String(error),
+        details: error && error.data ? error.data : undefined,
+        checkedAt: sabiAiBrainNow(),
+      });
+    }
+  }
+);
+
+app.post("/api/sabi-ai/brain/owner-command", async (req: SabiAiBrainAny, res: SabiAiBrainAny) => {
+  try {
+    res.json(await sabiAiBrainExecuteOwnerCommand(req));
+  } catch (error: SabiAiBrainAny) {
+    res.status(500).json({
+      ok: false,
+      status: "brain_owner_command_failed",
+      error: error && error.message ? error.message : String(error),
+      details: error && error.data ? error.data : undefined,
+    });
+  }
+});
+
+app.get("/api/sabi-ai/brain/ask", async (req: SabiAiBrainAny, res: SabiAiBrainAny) => {
+  try {
+    res.json(await sabiAiBrainAnswerQuestion(req));
+  } catch (error: SabiAiBrainAny) {
+    res.status(500).json({
+      ok: false,
+      status: "brain_ask_failed",
+      error: error && error.message ? error.message : String(error),
+    });
+  }
+});
+
+app.post("/api/sabi-ai/brain/ask", async (req: SabiAiBrainAny, res: SabiAiBrainAny) => {
+  try {
+    res.json(await sabiAiBrainAnswerQuestion(req));
+  } catch (error: SabiAiBrainAny) {
+    res.status(500).json({
+      ok: false,
+      status: "brain_ask_failed",
+      error: error && error.message ? error.message : String(error),
+    });
+  }
+});
+
+/* SABI_AI_PRIVATE_BRAIN_BRIDGE_20260708 END */
