@@ -157,6 +157,44 @@ function asString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function isServerOtpFallbackExplicitlyEnabled(): boolean {
+  return process.env.EXPO_PUBLIC_ALLOW_SERVER_OTP_FALLBACK?.trim().toLowerCase() === "true";
+}
+
+function buildFirebasePhoneAuthUserMessage(
+  error: unknown,
+  stage: "request" | "verify",
+): string {
+  const rawMessage =
+    error instanceof Error
+      ? error.message
+      : typeof error === "string"
+        ? error
+        : "";
+
+  const normalized = rawMessage.toLowerCase();
+
+  if (normalized.includes("too-many-requests")) {
+    return "Firebase SMS is temporarily blocked for this device. Try again later or use an approved Firebase test phone number.";
+  }
+
+  if (normalized.includes("invalid-phone-number")) {
+    return "Phone number format is invalid. Select the correct country code and enter only the local number.";
+  }
+
+  if (normalized.includes("missing-client-identifier")) {
+    return "Firebase phone verification is not ready for this installed app build. Rebuild the Android app with the approved Firebase configuration.";
+  }
+
+  if (normalized.includes("network")) {
+    return "Network connection failed during Firebase phone verification. Check internet connection and try again.";
+  }
+
+  return stage === "request"
+    ? "Firebase phone verification could not send the SMS code. Please try again later."
+    : "Firebase phone verification could not confirm the code. Please request a new code and try again.";
+}
+
 function readNestedString(source: Record<string, unknown>, path: string[]) {
   let current: unknown = source;
 
@@ -423,9 +461,19 @@ export async function requestOtpCode(
       firebaseVerificationId: firebaseResult.firebaseVerificationId,
     };
   } catch (firebaseError) {
+    const firebaseMessage = buildFirebasePhoneAuthUserMessage(firebaseError, "request");
+
     console.warn(
-      "[auth-api] Firebase phone request unavailable, falling back to server OTP",
+      "[auth-api] Firebase phone request failed",
       firebaseError instanceof Error ? firebaseError.message : firebaseError,
+    );
+
+    if (!isServerOtpFallbackExplicitlyEnabled()) {
+      throw new Error(firebaseMessage);
+    }
+
+    console.warn(
+      "[auth-api] Server OTP fallback is explicitly enabled by EXPO_PUBLIC_ALLOW_SERVER_OTP_FALLBACK",
     );
   }
 
@@ -496,9 +544,19 @@ export async function verifyOtpCode(
     const firebaseVerified = await verifyFirebasePhoneCode(phone, code);
     return await exchangeFirebaseIdTokenForSabiSession(firebaseVerified.idToken, request.apiBaseUrl);
   } catch (firebaseError) {
+    const firebaseMessage = buildFirebasePhoneAuthUserMessage(firebaseError, "verify");
+
     console.warn(
-      "[auth-api] Firebase phone verify unavailable, falling back to server OTP",
+      "[auth-api] Firebase phone verify failed",
       firebaseError instanceof Error ? firebaseError.message : firebaseError,
+    );
+
+    if (!isServerOtpFallbackExplicitlyEnabled()) {
+      throw new Error(firebaseMessage);
+    }
+
+    console.warn(
+      "[auth-api] Server OTP verify fallback is explicitly enabled by EXPO_PUBLIC_ALLOW_SERVER_OTP_FALLBACK",
     );
   }
 
@@ -597,4 +655,3 @@ export async function deleteAuthenticatedAccount(
     userId: extractUserId(payload) || undefined,
   };
 }
-
